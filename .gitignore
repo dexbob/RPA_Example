@@ -1,0 +1,9 @@
+# 자동 생성 파일 제외
+.entities
+.local
+.project
+.screenshots
+.settings
+.templates
+.tmh
+
