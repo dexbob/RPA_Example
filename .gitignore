@@ -1,4 +1,4 @@
-# 자동 생성 파일 제외
+# 자동 생성 파일
 .entities
 .local
 .project
@@ -7,3 +7,6 @@
 .templates
 .tmh
 
+
+# 임시파일
+~*
