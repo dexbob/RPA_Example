@@ -1,6 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="OpenChromeBrowser" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="웹 주소를 입력해 주세요." Name="in_URL" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="웹 주소를 입력해 주세요." Name="in_Str_URL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="해당 URL의 브라우저 객체를 반환합니다." Name="out_OpenedBrowser" Type="OutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -71,14 +71,14 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 매개변수(URL)을 이용해 크롬 브라우저를 열고, 최대화 및 대기2초 진행.&#xD;&#xA;// 인수 :&#xD;&#xA;//     in_URL : 입력 인자, 웹 사이트 URL&#xD;&#xA;//     out_OpenedBrowser : 출력 인자, 크롬 브라우저 객체 반환" DisplayName="OpenChromeBrowser" sap:VirtualizedContainerService.HintSize="546,574" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력한 URL 주소로 크롬 브라우저를 열고, 최대화 및 대기2초 진행.&#xA;// 해당 크롬 브라우저 객체 반환" DisplayName="OpenChromeBrowser" sap:VirtualizedContainerService.HintSize="546,544" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="484,391" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" UiBrowser="[out_OpenedBrowser]" Url="[in_URL]">
+    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="484,391" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" UiBrowser="[out_OpenedBrowser]" Url="[in_Str_URL]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

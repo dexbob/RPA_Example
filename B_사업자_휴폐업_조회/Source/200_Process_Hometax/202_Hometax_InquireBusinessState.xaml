@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_202_Hometax_InquireBusinessState" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="inout_OpenedBrowser" Type="InOutArgument(ui:Browser)" />
-    <x:Property Name="inout_DT_BusinessRegistered" Type="InOutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="사업자등록번호를 가진 데이터테이블을 입력으로 받아 조회한 결과를 각 열에 설정해 출력합니다." Name="inout_DT_BusinessRegistered" Type="InOutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="입력한 사업자등록상태 조회 화면 브라우저 객체를 이용하고 그대로 출력합니다." Name="inout_OpenedBrowser" Type="InOutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,641</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1089,2461</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_202_Hometax_InquireBusinessState_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,7 +102,7 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 사업자등록상태 조회 후 결과를 데이터테이블에 설정" DisplayName="_202_Hometax_InquireBusinessState" sap:VirtualizedContainerService.HintSize="744,2180" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 사업자등록상태 조회 후 결과를 데이터테이블에 설정하여 반환&#xD;&#xA;// 1. 입력한 데이터테이블의 행수반큼 반복&#xD;&#xA;// 2. 데이터테이블의 사업자등록번호로 조회 실시&#xD;&#xA;// 3. 조회 결과를 읽어 데이터테이블에 출력 &#xD;&#xA;//   - 사업자등록상태 :  화면의 사업자등록상태 설정&#xD;&#xA;//   - 휴폐업일자 : 화면의 사업자등록상태로부터 휴폐업일자를 추출해 설정&#xD;&#xA;//   - 조회일자 : 화면의 조회기준일자 설정" DisplayName="_202_Hometax_InquireBusinessState" sap:VirtualizedContainerService.HintSize="744,2396" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -117,13 +117,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="682,1854" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="682,1984" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="648,1745" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="648,1875" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="Str_Result" />
             </Sequence.Variables>
@@ -132,13 +132,13 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[inout_DT_BusinessRegistered]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1333" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[inout_DT_BusinessRegistered]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1463" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,1147" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,1277" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="sd:DataTable" Name="DT_ExtractData" />
                       <Variable x:TypeArguments="x:String" Name="Str_ClosedDate">
@@ -186,7 +186,8 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_ExtractData]" DisplayName="Extract Structured Data 'TABLE  mf_txppWframe_gr...'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='사업자등록번호' attr='fulltext' /&gt;&lt;column name='사업자등록상태' attr='fulltext' /&gt;&lt;column name='조회기준일자' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="510,107" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="10" SimulateClick="True">
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="510,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                    <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_ExtractData]" DisplayName="Extract Structured Data 'TABLE  mf_txppWframe_gr...'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='사업자등록번호' attr='fulltext' /&gt;&lt;column name='사업자등록상태' attr='fulltext' /&gt;&lt;column name='조회기준일자' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="510,107" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="1" SimulateClick="True">
                       <ui:ExtractData.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cbf2eedf-6f12-4615-8de1-e8b582905394" InformativeScreenshot="4a10d2596c1bf388eb610e04e62845d5" Selector="&lt;webctrl class='gridHeaderTableDefault' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
                           <ui:Target.TimeoutMS>
@@ -262,6 +263,12 @@
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="682,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Hometax_InquireBusinessState] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>

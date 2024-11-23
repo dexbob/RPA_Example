@@ -1,13 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_101_Excel_Read_Range" this:_101_Excel_Read_Range.in_Str_SheetName="Sheet1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_101_Excel_Read_Range" this:_101_Excel_Read_Range.in_Str_ExcelSheetName="Sheet1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스을 입력하세요." Name="in_Str_FilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="해당 엑셀 파일의 시트명을 입력허세요. (기본값 &quot;Sheet1&quot;)" Name="in_Str_SheetName" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="입출력 데이터테이블로 데이터테이블이 비어있으면 새롭게 생성합니다." Name="inout_DT_Datatable" Type="InOutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀파일패스을 입력하세요.&#xA;해당 파일이 존재하지 않으면 메시지 출력 후 종료합니다." Name="in_Str_ExcelFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="해당 엑셀 파일의 시트명을 입력하세요. (기본값 &quot;Sheet1&quot;)" Name="in_Str_ExcelSheetName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="입출력 데이터테이블을 입력하세요.&#xA;해당 데이터테이블이 없으면 새롭게 생성합니다." Name="inout_DT_Datatable" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,1069</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1089,1119</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_Read_Range_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,7 +97,7 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_101_Excel_Read_Range" sap:VirtualizedContainerService.HintSize="800,1004" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_101_Excel_Read_Range" sap:VirtualizedContainerService.HintSize="800,1054" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,7 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart sap2010:Annotation.AnnotationText="// 입력된 엑셀파일과 해당 시트를 읽어 데이터테이블 추출해 반환&#xA;// 1. 파일패스에 파일이 존재하지 않으면 메시지 출력 후 종료&#xA;// 2. 입출력 데이터테이블이 존재하면 거기에 엑셀파일 추출 &#xA;// 3. 입출력 데이터테이블이 없으면 새로운 데이터테이블에 엑셀파일 추출" DisplayName="Flowchart 엑셀 읽어 반환" sap:VirtualizedContainerService.HintSize="688,759" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// 입력된 엑셀파일의 해당 시트를 읽어, 데이터테이블로 추출해 반환&#xA;// 1. 파일패스에 파일이 존재하지 않으면 메시지 출력 후 종료&#xA;// 2. 입출력 데이터테이블이 존재하면 그 데이터테이블에 엑셀파일정보 추출 &#xA;// 3. 입출력 데이터테이블이 없으면 새로운 데이터테이블에 엑셀파일 추출" DisplayName="Flowchart 엑셀 파일 정보 읽어서 반환" sap:VirtualizedContainerService.HintSize="738,759" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistFile" />
       </Flowchart.Variables>
@@ -141,7 +141,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <FlowDecision.True>
-          <FlowDecision x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="// 입출력 데이터테이블이 없으면 초기화 후 다음으로 진행" Condition="[inout_DT_Datatable is Nothing]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="81,87" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+          <FlowDecision x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="// 입출력 데이터테이블이 없으면 초기화 후 다음으로 진행" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="81,87" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+            <FlowDecision.Condition>
+              <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="inout_DT_Datatable is Nothing" />
+            </FlowDecision.Condition>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <av:Point x:Key="ShapeLocation">269.5,236.5</av:Point>
@@ -181,7 +184,7 @@
                         <av:Size x:Key="ShapeSize">200,109</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 데이터를 읽어 입출력 데이터테이블에 설정" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,109" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_FilePath]">
+                    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 읽은 데이터를 입출력 데이터테이블에 설정" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,109" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
                       <ui:ExcelApplicationScope.Body>
                         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                           <ActivityAction.Argument>
@@ -193,7 +196,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:ExcelReadRange AddHeaders="True" DataTable="[inout_DT_Datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_SheetName]">
+                            <ui:ExcelReadRange AddHeaders="True" DataTable="[inout_DT_Datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_ExcelSheetName]">
                               <ui:ExcelReadRange.Range>
                                 <InArgument x:TypeArguments="x:String">
                                   <Literal x:TypeArguments="x:String" Value="" />
@@ -226,7 +229,7 @@
                 <av:Size x:Key="ShapeSize">200,94</av:Size>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage sap2010:Annotation.AnnotationText="// 메시지 출력 - &quot;파일이 존재하지 않습니다.&quot;" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;파일이 존재하지 않습니다. (&quot; + in_Str_FilePath + &quot;)&quot;]">
+            <ui:LogMessage sap2010:Annotation.AnnotationText="// 메시지 출력 - &quot;파일이 존재하지 않습니다.&quot;" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,94" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;파일이 존재하지 않습니다. (&quot; + in_Str_ExcelFilePath + &quot;)&quot;]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -246,7 +249,7 @@
             <av:PointCollection x:Key="ConnectorLocation">250,130 420,130 420,156.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:FileExistsX sap2010:Annotation.AnnotationText="// 엑셀파일 존재여부 추출" DisplayName="File Exists" Exists="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_FilePath]">
+        <ui:FileExistsX sap2010:Annotation.AnnotationText="// 엑셀파일 존재여부 추출" DisplayName="File Exists" Exists="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_ExcelFilePath]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>

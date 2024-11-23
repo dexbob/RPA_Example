@@ -104,7 +104,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart DisplayName="Flowchart 메인 처리" sap:VirtualizedContainerService.HintSize="648,829" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// 사업자 휴폐업 조회를 통해 데이터 가공/추출하여 엑셀파일에 저장하는 프로세스입니다.&#xD;&#xA;// 1. 초기화&#xD;&#xA;// 2. 사업자등록번호 읽기&#xD;&#xA;// 3. 사업자등록상태 조회&#xD;&#xA;// 4. 엑셀파일 출력&#xD;&#xA;// 5. 결과 메일 전송" DisplayName="Flowchart 메인 처리" sap:VirtualizedContainerService.HintSize="648,1021" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
         <Variable x:TypeArguments="x:String" Name="Str_RegisteredPath" />
@@ -118,8 +118,9 @@
           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
           <av:Size x:Key="ShapeSize">60,75</av:Size>
           <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,98.5</av:PointCollection>
-          <x:Double x:Key="Height">791.5</x:Double>
+          <x:Double x:Key="Height">881.5</x:Double>
           <x:Double x:Key="Width">614</x:Double>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
@@ -129,11 +130,11 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,98.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,213</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,311.5 300,324</av:PointCollection>
+            <av:Size x:Key="ShapeSize">200,228</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,326.5 300,344</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. Config 정보 추출 설정&#xA;// 2. 엑셀 파일 패스 설정&#xA;// 3. 엑셀 파일이 존재할 경우에 처리결과를 저장할 결과 폴더로 복사&#xA;//     - 사업자등록상태조회&#xA;//     - 폐업자명단" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. Config 정보 추출 설정&#xA;// 2. 엑셀 파일 패스 설정&#xA;// 3. 엑셀 파일이 존재할 경우에 처리결과를 저장할 결과 폴더로 복사&#xA;//   - 사업자등록상태조회 파일&#xA;//   - 폐업자명단 파일" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,228" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="Str_OrgRegisteredPath" />
             <Variable x:TypeArguments="x:String" Name="Str_OrgClosedPath" />
@@ -147,7 +148,9 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// Config 정보 추출" DisplayName="1. Config.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="479,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="000_Process_Common\Config.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Dic_Config">
+                <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+              </OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -214,7 +217,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:MultipleAssign>
-          <Sequence sap2010:Annotation.AnnotationText="//  원본 파일이 존재할 경우에 처리결과를 저장할 결과 폴더로 복사&#xA;//     - 사업자등록상태조회&#xA;//     - 폐업자명단" DisplayName="3. 파일 저장" sap:VirtualizedContainerService.HintSize="479,1402" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence sap2010:Annotation.AnnotationText="//  원본 파일이 존재할 경우에 처리결과를 저장할 결과 폴더로 복사&#xA;//   - 사업자등록상태조회 파일&#xA;//   - 폐업자명단 파일" DisplayName="3. 파일 저장" sap:VirtualizedContainerService.HintSize="479,1402" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -285,9 +288,9 @@
           <FlowStep x:Name="__ReferenceID1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <av:Point x:Key="ShapeLocation">200,324</av:Point>
+                <av:Point x:Key="ShapeLocation">200,344</av:Point>
                 <av:Size x:Key="ShapeSize">200,123</av:Size>
-                <av:PointCollection x:Key="ConnectorLocation">300,447 300,468.5</av:PointCollection>
+                <av:PointCollection x:Key="ConnectorLocation">300,467 300,488.5</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Sequence sap2010:Annotation.AnnotationText="// 엑셀 파일에서 사업자등록번호 리스트 추출" DisplayName="2. 사업자등록번호 읽기" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_5">
@@ -300,12 +303,12 @@
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="101_Excel_Read_SheetOne.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_Range.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="101_Excel_Read_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_Range.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_FilePath">
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
                     <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_RegisteredPath" />
                   </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_SheetName">
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">
                     <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_BusinessRegistered&quot;).ToString.Trim" />
                   </InArgument>
                   <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">
@@ -320,12 +323,12 @@
               <FlowStep x:Name="__ReferenceID0">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <av:Point x:Key="ShapeLocation">200,468.5</av:Point>
-                    <av:Size x:Key="ShapeSize">200,153</av:Size>
-                    <av:PointCollection x:Key="ConnectorLocation">300,621.5 300,648.5</av:PointCollection>
+                    <av:Point x:Key="ShapeLocation">200,488.5</av:Point>
+                    <av:Size x:Key="ShapeSize">200,168</av:Size>
+                    <av:PointCollection x:Key="ConnectorLocation">300,656.5 300,668.5</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="// 1, 사업자등록상태 조회 화면 열기 &#xA;// 2. 사업자등록번호 조회 실시" DisplayName="3. 사업자등록상태조회이동" sap:VirtualizedContainerService.HintSize="200,153" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence sap2010:Annotation.AnnotationText="// 1, 사업자등록상태 조회 화면 열기 &#xA;// 2. 사업자등록번호 조회 실시&#xD;&#xA;// 3. 사업자등록상태 조회 화면 닫기" DisplayName="3. 사업자등록상태 조회" sap:VirtualizedContainerService.HintSize="450,499" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -334,26 +337,35 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="201_Hometax_Open.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="200_Process_Hometax\201_Hometax_Open.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Str_HometaxURL">[Config("URL_Hometax").ToString.Trim]</InArgument>
-                      <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">[Brw_Hometax]</OutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Str_HometaxURL">
+                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL_Hometax&quot;).ToString.Trim" />
+                      </InArgument>
+                      <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">
+                        <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_Hometax" />
+                      </OutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="202_Hometax_InquireBusinessState.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="200_Process_Hometax\202_Hometax_InquireBusinessState.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="202_Hometax_InquireBusinessState.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="200_Process_Hometax\202_Hometax_InquireBusinessState.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">[Brw_Hometax]</InOutArgument>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_BusinessRegistered">[DT_BusinessRegistered]</InOutArgument>
+                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_BusinessRegistered">
+                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_BusinessRegistered" />
+                      </InOutArgument>
+                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">
+                        <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_Hometax" />
+                      </InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
+                  <ui:CloseTab Browser="[Brw_Hometax]" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
                 </Sequence>
                 <FlowStep.Next>
                   <FlowStep x:Name="__ReferenceID2">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <av:Point x:Key="ShapeLocation">200,648.5</av:Point>
-                        <av:Size x:Key="ShapeSize">200,123</av:Size>
+                        <av:Point x:Key="ShapeLocation">200,668.5</av:Point>
+                        <av:Size x:Key="ShapeSize">200,213</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence sap2010:Annotation.AnnotationText="// 출력한 정보를 엑셀 파일로 출력&#xD;&#xA;// 1. 사업자등록상태 조회 출력&#xD;&#xA;// 2. 폐업자 명단 출력" DisplayName="4. 엑셀파일 출력" sap:VirtualizedContainerService.HintSize="496,757" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <Sequence sap2010:Annotation.AnnotationText="// 사업자등록상태 데이터테이블 정보를 엑셀 파일로 출력&#xA;// 1. 사업자등록상태조회 파일 출력&#xD;&#xA;// 2. 폐업자명단 필터링으로 추출&#xA;// 3. 폐업자명단 파일 출력" DisplayName="4. 엑셀파일 출력" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_12">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="DT_BusinessClosed" />
                       </Sequence.Variables>
