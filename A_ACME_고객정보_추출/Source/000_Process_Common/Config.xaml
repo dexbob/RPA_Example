@@ -1,6 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Config" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Config 데이터를 Dictionary 형태로 반환합니다." Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Config 데이터를 Dictionary 형태로 반환합니다." Name="out_Dic_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -105,7 +105,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 환경 설정 파일 (Config.xlsx) 데이터를 읽어 딕셔너리 타입의 Config 객체를 생성해 반환&#xD;&#xA;// 별도로 &quot;Folder_DataPath&quot; 를 키값으로 파일이 있는 폴더(File, Result)의 풀패스를 Config 정보에 설정&#xD;&#xA;// 인수 :&#xD;&#xA;//     out_Config : 출력 인자, 환경설정정보(Config) 객체 반환" DisplayName="Config" sap:VirtualizedContainerService.HintSize="882,2620" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 환경 설정 파일 (Config.xlsx) 데이터를 읽어 딕셔너리 타입의 Config 객체를 생성해 반환&#xA;// 1. 변수 초기화&#xA;// 2. Config 파일 추출 &amp; 설정&#xA;// 3. Config 파일 추가 설정&#xA;//     키값 (&quot;Folder_DataPath&quot;) = 파일이 있는 폴더(File, Result)의 풀패스" DisplayName="Config" sap:VirtualizedContainerService.HintSize="882,2620" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Str_ConfigPath" />
     </Sequence.Variables>
@@ -123,7 +123,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. Str_ConfigPath : Config파일의 절대패스 설정&#xA;// 2. out_Config : 반환할 Config 딕셔너리 초기화" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="820,373" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;//  Config 파일의 절대패스, 반환할 Config 딕셔너리" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="820,358" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -143,7 +143,7 @@
       </Assign>
       <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
-          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Config]</OutArgument>
+          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Dic_Config]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[New Dictionary(Of String, Object)]</InArgument>
@@ -229,7 +229,7 @@
                                     </sap:WorkflowViewStateService.ViewState>
                                     <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
                                       <Assign.To>
-                                        <OutArgument x:TypeArguments="x:Object">[out_Config(Str_Key)]</OutArgument>
+                                        <OutArgument x:TypeArguments="x:Object">[out_Dic_Config(Str_Key)]</OutArgument>
                                       </Assign.To>
                                       <Assign.Value>
                                         <InArgument x:TypeArguments="x:Object">[Row("Value")]</InArgument>
@@ -269,7 +269,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Object">[out_Config("Folder_DataPath")]</OutArgument>
+          <OutArgument x:TypeArguments="x:Object">[out_Dic_Config("Folder_DataPath")]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="si:DirectoryInfo">[Directory.GetParent(Environment.CurrentDirectory)]</InArgument>

@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,2576</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1089,2496</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_Write_Range_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,10 +101,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 데이터 테이블 정보를 대상 엑셀 파일에 쓰기&#xD;&#xA;// 원본 파일 패스를 입력하면 그 파일을 복사해서 사용&#xD;&#xA;// 대상 파일 패스를 입력하지 않으면 임의의 파일명으로 생성해서 사용&#xD;&#xA;// 시트명의 기본값은 &quot;Sheet1&quot;, 첫번째 셀 위치의 기본값은 &quot;A1&quot; &#xD;&#xA;// 인수 :&#xD;&#xA;//     in_DT_Datatable : 입력 인자, 엑셀에 쓸 데이터테이블&#xD;&#xA;//     in_Str_OriginalFilePath: 입력 인자, 복사할 원본 파일 패스 &#xD;&#xA;//     in_Str_SheetName: 입력 인자, 데이터테이블 내용을 쓸 시트명 &#xD;&#xA;//     in_Str_StartCell: 입력 인자, 데이터테이블 내용을 쓸 첫번째 셀 위치&#xD;&#xA;//     inout_Str_DestinationFilePath: 입력/출력 인자, 데이터테이블 내용을 쓸 대상 파일 패스 " DisplayName="_101_Excel_Write_Range" sap:VirtualizedContainerService.HintSize="634,2511" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistOriginalFilePath" />
-    </Sequence.Variables>
+  <Sequence sap2010:Annotation.AnnotationText="// 데이터테이블 정보를 대상 엑셀 파일에 쓰기&#xA;// 1. 변수 초기화 - 입출력 대상파일패스가 없으면 현재폴더에 임의의 파일명으로 처리 진행&#xA;// 2. 원본파일을 복사해 대상파일 생성 - 원본파일 미존재시 복사처리 없이 진행&#xA;// 3. 데이터테이블 내용을 대상파일(Excel)에 쓰기" DisplayName="_101_Excel_Write_Range" sap:VirtualizedContainerService.HintSize="634,2431" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -119,21 +116,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. 원본 파일 패스가 존재하는지 여부를 알려주는 변수 설정&#xA;// 2. 대상 파일 패스가 없으면 임의의 파일명으로 패스 생성" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="572,674" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. 대상 파일 패스가 없으면 임의의 파일명으로 패스 생성" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="572,537" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:Boolean">[Bln_ExistOriginalFilePath]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:Boolean">[Not String.IsNullOrWhiteSpace(in_Str_OriginalFilePath)]</InArgument>
-        </Assign.Value>
-      </Assign>
       <If sap2010:Annotation.AnnotationText="// 저장할 파일 패스가 없을 경우 현재 폴더에 임의의 파일명으로 저장" Condition="[String.IsNullOrWhiteSpace(inout_Str_DestinationFilePath)]" sap:VirtualizedContainerService.HintSize="510,384" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -165,14 +155,18 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// 원본 파일을 복사해 대상 파일 폴더에 저장 &#xA;// 원본 파일 패스가 없는 경우에는 별도 처리 없음" DisplayName="2. 원본파일을 복사해 저장할 파일 생성" sap:VirtualizedContainerService.HintSize="572,577" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence sap2010:Annotation.AnnotationText="// 원본 파일을 복사해 대상파일패스로 저장 &#xA;// 원본 파일이 없는 경우에는 별도 처리 없음" DisplayName="2. 원본파일을 복사해 대상파일 생성" sap:VirtualizedContainerService.HintSize="572,750" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistOriginalFile" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[Bln_ExistOriginalFilePath]" sap:VirtualizedContainerService.HintSize="410,424" sap2010:WorkflowViewState.IdRef="If_2">
+      <ui:FileExistsX DisplayName="File Exists" Exists="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_OriginalFilePath]" />
+      <If Condition="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,424" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
           <Sequence sap:VirtualizedContainerService.HintSize="376,242" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
@@ -188,7 +182,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// 대상 엑셀 파일에 데이터테이블 내용 쓰기&#xA;// 대상 파일이 존재하지 않으면 자동 생성&#xA;// 머리글 생성" DisplayName="데이터테이블 내용을 대상 파일(Excel)에 쓰기" sap:VirtualizedContainerService.HintSize="572,723" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="// 대상 엑셀 파일에 데이터테이블 내용 쓰기" DisplayName="3. 데이터테이블 내용을 대상 파일(Excel)에 쓰기" sap:VirtualizedContainerService.HintSize="572,697" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

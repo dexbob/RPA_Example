@@ -118,7 +118,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart DisplayName="Flowchart 메인 처리" sap:VirtualizedContainerService.HintSize="686,1119" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// ACME 고객정보 추출&#xD;&#xA;// 1. 변수 초기화&#xD;&#xA;// 2. 로그인 실시&#xD;&#xA;// 3. WorkItmes 추출&#xD;&#xA;// 4. 고객정보 추출&#xD;&#xA;// 5. 로그아웃 처리&#xD;&#xA;// 6. 고객정보 엑셀 쓰기" DisplayName="Flowchart 메인 처리" sap:VirtualizedContainerService.HintSize="634,1297" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
         <Variable x:TypeArguments="ui:Browser" Name="Brw_ACME" />
@@ -132,8 +132,8 @@
           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
           <av:Size x:Key="ShapeSize">60,75</av:Size>
           <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,99.5</av:PointCollection>
-          <x:Double x:Key="Height">1081.5</x:Double>
-          <x:Double x:Key="Width">652</x:Double>
+          <x:Double x:Key="Height">1143</x:Double>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
@@ -156,7 +156,9 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Config.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="000_Process_Common\Config.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Dic_Config">
+                <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+              </OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
@@ -178,8 +180,12 @@
               </sap:WorkflowViewStateService.ViewState>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="201_ACME_Login.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="200_Process_ACME\201_ACME_Login.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
-                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">[Brw_ACME]</OutArgument>
+                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_ACME" />
+                  </OutArgument>
+                  <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="inout_Dic_Config">
+                    <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+                  </InOutArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
             </Sequence>
@@ -204,8 +210,12 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="202_ACME_WorkItems.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="200_Process_ACME\202_ACME_WorkItems.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_WorkItems">[DT_WorkItems]</OutArgument>
-                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">[Brw_ACME]</InOutArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_WorkItems">
+                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_WorkItems" />
+                      </OutArgument>
+                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">
+                        <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_ACME" />
+                      </InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <ui:FilterDataTable DataTable="[DT_WorkItems]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[DT_FilteredWorkItems]" SelectColumnsMode="Keep">
@@ -245,18 +255,18 @@
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">200,569.5</av:Point>
                         <av:Size x:Key="ShapeSize">200,213</av:Size>
-                        <av:PointCollection x:Key="ConnectorLocation">300,782.5 300,799.5</av:PointCollection>
+                        <av:PointCollection x:Key="ConnectorLocation">300,782.5 300,802.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence sap2010:Annotation.AnnotationText="// 1. 고객의 숫자만큼 반복&#xA;// 2. 고객의 상세정보 추출&#xD;&#xA;// 3. 추출에 실패시 한번 더 시도하고, 그래도 실패하면 경고 로그 출력하고 다음으로 진행&#xA;// ※ 컬럼명: ClinetID, ClientName, ClientCountry" DisplayName="4. 고객정보 추출" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence sap2010:Annotation.AnnotationText="// 1. 고객의 숫자만큼 반복&#xA;// 2. 고객의 상세정보 추출&#xA;// 3. 추출에 실패시 한번 더 시도하고, 그래도 실패하면 경고 로그 출력하고 다음으로 진행&#xA;// ※ 컬럼명: ClinetID, ClientName, ClientCountry" DisplayName="4. 고객정보 추출" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:BuildDataTable DataTable="[DT_Client]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="714,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;ClientID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;10&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;ClientName&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;ClientCountry&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 고객의 숫자만큼 반복 처리하며 데이터테이블에 설정" DataTable="[DT_FilteredWorkItems]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="714,1391" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                      <ui:BuildDataTable DataTable="[DT_Client]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;ClientID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;10&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;ClientName&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;ClientCountry&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 고객의 숫자만큼 반복 처리하며 데이터테이블에 설정" DataTable="[DT_FilteredWorkItems]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="388,94" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                         <ui:ForEachRow.Body>
                           <ActivityAction x:TypeArguments="sd:DataRow">
                             <ActivityAction.Argument>
@@ -337,96 +347,84 @@
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:ForEachRow>
                     </Sequence>
                     <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID3">
+                      <FlowStep x:Name="__ReferenceID4">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <av:Point x:Key="ShapeLocation">200,799.5</av:Point>
-                            <av:Size x:Key="ShapeSize">200,138</av:Size>
-                            <av:PointCollection x:Key="ConnectorLocation">300,937.5 300,958.5</av:PointCollection>
+                            <av:Point x:Key="ShapeLocation">200,802.5</av:Point>
+                            <av:Size x:Key="ShapeSize">200,123</av:Size>
+                            <av:PointCollection x:Key="ConnectorLocation">300,925.5 300,953.5</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence sap2010:Annotation.AnnotationText="// 1. 저장할 파일 복사 생성&#xA;// 2. 생성한 엑셀에 추출 데이터 쓰기" DisplayName="5. 고객정보 엑셀 쓰기" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="x:String" Name="Str_OriginalFilePath" />
-                            <Variable x:TypeArguments="x:String" Name="Str_DestinationFilePath" />
-                          </Sequence.Variables>
+                        <Sequence sap2010:Annotation.AnnotationText="// 1. 로그 아웃&#xA;// 2. 브라우저 닫기" DisplayName="5. 로그아웃 처리" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_17">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[Str_OriginalFilePath]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
-	Config("Folder_DataPath").ToString.Trim,
-	Config("Folder_OriginalName").ToString.Trim,
-	Config("File_ACME_Client").ToString.Trim	
-)]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[Str_DestinationFilePath]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
-	Config("Folder_DataPath").ToString.Trim,
-	Config("Folder_DestinationName").ToString.Trim,
-	Config("File_ACME_Client").ToString.Trim	
-)]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="101_Excel_Write_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Write_Range.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="204_ACME_Close.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="200_Process_ACME\204_ACME_Close.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">
-                                <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_Client" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_OriginalFilePath">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_OriginalFilePath" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_SheetName">
-                                <Literal x:TypeArguments="x:String">Sheet1</Literal>
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_StartCell">
-                                <Literal x:TypeArguments="x:String">A1</Literal>
-                              </InArgument>
-                              <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_DestinationFilePath">
-                                <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_DestinationFilePath" />
-                              </InOutArgument>
+                              <InArgument x:TypeArguments="ui:Browser" x:Key="in_OpenedBrowser">[Brw_ACME]</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                         </Sequence>
                         <FlowStep.Next>
-                          <FlowStep x:Name="__ReferenceID4">
+                          <FlowStep x:Name="__ReferenceID3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <av:Point x:Key="ShapeLocation">200,958.5</av:Point>
-                                <av:Size x:Key="ShapeSize">200,123</av:Size>
+                                <av:Point x:Key="ShapeLocation">200,953.5</av:Point>
+                                <av:Size x:Key="ShapeSize">200,153</av:Size>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Sequence sap2010:Annotation.AnnotationText="// 1. 로그 아웃&#xA;// 2. 브라우저 닫기" DisplayName="6. 종료 처리" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                            <Sequence sap2010:Annotation.AnnotationText="// 1. 원본파일 &amp; 대상파일 패스 설정&#xA;// 2. 대상 엑셀 파일에 추출 데이터 쓰기" DisplayName="6. 고객정보 엑셀 쓰기" sap:VirtualizedContainerService.HintSize="200,153" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="Str_OriginalFilePath" />
+                                <Variable x:TypeArguments="x:String" Name="Str_DestinationFilePath" />
+                              </Sequence.Variables>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="204_ACME_Close.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="200_Process_ACME\204_ACME_Close.xaml">
+                              <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Str_OriginalFilePath]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
+	Config("Folder_DataPath").ToString.Trim,
+	Config("Folder_OriginalName").ToString.Trim,
+	Config("File_ACME_Client").ToString.Trim	
+)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Str_DestinationFilePath]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
+	Config("Folder_DataPath").ToString.Trim,
+	Config("Folder_DestinationName").ToString.Trim,
+	Config("File_ACME_Client").ToString.Trim	
+)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="101_Excel_Write_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Write_Range.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
-                                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_OpenedBrowser">
-                                    <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="Brw_ACME" />
-                                  </InArgument>
+                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">[DT_Client]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_OriginalFilePath">[Str_OriginalFilePath]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_SheetName">Sheet1</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_StartCell">A1</InArgument>
+                                  <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_DestinationFilePath">[Str_DestinationFilePath]</InOutArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
                             </Sequence>

@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_201_ACME_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/credentials" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Config 파일 정보가 있으면 설정하고 없으면 아무값도 넣지 마세요." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="Config 정보를 바탕으로 로그인 실시 후, 웹(ACME) 브라우저 정보를 반환합니다." Name="out_OpenedBrowser" Type="OutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="Config 파일 정보가 있으면 입력 하세요.&#xD;&#xA;미입력시 직접 설정해 사용하고 반환합니다." Name="inout_Dic_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,3987</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1089,4402</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_201_ACME_Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,10 +97,7 @@
       <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 웹브라우저를 열고 ACME 사이트로 이동해 ACME 로그인 처리까지 완료&#xD;&#xA;// 인수 :&#xD;&#xA;//     in_Config : 입력 인자, 환경설정파일(Config) 정보 객체, 미설정시 직접 추출해서 사용&#xD;&#xA;//     out_OpenedBrowser : 출력 인자, 로그인 처리한 브라우저 객체" DisplayName="_201_ACME_Login" sap:VirtualizedContainerService.HintSize="712,3922" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
-    </Sequence.Variables>
+  <Sequence sap2010:Annotation.AnnotationText="// 웹브라우저를 열고 ACME 사이트로 이동해 ACME 로그인 처리까지 완료&#xA;// 1. 변수초기화 - 입력된 Config 객체가 존재하지 않으면 직접 추출해서 사용&#xA;// 2. 로그인 화면 열기 - 로그인 상태일때에는 로그아웃 처리 실시&#xA;// 3. 로그인 실시 - 로그인 처리한 브라우저 객체 반환" DisplayName="_201_ACME_Login" sap:VirtualizedContainerService.HintSize="712,4760" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -115,19 +112,54 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. 매개변수 Config 정보가 존재하면 그 값 그대로 설정&#xA;// 2. 매개변수 Config 정보가 존재하지 않으면, Config 파일로부터 추출" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="650,138" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. Config 정보가 비어있을때 새롭게 생성&#xA;// 2. Config 정보에 데이터가 없을때 직접 Config파일로부터 추출하여 설정" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="650,1016" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If sap2010:Annotation.AnnotationText="// 매개변수로 Config 정보를 받지 못했을때 직접 Config 파일 정보 읽기" Condition="[in_Config is Nothing]" DisplayName="If" sap:VirtualizedContainerService.HintSize="388,109" sap2010:WorkflowViewState.IdRef="If_1">
+      <If sap2010:Annotation.AnnotationText="// Config 정보가 비어있을때 새롭게 생성" Condition="[inout_Dic_Config is Nothing]" DisplayName="If" sap:VirtualizedContainerService.HintSize="510,383" sap2010:WorkflowViewState.IdRef="If_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[inout_Dic_Config]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[New Dictionary(Of String, Object)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+      <If sap2010:Annotation.AnnotationText="// Config 정보에 데이터가 없을때 직접 Config파일로부터 추출하여 설정" Condition="[inout_Dic_Config.Count = 0]" DisplayName="If" sap:VirtualizedContainerService.HintSize="510,425" sap2010:WorkflowViewState.IdRef="If_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -140,26 +172,20 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Config.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="000_Process_Common\Config.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Dic_Config">
+                  <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="inout_Dic_Config" />
+                </OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[Config]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[in_Config]</InArgument>
-              </Assign.Value>
-            </Assign>
           </Sequence>
         </If.Else>
       </If>
@@ -174,8 +200,12 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="506,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_URL">[Config("URL_ACME").ToString]</InArgument>
-          <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">[out_OpenedBrowser]</OutArgument>
+          <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">
+            <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="out_OpenedBrowser" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">
+            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="inout_Dic_Config(&quot;URL_ACME&quot;).ToString.Trim" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -261,7 +291,7 @@
         </ui:BrowserScope.Body>
       </ui:BrowserScope>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// ACME 로그인 실시&#xA;// 1. 로그인 3번 시도 (인터벌 3초)&#xA;// 2. 로그인 실시 후 2초 대기" DisplayName="3. 로그인 실시" sap:VirtualizedContainerService.HintSize="650,1961" sap2010:WorkflowViewState.IdRef="Sequence_24">
+    <Sequence sap2010:Annotation.AnnotationText="// ACME 로그인 실시&#xA;// 1. 로그인 3번 시도 (인터벌 3초)&#xA;// 2. 로그인 실시 후 2초 대기" DisplayName="3. 로그인 실시" sap:VirtualizedContainerService.HintSize="650,1921" sap2010:WorkflowViewState.IdRef="Sequence_24">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="Int_Count" />
       </Sequence.Variables>
@@ -280,16 +310,16 @@
           <InArgument x:TypeArguments="x:Int32">1</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="588,1541" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
+      <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="588,1501" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
         <ui:RetryScope.ActivityBody>
           <ActivityAction>
-            <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1274" sap2010:WorkflowViewState.IdRef="Sequence_23">
+            <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1234" sap2010:WorkflowViewState.IdRef="Sequence_23">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 로그인 실시" Browser="[out_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,860" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[out_OpenedBrowser]">
+              <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 로그인 실시" Browser="[out_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,820" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[out_OpenedBrowser]">
                 <ui:BrowserScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -305,7 +335,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <p:GetSecureCredential CredentialType="Generic" DisplayName="보안 자격 증명 받기" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="GetSecureCredential_1" Password="[Str_PW]" PersistanceType="Enterprise" Target="[Config(&quot;Account_ACME&quot;).ToString.Trim]" Username="[Str_ID]" />
+                      <p:GetSecureCredential CredentialType="Generic" DisplayName="보안 자격 증명 받기" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="GetSecureCredential_1" Password="[Str_PW]" PersistanceType="Enterprise" Target="[inout_Dic_Config(&quot;Account_ACME&quot;).ToString.Trim]" Username="[Str_ID]" />
                       <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Type Into 'INPUT  email'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Str_ID]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="efe6c1f6-e342-46f6-b92e-d71cf316f462" InformativeScreenshot="4a864286b36593f7f794d8f346ec8e8b" Selector="&lt;webctrl id='email' tag='INPUT' /&gt;" WaitForReady="COMPLETE">

@@ -1,13 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_203_ACME_Client" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="고객 상세 정보 URL 을 넣어 주세요." Name="in_Str_ClientURL" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="고객 상세 정보 URL 을 입력해 주세요." Name="in_Str_ClientURL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="텍스트 복사로 얻은 고객 상세 정보를 그대로 반환 합니다." Name="out_Str_ClientData" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="현재 열린 웹(ACME) 화면 객체를 넣어 주세요." Name="inout_OpenedBrowser" Type="InOutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="현재 열린 웹(ACME) 화면 객체를 입력해 주세요." Name="inout_OpenedBrowser" Type="InOutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,1663</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1089,1633</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_203_ACME_Client_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,7 +79,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 로그인 된 ACME 사이트에서 고객 상세 정보로 이동하여, 텍스트 복사한 문자열 반환&#xA;// 인수 :&#xA;//     in_Str_ClientURL : 입력 인자, 고객 상세 정보 주소 URL&#xA;//     out_Str_ClientData : 출력 인자, 텍스트 복사한 문자열 반환&#xA;//     inout_OpenedBrowser : 입력/출력 인자, 사용한 브라우저 객체" DisplayName="_203_ACME_Client" sap:VirtualizedContainerService.HintSize="608,1598" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 로그인 한 ACME 사이트에서 고객 상세 정보로 이동하여, 텍스트 복사한 문자열 반환&#xA;// 1. 입력받은 고객 상세 정보 주소 URL 을 통해 화면 이동&#xA;// 2. 화면으로부터 텍스트 복사한 문자열 반환" DisplayName="_203_ACME_ClientData" sap:VirtualizedContainerService.HintSize="608,1568" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -99,6 +99,7 @@
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,1074" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
