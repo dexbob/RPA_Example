@@ -2,7 +2,7 @@
 .entities
 .local
 .project
-.screenshots
+!.screenshots
 .settings
 .templates
 .tmh
