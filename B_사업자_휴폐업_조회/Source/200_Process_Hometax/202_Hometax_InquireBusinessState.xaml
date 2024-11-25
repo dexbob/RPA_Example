@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,2461</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2701</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_202_Hometax_InquireBusinessState_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,7 +102,7 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 사업자등록상태 조회 후 결과를 데이터테이블에 설정하여 반환&#xD;&#xA;// 1. 입력한 데이터테이블의 행수반큼 반복&#xD;&#xA;// 2. 데이터테이블의 사업자등록번호로 조회 실시&#xD;&#xA;// 3. 조회 결과를 읽어 데이터테이블에 출력 &#xD;&#xA;//   - 사업자등록상태 :  화면의 사업자등록상태 설정&#xD;&#xA;//   - 휴폐업일자 : 화면의 사업자등록상태로부터 휴폐업일자를 추출해 설정&#xD;&#xA;//   - 조회일자 : 화면의 조회기준일자 설정" DisplayName="_202_Hometax_InquireBusinessState" sap:VirtualizedContainerService.HintSize="744,2396" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 사업자등록상태 조회 후 결과를 데이터테이블에 설정하여 반환&#xA;// 1. 입력한 데이터테이블의 행수반큼 반복&#xA;// 2. 데이터테이블의 사업자등록번호로 조회 실시&#xA;// 3. 조회 결과를 읽어 데이터테이블에 출력 &#xA;//   - 사업자등록상태 :  화면의 사업자등록상태 설정&#xA;//   - 휴폐업일자 : 화면의 사업자등록상태로부터 휴폐업일자를 추출해 설정&#xA;//   - 조회일자 : 화면의 조회기준일자 설정" DisplayName="_202_Hometax_InquireBusinessState" sap:VirtualizedContainerService.HintSize="744,2636" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -117,22 +117,19 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="682,1984" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="682,2224" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="648,1875" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="Str_Result" />
-            </Sequence.Variables>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="648,2115" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[inout_DT_BusinessRegistered]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1463" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 사업자등록번호 개수만큼 반복하여 사업자등록상태 조회&#xD;&#xA;// 조회한 데이터를 추출 가공하여 반환데이터테이블에 설정" DataTable="[inout_DT_BusinessRegistered]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1505" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
@@ -255,11 +252,23 @@
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <ui:OutputDataTable DataTable="[inout_DT_BusinessRegistered]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="586,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[Str_Result]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="586,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[Str_Result]" />
+            <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 사업자등록번호&#xD;&#xA;// 2. 사업자등록상태&#xD;&#xA;// 3. 휴폐업일자&#xD;&#xA;// 4. 조회일자" sap:VirtualizedContainerService.HintSize="586,459" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="Str_Result" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:OutputDataTable DataTable="[inout_DT_BusinessRegistered]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[Str_Result]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[Str_Result]" />
+            </Sequence>
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
