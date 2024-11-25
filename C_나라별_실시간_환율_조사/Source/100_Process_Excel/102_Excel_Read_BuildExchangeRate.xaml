@@ -1,15 +1,15 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_102_Excel_BuildExchangeRate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_Str_FilePath" Type="InArgument(x:String)" />
-    <x:Property Name="in_Str_Sheet" Type="InArgument(x:String)" />
-    <x:Property Name="in_DT_CurrentExchangeRate" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_DT_PreviousExchangeRate" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스를 입력하세요." Name="in_Str_FilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명를 입력하세요. (조사할 국가명)" Name="in_Str_Sheet" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="오늘 날짜의 환율정보 객체를 입력하세요." Name="in_DT_CurrentExchangeRate" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="직전 날짜의 환율정보 객체를 입력하세요." Name="in_DT_PreviousExchangeRate" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="오늘환율정보와 직전환율정보를 통해 얻은 환율정보를 반환합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,2117</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2714</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_102_Excel_BuildExchangeRate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -98,7 +98,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// " DisplayName="_102_Excel_BuildExchangeRate" sap:VirtualizedContainerService.HintSize="546,2608" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력된 현재환율정보와 직전환율정보를 바탕으로 환율정보를 가공해 반환합니다.&#xD;&#xA;// 1. 엑셀파일 수출입정보로부터 국가명을 개수만큼 반복 실행&#xD;&#xA;// 2. 각 국가명의 현재환율과 직전환율을 추출&#xD;&#xA;// 3. 반환할 환율정보에 환율(현재환율)과 직전대비(현재환율-직전환율) 추가 설정" DisplayName="_102_Excel_BuildExchangeRate" sap:VirtualizedContainerService.HintSize="546,2649" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="DT_ImportExport" />
       <Variable x:TypeArguments="x:String" Name="Str_Result" />
@@ -117,7 +117,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BuildDataTable sap2010:Annotation.AnnotationText="// 반환할 환율정보 데이터테이블 생성&#xD;&#xA;// 컬럼명 (환율, 전일대비)" DataTable="[out_DT_ExchangeRate]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="484,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;환율&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;전일대비&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="// 반환할 환율정보 데이터테이블 생성&#xA;// 컬럼명 (환율, 전일대비)" DataTable="[out_DT_ExchangeRate]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="484,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;환율&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;전일대비&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -152,7 +152,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 수출입정보 개수만큼 반복하여 환율정보 설정&#xD;&#xA;// 1. 국가명을 이용해 오늘 환율 추출&#xD;&#xA;// 2. 국가명을 이용해 직전 환율 추출&#xD;&#xA;// 3. 반환할 환율정보에 데이터 추가&#xD;&#xA;//   - 오늘 환율&#xD;&#xA;//   - 전일대비 (오늘 환율 - 직전 환율)" DataTable="[DT_ImportExport]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="484,1319" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 수출입정보 개수만큼 반복하여 환율정보 설정&#xA;// 1. 국가명을 이용해 현재환율 추출&#xA;// 2. 국가명을 이용해 직전환율 추출&#xA;// 3. 반환할 환율정보에 데이터 추가&#xA;//   - 환율 (현재 환율)&#xA;//   - 전일대비 (현재환율 - 직전환율)" DataTable="[DT_ImportExport]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="484,1319" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
@@ -169,7 +169,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LookupDataTable LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnIndex="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="// 해당 국가의 오늘 환율 추출" DataTable="[in_DT_CurrentExchangeRate]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="334,323" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="통화명" LookupValue="[Row(&quot;국가명&quot;).toString.trim]" TargetColumnName="매매기준율">
+            <ui:LookupDataTable LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnIndex="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="// 해당 국가의 현재 환율 추출" DataTable="[in_DT_CurrentExchangeRate]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="334,323" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="통화명" LookupValue="[Row(&quot;국가명&quot;).toString.trim]" TargetColumnName="매매기준율">
               <ui:LookupDataTable.CellValue>
                 <OutArgument x:TypeArguments="x:String">[Str_CurrentExchangeRate]</OutArgument>
               </ui:LookupDataTable.CellValue>
@@ -205,7 +205,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xD;&#xA;// 1. 환율&#xD;&#xA;// 2. 전일대비 (오늘환율 - 전일환율)" sap:VirtualizedContainerService.HintSize="484,429" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 환율 (현재환율)&#xA;// 2. 전일대비 (현재환율 - 직전환율)" sap:VirtualizedContainerService.HintSize="484,429" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

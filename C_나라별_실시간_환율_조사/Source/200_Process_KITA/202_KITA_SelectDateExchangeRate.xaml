@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,3622</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,3790</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_202_KITA_SelectDate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,7 +101,7 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 입력된 검색날짜의 환율정보를 추출하여 반환&#xA;// 1. 환율정보 추출할 때까지 반복 처리&#xA;// 2. 추출한 환율정보가 없으면, 검색날짜를 이전 날짜로 변경하여 재검색 실시&#xA;// 3. 추출한 환율정보가 있으면, 반복을 종료하고, 검색한 날짜와 환율정보 테이터 반환" DisplayName="_202_KITA_SelectDateExchangeRate" sap:VirtualizedContainerService.HintSize="789,3557" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력된 검색날짜의 환율정보를 추출하여 반환&#xA;// 1. 환율정보 추출할 때까지 반복 처리&#xA;// 2. 추출한 환율정보가 없으면, 검색날짜를 이전 날짜로 변경하여 재검색 실시&#xA;// 3. 추출한 환율정보가 있으면, 반복을 종료하고, 검색한 날짜와 환율정보 테이터 반환" DisplayName="_202_KITA_SelectDateExchangeRate" sap:VirtualizedContainerService.HintSize="789,3725" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -116,26 +116,25 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3190" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3358" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="693,3081" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="693,3249" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InterruptibleWhile CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 환율 정보를 찾을때까지 반복 처리" Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="631,2970" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+            <ui:InterruptibleWhile CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 환율 정보를 찾을때까지 반복 처리" Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="631,3138" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="597,2803" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="597,2971" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="Str_CurrentDate" />
                     <Variable x:TypeArguments="s:DateTime" Name="Dtm_CurrentDate" />
-                    <Variable x:TypeArguments="x:String" Name="Str_Day" />
-                    <Variable x:TypeArguments="x:String" Name="Str_Result" />
+                    <Variable x:TypeArguments="x:String" Name="Str_SelectDay" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -179,7 +178,7 @@
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
                           <ui:AssignOperation.To>
-                            <OutArgument x:TypeArguments="x:String">[Str_Day]</OutArgument>
+                            <OutArgument x:TypeArguments="x:String">[Str_SelectDay]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
                             <InArgument x:TypeArguments="x:String">[inout_Dtm_date.ToString("dd")]</InArgument>
@@ -280,7 +279,7 @@
                       </ui:CursorPosition>
                     </ui:Click.CursorPosition>
                     <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="52bc50d8-2ada-40f0-9517-834598be471d" InformativeScreenshot="8bbfda0e33128f176a72c94c612a497c" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='환율종합-한국무역협회' /&gt;&lt;webctrl parentid='ui-datepicker-div' tag='TABLE' /&gt;&lt;webctrl aaname='{0}' tag='A' /&gt;&quot;, Str_Day)]">
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="52bc50d8-2ada-40f0-9517-834598be471d" InformativeScreenshot="8bbfda0e33128f176a72c94c612a497c" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='환율종합-한국무역협회' /&gt;&lt;webctrl parentid='ui-datepicker-div' tag='TABLE' /&gt;&lt;webctrl aaname='{0}' tag='A' /&gt;&quot;, Str_SelectDay)]">
                         <ui:Target.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:Target.TimeoutMS>
@@ -337,8 +336,19 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:ExtractData>
-                  <ui:OutputDataTable DataTable="[out_DT_ExchangeRate]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="555,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[Str_Result]" />
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="555,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[inout_Dtm_date.ToString(&quot;yyyy-MM-dd :: &quot;) +&#xA;out_DT_ExchangeRate.RowCount.ToString + &quot; 행&quot; +&#xA;Environment.NewLine +&#xA;Str_Result]" />
+                  <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 통화명&#xA;// 2. 매매기준율" sap:VirtualizedContainerService.HintSize="555,429" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="Str_Result" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:OutputDataTable DataTable="[out_DT_ExchangeRate]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[Str_Result]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[inout_Dtm_date.ToString(&quot;yyyy-MM-dd :: &quot;) +&#xA;out_DT_ExchangeRate.RowCount.ToString + &quot; 행&quot; +&#xA;Environment.NewLine +&#xA;Str_Result]" />
+                  </Sequence>
                   <If sap2010:Annotation.AnnotationText="// 화면으로부터 추출한 환율 정보가 존재하면 반복 종료&#xA;// 데이터가 없으면 날짜를 하루 전 일자로 설정하고 반복 실행 " Condition="[out_DT_ExchangeRate.RowCount &gt; 1]" sap:VirtualizedContainerService.HintSize="555,660" sap2010:WorkflowViewState.IdRef="If_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">

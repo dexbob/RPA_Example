@@ -1,13 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_101_Excel_RebuildDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일명을 입력하세요." Name="in_Str_FilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="유로존인 유로국가명 시트를 입력하세요." Name="in_Str_Sheet" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="통화정보 데이터테이블을 입력하세요.&#xD;&#xA;통화명을 재설정하고, 유로존 국가를 추가합니다." Name="inout_DT_Datatable" Type="InOutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스를 입력하세요." Name="in_Str_FilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명을 입력하세요. (유로존인 유럽국가명)" Name="in_Str_Sheet" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="통화정보 데이터테이블을 입력하세요.&#xA;통화명을 재설정하고, 유로존 국가를 추가합니다." Name="inout_DT_Datatable" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,2230</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2600</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_RebuildDataTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -99,7 +99,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 입력한 통화정보의 통화명을 재설정 하고 유로존 국가를 추가&#xD;&#xA;// 1. 통화명 재설정 (&quot;단위 명칭&quot; -&gt; &quot;명칭&quot;)&#xD;&#xA;// 2. 엑셀파일로부터 유로존 국가 추출&#xD;&#xA;// 3. 통화정보에 유로존 국가를 추가하면서 유로화를 매매기준율로 설정" DisplayName="_101_Excel_AddEuroData" sap:VirtualizedContainerService.HintSize="648,2535" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력한 통화정보의 통화명을 재설정 하고 유로존 국가를 추가&#xA;// 1. 통화명 재설정 (&quot;단위 명칭&quot; -&gt; &quot;명칭&quot;)&#xA;// 2. 엑셀파일로부터 유로존 국가 추출&#xA;// 3. 통화정보에 유로존 국가를 추가하면서 유로화를 매매기준율로 설정" DisplayName="_101_Excel_AddEuroData" sap:VirtualizedContainerService.HintSize="648,2535" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Str_Euro" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_Euro" />
@@ -118,7 +118,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 입력받은 통화정보 데이터테이블의 통화명 재설정&#xD;&#xA;// 1. 통화정보를 반복하며 통화명 재설정 (&quot;단위 명칭&quot; 을 &quot;명칭&quot; 으로 설정)&#xD;&#xA;// 2. 유럽 통화인 유로화의 매매기준율은 별도의 변수로 저장" DataTable="[inout_DT_Datatable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,805" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 입력받은 통화정보 데이터테이블의 통화명 재설정&#xA;// 1. 통화정보를 반복하며 통화명 재설정 (&quot;단위 명칭&quot; 을 &quot;명칭&quot; 으로 설정)&#xA;// 2. 유럽 통화인 유로화의 매매기준율은 별도의 변수로 저장" DataTable="[inout_DT_Datatable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,805" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
@@ -200,7 +200,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 추출한 유로존 국가정보 개수만큼 반복&#xD;&#xA;// 해당 유로존 국가와 유로화의 매매기준율을 통화정보에 추가" DataTable="[DT_Euro]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,502" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 추출한 유로존 국가정보 개수만큼 반복&#xA;// 해당 유로존 국가와 유로화의 매매기준율을 통화정보에 추가" DataTable="[DT_Euro]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,502" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
@@ -224,7 +224,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xD;&#xA;// 1. 통화명 재설정&#xD;&#xA;// 2. 유로화 사용국가 추가" sap:VirtualizedContainerService.HintSize="586,429" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 통화명 재설정&#xA;// 2. 유로화 사용국가 추가" sap:VirtualizedContainerService.HintSize="586,429" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="Str_Result" />
       </Sequence.Variables>
