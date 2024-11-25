@@ -1,10 +1,10 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_102_Excel_BuildExchangeRate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스를 입력하세요." Name="in_Str_FilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명를 입력하세요. (조사할 국가명)" Name="in_Str_Sheet" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="오늘 날짜의 환율정보 객체를 입력하세요." Name="in_DT_CurrentExchangeRate" Type="InArgument(sd:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="직전 날짜의 환율정보 객체를 입력하세요." Name="in_DT_PreviousExchangeRate" Type="InArgument(sd:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="오늘환율정보와 직전환율정보를 통해 얻은 환율정보를 반환합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스를 입력하세요." Name="in_Str_ExcelFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명를 입력하세요. (조사할 국가명)" Name="in_Str_ExcelSheet" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -98,7 +98,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 입력된 현재환율정보와 직전환율정보를 바탕으로 환율정보를 가공해 반환합니다.&#xD;&#xA;// 1. 엑셀파일 수출입정보로부터 국가명을 개수만큼 반복 실행&#xD;&#xA;// 2. 각 국가명의 현재환율과 직전환율을 추출&#xD;&#xA;// 3. 반환할 환율정보에 환율(현재환율)과 직전대비(현재환율-직전환율) 추가 설정" DisplayName="_102_Excel_BuildExchangeRate" sap:VirtualizedContainerService.HintSize="546,2649" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력된 현재환율정보와 직전환율정보를 바탕으로 환율정보를 가공해 반환합니다.&#xA;// 1. 엑셀파일 수출입정보로부터 국가명을 개수만큼 반복 실행&#xA;// 2. 각 국가명의 현재환율과 직전환율을 추출&#xA;// 3. 반환할 환율정보에 환율(현재환율)과 직전대비(현재환율-직전환율) 추가 설정" DisplayName="_102_Excel_BuildExchangeRate" sap:VirtualizedContainerService.HintSize="546,2649" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="DT_ImportExport" />
       <Variable x:TypeArguments="x:String" Name="Str_Result" />
@@ -124,7 +124,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BuildDataTable>
-    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀 파일로부터 수출입정보 추출" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,312" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_FilePath]">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀 파일로부터 수출입정보 추출" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,312" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -136,7 +136,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_ImportExport]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_Sheet]">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_ImportExport]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_ExcelSheet]">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
