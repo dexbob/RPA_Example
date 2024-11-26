@@ -97,14 +97,14 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 지표누리에 접속&#xA;// 2. 나라지표의 인기지표 화면으로 이동&#xA;// 3. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,2188" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 지표누리에 접속&#xA;// 2. 나라지표의 인기지표 화면으로 이동&#xA;// 3. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,2099" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_GetIndexRanking] START&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_GetIndexRanking] START&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -190,7 +190,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 최대 30위 순위까지 펼치기" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 순위 30위까지 보기" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -202,7 +202,7 @@
                 </ui:CursorPosition>
               </ui:Click.CursorPosition>
               <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a7225457-97f9-401f-bc50-35ca87f81834" InformativeScreenshot="0126b3e727e686e51453d895e77f957d" Selector="&lt;html app='chrome.exe' title='인기지표 | e-나라지표' /&gt;&lt;webctrl aaname='더보기 15/30' tag='A' /&gt;">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a7225457-97f9-401f-bc50-35ca87f81834" InformativeScreenshot="4d8f2fa694620650714d82ce570b2a66" Selector="&lt;html app='chrome.exe' title='인기지표 | e-나라지표' /&gt;&lt;webctrl id='btn_30' tag='A' /&gt;">
                   <ui:Target.TimeoutMS>
                     <InArgument x:TypeArguments="x:Int32" />
                   </ui:Target.TimeoutMS>
@@ -253,7 +253,7 @@
       <ui:OutputDataTable DataTable="[out_DT_IndexRanking]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[Str_Result]" />
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[out_DT_IndexRanking.RowCount.ToString + &quot; 행&quot; +&#xA;Environment.NewLine +&#xA;Str_Result]" />
     </Sequence>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_GetIndexRanking] END&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_GetIndexRanking] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
