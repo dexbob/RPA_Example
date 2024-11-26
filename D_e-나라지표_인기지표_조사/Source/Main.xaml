@@ -270,18 +270,21 @@
                 <av:PointCollection x:Key="ConnectorLocation">300,739 300,764</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap2010:Annotation.AnnotationText="// 인기지표순위정보를 이용해 필수지표 순위를 설정하고 추출개수만큼의 상위지표를 목록정보에 추가 &#xA;// 1. 지표누리의 나라지표에 접속하여 인기지표순위정보 추출&#xA;// 2. 엑셀파일로부터 인기지표목록정보 추출&#xA;// 3. 인기지표순위정보를 이용해 인기지표목록정보에 순위 설정 (순위에 없으면 없는표시 설정)&#xA;// 4. 인기지표순위정보로부터 상위지표를 추출개수만큼 뽑아 인기지표목록정보에 추가" DisplayName="2. 인기지표의 순위정보 추출 및 가공" sap:VirtualizedContainerService.HintSize="200,348" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence sap2010:Annotation.AnnotationText="// 인기지표순위정보를 이용해 필수지표 순위를 설정하고 추출개수만큼의 상위지표를 인기지표목록정보에 추가 &#xA;// 1. 지표누리(나라지표) 브라우저 열기&#xD;&#xA;// 2. 인기지표순위정보 추출 (나라지표의 인기지표 화면)&#xA;// 3. 인기지표목록정보 추출 (엑셀파일)&#xA;// 4. 인기지표순위정보를 이용해 인기지표목록정보에 순위 설정 (순위에 없으면 없는표시 설정)&#xA;// 5. 인기지표순위정보로부터 상위지표를 추출개수만큼 뽑아 인기지표목록정보에 추가" DisplayName="2. 인기지표의 순위정보 추출 및 가공" sap:VirtualizedContainerService.HintSize="648,3545" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로부터 인기지표순위정보 추출&#xA;// 컬럼명 (순위, 지표명, 담당기관)" DisplayName="201_Nara_GetIndexRanking.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="200_Process_Nara\201_Nara_GetIndexRanking.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 지표누리(나라지표) 브라우저 열기" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">[Config("URL_NaraIndex")]</InArgument>
-                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_IndexRanking">[DT_IndexRanking]</OutArgument>
-                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_Brw_NaraIndex">[Brw_Nara]</OutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">
+                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL_NaraIndex&quot;)" />
+                  </InArgument>
+                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_Brw_Chrome">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_Nara" />
+                  </OutArgument>
                 </ui:InvokeWorkflowFile.Arguments>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -289,7 +292,22 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:InvokeWorkflowFile>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 인기지표목록정보 추출&#xA;// 컬럼명 (순위, 항목)" DisplayName="101_Excel_Read_IndexRanking.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,155" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_IndexRanking.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표순위정보 추출 (나라지표의 인기지표 화면)&#xA;// 컬럼명 (순위, 지표명, 담당기관)" DisplayName="201_Nara_GetIndexRanking.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,155" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="200_Process_Nara\201_Nara_GetIndexRanking.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_IndexRanking">
+                    <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_IndexRanking" />
+                  </OutArgument>
+                  <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_Nara">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_Nara" />
+                  </InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표목록정보 추출 (엑셀파일)&#xA;// 컬럼명 (순위, 항목)" DisplayName="101_Excel_Read_IndexRanking.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,155" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_IndexRanking.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_FilePath]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">[Config("Sheet_IndexRanking")]</InArgument>
@@ -301,7 +319,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:InvokeWorkflowFile>
-              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표목록정보의 개수만큼 반복 처리&#xA;// 인기지표순위정보를 이용하여 인기지표목록정보의 필수지표 항목의 순위 설정&#xA;//   - 인기지표순위정보에 있는 경우 그 순위를 설정&#xA;//   - 인기지표순위정보에 없는 경우 순위없음표시(-) 설정 " DataTable="[DT_Output]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1335" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표목록정보의 개수만큼 반복 처리&#xA;// 인기지표순위정보를 이용하여 인기지표목록정보의 필수지표 항목의 순위 설정&#xA;// - 인기지표순위정보에 있는 경우 그 순위를 설정&#xA;// - 인기지표순위정보에 없는 경우 순위없음표시(-) 설정 " DataTable="[DT_Output]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,1335" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
@@ -471,7 +489,7 @@
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표목록정보 개수만큼 반복" DataTable="[DT_Output]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,1594" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표목록정보 개수만큼 반복" DataTable="[DT_Output]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="388,94" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
                     <ui:ForEachRow.Body>
                       <ActivityAction x:TypeArguments="sd:DataRow">
                         <ActivityAction.Argument>
@@ -574,12 +592,25 @@
                     </ui:ForEachRow.Body>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:ForEachRow>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// " DisplayName="CloseChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="000_Process_Common\CloseChromeBrowser.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">
+                        <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="Brw_Nara" />
+                      </InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeWorkflowFile>
                 </Sequence>
                 <FlowStep.Next>
                   <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_4">
@@ -627,7 +658,7 @@
                             <av:Size x:Key="ShapeSize">200,183</av:Size>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence sap2010:Annotation.AnnotationText="// 결과 메일 송신&#xA;// 1. Config 정보에 첨부파일경로 설정&#xA;// 2. 메일 송신&#xD;&#xA;// - 송신 실패시 로그 메시지 출력하고 정상 종료" DisplayName="5. 결과 메일 전송" sap:VirtualizedContainerService.HintSize="500,1074" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <Sequence sap2010:Annotation.AnnotationText="// 결과 메일 송신&#xA;// 1. Config 정보에 첨부파일경로 설정&#xA;// 2. 메일 송신&#xD;&#xA;// - 송신 실패시 로그 메시지 출력하고 정상 종료" DisplayName="5. 결과 메일 전송" sap:VirtualizedContainerService.HintSize="200,183" sap2010:WorkflowViewState.IdRef="Sequence_20">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

@@ -1,13 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_201_Nara_OpenIndexRanking" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_Str_URL" Type="InArgument(x:String)" />
     <x:Property Name="out_DT_IndexRanking" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="out_Brw_NaraIndex" Type="OutArgument(ui:Browser)" />
+    <x:Property Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,2164</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,1980</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_201_Nara_OpenIndexRanking_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,7 +96,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 지표누리에 접속&#xA;// 2. 나라지표의 인기지표 화면으로 이동&#xA;// 3. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,2099" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 지표누리에 접속&#xA;// 2. 나라지표의 인기지표 화면으로 이동&#xA;// 3. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,1915" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -112,18 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 지표누리 화면 열기" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="484,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">[in_Str_URL]</InArgument>
-        <OutArgument x:TypeArguments="ui:Browser" x:Key="out_Brw_Chrome">[out_Brw_NaraIndex]</OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동" Browser="[out_Brw_NaraIndex]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,1064" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[out_Brw_NaraIndex]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,1064" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
