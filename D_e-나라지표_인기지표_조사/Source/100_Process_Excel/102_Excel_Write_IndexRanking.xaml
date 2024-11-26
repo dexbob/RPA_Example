@@ -1,14 +1,14 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_102_Excel_Write_Range" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_Str_ExcelFilePath" Type="InArgument(x:String)" />
-    <x:Property Name="in_Str_ExcelSheet" Type="InArgument(x:String)" />
-    <x:Property Name="in_DT_Datatable" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_StrLst_FilePaths" Type="InArgument(scg:List(x:String))" />
+    <x:Property sap2010:Annotation.AnnotationText="쓰기 처리용 대상 엑셀파일경로를 입력 합니다." Name="in_Str_ExcelFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="쓰기 처리용 엑셀의 시트명을 입력 합니다." Name="in_Str_ExcelSheet" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="쓰기 처리 할 데이터테이블을 입력 합니다." Name="in_DT_Datatable" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="시트복사 처리 할 엑셀파일경로 리스트를 입력 합니다." Name="in_StrLst_FilePaths" Type="InArgument(scg:List(x:String))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,826</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,1795</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_102_Excel_Write_Range_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -107,13 +107,14 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_102_Excel_Write_IndexRanking" sap:VirtualizedContainerService.HintSize="546,761" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 엑셀파일 쓰기&#xD;&#xA;// 1. 입력 데이터테이블 내용 쓰기 &#xD;&#xA;// 2. 다운로드한 엑셀파일의 시트 복사" DisplayName="_102_Excel_Write_IndexRanking" sap:VirtualizedContainerService.HintSize="718,1730" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Write_IndexRanking] START&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="656,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Write_IndexRanking] START&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -121,68 +122,105 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,466" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 쓰기 처리용 대상 엑셀파일 열기 (파일 미존재시 새롭게 생성)&#xA;// 1. 데이터테이블 내용 쓰기 &#xA;// 2. 시트복사할 엑셀파일경로 리스트 개수만큼 반복하며 각 엑셀파일의 첫번째 시트 복사&#xA;// 3. 대상 엑셀파일 저장" AutoSave="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="656,1378" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,356" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="622,1196" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[in_DT_Datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Str_ExcelSheet]" StartingCell="A1" />
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_StrLst_FilePaths]">
+            <ui:ExcelWriteRange AddHeaders="True" sap2010:Annotation.AnnotationText="// 엑셀시트에 데이터테이블 내용 쓰기" DataTable="[in_DT_Datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="560,119" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Str_ExcelSheet]" StartingCell="A1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ExcelWriteRange>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 시트복사할 엑셀파일경로 리스트 반복" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="560,830" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_StrLst_FilePaths]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:String" Name="FilePath" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="526,509" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="526,613" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,421" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[FilePath]">
+                    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 시트복사할 엑셀파일 열기 (읽기 전용)" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,525" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[FilePath]">
                       <ui:ExcelApplicationScope.Body>
                         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,311" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_5">
                             <Sequence.Variables>
-                              <Variable x:TypeArguments="x:String" Name="Str_Sheet" />
+                              <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="시트명 변수" Name="Str_Sheet" />
                             </Sequence.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:ExcelGetWorkbookSheet DisplayName="Get Workbook Sheet" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheet_1" Index="0" Sheet="[Str_Sheet]" />
-                            <ui:ExcelCopySheet DestinationFilePath="[in_Str_ExcelFilePath]" DestinationSheetName="[Path.GetFileNameWithoutExtension(FilePath)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_1" SheetName="[Str_Sheet]" />
+                            <ui:ExcelGetWorkbookSheet sap2010:Annotation.AnnotationText="// 첫번째 시트명 추출" DisplayName="Get Workbook Sheet" sap:VirtualizedContainerService.HintSize="388,111" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheet_1" Index="0" Sheet="[Str_Sheet]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelGetWorkbookSheet>
+                            <ui:ExcelCopySheet sap2010:Annotation.AnnotationText="// 해당 시트를 대상 엑셀파일에 복사&#xA;// 대상 시트명에 해당 엑셀파일명 설정" DestinationFilePath="[in_Str_ExcelFilePath]" DestinationSheetName="[Path.GetFileNameWithoutExtension(FilePath)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="388,122" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_1" SheetName="[Str_Sheet]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExcelCopySheet>
                           </Sequence>
                         </ActivityAction>
                       </ui:ExcelApplicationScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </ui:ExcelApplicationScope>
                   </Sequence>
                 </ActivityAction>
               </ui:ForEach.Body>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEach>
-            <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
+            <ui:ExcelSaveWorkbook sap2010:Annotation.AnnotationText="// 대상 엑셀파일 저장" DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="560,56" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ExcelSaveWorkbook>
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Write_IndexRanking] END&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="656,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Write_IndexRanking] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
