@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,825</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,867</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>CloseChromeBrowser_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,15 +79,15 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 크롬 브라우저를 닫기" DisplayName="CloseChromeBrowser" sap:VirtualizedContainerService.HintSize="546,760" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 크롬 브라우저를 닫기" DisplayName="CloseChromeBrowser" sap:VirtualizedContainerService.HintSize="450,509" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Browser Close] &quot; + in_Brw_Chrome.BrowserName.ToString]">
+    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Browser Close] &quot; + in_Brw_Chrome.BrowserName.ToString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -95,33 +95,12 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="// 해당 브라우저 선택" Browser="[in_Brw_Chrome]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,307" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
-      <ui:BrowserScope.Body>
-        <ActivityAction x:TypeArguments="x:Object">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,167" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:CloseTab Browser="{x:Null}" sap2010:Annotation.AnnotationText="// 브라우저 닫기" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="CloseTab_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:CloseTab>
-          </Sequence>
-        </ActivityAction>
-      </ui:BrowserScope.Body>
+    <ui:CloseTab sap2010:Annotation.AnnotationText="// 브라우저 닫기" Browser="[in_Brw_Chrome]" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="CloseTab_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:BrowserScope>
+    </ui:CloseTab>
   </Sequence>
 </Activity>

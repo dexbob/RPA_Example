@@ -117,7 +117,7 @@
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 메일 송신&#xA;// 1. 초기화&#xA;// - 윈도우 크레덴셜 이름, 메일 서버, 메일 서버 포트&#xA;// - 송신자 메일주소, 송신자명&#xA;// - 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;// - 제목, 내용, 첨부파일&#xA;// 2. 메일 송신&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="_301_Mail_Send" sap:VirtualizedContainerService.HintSize="603,2021" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 메일 송신&#xA;// 1. 초기화&#xA;// - 계정관리명, 송신서버, 포트번호&#xA;// - 송신자 메일주소, 송신자명&#xA;// - 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;// - 제목, 내용, 첨부파일&#xA;// 2. 메일 송신&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="_301_Mail_Send" sap:VirtualizedContainerService.HintSize="603,2021" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="계정관리명 변수" Name="Str_CredentialName" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신서버 변수" Name="Str_SendServer" />
@@ -153,7 +153,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 윈도우 크레덴셜 이름, 메일 서버, 메일 서버 포트" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,209" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 계정관리명, 송신서버, 포트번호" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,209" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
