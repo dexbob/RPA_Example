@@ -1,8 +1,16 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_203_ACME_Client" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="고객상세정보URL을 입력 합니다." Name="in_Str_ClientURL" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="고객상세정보URL을 입력 합니다." Name="in_Str_ClientURL" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
     <x:Property sap2010:Annotation.AnnotationText="고객상세정보 문자열을 반환 합니다." Name="out_Str_ClientData" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_ACME" Type="InOutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_ACME" Type="InOutArgument(ui:Browser)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -133,7 +141,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:GetValue>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;고객상세정보 : &quot; + &#xD;&#xA;Environment.NewLine +&#xD;&#xA;out_Str_ClientData]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;고객상세정보 : &quot; + &#xA;Environment.NewLine +&#xA;out_Str_ClientData]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>

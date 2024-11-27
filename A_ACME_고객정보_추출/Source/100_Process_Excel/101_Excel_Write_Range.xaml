@@ -1,10 +1,14 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_101_Excel_Write_Range" this:_101_Excel_Write_Range.in_Str_SheetName="Sheet1" this:_101_Excel_Write_Range.in_Str_StartCell="A1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="데이터테이블을 입력 합니다" Name="in_DT_Datatable" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블을 입력 합니다" Name="in_DT_Datatable" Type="InArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
     <x:Property sap2010:Annotation.AnnotationText="원본파일경로를 입력 합니다." Name="in_Str_OriginalFilePath" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="엑셀파일의 시트명을 입력 합니다. (기본값 &quot;Sheet1&quot;)" Name="in_Str_SheetName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="저장할 시트의 시작 셀을 입력 합니다. (기본값 &quot;A1&quot;)" Name="in_Str_StartCell" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 내용을 저장할 대상파일경로를 입력 합니다. &#xD;&#xA;미입력시 현재폴더의 임의의 파일명으로 생성합니다." Name="in_Str_DestinationFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 내용을 저장할 대상파일경로를 입력 합니다. &#xA;미입력시 현재폴더의 임의의 파일명으로 생성합니다." Name="in_Str_DestinationFilePath" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
