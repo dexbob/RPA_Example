@@ -111,15 +111,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart sap2010:Annotation.AnnotationText="// KITA에서 실시간 환율 정보를 추출하여 나라별로 실시간 환율정보를 엑셀에 업데이트하는 프로세스&#xA;// 1. 초기화&#xA;// 2. 한국무역협회 접속&#xA;// 3. 환율정보 추출&#xA;// 4. 환율정보 데이터 가공&#xA;// 5. 엑셀파일 쓰기" DisplayName="Flowchart 메인처리" sap:VirtualizedContainerService.HintSize="634,1171" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// 나라 별 실시간 환율 조사&#xA;// 1. 초기화&#xA;// 2. 한국무역협회 접속&#xA;// 3. 환율정보 추출&#xA;// 4. 환율정보 데이터 가공&#xA;// 5. 엑셀파일 쓰기" DisplayName="Flowchart 메인처리" sap:VirtualizedContainerService.HintSize="634,1171" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Config" />
-        <Variable x:TypeArguments="ui:Browser" Name="Brw_KITA" />
-        <Variable x:TypeArguments="x:String" Name="Str_FilePath" />
-        <Variable x:TypeArguments="s:DateTime" Name="Dtm_SelectDate" />
-        <Variable x:TypeArguments="sd:DataTable" Name="DT_CurrentExchangeRate" />
-        <Variable x:TypeArguments="sd:DataTable" Name="DT_PreviousExchangeRate" />
-        <Variable x:TypeArguments="sd:DataTable" Name="DT_ExchangeRate" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:Annotation.AnnotationText="Config 정보 객체" Name="Config" />
+        <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="브라우저 객체" Name="Brw_KITA" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="대상 파일경로 변수" Name="Str_FilePath" />
+        <Variable x:TypeArguments="s:DateTime" sap2010:Annotation.AnnotationText="검색날짜 변수" Name="Dtm_SelectDate" />
+        <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="현재 환율 데이터테이블 객체" Name="DT_CurrentExchangeRate" />
+        <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="직전 환율 데이터테이블 객체" Name="DT_PreviousExchangeRate" />
+        <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="엑셀파일에 저장할 환율 데이터테이블 객체" Name="DT_ExchangeRate" />
       </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -143,10 +143,10 @@
             <av:PointCollection x:Key="ConnectorLocation">300,307.5 300,329.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence sap2010:Annotation.AnnotationText="// 초기화&#xA;// 1. Config 정보 추출&#xA;// 2. 원본파일패스와 그것을 복사할 대상파일패스 설정&#xA;// 3. 원본파일이 존재하는 경우 대상파일패스로 파일복사 실행" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,198" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap2010:Annotation.AnnotationText="// 초기화&#xA;// 1. 딕셔너리 타입의 Config 정보 추출&#xA;// 2. 원본파일경로와 그것을 복사할 대상파일경로 설정&#xA;// 3. 원본파일이 존재하는 경우 대상파일로 파일복사 실행" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,198" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
-            <Variable x:TypeArguments="x:String" Name="Str_OriginalFilePath" />
-            <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistOriginalFile" />
+            <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="원본 파일경로 변수" Name="Str_OriginalFilePath" />
+            <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="원본 파일 존재 여부 변수" Name="Bln_ExistOriginalFile" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -154,9 +154,11 @@
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// Config 정보 추출" DisplayName="Config.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="479,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="000_Process_Common\Config.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// Config 정보 추출 (키와 값은 String으로 설정)" DisplayName="Config.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="479,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="000_Process_Common\Config.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_Dic_Config">[Config]</OutArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_Dic_Config">
+                <VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="Config" />
+              </OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -164,7 +166,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 파일경로 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -193,17 +195,39 @@
                 </ui:AssignOperation>
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
           </ui:MultipleAssign>
-          <ui:FileExistsX DisplayName="File Exists" Exists="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="479,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[Str_OriginalFilePath]" />
-          <If Condition="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="479,605" sap2010:WorkflowViewState.IdRef="If_1">
+          <ui:FileExistsX sap2010:Annotation.AnnotationText="// 원본 파일의 존재여부 확인" DisplayName="File Exists" Exists="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="479,164" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[Str_OriginalFilePath]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:FileExistsX>
+          <If sap2010:Annotation.AnnotationText="// 원본 파일이 존재하면 대상파일경로로 복사" Condition="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="479,667" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="376,423" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence sap:VirtualizedContainerService.HintSize="376,454" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:CopyFile ContinueOnError="{x:Null}" Destination="[Str_FilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[Str_OriginalFilePath]" />
+                <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 파일 복사" Destination="[Str_FilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[Str_OriginalFilePath]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CopyFile>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;파일 복사 실시&quot; +&#xA;Environment.NewLine +&#xA;&quot;원본파일 : &quot; + Str_OriginalFilePath +&#xA;Environment.NewLine +&#xA;&quot;대상파일 : &quot; + Str_FilePath]" />
               </Sequence>
             </If.Then>
@@ -228,10 +252,26 @@
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 한국무역협회(KITA) 화면 열기" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">
+                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;URL_KITA&quot;)" />
+                  </InArgument>
+                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_Brw_Chrome">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_KITA" />
+                  </OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// KITA 사이트의 환율종합 화면으로 이동&#xA;// 팝업창이 존재하면 팝업창 닫기 실행" DisplayName="201_KITA_OpenExchangeRate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="200_Process_KITA\201_KITA_OpenExchangeRate.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">[Config("URL_KITA")]</InArgument>
-                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">[Brw_KITA]</OutArgument>
+                  <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_KITA">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_KITA" />
+                  </InOutArgument>
                 </ui:InvokeWorkflowFile.Arguments>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -271,9 +311,15 @@
                   </Assign>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 웹(KITA) 사이트에서 환율정보 추출&#xA;// 해당날짜의 정보가 없을경우 이전날짜를 반복 검색해 환율정보 추출" DisplayName="202_KITA_SelectDateExchangeRate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="200_Process_KITA\202_KITA_SelectDateExchangeRate.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">[DT_CurrentExchangeRate]</OutArgument>
-                      <InOutArgument x:TypeArguments="s:DateTime" x:Key="inout_Dtm_date">[Dtm_SelectDate]</InOutArgument>
-                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">[Brw_KITA]</InOutArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">
+                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_CurrentExchangeRate" />
+                      </OutArgument>
+                      <InOutArgument x:TypeArguments="s:DateTime" x:Key="inout_Dtm_date">
+                        <VisualBasicReference x:TypeArguments="s:DateTime" ExpressionText="Dtm_SelectDate" />
+                      </InOutArgument>
+                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_KITA">
+                        <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_KITA" />
+                      </InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -296,9 +342,15 @@
                   </Assign>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 웹(KITA) 사이트에서 환율정보 추출&#xA;// 해당날짜의 정보가 없을경우 이전날짜를 반복 검색해 환율정보 추출" DisplayName="202_KITA_SelectDateExchangeRate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="200_Process_KITA\202_KITA_SelectDateExchangeRate.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">[DT_PreviousExchangeRate]</OutArgument>
-                      <InOutArgument x:TypeArguments="s:DateTime" x:Key="inout_Dtm_date">[Dtm_SelectDate]</InOutArgument>
-                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_OpenedBrowser">[Brw_KITA]</InOutArgument>
+                      <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">
+                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_PreviousExchangeRate" />
+                      </OutArgument>
+                      <InOutArgument x:TypeArguments="s:DateTime" x:Key="inout_Dtm_date">
+                        <VisualBasicReference x:TypeArguments="s:DateTime" ExpressionText="Dtm_SelectDate" />
+                      </InOutArgument>
+                      <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_KITA">
+                        <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_KITA" />
+                      </InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -306,13 +358,18 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InvokeWorkflowFile>
-                  <ui:CloseTab sap2010:Annotation.AnnotationText="// 열린 브라우저 닫기" Browser="[Brw_KITA]" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="434,56" sap2010:WorkflowViewState.IdRef="CloseTab_1">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 웹(KITA) 브라우저 닫기" DisplayName="CloseChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="000_Process_Common\CloseChromeBrowser.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">
+                        <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="Brw_KITA" />
+                      </InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:CloseTab>
+                  </ui:InvokeWorkflowFile>
                 </Sequence>
                 <FlowStep.Next>
                   <FlowStep x:Name="__ReferenceID2">
@@ -323,7 +380,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">300,887.5 300,909.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence sap2010:Annotation.AnnotationText="// 추출환 환율정보를 필요한 형태로 가공&#xA;// 1. 현재환율정보에 유로존 국가 추가&#xA;// 2. 직전환율정보에 유로존 국가 추가&#xA;// 3. 현재환율과 직전환율을 이용해 컬럼(환율, 전일대비)을 가진 데이터테이블로 가공" DisplayName="4. 환율정보 데이터 가공" sap:VirtualizedContainerService.HintSize="200,228" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence sap2010:Annotation.AnnotationText="// 추출환 환율정보를 필요한 형태로 가공&#xA;// 1. 현재환율정보에 유로존 국가 추가&#xA;// 2. 직전환율정보에 유로존 국가 추가&#xA;// 3. 현재환율과 직전환율을 이용해 컬럼(환율, 전일대비)을 가진 데이터테이블로 가공" DisplayName="4. 환율정보 데이터 가공" sap:VirtualizedContainerService.HintSize="635,1758" sap2010:WorkflowViewState.IdRef="Sequence_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -332,15 +389,9 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 현재환율정보에 유로존 국가 추가" DisplayName="101_Excel_AddEuroData.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="573,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_AddEuroData.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">
-                            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_CurrentExchangeRate" />
-                          </InOutArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_FilePath" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_EuroZone&quot;)" />
-                          </InArgument>
+                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">[DT_CurrentExchangeRate]</InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_FilePath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">[Config("Sheet_EuroZone")]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -350,15 +401,9 @@
                       </ui:InvokeWorkflowFile>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 직전환율정보에 유로존 국가 추가" DisplayName="101_Excel_AddEuroData.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="573,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_AddEuroData.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">
-                            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_PreviousExchangeRate" />
-                          </InOutArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_FilePath" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_EuroZone&quot;)" />
-                          </InArgument>
+                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">[DT_PreviousExchangeRate]</InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_FilePath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">[Config("Sheet_EuroZone")]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -368,21 +413,11 @@
                       </ui:InvokeWorkflowFile>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 현재환율과 직전환율을 바탕으로 환율정보 가공&#xA;// 환율 (현재환율)&#xA;// 전일대비 (현재환율 - 직전환율)" DisplayName="102_Excel_BuildExchangeRate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="573,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="100_Process_Excel\102_Excel_Read_BuildExchangeRate.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_CurrentExchangeRate">
-                            <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_CurrentExchangeRate" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_PreviousExchangeRate">
-                            <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_PreviousExchangeRate" />
-                          </InArgument>
-                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">
-                            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_ExchangeRate" />
-                          </OutArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_FilePath" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_ImportExport&quot;)" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_CurrentExchangeRate">[DT_CurrentExchangeRate]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_PreviousExchangeRate">[DT_PreviousExchangeRate]</InArgument>
+                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ExchangeRate">[DT_ExchangeRate]</OutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_FilePath]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">[Config("Sheet_ImportExport")]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -409,7 +444,7 @@
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Assign x:Key="1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                <Assign x:Key="1" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_3">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:Object">[Row("전일대비")]</OutArgument>
                                   </Assign.To>
@@ -417,7 +452,7 @@
                                     <InArgument x:TypeArguments="x:String">[Config("Code_Up") + " " + Row("전일대비").ToString]</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <Assign x:Key="-1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                <Assign x:Key="-1" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_4">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:Object">[Row("전일대비")]</OutArgument>
                                   </Assign.To>
@@ -430,7 +465,7 @@
                                     <OutArgument x:TypeArguments="x:Object">[Row("전일대비")]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">[Config("Code_Equal")]</InArgument>
+                                    <InArgument x:TypeArguments="x:String">[Config("Code_Nothing")]</InArgument>
                                   </Assign.Value>
                                 </Assign>
                               </Switch>
@@ -445,9 +480,9 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:ForEachRow>
-                      <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 환율 (현재환율)&#xA;// 2. 가공된 전일대비 (현재환율 - 직전환율)" sap:VirtualizedContainerService.HintSize="573,429" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                      <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 &#xA;// 1. 환율 (현재환율)&#xA;// 2. 가공된 전일대비 (현재환율 - 직전환율)" sap:VirtualizedContainerService.HintSize="573,429" sap2010:WorkflowViewState.IdRef="Sequence_11">
                         <Sequence.Variables>
-                          <Variable x:TypeArguments="x:String" Name="Str_Result" />
+                          <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블 출력용 문자열 변수" Name="Str_Result" />
                         </Sequence.Variables>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -467,7 +502,7 @@
                             <av:Size x:Key="ShapeSize">200,123</av:Size>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence sap2010:Annotation.AnnotationText="// 가공한 환율정보를 엑셀시트의 지정셀에 쓰기" DisplayName="5. 엑셀파일 쓰기" sap:VirtualizedContainerService.HintSize="450,286" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence sap2010:Annotation.AnnotationText="// 가공한 환율정보를 엑셀시트의 지정셀에 쓰기" DisplayName="5. 엑셀파일 쓰기" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_9">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -476,18 +511,10 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 환율정보를 해당 엑셀시트의 지정 셀에 쓰기 실행" DisplayName="103_Excel_Write_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="100_Process_Excel\103_Excel_Write_Range.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_StartCell">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Cell_ImportExport&quot;)" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ExchangeRate">
-                                <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_ExchangeRate" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_FilePath" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_ImportExport&quot;)" />
-                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_StartCell">[Config("Cell_ImportExport")]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ExchangeRate">[DT_ExchangeRate]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_FilePath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheet">[Config("Sheet_ImportExport")]</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">

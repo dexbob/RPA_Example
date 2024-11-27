@@ -1,10 +1,26 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_102_Excel_BuildExchangeRate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="오늘 날짜의 환율정보 객체를 입력하세요." Name="in_DT_CurrentExchangeRate" Type="InArgument(sd:DataTable)" />
-    <x:Property sap2010:Annotation.AnnotationText="직전 날짜의 환율정보 객체를 입력하세요." Name="in_DT_PreviousExchangeRate" Type="InArgument(sd:DataTable)" />
-    <x:Property sap2010:Annotation.AnnotationText="오늘환율정보와 직전환율정보를 통해 얻은 환율정보를 반환합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 파일 패스를 입력하세요." Name="in_Str_ExcelFilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명를 입력하세요. (조사할 국가명)" Name="in_Str_ExcelSheet" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="현재 날짜의 환율정보 객체를 입력 합니다." Name="in_DT_CurrentExchangeRate" Type="InArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="직전 날짜의 환율정보 객체를 입력 합니다." Name="in_DT_PreviousExchangeRate" Type="InArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="오늘환율정보와 직전환율정보를 통해 얻은 환율정보를 반환 합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀파일경로를 입력 합니다." Name="in_Str_ExcelFilePath" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="엑셀 시트명를 입력 합니다. (조사할 국가명)" Name="in_Str_ExcelSheet" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -100,8 +116,8 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="// 입력된 현재환율정보와 직전환율정보를 바탕으로 환율정보를 가공해 반환합니다.&#xA;// 1. 엑셀파일 수출입정보로부터 국가명을 개수만큼 반복 실행&#xA;// 2. 각 국가명의 현재환율과 직전환율을 추출&#xA;// 3. 반환할 환율정보에 환율(현재환율)과 직전대비(현재환율-직전환율) 추가 설정" DisplayName="_102_Excel_BuildExchangeRate" sap:VirtualizedContainerService.HintSize="546,2649" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="DT_ImportExport" />
-      <Variable x:TypeArguments="x:String" Name="Str_Result" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="수출입 데이터테이블 객체" Name="DT_ImportExport" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블 출력용 문자열 변수" Name="Str_Result" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -160,9 +176,8 @@
           </ActivityAction.Argument>
           <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,1031" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="Str_CurrentExchangeRate" />
-              <Variable x:TypeArguments="x:String" Name="Str_PreviousExchangeRate" />
-              <Variable x:TypeArguments="x:Double" Name="Dbl_NetChange" />
+              <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="현재 환율 데이터테이블 객체" Name="Str_CurrentExchangeRate" />
+              <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="직전 환율 데이터테이블 객체" Name="Str_PreviousExchangeRate" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -205,7 +220,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 환율 (현재환율)&#xA;// 2. 전일대비 (현재환율 - 직전환율)" sap:VirtualizedContainerService.HintSize="484,429" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// 1. 환율 (현재환율)&#xA;// 2. 전일대비 (현재환율 - 직전환율)" sap:VirtualizedContainerService.HintSize="484,429" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

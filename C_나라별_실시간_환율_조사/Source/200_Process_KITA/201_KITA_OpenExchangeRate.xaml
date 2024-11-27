@@ -1,12 +1,15 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_201_KITA_OpenExchangeRate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="브라우저를 열어 해당 웹 URL 주소로 이동합니다." Name="in_Str_URL" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="해당 브라우저 객체를 출력 매개변수로 설정합니다." Name="out_OpenedBrowser" Type="OutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_KITA" Type="InOutArgument(ui:Browser)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,2427</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2243</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_201_KITA_OpenExchangeRate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -93,10 +96,7 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// KITA의 환율종합 화면으로 이동&#xA;// 1. 팝업 닫기 처리 (팝업창 닫기 10회 실시하되 없으면 반복종료)&#xA;// 2. 환율정보를 추출할 수 있는 환율종합 화면으로 이동" DisplayName="_201_KITA_OpenExchangeRate" sap:VirtualizedContainerService.HintSize="664,2362" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="variable1" />
-    </Sequence.Variables>
+  <Sequence sap2010:Annotation.AnnotationText="// KITA의 환율종합 화면으로 이동&#xA;// 1. 팝업 닫기 처리 (팝업창 닫기 10회 실시하되 없으면 반복종료)&#xA;// 2. 환율정보를 추출할 수 있는 환율종합 화면으로 이동" DisplayName="_201_KITA_OpenExchangeRate" sap:VirtualizedContainerService.HintSize="664,2178" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,18 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:InvokeWorkflowFile sap2010:Annotation.AnnotationText="// 화면 열기" ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="602,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="{x:Null}" LogEntry="{x:Null}" LogExit="{x:Null}" Timeout="{x:Null}" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">[in_Str_URL]</InArgument>
-        <OutArgument x:TypeArguments="ui:Browser" x:Key="out_OpenedBrowser">[out_OpenedBrowser]</OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:BrowserScope sap2010:Annotation.AnnotationText="// 화면 이동" Browser="[out_OpenedBrowser]" BrowserType="Chrome" ContinueOnError="{x:Null}" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="602,1826" sap2010:WorkflowViewState.IdRef="BrowserScope_1" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="[out_OpenedBrowser]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 화면 이동" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="602,1826" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -143,7 +132,7 @@
                   </ActivityAction.Argument>
                   <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="472,883" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
-                      <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistPopup" />
+                      <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="팝업창 존재 여부 변수" Name="Bln_ExistPopup" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -151,7 +140,7 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:UiElementExists sap2010:Annotation.AnnotationText="// 팝업 창이 존재하는지 여부 체크" ContinueOnError="{x:Null}" DisplayName="Element Exists 'DIV'" Exists="[Bln_ExistPopup]" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="UiElementExists_1" Result="{x:Null}">
+                    <ui:UiElementExists sap2010:Annotation.AnnotationText="// 팝업 창이 존재하는지 여부 체크" DisplayName="Element Exists 'DIV'" Exists="[Bln_ExistPopup]" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                       <ui:UiElementExists.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="70dfbe62-d118-4eaa-bb5a-cb01ab1c2edc" InformativeScreenshot="c866cb359ec2e6b265b0b8f851e6357c" Selector="&lt;html app='chrome.exe' title='한국무역협회-KITA.NET' /&gt;&lt;webctrl css-selector='body&amp;gt;div' id='commonLayerPopup' tag='DIV' /&gt;&lt;webctrl class='modal-content' parentid='modalLayerPopup*' tag='DIV' /&gt;" TimeoutMS="5000">
                           <ui:Target.WaitForReady>
@@ -165,7 +154,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:UiElementExists>
-                    <If sap2010:Annotation.AnnotationText="// 팝업창이 존재하면 팝업창 닫기 실행&#xD;&#xA;// 더이상 찾을 수 없을때 반복문 종료" Condition="[Bln_ExistPopup]" sap:VirtualizedContainerService.HintSize="410,594" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If sap2010:Annotation.AnnotationText="// 팝업창이 존재하면 팝업창 닫기 실행&#xA;// 더이상 찾을 수 없을때 반복문 종료" Condition="[Bln_ExistPopup]" sap:VirtualizedContainerService.HintSize="410,594" sap2010:WorkflowViewState.IdRef="If_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -178,7 +167,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:Click AlterIfDisabled="{x:Null}" sap2010:Annotation.AnnotationText="// 팝업 창 닫기" ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="334,138" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" UnblockInput="{x:Null}">
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 팝업 창 닫기" ClickType="CLICK_SINGLE" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="334,138" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
                             <ui:Click.CursorPosition>
                               <ui:CursorPosition Position="Center">
                                 <ui:CursorPosition.OffsetX>
@@ -235,7 +224,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:RepeatNumberOfTimesX>
-            <ui:Click AlterIfDisabled="{x:Null}" sap2010:Annotation.AnnotationText="// 공지뉴스 클릭" ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Click 'A  #menu1'" sap:VirtualizedContainerService.HintSize="506,138" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" UnblockInput="{x:Null}">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 공지뉴스 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  #menu1'" sap:VirtualizedContainerService.HintSize="506,138" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -262,7 +251,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" sap2010:Annotation.AnnotationText="// 환율종합 클릭" ClickType="CLICK_SINGLE" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Click 'A  #menu1'" sap:VirtualizedContainerService.HintSize="506,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" UnblockInput="{x:Null}">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 환율종합 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  #menu1'" sap:VirtualizedContainerService.HintSize="506,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>

@@ -1,8 +1,16 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_202_KITA_SelectDate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="환율정보를 데이터테이블 형태로 반환합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
-    <x:Property sap2010:Annotation.AnnotationText="검색할 날짜를 날짜타입으로 입력 합니다.&#xA;해당 날짜의 환율정보가 없는 경우 이전 일자를 재설정해 반복해서 검색합니다.&#xA;환율정보가 검색되었을때 그때의 날짜를 반환합니다." Name="inout_Dtm_date" Type="InOutArgument(s:DateTime)" />
-    <x:Property sap2010:Annotation.AnnotationText="해당 브라우저 객체를 입출력 매개변수로 설정합니다." Name="inout_OpenedBrowser" Type="InOutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="환율정보를 데이터테이블 형태로 반환 합니다." Name="out_DT_ExchangeRate" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="검색할 날짜를 날짜타입으로 입력 합니다.&#xA;해당 날짜의 환율정보가 없는 경우 이전 일자를 재설정해 반복해서 검색합니다.&#xA;환율정보가 검색되었을때 그때의 날짜를 반환합니다." Name="inout_Dtm_date" Type="InOutArgument(s:DateTime)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_KITA" Type="InOutArgument(ui:Browser)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -116,7 +124,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_OpenedBrowser]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3358" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_OpenedBrowser]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3358" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -132,9 +140,9 @@
               <ui:InterruptibleWhile.Body>
                 <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="597,2971" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="Str_CurrentDate" />
-                    <Variable x:TypeArguments="s:DateTime" Name="Dtm_CurrentDate" />
-                    <Variable x:TypeArguments="x:String" Name="Str_SelectDay" />
+                    <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="현재일짜 변수" Name="Str_CurrentDate" />
+                    <Variable x:TypeArguments="s:DateTime" sap2010:Annotation.AnnotationText="현재일자 날짜타입 변수" Name="Dtm_CurrentDate" />
+                    <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="날짜의 일자만 추출한 변수" Name="Str_SelectDay" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -336,9 +344,9 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:ExtractData>
-                  <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 통화명&#xA;// 2. 매매기준율" sap:VirtualizedContainerService.HintSize="555,429" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// 1. 통화명&#xA;// 2. 매매기준율" sap:VirtualizedContainerService.HintSize="555,429" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="Str_Result" />
+                      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블 출력용 문자열 변수" Name="Str_Result" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
