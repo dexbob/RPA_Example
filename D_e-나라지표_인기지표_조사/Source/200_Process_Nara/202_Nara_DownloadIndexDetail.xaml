@@ -1,13 +1,25 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_202_Nara_DownloadIndexDetail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 데이터로우 객체를 입력 합니다." Name="in_DR_IndexRow" Type="InArgument(sd:DataRow)" />
-    <x:Property sap2010:Annotation.AnnotationText="다운로드 파일경로를 입력 합니다." Name="in_Str_DownloadFilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 데이터로우 객체를 입력 합니다." Name="in_DR_IndexRow" Type="InArgument(sd:DataRow)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="다운로드 파일경로를 입력 합니다." Name="in_Str_DownloadFilePath" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,4429</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_202_Nara_DownloadIndexDetail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -99,7 +111,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="// 인기지표 상세화면에서 다운로드 처리&#xD;&#xA;// 1. 초기화&#xD;&#xA;// - 셀렉터 선택용 문자열 설정&#xD;&#xA;// - 다운로드 파일이 존재하면 삭제&#xD;&#xA;// 2. 상세화면으로 이동하여 파일 다운로드&#xD;&#xA;// 3. 인기지표 순위화면으로 이동" DisplayName="_202_Nara_DownloadIndexDetail" sap:VirtualizedContainerService.HintSize="642,4364" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 인기지표 상세화면에서 다운로드 처리&#xA;// 1. 초기화&#xA;// - 셀렉터 선택용 문자열 설정&#xA;// - 다운로드 파일이 존재하면 삭제&#xA;// 2. 상세화면으로 이동하여 파일 다운로드&#xA;// 3. 인기지표 순위화면으로 이동" DisplayName="_202_Nara_DownloadIndexDetail" sap:VirtualizedContainerService.HintSize="642,4364" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="셀렉터 선택용 문자열 변수" Name="Str_RowInnerText" />
     </Sequence.Variables>
@@ -174,7 +186,7 @@ in_DR_IndexRow("담당기관").ToString.Trim +
         </If.Else>
       </If>
     </Sequence>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 파일 다운로드&#xD;&#xA;// 1. 인기지표 상세화면으로 이동&#xD;&#xA;// 2. 파일 다운로드 처리&#xA;" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="580,2658" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 파일 다운로드&#xA;// 1. 인기지표 상세화면으로 이동&#xA;// 2. 파일 다운로드 처리&#xA;" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="580,2658" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
