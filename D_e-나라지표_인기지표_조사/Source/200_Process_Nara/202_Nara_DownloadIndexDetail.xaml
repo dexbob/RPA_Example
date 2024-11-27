@@ -1,8 +1,8 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_202_Nara_DownloadIndexDetail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
-    <x:Property Name="in_DR_IndexRow" Type="InArgument(sd:DataRow)" />
-    <x:Property Name="in_Str_DownloadFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 데이터로우 객체를 입력 합니다." Name="in_DR_IndexRow" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="다운로드 파일경로를 입력 합니다." Name="in_Str_DownloadFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -95,12 +95,13 @@
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="// " DisplayName="_202_Nara_DownloadIndexDetail" sap:VirtualizedContainerService.HintSize="512,598" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 인기지표 상세화면에서 다운로드 처리&#xD;&#xA;// 1. 초기화&#xD;&#xA;// - 셀렉터 선택용 문자열 설정&#xD;&#xA;// - 다운로드 파일이 존재하면 삭제&#xD;&#xA;// 2. 상세화면으로 이동하여 파일 다운로드&#xD;&#xA;// 3. 인기지표 순위화면으로 이동" DisplayName="_202_Nara_DownloadIndexDetail" sap:VirtualizedContainerService.HintSize="642,4364" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="Str_RowInnerText" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="셀렉터 선택용 문자열 변수" Name="Str_RowInnerText" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -108,17 +109,17 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_DownloadIndexDetail] START&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="580,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_DownloadIndexDetail] START&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 초기화 처리&#xA;// 1. 인기지표 순위별 셀렉터 선택시 필요한 innerText값 설정&#xA;// 2. 다운로드할 파일이 존재하면 삭제 실시" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="450,138" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="// 초기화 처리&#xA;// 1. 인기지표 순위별 셀렉터 선택시 필요한 innerText값 설정&#xA;// 2. 다운로드할 파일이 존재하면 삭제 실시" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="580,1269" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistFile" />
+        <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="파일 존재 여부 변수" Name="Bln_ExistFile" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -138,16 +139,33 @@ in_DR_IndexRow("담당기관").ToString.Trim +
         </Assign.Value>
       </Assign>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[Str_RowInnerText]" />
-      <ui:FileExistsX DisplayName="File Exists" Exists="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_DownloadFilePath]" />
-      <If Condition="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="434,531" sap2010:WorkflowViewState.IdRef="If_1">
+      <ui:FileExistsX sap2010:Annotation.AnnotationText="// 다운로드 파일경로에 파일 존재 여부 확인" DisplayName="File Exists" Exists="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_DownloadFilePath]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:FileExistsX>
+      <If sap2010:Annotation.AnnotationText="// 다운로드 파일경로에 파일이 존재하면 삭제 처리" Condition="[Bln_ExistFile]" sap:VirtualizedContainerService.HintSize="434,593" sap2010:WorkflowViewState.IdRef="If_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="376,349" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence sap:VirtualizedContainerService.HintSize="376,380" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_Str_DownloadFilePath]" />
+            <ui:DeleteFileX sap2010:Annotation.AnnotationText="// 삭제 처리" DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="334,111" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_Str_DownloadFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:DeleteFileX>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;파일 삭제 : &quot; + in_Str_DownloadFilePath]" />
           </Sequence>
         </If.Then>
@@ -156,20 +174,20 @@ in_DR_IndexRow("담당기관").ToString.Trim +
         </If.Else>
       </If>
     </Sequence>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 브라우저에서 다운로드 처리&#xA;" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser 다운로드" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 파일 다운로드&#xD;&#xA;// 1. 인기지표 상세화면으로 이동&#xD;&#xA;// 2. 파일 다운로드 처리&#xA;" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="580,2658" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,935" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="546,2437" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 입력된 인기지표 클릭&#xA;// 초기화에서 설정한 값을 이용해 셀렉터 요소 선택" ClickType="CLICK_SINGLE" DisplayName="Click 'UL'" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 입력된 인기지표 클릭&#xA;// - 초기화에서 설정한 값을 이용해 셀렉터 요소 선택" ClickType="CLICK_SINGLE" DisplayName="Click 'UL'" sap:VirtualizedContainerService.HintSize="484,149" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -196,8 +214,8 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 입력된 인기지표의 상세보기 클릭&#xA;// 초기화에서 설정한 값을 이용해 셀렉터 요소 선택" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /unity/potal/main/Ea...'" sap:VirtualizedContainerService.HintSize="450,124" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 입력된 인기지표의 상세보기 클릭&#xA;// - 초기화에서 설정한 값을 이용해 셀렉터 요소 선택" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /unity/potal/main/Ea...'" sap:VirtualizedContainerService.HintSize="484,149" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -224,8 +242,8 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="Delay_2" />
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 파일다운로드 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_fileDo...'" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 상세화면에서 파일다운로드 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_fileDo...'" sap:VirtualizedContainerService.HintSize="484,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -252,7 +270,7 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="// 다운로드 파일 팝업창 처리" DisplayName="Attach Window 'chrome.exe  다른 이름으로 저장'" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="a172262c13f19ff17db9431612b39708" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;">
+            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="// 다운로드 파일 팝업창 처리" DisplayName="Attach Window 'chrome.exe  다른 이름으로 저장'" sap:VirtualizedContainerService.HintSize="484,964" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="a172262c13f19ff17db9431612b39708" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;">
               <ui:WindowScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -265,7 +283,7 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="// 파일 패스 입력" ClickBeforeTyping="True" DisplayName="Type Into 'push button  이전 위치'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_Str_DownloadFilePath]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="// 다운로드 파일경로 입력" ClickBeforeTyping="True" DisplayName="Type Into 'push button  이전 위치'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_Str_DownloadFilePath]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="681566ae-ae10-4185-9801-3b7440ffa4ee" InformativeScreenshot="9d0ce2a986fa951b5c4bceded2ecba56" Selector="&lt;wnd aaname='탐색 창' cls='DirectUIHWND' /&gt;&lt;wnd aaname='파일 이름:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -322,10 +340,11 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:WindowScope>
-            <Sequence DisplayName="화면 뒤로 가기" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <Sequence sap2010:Annotation.AnnotationText="// 이전 화면으로 이동하여 순위 30개보기 클릭" DisplayName="인기지표 순위화면으로 이동" sap:VirtualizedContainerService.HintSize="484,506" sap2010:WorkflowViewState.IdRef="Sequence_8">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:GoBack Browser="{x:Null}" sap2010:Annotation.AnnotationText="// 이전 화면으로 이동" DisplayName="Go Back" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="GoBack_1">
@@ -336,7 +355,7 @@ in_DR_IndexRow("담당기관").ToString.Trim +
                 </sap:WorkflowViewStateService.ViewState>
               </ui:GoBack>
               <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_4" />
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 순위 30위까지 보기" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 순위 30개 보기 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -375,11 +394,11 @@ in_DR_IndexRow("담당기관").ToString.Trim +
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_DownloadIndexDetail] END&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="580,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Nara_DownloadIndexDetail] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>

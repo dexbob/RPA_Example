@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_201_Nara_OpenIndexRanking" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_DT_IndexRanking" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
+    <x:Property sap2010:Annotation.AnnotationText="인기지표순위정보를 추출해 반환 합니다." Name="out_DT_IndexRanking" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="입출력 브라우저 객체 입니다." Name="inout_Brw_Nara" Type="InOutArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,1980</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,1976</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_201_Nara_OpenIndexRanking_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -96,7 +96,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 지표누리에 접속&#xA;// 2. 나라지표의 인기지표 화면으로 이동&#xA;// 3. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,1915" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동하여 인기지표순위 추출&#xA;// 1. 나라지표의 인기지표 화면으로 이동&#xA;// 2. 순위별 인기지표 정보를 추출하여 반환" DisplayName="_201_Nara_GetIndexRanking" sap:VirtualizedContainerService.HintSize="546,1911" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,7 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 나라지표의 인기지표 화면으로 이동" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,1064" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 입출력 브라우저 객체 선택&#xA;// 1. 나라지표의 인기지표 화면으로 이동&#xA;// 2. 순위별 인기지표 정보를 추출하여 반환" Browser="[inout_Brw_Nara]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="484,1090" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_Nara]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -178,7 +178,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
             <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 순위 30위까지 보기" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 순위 30개 보기 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:fn_readId...'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -205,7 +205,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="// 지표 순위 데이터 추출&#xA;// 컬럼명 (순위, 지표명, 담당기관)" ContinueOnError="True" DataTable="[out_DT_IndexRanking]" DisplayName="Extract Structured Data 'DIV'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='순위' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='지표명' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='담당기관' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='3' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,149" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
+            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="// 지표 순위 데이터 추출&#xA;// - 컬럼명 (순위, 지표명, 담당기관)" ContinueOnError="True" DataTable="[out_DT_IndexRanking]" DisplayName="Extract Structured Data 'DIV'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='순위' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='지표명' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='담당기관' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='3' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,149" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
               <ui:ExtractData.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91485d31-2fe9-4204-a967-95d38363bf0d" InformativeScreenshot="ee675db769406c41e36d2b0f850304e7" Selector="&lt;webctrl class='cont_wrap' tag='DIV' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -228,9 +228,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력 확인사항&#xA;// 1. 순위&#xA;// 2. 지표명&#xA;// 3. 담당기관" sap:VirtualizedContainerService.HintSize="484,444" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// 1. 처리 행수&#xA;// 2. 컬럼 (순위, 지표명, 담당기관)" sap:VirtualizedContainerService.HintSize="484,429" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:String" Name="Str_Result" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블의 출력용 문자열 변수" Name="Str_Result" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
