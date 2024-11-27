@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1033,1893" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1033,1893" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -128,9 +128,6 @@
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="대상 폐업자 파일경로 변수" Name="Str_ClosedPath" />
         <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="사업자등록상태 데이터테이블 객체" Name="DT_BusinessRegistered" />
         <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="브라우저 객체" Name="Brw_Hometax" />
-        <Variable x:TypeArguments="x:String" Name="tmp_str_id" />
-        <Variable x:TypeArguments="ss:SecureString" Name="tmp_sstr_pw" />
-        <Variable x:TypeArguments="x:String" Name="tmp_str_pw" />
       </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -434,15 +431,9 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 사업자등록상태조회 엑셀파일에 쓰기" DisplayName="102_Excel_Write_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="100_Process_Excel\102_Excel_Write_Range.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">
-                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_BusinessRegistered&quot;)" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">
-                            <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_BusinessRegistered" />
-                          </InArgument>
-                          <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_ExcelFilePath">
-                            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_RegisteredPath" />
-                          </InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">[Config("Sheet_BusinessRegistered")]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">[DT_BusinessRegistered]</InArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_ExcelFilePath">[Str_RegisteredPath]</InOutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -486,15 +477,9 @@
                       </ui:FilterDataTable>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 폐업자명단 엑셀파일에 쓰기" DisplayName="102_Excel_Write_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="100_Process_Excel\102_Excel_Write_Range.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">
-                            <Literal x:TypeArguments="x:String">Sheet1</Literal>
-                          </InArgument>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">
-                            <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_BusinessClosed" />
-                          </InArgument>
-                          <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_ExcelFilePath">
-                            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_ClosedPath" />
-                          </InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">Sheet1</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Datatable">[DT_BusinessClosed]</InArgument>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_ExcelFilePath">[Str_ClosedPath]</InOutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
