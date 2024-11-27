@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Config" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Config" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Config 데이터를 Dictionary 형태로 반환합니다." Name="out_Dic_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Config 정보를 Dictionary 형태로 설정하여 반환 합니다." Name="out_Dic_Config" Type="OutArgument(scg:Dictionary(x:String, x:String))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,2685</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2901</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,9 +105,9 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 환경 설정 파일 (Config.xlsx) 데이터를 읽어 딕셔너리 타입의 Config 객체를 생성해 반환&#xA;// 1. 변수 초기화&#xA;// 2. Config 파일 추출 &amp; 설정&#xA;// 3. Config 파일 추가 설정&#xA;//     키값 (&quot;Folder_DataPath&quot;) = 파일이 있는 폴더(File, Result)의 풀패스" DisplayName="Config" sap:VirtualizedContainerService.HintSize="882,2620" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 환경 설정 파일 (Config.xlsx) 데이터를 읽어 딕셔너리 타입의 Config 객체를 생성해 반환&#xA;// 1. 초기화&#xA;// 2. Config 파일 추출 &amp; 설정&#xA;// 3. Config 파일 추가 설정 (Folder_DataPath = 파일이 있는 폴더의 풀패스)" DisplayName="Config" sap:VirtualizedContainerService.HintSize="820,2836" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="Str_ConfigPath" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Config 파일경로 변수" Name="Str_ConfigPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -115,7 +115,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="820,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Config] START&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="758,52" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Config] START&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -123,14 +123,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;//  Config 파일의 절대패스, 반환할 Config 딕셔너리" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="820,358" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. Config 파일의 경로 설정&#xA;// 2. Config 객체를 Dictionary&lt;String, String&gt; 타입으로 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="758,435" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign sap2010:Annotation.AnnotationText="// Config 파일의 경로 설정" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_6">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[Str_ConfigPath]</OutArgument>
         </Assign.To>
@@ -140,127 +140,165 @@
 	"Config.xlsx"
 )]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign sap2010:Annotation.AnnotationText="// Config 객체를 Dictionary&lt;String, String&gt; 타입으로 초기화" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
-          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Dic_Config]</OutArgument>
+          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[out_Dic_Config]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[New Dictionary(Of String, Object)]</InArgument>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[New Dictionary(Of String, String)]</InArgument>
         </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </Assign>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// Config 파일 정보를 시트별로 읽어 반환할 딕셔너리에 저장" DisplayName="2. Config 파일 추출 &amp; 설정" sap:VirtualizedContainerService.HintSize="820,1550" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// Config 파일 추출 &amp; Config 딕셔너리 객체 설정&#xA;// 1. Config 파일의 시트명을 추출해 시트별로 반복처리&#xA;// 2. 각 시트별 Config 파일 정보를 읽어 반환할 Config 딕셔너리 갹채에 추가" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope " sap:VirtualizedContainerService.HintSize="758,1704" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[Str_ConfigPath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="724,1537" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="scg:List(x:String)" sap2010:Annotation.AnnotationText="Config 엑셀파일의 시트명 리스트 객체" Name="StrLst_ConfigSheets" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelGetWorkbookSheets sap2010:Annotation.AnnotationText="// 시트명 리스트 추출" DisplayName="Get Workbook Sheets" sap:VirtualizedContainerService.HintSize="662,56" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_1" Sheets="[StrLst_ConfigSheets]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ExcelGetWorkbookSheets>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 시트명 리스트 반복 처리" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="662,1330" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[StrLst_ConfigSheets]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="Sheet" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="628,1113" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Config 파일에서 추출한 데이터테이블 객체" Name="DT_Config" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadRange AddHeaders="True" sap2010:Annotation.AnnotationText="// 입력된 엑셀파일의 각 시트 내용 읽기" DataTable="[DT_Config]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="586,91" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[Sheet]">
+                      <ui:ExcelReadRange.Range>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </ui:ExcelReadRange.Range>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ExcelReadRange>
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 각 시트의 Config 정보 데이터테이블 반복 처리&#xA;// Config 딕셔너리 객체에 컬럼명(Name)을 키로, 컬럼명(Value)를 값으로 설정" DataTable="[DT_Config]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,894" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,666" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Config 딕셔너리의 키값 변수" Name="Str_Key" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap2010:Annotation.AnnotationText="// 키값 추출" sap:VirtualizedContainerService.HintSize="510,113" sap2010:WorkflowViewState.IdRef="Assign_4">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Str_Key]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[Row("Name").ToString.Trim]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <If sap2010:Annotation.AnnotationText="// 키값이 존재하면 Config 딕셔너리에 설정" Condition="[Not String.IsNullOrWhiteSpace(Str_Key)]" sap:VirtualizedContainerService.HintSize="510,425" sap2010:WorkflowViewState.IdRef="If_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="476,212" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap2010:Annotation.AnnotationText="// Config 딕셔너리 객체에 컬럼명(Name)을 키로, 컬럼명(Value)를 값으로 설정하여 추가" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[out_Dic_Config(Str_Key)]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[Row("Value").ToString.Trim]</InArgument>
+                                    </Assign.Value>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Assign>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11" />
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ForEachRow>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="758,1408" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[Str_ConfigPath]">
-        <ui:ExcelApplicationScope.Body>
-          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="724,1298" sap2010:WorkflowViewState.IdRef="Sequence_5">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="scg:List(x:String)" Name="StrLst_ConfigSheets" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:ExcelGetWorkbookSheets DisplayName="Get Workbook Sheets" sap:VirtualizedContainerService.HintSize="662,25" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_1" Sheets="[StrLst_ConfigSheets]" />
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="662,1122" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[StrLst_ConfigSheets]">
-                <ui:ForEach.Body>
-                  <ActivityAction x:TypeArguments="x:String">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="x:String" Name="Sheet" />
-                    </ActivityAction.Argument>
-                    <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="628,936" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="sd:DataTable" Name="DT_Config" />
-                      </Sequence.Variables>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Config]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="586,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[Sheet]">
-                        <ui:ExcelReadRange.Range>
-                          <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" Value="" />
-                          </InArgument>
-                        </ui:ExcelReadRange.Range>
-                      </ui:ExcelReadRange>
-                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DT_Config]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,748" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-                        <ui:ForEachRow.Body>
-                          <ActivityAction x:TypeArguments="sd:DataRow">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,562" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                              <Sequence.Variables>
-                                <Variable x:TypeArguments="x:String" Name="Str_Key" />
-                              </Sequence.Variables>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_4">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[Str_Key]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[Row("Name").ToString.Trim]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <If Condition="[Not String.IsNullOrWhiteSpace(Str_Key)]" sap:VirtualizedContainerService.HintSize="510,352" sap2010:WorkflowViewState.IdRef="If_1">
-                                <If.Then>
-                                  <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:Object">[out_Dic_Config(Str_Key)]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:Object">[Row("Value")]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                  </Sequence>
-                                </If.Then>
-                                <If.Else>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11" />
-                                </If.Else>
-                              </If>
-                            </Sequence>
-                          </ActivityAction>
-                        </ui:ForEachRow.Body>
-                      </ui:ForEachRow>
-                    </Sequence>
-                  </ActivityAction>
-                </ui:ForEach.Body>
-              </ui:ForEach>
-            </Sequence>
-          </ActivityAction>
-        </ui:ExcelApplicationScope.Body>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:ExcelApplicationScope>
-    </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// Config 정보 추가 설정&#xA;// 1. &quot;Folder_DataPath&quot; : 파일이 있는 폴더(File, Result)의 풀패스&#xA;" DisplayName="3. Config 파일 추가 설정" sap:VirtualizedContainerService.HintSize="820,250" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    </ui:ExcelApplicationScope>
+    <Sequence sap2010:Annotation.AnnotationText="// Config 정보 추가 설정&#xA;// 1. &quot;Folder_DataPath&quot; : 파일이 있는 폴더(File, Result)의 풀패스&#xA;" DisplayName="Config 파일 추가 설정" sap:VirtualizedContainerService.HintSize="758,250" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -269,14 +307,14 @@
       </sap:WorkflowViewStateService.ViewState>
       <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Object">[out_Dic_Config("Folder_DataPath")]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[out_Dic_Config("Folder_DataPath")]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="si:DirectoryInfo">[Directory.GetParent(Environment.CurrentDirectory)]</InArgument>
+          <InArgument x:TypeArguments="x:String">[Directory.GetParent(Environment.CurrentDirectory).ToString]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="820,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Config] END&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="758,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Config] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>

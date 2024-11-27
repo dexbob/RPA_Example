@@ -1,15 +1,15 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_101_Excel_Write_Range" this:_101_Excel_Write_Range.in_Str_SheetName="Sheet1" this:_101_Excel_Write_Range.in_Str_StartCell="A1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="파일에 덮어 쓸 데이터테이블 입니다. 헤더를 넣어주세요." Name="in_DT_Datatable" Type="InArgument(sd:DataTable)" />
-    <x:Property sap2010:Annotation.AnnotationText="복사해서 사용할 원본 파일의 풀패스 입니다. (파일을 새롭게 만들려면 이 매개변수는 넣지 마세요)" Name="in_Str_OriginalFilePath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="덮어쓰기 처리할 시트명을 입력하세요. (미입력시 &quot;Sheet1&quot; 자동설정)" Name="in_Str_SheetName" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="저장할 시트의 시작 셀을 넣어주세요. (미입력시 &quot;A1&quot; 자동설정)" Name="in_Str_StartCell" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 내용을 저장할 파일의 풀패스 입니다. (미입력시 현재소스폴더의 임의의 파일명 생성)" Name="inout_Str_DestinationFilePath" Type="InOutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블을 입력 합니다" Name="in_DT_Datatable" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="원본파일경로를 입력 합니다." Name="in_Str_OriginalFilePath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="엑셀파일의 시트명을 입력 합니다. (기본값 &quot;Sheet1&quot;)" Name="in_Str_SheetName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="저장할 시트의 시작 셀을 입력 합니다. (기본값 &quot;A1&quot;)" Name="in_Str_StartCell" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="데이터테이블의 내용을 저장할 대상파일경로를 입력 합니다. &#xD;&#xA;미입력시 현재폴더의 임의의 파일명으로 생성합니다." Name="in_Str_DestinationFilePath" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1089,2496</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2702</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_Write_Range_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,7 +101,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 데이터테이블 정보를 대상 엑셀 파일에 쓰기&#xA;// 1. 변수 초기화 - 입출력 대상파일패스가 없으면 현재폴더에 임의의 파일명으로 처리 진행&#xA;// 2. 원본파일을 복사해 대상파일 생성 - 원본파일 미존재시 복사처리 없이 진행&#xA;// 3. 데이터테이블 내용을 대상파일(Excel)에 쓰기" DisplayName="_101_Excel_Write_Range" sap:VirtualizedContainerService.HintSize="634,2431" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 데이터테이블 정보를 대상 엑셀 파일에 쓰기&#xA;// 1. 변수 초기화 - 입출력 대상파일패스가 없으면 현재폴더에 임의의 파일명으로 처리 진행&#xA;// 2. 원본파일을 복사해 대상파일 생성 - 원본파일 미존재시 복사처리 없이 진행&#xA;// 3. 데이터테이블 내용을 대상파일(Excel)에 쓰기" DisplayName="_101_Excel_Write_Range" sap:VirtualizedContainerService.HintSize="634,2637" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -116,7 +116,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. 대상 파일 패스가 없으면 임의의 파일명으로 패스 생성" DisplayName="1. 변수 초기화" sap:VirtualizedContainerService.HintSize="572,537" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="// 대상파일경로가 없으면 임의의 파일명으로 대상파일경로 설정" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="572,557" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -124,22 +124,22 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If sap2010:Annotation.AnnotationText="// 저장할 파일 패스가 없을 경우 현재 폴더에 임의의 파일명으로 저장" Condition="[String.IsNullOrWhiteSpace(inout_Str_DestinationFilePath)]" sap:VirtualizedContainerService.HintSize="510,384" sap2010:WorkflowViewState.IdRef="If_1">
+      <If sap2010:Annotation.AnnotationText="// 저장할 대상파일경로가 없을 경우 임의의 파일명으로 설정" Condition="[String.IsNullOrWhiteSpace(in_Str_DestinationFilePath)]" sap:VirtualizedContainerService.HintSize="510,415" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="476,171" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence sap:VirtualizedContainerService.HintSize="476,202" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap2010:Annotation.AnnotationText="// 대상파일경로로 현재 폴더에 임의의 파일명으로 경로 설정" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[inout_Str_DestinationFilePath]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[in_Str_DestinationFilePath]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
@@ -147,6 +147,11 @@
 	Path.GetRandomFileName + ".xlsx"
 )]</InArgument>
               </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </Assign>
           </Sequence>
         </If.Then>
@@ -155,7 +160,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// 원본 파일을 복사해 대상파일패스로 저장 &#xA;// 원본 파일이 없는 경우에는 별도 처리 없음" DisplayName="2. 원본파일을 복사해 대상파일 생성" sap:VirtualizedContainerService.HintSize="572,750" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence sap2010:Annotation.AnnotationText="// 원본파일을 복사해 대상파일경로로 저장 &#xA;// 원본 파일이 없는 경우에는 별도 처리 없음" DisplayName="2. 원본파일을 복사해 대상파일 생성" sap:VirtualizedContainerService.HintSize="572,843" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistOriginalFile" />
       </Sequence.Variables>
@@ -163,18 +168,36 @@
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:FileExistsX DisplayName="File Exists" Exists="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_OriginalFilePath]" />
-      <If Condition="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,424" sap2010:WorkflowViewState.IdRef="If_2">
+      <ui:FileExistsX sap2010:Annotation.AnnotationText="// 원본파일 존재 여부" DisplayName="File Exists" Exists="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,164" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_Str_OriginalFilePath]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:FileExistsX>
+      <If sap2010:Annotation.AnnotationText="// 원본파일이 존재하면 복사 처리" Condition="[Bln_ExistOriginalFile]" sap:VirtualizedContainerService.HintSize="410,486" sap2010:WorkflowViewState.IdRef="If_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="376,242" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence sap:VirtualizedContainerService.HintSize="376,273" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[inout_Str_DestinationFilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_Str_OriginalFilePath]" />
+            <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 원본파일을 대상파일로 복사" Destination="[in_Str_DestinationFilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_Str_OriginalFilePath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CopyFile>
           </Sequence>
         </If.Then>
         <If.Else>
@@ -182,32 +205,50 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// 대상 엑셀 파일에 데이터테이블 내용 쓰기" DisplayName="3. 데이터테이블 내용을 대상 파일(Excel)에 쓰기" sap:VirtualizedContainerService.HintSize="572,697" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="// 데이터테이블 내용을 대상 엑셀파일에 쓰기" DisplayName="3. 데이터테이블 내용을 대상 파일(Excel)에 쓰기" sap:VirtualizedContainerService.HintSize="572,790" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,374" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[inout_Str_DestinationFilePath]">
+      <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 대상 엑셀파일 접근" AutoSave="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,467" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_Str_DestinationFilePath]">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,264" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,326" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ExcelWriteRange AddHeaders="True" DataTable="[in_DT_Datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Str_SheetName]" StartingCell="[in_Str_StartCell]" />
-              <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
+              <ui:ExcelWriteRange AddHeaders="True" sap2010:Annotation.AnnotationText="// 지정 시트에 데이터테이블 내용 쓰기" DataTable="[in_DT_Datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,119" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Str_SheetName]" StartingCell="[in_Str_StartCell]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ExcelWriteRange>
+              <ui:ExcelSaveWorkbook sap2010:Annotation.AnnotationText="// 엑셀파일 저장" DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ExcelSaveWorkbook>
             </Sequence>
           </ActivityAction>
         </ui:ExcelApplicationScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:ExcelApplicationScope>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;엑셀 파일 쓰기 완료 : &quot; + inout_Str_DestinationFilePath]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;엑셀 파일 쓰기 완료 : &quot; + in_Str_DestinationFilePath]" />
     </Sequence>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="572,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Write_Range] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
