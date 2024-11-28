@@ -111,7 +111,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 화면 이동" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="602,1826" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 한국무역협회(KITA) 접근" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="602,1826" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

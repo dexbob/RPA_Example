@@ -19,7 +19,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,2600</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,2755</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_RebuildDataTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -111,7 +111,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 입력한 통화정보의 통화명을 재설정 하고 유로존 국가를 추가&#xA;// 1. 통화명 재설정 (&quot;단위 명칭&quot; -&gt; &quot;명칭&quot;)&#xA;// 2. 엑셀파일로부터 유로존 국가 추출&#xA;// 3. 통화정보에 유로존 국가를 추가하면서 유로화를 매매기준율로 설정" DisplayName="_101_Excel_AddEuroData" sap:VirtualizedContainerService.HintSize="648,2535" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력한 통화정보의 통화명을 재설정 하고 유로존 국가를 추가&#xA;// 1. 통화명 재설정 (&quot;단위 명칭&quot; -&gt; &quot;명칭&quot;)&#xA;// 2. 엑셀파일로부터 유로존 국가 추출&#xA;// 3. 통화정보에 유로존 국가를 추가하면서 유로화를 매매기준율로 설정" DisplayName="_101_Excel_AddEuroData" sap:VirtualizedContainerService.HintSize="648,2690" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="유로화 매매기준율 변수" Name="Str_Euro" />
       <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="유로존 국가 데이터테이블 객체" Name="DT_Euro" />
@@ -130,41 +130,56 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 입력받은 통화정보 데이터테이블의 통화명 재설정&#xA;// 1. 통화정보를 반복하며 통화명 재설정 (&quot;단위 명칭&quot; 을 &quot;명칭&quot; 으로 설정)&#xA;// 2. 유럽 통화인 유로화의 매매기준율은 별도의 변수로 저장" DataTable="[inout_DT_Datatable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,805" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 입력받은 통화정보 데이터테이블의 통화명 재설정&#xA;// 1. 통화정보를 반복하며 통화명 재설정 (&quot;단위 명칭&quot; 을 &quot;명칭&quot; 으로 설정)&#xA;// 2. 유럽 통화인 유로화의 매매기준율은 별도의 변수로 저장" DataTable="[inout_DT_Datatable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,898" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,562" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="552,655" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap2010:Annotation.AnnotationText="// 통화명 재설정 (&quot;단위 명칭&quot; -&gt; &quot;명칭&quot;)" sap:VirtualizedContainerService.HintSize="510,113" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[Row("통화명")]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Object">[Row("통화명").ToString.Split(" "c)(1).Trim]</InArgument>
               </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <If Condition="[Row(&quot;통화명&quot;).ToString = &quot;유럽&quot;]" sap:VirtualizedContainerService.HintSize="510,352" sap2010:WorkflowViewState.IdRef="If_1">
+            <If sap2010:Annotation.AnnotationText="// 유럽인  경우" Condition="[Row(&quot;통화명&quot;).ToString = &quot;유럽&quot;]" sap:VirtualizedContainerService.HintSize="510,414" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence sap:VirtualizedContainerService.HintSize="476,201" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign sap2010:Annotation.AnnotationText="// 별도로 유로화 저장" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_2">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Str_Euro]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String">[Row("매매기준율").ToString.Trim]</InArgument>
                     </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </Assign>
                 </Sequence>
               </If.Then>
@@ -183,25 +198,30 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀 파일로부터 유로존 국가정보 추출" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="586,312" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀 파일로부터 유로존 국가정보 추출" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="586,343" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,171" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,202" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Euro]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_ExcelSheet]">
+            <ui:ExcelReadRange AddHeaders="True" sap2010:Annotation.AnnotationText="// 유로존 국가명 추출" DataTable="[DT_Euro]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,91" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Str_ExcelSheet]">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
                 </InArgument>
               </ui:ExcelReadRange.Range>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:ExcelReadRange>
           </Sequence>
         </ActivityAction>
@@ -212,19 +232,25 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 추출한 유로존 국가정보 개수만큼 반복&#xA;// 해당 유로존 국가와 유로화의 매매기준율을 통화정보에 추가" DataTable="[DT_Euro]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,502" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 추출한 유로존 국가정보 개수만큼 반복&#xA;// 해당 유로존 국가와 유로화의 매매기준율을 통화정보에 추가" DataTable="[DT_Euro]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,533" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,305" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{Row(&quot;유로존&quot;), Str_Euro}]" DataTable="[inout_DT_Datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="// " ArrayRow="[{Row(&quot;유로존&quot;), Str_Euro}]" DataTable="[inout_DT_Datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AddDataRow>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
@@ -236,7 +262,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// 1. 통화명 재설정&#xA;// 2. 유로화 사용국가 추가" sap:VirtualizedContainerService.HintSize="586,429" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// - 컬럼 (통화명, 매매기준율)&#xD;&#xA;// - 통화명은 실제로 국가명 설정 (유로존 국가는 유로화 매매기준율 설정)" sap:VirtualizedContainerService.HintSize="586,429" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블 출력용 문자열 변수" Name="Str_Result" />
       </Sequence.Variables>

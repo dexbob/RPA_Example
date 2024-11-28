@@ -15,7 +15,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,3790</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,3821</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_202_KITA_SelectDate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -109,7 +109,7 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 입력된 검색날짜의 환율정보를 추출하여 반환&#xA;// 1. 환율정보 추출할 때까지 반복 처리&#xA;// 2. 추출한 환율정보가 없으면, 검색날짜를 이전 날짜로 변경하여 재검색 실시&#xA;// 3. 추출한 환율정보가 있으면, 반복을 종료하고, 검색한 날짜와 환율정보 테이터 반환" DisplayName="_202_KITA_SelectDateExchangeRate" sap:VirtualizedContainerService.HintSize="789,3725" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 입력된 검색날짜의 환율정보를 추출하여 반환&#xA;// 1. 환율정보 추출할 때까지 반복 처리&#xA;// 2. 추출한 환율정보가 없으면, 검색날짜를 이전 날짜로 변경하여 재검색 실시&#xA;// 3. 추출한 환율정보가 있으면, 반복을 종료하고, 검색한 날짜와 환율정보 테이터 반환" DisplayName="_202_KITA_SelectDateExchangeRate" sap:VirtualizedContainerService.HintSize="789,3756" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -124,7 +124,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3358" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 한국무역협회(KITA)의 환율종합 화면에 접근" Browser="[inout_Brw_KITA]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="727,3389" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[inout_Brw_KITA]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -330,7 +330,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:Click>
                   <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="555,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                  <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="// 환율 정보 추출" ContinueOnError="True" DataTable="[out_DT_ExchangeRate]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='통화명' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='th' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='매매기준율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="555,138" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
+                  <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="// 환율 정보 추출 (통화명, 매매기준율)" ContinueOnError="True" DataTable="[out_DT_ExchangeRate]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='통화명' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='th' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='매매기준율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="555,138" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
                     <ui:ExtractData.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e5b6a42b-8c1d-496b-b6aa-8c5f378ef758" InformativeScreenshot="bbe92314a5daabacf4dd851a2345436b" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
                         <ui:Target.TimeoutMS>
@@ -344,7 +344,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:ExtractData>
-                  <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// 1. 통화명&#xA;// 2. 매매기준율" sap:VirtualizedContainerService.HintSize="555,429" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence sap2010:Annotation.AnnotationText="// 로그 출력&#xA;// - 컬럼 (통화명, 매매기준율)" sap:VirtualizedContainerService.HintSize="555,429" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="데이터테이블 출력용 문자열 변수" Name="Str_Result" />
                     </Sequence.Variables>
@@ -427,6 +427,11 @@
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="727,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[KITA_SelectDateExchangeRate] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
