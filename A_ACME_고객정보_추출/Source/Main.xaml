@@ -217,7 +217,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">300,587.5 300,609.5</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="// 1. WorkItems 전체 표 데이터 추출&#xA;// 2. 조건(Type=&quot;WI5&quot; and Status=&quot;Open&quot;)에 맞는 데이터 필터링" DisplayName="3. Work Itmes 추출" sap:VirtualizedContainerService.HintSize="200,168" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence sap2010:Annotation.AnnotationText="// 1. WorkItems 전체 표 데이터 추출&#xA;// 2. 조건(Type=&quot;WI5&quot; and Status=&quot;Open&quot;)에 맞는 데이터 필터링" DisplayName="3. Work Itmes 추출" sap:VirtualizedContainerService.HintSize="512,1009" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Work Items 전체 데이터테이블 객체" Name="DT_WorkItems" />
                   </Sequence.Variables>
@@ -397,7 +397,7 @@
                                   <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="604,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>

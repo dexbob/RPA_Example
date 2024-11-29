@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,1859</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1033,1883</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -133,7 +133,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart sap2010:Annotation.AnnotationText="// e-나라지표 인기지표 조사&#xD;&#xA;// 1. 초기화&#xD;&#xA;// 2. 인기지표의 순위정보 추출 및 가공&#xD;&#xA;// 3. 상세정보 파일 다운로드&#xD;&#xA;// 4. 엑셀파일에 저장&#xD;&#xA;// 5. 결과 메일 송신" DisplayName="Flowchart 메인처리" sap:VirtualizedContainerService.HintSize="634,1434" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// e-나라지표 인기지표 조사&#xA;// 1. 초기화&#xA;// 2. 인기지표의 순위정보 추출 및 가공&#xA;// 3. 상세정보 파일 다운로드&#xA;// 4. 엑셀파일에 저장&#xA;// 5. 결과 메일 송신" DisplayName="Flowchart 메인처리" sap:VirtualizedContainerService.HintSize="634,1434" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:Annotation.AnnotationText="Config 정보 객체" Name="Config" />
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="대상 파일경로 변수" Name="Str_FilePath" />
@@ -185,7 +185,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 파일 및 폴더 경로 설정&#xD;&#xA;// - 원본파일경로, 대상파일경로, 다운로드 폴더경로 설정&#xA;// - 대상파일명은 원본파일명에 오늘날짜를 붙임 (원본파일명_yyyyMMdd)" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,235" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 파일 및 폴더 경로 설정&#xA;// - 원본파일경로, 대상파일경로, 다운로드 폴더경로 설정&#xA;// - 대상파일명은 원본파일명에 오늘날짜를 붙임 (원본파일명_yyyyMMdd)" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,235" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -483,7 +483,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">300,901.5 300,935</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="// 인기지표목록정보의 상세정보 파일 다운로드&#xD;&#xA;// 1. 인기지표목록정보 행수만큼 반복하며 파일 다운로드 실시&#xD;&#xA;// 2. 브라우저 닫기" DisplayName="3. 상세정보 파일 다운로드" sap:VirtualizedContainerService.HintSize="200,183" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence sap2010:Annotation.AnnotationText="// 인기지표목록정보의 상세정보 파일 다운로드&#xA;// 1. 인기지표목록정보 행수만큼 반복하며 파일 다운로드 실시&#xA;// 2. 브라우저 닫기" DisplayName="3. 상세정보 파일 다운로드" sap:VirtualizedContainerService.HintSize="572,1935" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:List(x:String)" sap2010:Annotation.AnnotationText="다운로드 처리한 순위 리스트 객체" Default="[New List(Of String)]" Name="StrLst_RankingNumber" />
                   </Sequence.Variables>
@@ -581,15 +581,9 @@
                           </uasa:AppendItemToList>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 인기지표 상세화면에서 다운로드 처리" DisplayName="202_Nara_DownloadIndexDetail.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="200_Process_Nara\202_Nara_DownloadIndexDetail.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_Nara">
-                                <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_Nara" />
-                              </InOutArgument>
-                              <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_IndexRow">
-                                <VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="DT_IndexRanking(CInt(Row(&quot;순위&quot;))-1)" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_DownloadFilePath">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_DownloadFilePath" />
-                              </InArgument>
+                              <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_Nara">[Brw_Nara]</InOutArgument>
+                              <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_IndexRow">[DT_IndexRanking(CInt(Row("순위"))-1)]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_DownloadFilePath">[Str_DownloadFilePath]</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -610,7 +604,9 @@
                   </ui:ForEachRow>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 브라우저 닫기" DisplayName="CloseChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="000_Process_Common\CloseChromeBrowser.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">[Brw_Nara]</InArgument>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">
+                        <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="Brw_Nara" />
+                      </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">

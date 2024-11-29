@@ -360,7 +360,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">300,726.5 300,748.5</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="// 홈택스 사이트에서 사업자등록상태를 조회하여 데이터 추출&#xA;// 1. 홈택스 화면 열기&#xA;// 2, 사업자등록상태 조회 화면으로 이동 &#xA;// 3. 사업자등록상태 조회 및 데이터 추출&#xA;// 4. 홈택스 화면 닫기" DisplayName="3. 사업자등록상태 조회" sap:VirtualizedContainerService.HintSize="200,228" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence sap2010:Annotation.AnnotationText="// 홈택스 사이트에서 사업자등록상태를 조회하여 데이터 추출&#xA;// 1. 홈택스 화면 열기&#xA;// 2, 사업자등록상태 조회 화면으로 이동 &#xA;// 3. 사업자등록상태 조회 및 데이터 추출&#xA;// 4. 홈택스 화면 닫기" DisplayName="3. 사업자등록상태 조회" sap:VirtualizedContainerService.HintSize="450,894" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -401,7 +401,9 @@
                   </ui:InvokeWorkflowFile>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 홈택스 화면 닫기" DisplayName="CloseChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="000_Process_Common\CloseChromeBrowser.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">[Brw_Hometax]</InArgument>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">
+                        <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="Brw_Hometax" />
+                      </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
