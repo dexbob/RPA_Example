@@ -6,7 +6,7 @@
       </x:Property.Attributes>
     </x:Property>
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1033,910</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1020,910</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -146,7 +146,7 @@
                 </ui:CursorPosition>
               </ui:Click.CursorPosition>
               <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ab08d720-4fe6-4ca7-8785-59fcf778972c" InformativeScreenshot="40f5026eb59ad283bc2ab556e598543b" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Dashboard' /&gt;&lt;webctrl aaname='Log Out' parentid='bs-example-navbar-collapse-1' tag='A' /&gt;" TimeoutMS="3000">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ab08d720-4fe6-4ca7-8785-59fcf778972c" InformativeScreenshot="e91a18416454a914e3a8ce0d5831363c" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Download Monthly Invoices' /&gt;&lt;webctrl aaname='Log Out' parentid='bs-example-navbar-collapse-1' tag='A' /&gt;" TimeoutMS="3000">
                   <ui:Target.WaitForReady>
                     <InArgument x:TypeArguments="ui:WaitForReady" />
                   </ui:Target.WaitForReady>

@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,1119</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1020,1125</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_Read_Range_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -95,9 +95,17 @@
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_101_Excel_Read_Range" sap:VirtualizedContainerService.HintSize="750,1054" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_101_Excel_Read_Range" sap:VirtualizedContainerService.HintSize="750,1060" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,7 +119,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Flowchart sap2010:Annotation.AnnotationText="// 입력된 엑셀파일의 해당 시트를 읽어, 데이터테이블로 추출해 반환&#xA;// 1. 파일경로에 파일이 존재하지 않으면 메시지 출력 후 종료&#xA;// 2. 입출력 데이터테이블이 존재하면 그 데이터테이블에 엑셀파일정보 추출 &#xA;// 3. 입출력 데이터테이블이 없으면 새로운 데이터테이블에 엑셀파일 추출" DisplayName="Flowchart 엑셀 파일 정보 읽어서 반환" sap:VirtualizedContainerService.HintSize="688,759" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap2010:Annotation.AnnotationText="// 입력된 엑셀파일의 해당 시트를 읽어, 데이터테이블로 추출해 반환&#xA;// 1. 파일경로에 파일이 존재하지 않으면 메시지 출력 후 종료&#xA;// 2. 입출력 데이터테이블이 존재하면 그 데이터테이블에 엑셀파일정보 추출 &#xA;// 3. 입출력 데이터테이블이 없으면 새로운 데이터테이블에 엑셀파일 추출" DisplayName="Flowchart 엑셀 파일 정보 읽어서 반환" sap:VirtualizedContainerService.HintSize="688,765" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="Bln_ExistFile" />
       </Flowchart.Variables>
@@ -124,11 +132,11 @@
           <av:PointCollection x:Key="ConnectorLocation">310,50 150,50 150,88.5</av:PointCollection>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           <x:Double x:Key="Width">654</x:Double>
-          <x:Double x:Key="Height">650</x:Double>
+          <x:Double x:Key="Height">656</x:Double>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
-        <x:Reference>__ReferenceID5</x:Reference>
+        <x:Reference>__ReferenceID6</x:Reference>
       </Flowchart.StartNode>
       <FlowDecision x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="// 엑셀파일이 존재할 경우에만 다음으로 진행" Condition="[Bln_ExistFile]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="81,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
         <sap:WorkflowViewStateService.ViewState>
@@ -179,6 +187,7 @@
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">380,474</av:Point>
                         <av:Size x:Key="ShapeSize">200,109</av:Size>
+                        <av:PointCollection x:Key="ConnectorLocation">480,583 480,604</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="// 엑셀파일로부터 읽은 데이터를 입출력 데이터테이블에 설정" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,109" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ExcelFilePath]">
@@ -214,6 +223,17 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:ExcelApplicationScope>
+                    <FlowStep.Next>
+                      <FlowStep x:Name="__ReferenceID5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <av:Point x:Key="ShapeLocation">380,604</av:Point>
+                            <av:Size x:Key="ShapeSize">200,52</av:Size>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;전체 컬럼명 : &quot; + String.Join(&quot;, &quot;, &#xD;&#xA;&#x9;inout_DT_Datatable.Columns.Cast(Of DataColumn)().Select(&#xD;&#xA;&#x9;&#x9;Function(col) col.ColumnName&#xD;&#xA;&#x9;).ToList&#xD;&#xA;) +&#xD;&#xA;Environment.NewLine +&#xD;&#xA;&quot;출력 행수 : &quot; + inout_DT_Datatable.RowCount.ToString + &quot; 행&quot;]" />
+                      </FlowStep>
+                    </FlowStep.Next>
                   </FlowStep>
                 </FlowStep.Next>
               </FlowStep>
@@ -243,7 +263,7 @@
           </FlowStep>
         </FlowDecision.False>
       </FlowDecision>
-      <FlowStep x:Name="__ReferenceID5">
+      <FlowStep x:Name="__ReferenceID6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">50,88.5</av:Point>
@@ -266,6 +286,7 @@
       <x:Reference>__ReferenceID2</x:Reference>
       <x:Reference>__ReferenceID3</x:Reference>
       <x:Reference>__ReferenceID4</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
     </Flowchart>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="688,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Excel_Read_Range] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
