@@ -119,6 +119,7 @@
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="출력파일경로 변수" Name="Str_OutputPath" />
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="다운로드 폴더경로 변수" Name="Str_DownloadFolder" />
         <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="월별인보이스 데이터테이블 객체" Name="DT_MonthlyInvoice" />
+        <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="브라우저 객체" Name="Brw_ACME" />
       </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -131,7 +132,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
-        <x:Reference>__ReferenceID1</x:Reference>
+        <x:Reference>__ReferenceID2</x:Reference>
       </Flowchart.StartNode>
       <FlowStep>
         <sap:WorkflowViewStateService.ViewState>
@@ -154,9 +155,10 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,339.5</av:Point>
             <av:Size x:Key="ShapeSize">200,81</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,420.5 300,451</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="2. 추출" sap:VirtualizedContainerService.HintSize="450,525" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="2. 월별인보이스 엑셀파일 추출" sap:VirtualizedContainerService.HintSize="200,81" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="Str_Result" />
           </Sequence.Variables>
@@ -168,22 +170,67 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="101_Excel_Read_Range.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="100_Process_Excel\101_Excel_Read_Range.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_OutputPath" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Sheet_Default&quot;)" />
-              </InArgument>
-              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">
-                <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_MonthlyInvoice" />
-              </InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelFilePath">[Str_OutputPath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Str_ExcelSheetName">[Config("Sheet_Default")]</InArgument>
+              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="inout_DT_Datatable">[DT_MonthlyInvoice]</InOutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:OutputDataTable DataTable="[DT_MonthlyInvoice]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[Str_Result]" />
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;출력 행수 : &quot; + DT_MonthlyInvoice.RowCount.ToString + &quot; 행&quot; +&#xD;&#xA;Environment.NewLine +&#xD;&#xA;&quot;컬럼명 : &quot; + &#xD;&#xA;String.Join(&quot;, &quot;, &#xD;&#xA;&#x9;DT_MonthlyInvoice.Columns.Cast(Of DataColumn)().Select(&#xD;&#xA;&#x9;&#x9;Function(col) col.ColumnName&#xD;&#xA;&#x9;).ToList&#xD;&#xA;)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;출력 행수 : &quot; + DT_MonthlyInvoice.RowCount.ToString + &quot; 행&quot; +&#xA;Environment.NewLine +&#xA;&quot;컬럼명 : &quot; + &#xA;String.Join(&quot;, &quot;, &#xA;&#x9;DT_MonthlyInvoice.Columns.Cast(Of DataColumn)().Select(&#xA;&#x9;&#x9;Function(col) col.ColumnName&#xA;&#x9;).ToList&#xA;)]" />
         </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">200,451</av:Point>
+                <av:Size x:Key="ShapeSize">200,138</av:Size>
+                <av:PointCollection x:Key="ConnectorLocation">300,387.5 300,419.5</av:PointCollection>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence sap2010:Annotation.AnnotationText="// 1. 브라우저 ACME 화면 열기&#xA;// 2. 로그인 실시" DisplayName="3. ACME 추출" sap:VirtualizedContainerService.HintSize="450,634" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 브라우저 ACME 화면 열기" DisplayName="OpenChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="000_Process_Common\OpenChromeBrowser.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_URL">[Config("URL_ACME")]</InArgument>
+                  <OutArgument x:TypeArguments="ui:Browser" x:Key="out_Brw_Chrome">[Brw_ACME]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 로그인 실시" DisplayName="201_ACME_Login.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="200_Process_ACME\201_ACME_Login.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_Account">[Config("Account_ACME")]</InArgument>
+                  <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_ACME">[Brw_ACME]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="202_ACME_GetMonthlyInvoice.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="200_Process_ACME\202_ACME_GetMonthlyInvoice.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_ACME">
+                    <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_ACME" />
+                  </InOutArgument>
+                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_MonthlyInvoice">
+                    <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_MonthlyInvoice" />
+                  </InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </FlowStep>
+        </FlowStep.Next>
       </FlowStep>
-      <FlowStep x:Name="__ReferenceID1">
+      <FlowStep x:Name="__ReferenceID2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,99.5</av:Point>
@@ -191,7 +238,7 @@
             <av:PointCollection x:Key="ConnectorLocation">300,312.5 300,339.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence sap2010:Annotation.AnnotationText="// 1. 딕셔너리 타입의 Config 정보 추출&#xD;&#xA;// 2. 변수 초기화 (입력엑셀파일경로, 출력엑셀파일경로, 다운로드폴더경로)&#xD;&#xA;// 3. 파일 복사 (입력엑셀파일을 복사해 출력엑셀파일 생성, 파일명에 날짜 추가)" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap2010:Annotation.AnnotationText="// 1. 딕셔너리 타입의 Config 정보 추출&#xA;// 2. 변수 초기화 (입력엑셀파일경로, 출력엑셀파일경로, 다운로드폴더경로)&#xA;// 3. 파일 복사 (입력엑셀파일을 복사해 출력엑셀파일 생성, 파일명에 날짜 추가)" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="입력파일경로 변수" Name="Str_InputPath" />
             <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="입력 엑셀파일이 존재하는지 여부 변수" Name="Bln_ExistInputFile" />
@@ -212,7 +259,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 변수 초기화&#xD;&#xA;// 1. 입력엑셀파일경로 (입력폴더경로+입력엑셀파일명)&#xD;&#xA;// 2. 출력엑셀파일경로 (출력폴더경로+파일명+&quot;_yyyyMMdd&quot;+&quot;.xlsx&quot;&#xD;&#xA;// 3. 다운로드폴더경로" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,250" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 변수 초기화&#xA;// 1. 입력엑셀파일경로 (입력폴더경로+입력엑셀파일명)&#xA;// 2. 출력엑셀파일경로 (출력폴더경로+파일명+&quot;_yyyyMMdd&quot;+&quot;.xlsx&quot;&#xA;// 3. 다운로드폴더경로" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,250" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -298,49 +345,7 @@
           <x:Reference>__ReferenceID0</x:Reference>
         </FlowStep.Next>
       </FlowStep>
-      <FlowStep>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">180,758.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,895.5 300,923.5</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-          <ui:CommentOut.Body>
-            <Sequence DisplayName="무시된 액티비티" sap2010:WorkflowViewState.IdRef="Sequence_8">
-              <Sequence sap2010:Annotation.AnnotationText="// 1. 로그아웃 실시&#xA;// 2. 브라우저 닫기" DisplayName="5. 로그아웃" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 로그아웃 실시" DisplayName="204_ACME_Logout.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="200_Process_ACME\204_ACME_Logout.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_ACME">[Brw_ACME]</InOutArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 브라우저 닫기" DisplayName="CloseChromeBrowser.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="000_Process_Common\CloseChromeBrowser.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">[Brw_ACME]</InArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:InvokeWorkflowFile>
-              </Sequence>
-            </Sequence>
-          </ui:CommentOut.Body>
-        </ui:CommentOut>
-      </FlowStep>
+      <x:Reference>__ReferenceID1</x:Reference>
     </Flowchart>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="634,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[MAIN] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
