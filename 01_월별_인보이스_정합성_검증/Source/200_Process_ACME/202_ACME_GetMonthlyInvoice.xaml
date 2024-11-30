@@ -6,6 +6,7 @@
       </x:Property.Attributes>
     </x:Property>
     <x:Property sap2010:Annotation.AnnotationText="Monthly Invoce 데이터테이블 객체를 입력 합니다." Name="in_DT_MonthlyInvoice" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="다운로드 파일명을 입력 합니다.&#xD;&#xA;파일명에 {Vendor} 와 {Month} 를 포함해야 합니다." Name="in_Str_DownloadFilePath" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -122,13 +123,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 월별 인보이스 데이터테이블 개수만큼 반복하며 다운로드 실시&#xD;&#xA;// 1. Download Monthly Invoice 화면으로 이동&#xD;&#xA;// 2. 월별 인보이스 데이터테이블 개수만큼 다운로드 실시 " Browser="[inout_Brw_ACME]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="531,2588" sap2010:WorkflowViewState.IdRef="BrowserScope_2" UiBrowser="[inout_Brw_ACME]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="// 월별 인보이스 데이터테이블 개수만큼 반복하며 다운로드 실시&#xD;&#xA;// 1. Download Monthly Invoice 화면으로 이동&#xD;&#xA;// 2. 월별 인보이스 데이터테이블 개수만큼 다운로드 실시 " Browser="[inout_Brw_ACME]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="656,3188" sap2010:WorkflowViewState.IdRef="BrowserScope_2" UiBrowser="[inout_Brw_ACME]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="497,2422" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="622,3022" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="드롭다운 아이템 변수" Name="Str_DropdownItems" />
               <Variable x:TypeArguments="scg:List(x:String)" sap2010:Annotation.AnnotationText="드롭다운 아이템 리스트 객체" Name="StrLst_DropdownItems" />
@@ -138,7 +139,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" sap2010:Annotation.AnnotationText="// Internal Invoice 버튼에 마우스 올리기" DisplayName="Hover 'BUTTON'" sap:VirtualizedContainerService.HintSize="435,138" sap2010:WorkflowViewState.IdRef="Hover_1">
+            <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" sap2010:Annotation.AnnotationText="// Internal Invoice 버튼에 마우스 올리기" DisplayName="Hover 'BUTTON'" sap:VirtualizedContainerService.HintSize="560,138" sap2010:WorkflowViewState.IdRef="Hover_1">
               <ui:Hover.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -165,7 +166,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Hover>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// Download Monthly Invoice 버튼 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="435,138" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// Download Monthly Invoice 버튼 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="560,138" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -192,8 +193,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Click>
-            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="435,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <ui:GetAttribute ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 드룹다운 메뉴의 아이템 추출" Attribute="innerText" DisplayName="Get Attribute 'SELECT  reportMonth'" sap:VirtualizedContainerService.HintSize="435,234" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="560,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:GetAttribute ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// 드룹다운 메뉴의 아이템 추출" Attribute="innerText" DisplayName="Get Attribute 'SELECT  reportMonth'" sap:VirtualizedContainerService.HintSize="560,234" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
               <ui:GetAttribute.Result>
                 <OutArgument x:TypeArguments="x:String">[Str_DropdownItems]</OutArgument>
               </ui:GetAttribute.Result>
@@ -210,7 +211,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:GetAttribute>
-            <Assign sap2010:Annotation.AnnotationText="// 드룹다운 메뉴의 아이템으로 리스트 설정" sap:VirtualizedContainerService.HintSize="435,113" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap2010:Annotation.AnnotationText="// 드룹다운 메뉴의 아이템으로 리스트 설정" sap:VirtualizedContainerService.HintSize="560,113" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="scg:List(x:String)">[StrLst_DropdownItems]</OutArgument>
               </Assign.To>
@@ -223,20 +224,20 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 월별 인보이스 데이터테이블 개수만큼 반복&#xD;&#xA;// 월별 Vendor별 데이터 다운로드" DataTable="[in_DT_MonthlyInvoice]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="435,1217" sap2010:WorkflowViewState.IdRef="ForEachRow_1" MaxIterations="1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="// 월별 인보이스 데이터테이블 개수만큼 반복&#xD;&#xA;// 월별 Vendor별 데이터 다운로드" DataTable="[in_DT_MonthlyInvoice]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,1817" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="401,989" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="526,1589" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[Row(&quot;Vendor&quot;).ToString.Trim + &quot;, &quot; + StrLst_DropdownItems(CInt(Row(&quot;Month&quot;)) - 1).Trim]" />
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="// Vendor 입력" ClickBeforeTyping="True" DisplayName="Type Into 'INPUT  vendorTaxID'" EmptyField="True" sap:VirtualizedContainerService.HintSize="359,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Row(&quot;Vendor&quot;).ToString.Trim]">
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[Row(&quot;Vendor&quot;).ToString.Trim + &quot;, &quot; + StrLst_DropdownItems(CInt(Row(&quot;Month&quot;)) - 1).Trim]" />
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="// 벤더 입력" ClickBeforeTyping="True" DisplayName="Type Into 'INPUT  vendorTaxID'" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Row(&quot;Vendor&quot;).ToString.Trim]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5195164f-6fe3-451d-a38f-f313f0b5dcd0" InformativeScreenshot="6b39aa7e30365fabeb611e68cdc2c4b0" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Download Monthly Invoices' /&gt;&lt;webctrl id='vendorTaxID' tag='INPUT' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -253,7 +254,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:TypeInto>
-                    <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" sap2010:Annotation.AnnotationText="// 월 선택 (드롭다운메뉴)" DisplayName="Select Item 'SELECT  reportMonth'" sap:VirtualizedContainerService.HintSize="359,186" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[StrLst_DropdownItems(CInt(Row(&quot;Month&quot;)) - 1).Trim]">
+                    <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" sap2010:Annotation.AnnotationText="// 월 선택 (드롭다운메뉴)" DisplayName="Select Item 'SELECT  reportMonth'" sap:VirtualizedContainerService.HintSize="484,186" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[StrLst_DropdownItems(CInt(Row(&quot;Month&quot;)) - 1).Trim]">
                       <ui:SelectItem.Items>
                         <scg:List x:TypeArguments="x:String" Capacity="16">
                           <x:String>January</x:String>
@@ -283,7 +284,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:SelectItem>
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 다운로드 버튼 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  buttonDownload'" sap:VirtualizedContainerService.HintSize="359,138" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="// 다운로드 버튼 클릭" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  buttonDownload'" sap:VirtualizedContainerService.HintSize="484,138" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
                       <ui:Click.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -310,7 +311,63 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:Click>
-                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="359,90" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'chrome.exe  다른 이름으로 저장'" sap:VirtualizedContainerService.HintSize="484,560" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="e5ded99dc7e99fac69e98b49e56f2f10" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;">
+                      <ui:WindowScope.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,413" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into '메뉴 항목'" sap:VirtualizedContainerService.HintSize="388,155" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_Str_DownloadFilePath.Replace(&#xD;&#xA;&#x9;&quot;{Vendor}&quot;, Row(&quot;Vendor&quot;).ToString.Trim&#xD;&#xA;).Replace(&#xD;&#xA;&#x9;&quot;{Month}&quot;, Row(&quot;Month&quot;).ToString.Trim&#xD;&#xA;)]">
+                              <ui:TypeInto.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9fc2dfb6-c939-4940-aae9-32ce9a8e9d48" InformativeScreenshot="cd21299eef4234eb0428e7143688caf6" Selector="&lt;wnd aaname='탐색 창' cls='DirectUIHWND' /&gt;&lt;wnd aaname='파일 이름:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:TypeInto.Target>
+                            </ui:TypeInto>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0f8c49a7-6dfc-4204-8645-af8c2daf84b5" InformativeScreenshot="ab51ef8cda621b393e92a48707f7bdc9" Selector="&lt;wnd ctrlid='1' title='저장(&amp;amp;S)' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:WindowScope.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:WindowScope>
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="Delay_3" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
@@ -320,7 +377,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;추출 데이터 개수 : &quot; + in_DT_MonthlyInvoice.RowCount.ToString + &quot; 행&quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="560,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;추출 데이터 개수 : &quot; + in_DT_MonthlyInvoice.RowCount.ToString + &quot; 행&quot;]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>

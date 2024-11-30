@@ -117,7 +117,7 @@
       <Flowchart.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:Annotation.AnnotationText="Config 정보 객체" Name="Config" />
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="출력파일경로 변수" Name="Str_OutputPath" />
-        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="다운로드 폴더경로 변수" Name="Str_DownloadFolder" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="다운로드 템플릿경로 변수" Name="Str_DownloadPath" />
         <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="월별인보이스 데이터테이블 객체" Name="DT_MonthlyInvoice" />
         <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="브라우저 객체" Name="Brw_ACME" />
       </Flowchart.Variables>
@@ -187,7 +187,7 @@
                 <av:PointCollection x:Key="ConnectorLocation">300,387.5 300,419.5</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap2010:Annotation.AnnotationText="// 1. 브라우저 ACME 화면 열기&#xA;// 2. 로그인 실시" DisplayName="3. ACME 추출" sap:VirtualizedContainerService.HintSize="450,634" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <Sequence sap2010:Annotation.AnnotationText="// 1. 브라우저 ACME 화면 열기&#xA;// 2. 로그인 실시" DisplayName="3. ACME 추출" sap:VirtualizedContainerService.HintSize="450,665" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -216,7 +216,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:InvokeWorkflowFile>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="202_ACME_GetMonthlyInvoice.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="200_Process_ACME\202_ACME_GetMonthlyInvoice.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="// " DisplayName="202_ACME_GetMonthlyInvoice.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="200_Process_ACME\202_ACME_GetMonthlyInvoice.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InOutArgument x:TypeArguments="ui:Browser" x:Key="inout_Brw_ACME">
                     <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="Brw_ACME" />
@@ -224,7 +224,15 @@
                   <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_MonthlyInvoice">
                     <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_MonthlyInvoice" />
                   </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Str_DownloadFilePath">
+                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_DownloadPath" />
+                  </InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
               </ui:InvokeWorkflowFile>
             </Sequence>
           </FlowStep>
@@ -290,12 +298,13 @@
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
                   <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="x:String">[Str_DownloadFolder]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String">[Str_DownloadPath]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
                     <InArgument x:TypeArguments="x:String" xml:space="preserve">[Path.Combine(
 	Config("Folder_DataPath"),
-	Config("Folder_DownloadName")
+	Config("Folder_DownloadName"),
+	Config("File_DownloadTemplate")
 )]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
