@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1033,2458</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1020,2251</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_301__1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -121,7 +121,7 @@
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="// 메일 송신&#xA;// 1. 초기화&#xA;// - 계정관리명, 송신서버, 포트번호&#xA;// - 송신자 메일주소, 송신자명&#xA;// - 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;// - 제목, 내용, 첨부파일&#xA;// 2. 제목과 내용 수정 처리&#xA;// 3. 메일 송신&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="_301_Mail_Send" sap:VirtualizedContainerService.HintSize="603,2393" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="// 메일 송신&#xA;// 1. 초기화&#xA;// - 계정관리명, 송신서버, 포트번호&#xA;// - 송신자 메일주소, 송신자명&#xA;// - 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;// - 제목, 내용, 첨부파일&#xA;// 2. 제목과 내용 수정 처리&#xA;// 3. 메일 송신&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="_301_Mail_Send" sap:VirtualizedContainerService.HintSize="603,2186" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="계정관리명 변수" Name="Str_CredentialName" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신서버 변수" Name="Str_SendServer" />
@@ -133,8 +133,7 @@
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="수신 숨은참조주소 변수" Name="Str_Bcc" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="메일 제목 변수" Name="Str_Title" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="메일 내용 변수" Name="Str_Body" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="첨부파일1 변수" Name="Str_AttachFilePath1" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="첨부파일2 변수" Name="Str_AttachFilePath2" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="첨부파일 변수" Name="Str_AttachFilePath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -150,7 +149,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="// 메일 송신에 필요한 변수 초기화" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="541,1098" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="// 메일 송신에 필요한 변수 초기화" DisplayName="1. 초기화" sap:VirtualizedContainerService.HintSize="541,1067" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -255,7 +254,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 제목, 내용, 첨부파일" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,240" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="// 제목, 내용, 첨부파일" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,209" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
@@ -263,7 +262,7 @@
                 <OutArgument x:TypeArguments="x:String">[Str_Title]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Title_BusinessState")]</InArgument>
+                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Title_MonthlyInvoice")]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_22">
@@ -271,23 +270,15 @@
                 <OutArgument x:TypeArguments="x:String">[Str_Body]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Body_BusinessState")]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_23">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Str_AttachFilePath1]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_AttachFilePath1")]</InArgument>
+                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Body_MonthlyInvoice")]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_24">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Str_AttachFilePath2]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[Str_AttachFilePath]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_AttachFilePath2")]</InArgument>
+                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_AttachFilePath")]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
@@ -299,47 +290,11 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
     </Sequence>
-    <Sequence DisplayName="2. 제목과 내용 수정 처리" sap:VirtualizedContainerService.HintSize="541,317" sap2010:WorkflowViewState.IdRef="Sequence_3">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[Str_Title]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[Str_Title.Replace(
-	"{제목추가}", 
-	Str_FromName + 
-	Now.ToString(" [yyyy-MM-dd HH:mm]") 
-)]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[Str_Body]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[Str_Body.Replace(
-	"{내용추가}", 
-	""
-).Replace(
-	"{첨부파일}", 
-	"&lt;첨부파일명&gt;" +
-	Environment.NewLine +
-	Path.GetFileName(Str_AttachFilePath1) + 
-	Environment.NewLine +
-	Path.GetFileName(Str_AttachFilePath2) 
-)]</InArgument>
-        </Assign.Value>
-      </Assign>
-    </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="// 메일 송신 처리&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="3. 메일 송신 처리" sap:VirtualizedContainerService.HintSize="541,456" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence sap2010:Annotation.AnnotationText="// 메일 송신 처리&#xA;// - 로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="3. 메일 송신 처리" sap:VirtualizedContainerService.HintSize="541,637" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" sap2010:Annotation.AnnotationText="로그온 암호 변수" Name="SStr_LogonPassword" />
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="로그온 메일주소 변수" Name="Str_LogonEmail" />
+        <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="메일 송신 결과 변수" Name="Str_Result" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -354,14 +309,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </p:GetSecureCredential>
-      <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Bcc="[Str_Cc]" Body="[Str_Body]" Cc="[Str_Bcc]" DisplayName="Send SMTP Mail Message" Email="[Str_LogonEmail]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Password="[(New System.Net.NetworkCredential(String.Empty, SStr_LogonPassword)).Password]" Port="[CInt(Int_SendPort)]" SecureConnection="Auto" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]">
+      <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Bcc="[Str_Cc]" Body="[Str_Body]" Cc="[Str_Bcc]" DisplayName="Send SMTP Mail Message" Email="[Str_LogonEmail]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Password="[(New System.Net.NetworkCredential(String.Empty, SStr_LogonPassword)).Password]" Port="[CInt(Int_SendPort)]" Result="[Str_Result]" SecureConnection="Auto" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]">
         <ui:SendMail.Files>
           <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-            <InArgument x:TypeArguments="x:String">[Str_AttachFilePath1]</InArgument>
-            <InArgument x:TypeArguments="x:String">[Str_AttachFilePath2]</InArgument>
+            <InArgument x:TypeArguments="x:String">[Str_AttachFilePath]</InArgument>
           </scg:List>
         </ui:SendMail.Files>
       </ui:SendMail>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;메일 송신 출력 상태 코드 : &quot; + Str_Result]" />
     </Sequence>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Mail_Send] END&quot;]">
       <sap:WorkflowViewStateService.ViewState>
