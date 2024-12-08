@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,864</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>693,864</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -453,7 +453,7 @@
                   <Transition.To>
                     <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="환경설정객체(Config) 초기화 &#xA;비지니스 프로세스에서 사용되는 어플리케이션 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="254,119" sap2010:WorkflowViewState.IdRef="State_2">
                       <State.Entry>
-                        <TryCatch DisplayName="Try Catch  초기화 에러 발생시 처리" sap:VirtualizedContainerService.HintSize="626,2431" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                        <TryCatch DisplayName="Try Catch  초기화 에러 발생시 처리" sap:VirtualizedContainerService.HintSize="626,2420" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -461,7 +461,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <TryCatch.Try>
-                            <Sequence DisplayName="환경설정객체(Config)와 사용될 어플리케이션 초기화" sap:VirtualizedContainerService.HintSize="588,1927" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                            <Sequence DisplayName="환경설정객체(Config)와 사용될 어플리케이션 초기화" sap:VirtualizedContainerService.HintSize="588,1916" sap2010:WorkflowViewState.IdRef="Sequence_4">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -476,7 +476,7 @@
                                   <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If sap2010:Annotation.AnnotationText="환경설정객체(Config)가 존재하지 않으면 환경설정파일로부터 환경설정정보 추출 (최초 1회 실행)" Condition="[Config is Nothing]" DisplayName="If 환경설정객체(Config) 존재 여부에 따른 분기 " sap:VirtualizedContainerService.HintSize="526,1156" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If sap2010:Annotation.AnnotationText="환경설정객체(Config)가 존재하지 않으면 환경설정파일로부터 환경설정정보 추출 (최초 1회 실행)" Condition="[Config is Nothing]" DisplayName="If 환경설정객체(Config) 존재 여부에 따른 분기 " sap:VirtualizedContainerService.HintSize="526,1145" sap2010:WorkflowViewState.IdRef="If_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -485,7 +485,7 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
-                                  <Sequence DisplayName="First run" sap:VirtualizedContainerService.HintSize="492,932" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                  <Sequence DisplayName="First run" sap:VirtualizedContainerService.HintSize="492,921" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -582,7 +582,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:InvokeWorkflowFile>
-                                    <ui:AddLogFields sap2010:Annotation.AnnotationText="이후 생성되는 로그에 프로세스 이름 추가" DisplayName="Add Log Fields 로그필드 추가(비지니스 프로세스명)" sap:VirtualizedContainerService.HintSize="450,132" sap2010:WorkflowViewState.IdRef="AddLogFields_2">
+                                    <ui:AddLogFields sap2010:Annotation.AnnotationText="이후 생성되는 로그에 프로세스 이름 추가" DisplayName="Add Log Fields 로그필드 추가(비지니스 프로세스명)" sap:VirtualizedContainerService.HintSize="450,121" sap2010:WorkflowViewState.IdRef="AddLogFields_2">
                                       <ui:AddLogFields.Fields>
                                         <InArgument x:TypeArguments="x:String" x:Key="logF_BusinessProcessName">[Config("logF_BusinessProcessName").ToString]</InArgument>
                                       </ui:AddLogFields.Fields>
@@ -641,7 +641,7 @@
                             <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="592,193" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -705,9 +705,9 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="프로세스를 종료하고 모든 어플리케이션 닫기" DisplayName="프로세스 종료" sap:VirtualizedContainerService.HintSize="144,120" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="프로세스를 종료하고 모든 어플리케이션 닫기" DisplayName="프로세스 종료" sap:VirtualizedContainerService.HintSize="536,1400" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
-                                <TryCatch DisplayName="Try Catch 모든 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="490,1214" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                <TryCatch DisplayName="Try Catch 모든 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="490,1255" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -760,7 +760,7 @@
                                     </Catch>
                                   </TryCatch.Catches>
                                   <TryCatch.Finally>
-                                    <If sap2010:Annotation.AnnotationText="환경설정객체(Config) 초기화시 에러가 발생했거나, " Condition="[SystemException IsNot Nothing AndAlso (Config Is Nothing OrElse Convert.ToBoolean(Config(&quot;ShouldMarkJobAsFaulted&quot;)))]" DisplayName="If 시스템에러 발생 여부" sap:VirtualizedContainerService.HintSize="368,303" sap2010:WorkflowViewState.IdRef="If_14">
+                                    <If sap2010:Annotation.AnnotationText="시스템에러 발생시, 환경설정객체(Config) 초기화에서 에러가 발생했거나 또는 작업실패표시여부가 참일때 워크플로 강제종료 실행&#xD;&#xA;※ 작업실패표시여부 (ShouldMarkJobAsFaulted)" Condition="[SystemException IsNot Nothing AndAlso (Config Is Nothing OrElse Convert.ToBoolean(Config(&quot;ShouldMarkJobAsFaulted&quot;)))]" DisplayName="If 워크플로 강제종료 실행 여부" sap:VirtualizedContainerService.HintSize="368,344" sap2010:WorkflowViewState.IdRef="If_14">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
