@@ -97,6 +97,7 @@
       <AssemblyReference>WindowsFormsIntegration</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -115,11 +116,11 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251,113" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="처리할 다음 트랜잭션 가져오기" DisplayName="트랜잭션 데이터 가져오기" sap:VirtualizedContainerService.HintSize="251,102" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
-        <Sequence sap2010:Annotation.AnnotationText="Retrieve a new transaction data to be processed.&#xA;The TransactionNumber variable holds the current transaction number and incrementing this variable makes the framework retrieve the next transaction. If the framework is retrying a failed transaction, this variable is not incremented until the maximum number of retry attempts is reached." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="564.8,1180" sap2010:WorkflowViewState.IdRef="Sequence_25">
+        <Sequence sap2010:Annotation.AnnotationText="처리할 새 트랜잭션 데이터 검색&#xD;&#xA;트랜잭션번호를 증가시키면 프레임워크가 다음 트랜잭션을 검색&#xD;&#xA;실패한 트랜잭션을 재시도할때에는 재시도 횟수에 도달할때까지 번호 증가는 없음&#xD;&#xA;※ 트랜잭션번호 변수는 현재 트랜잭션의 번호를 의미" DisplayName="트랜잭션 데이터 검색" sap:VirtualizedContainerService.HintSize="632,2022" sap2010:WorkflowViewState.IdRef="Sequence_25">
           <Sequence.Variables>
-            <Variable x:TypeArguments="x:Boolean" Name="ShouldStop" />
+            <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="오케스트레이터에서 작업이 중지되었는지 확인하고 이후 작업을 진행할지 여부를 변수로 설정" Name="ShouldStop" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -128,29 +129,40 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ShouldStop DisplayName="Check Stop Signal" sap:VirtualizedContainerService.HintSize="521.6,32" sap2010:WorkflowViewState.IdRef="ShouldStop_2" Result="[ShouldStop]" />
-          <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="521.6,1016.8" sap2010:WorkflowViewState.IdRef="If_11">
+          <ui:ShouldStop sap2010:Annotation.AnnotationText="오케스트레이터에서 작업이 중지되었는지 확인&#xD;&#xA;프로세스 진행중에 갑작스럽게 종료되지 않도록 트랜잭션 데이터 검색 초반에 확인하여 이후 작업 실시 여부 미리 점검" DisplayName="Should Stop 오케스트레이터의 작업중지 체크" sap:VirtualizedContainerService.HintSize="570,162" sap2010:WorkflowViewState.IdRef="ShouldStop_2" Result="[ShouldStop]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ShouldStop>
+          <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="570,1637" sap2010:WorkflowViewState.IdRef="If_11">
             <If.Then>
-              <Sequence DisplayName="Orchestrator stop requested" sap:VirtualizedContainerService.HintSize="400,303.2" sap2010:WorkflowViewState.IdRef="Sequence_23">
+              <Sequence DisplayName="Orchestrator stop requested" sap:VirtualizedContainerService.HintSize="476,393" sap2010:WorkflowViewState.IdRef="Sequence_23">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log message (Stop process requested)" sap:VirtualizedContainerService.HintSize="356.8,102.4" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Stop process requested.&quot;]" />
-                <Assign DisplayName="End Process (Stop process requested)" sap:VirtualizedContainerService.HintSize="356.8,69.6" sap2010:WorkflowViewState.IdRef="Assign_22">
+                <ui:LogMessage DisplayName="Log message 프로세스 중지 요청 로그 출력" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Stop process requested.&quot;]" />
+                <Assign sap2010:Annotation.AnnotationText="프로세스 중지 요청시 처리할 트랜잭션 데이터 제거&#xD;&#xA;이 후 작업이 없는것으로 판단되어 전체 작업 종료" DisplayName="Assign 프로세스 종료 (프로세스 중지 요청)" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_22">
                   <Assign.To>
                     <OutArgument x:TypeArguments="ui:QueueItem">[TransactionItem]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
                     <InArgument x:TypeArguments="ui:QueueItem">[Nothing]</InArgument>
                   </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                 </Assign>
               </Sequence>
             </If.Then>
             <If.Else>
-              <TryCatch DisplayName="Try GetTransactionData" sap:VirtualizedContainerService.HintSize="440,548" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+              <TryCatch DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="536,1062" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -158,7 +170,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <TryCatch.Try>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetTransactionData workflow" sap:VirtualizedContainerService.HintSize="333.6,123.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Framework\GetTransactionData.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Framework\GetTransactionData.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[TransactionNumber]</InArgument>
                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
@@ -171,10 +183,10 @@
                   </ui:InvokeWorkflowFile>
                 </TryCatch.Try>
                 <TryCatch.Catches>
-                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="406.4,373.6" sap2010:WorkflowViewState.IdRef="Catch`1_8">
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="502,443" sap2010:WorkflowViewState.IdRef="Catch`1_8">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -182,15 +194,15 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Log exception message and end process" sap:VirtualizedContainerService.HintSize="400,303.2" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                      <Sequence DisplayName="에러 발생시 트랜잭션 항목에 빈 값 설정" sap:VirtualizedContainerService.HintSize="496,374" sap2010:WorkflowViewState.IdRef="Sequence_24">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log message  (Get transaction data error)" sap:VirtualizedContainerService.HintSize="356.8,102.4" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Fatal" Message="[Config(&quot;LogMessage_GetTransactionDataError&quot;).ToString+TransactionNumber.ToString+&quot;. &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source]" />
-                        <Assign DisplayName="End Process (Could not get new transaction)" sap:VirtualizedContainerService.HintSize="356.8,69.6" sap2010:WorkflowViewState.IdRef="Assign_23">
+                        <ui:LogMessage DisplayName="Log message  (Get transaction data error)" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Fatal" Message="[Config(&quot;LogMessage_GetTransactionDataError&quot;).ToString+TransactionNumber.ToString+&quot;. &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source]" />
+                        <Assign DisplayName="End Process (Could not get new transaction)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_23">
                           <Assign.To>
                             <OutArgument x:TypeArguments="ui:QueueItem">[TransactionItem]</OutArgument>
                           </Assign.To>
@@ -210,7 +222,7 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">224.333333333333,212.333333333333</av:Point>
-          <av:Size x:Key="ShapeSize">251,113</av:Size>
+          <av:Size x:Key="ShapeSize">251,102</av:Size>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Double x:Key="StateContainerWidth">217</x:Double>
           <x:Double x:Key="StateContainerHeight">34</x:Double>
@@ -218,10 +230,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <State.Transitions>
-        <Transition DisplayName="New Transaction" sap:VirtualizedContainerService.HintSize="430,796" sap2010:WorkflowViewState.IdRef="Transition_6">
+        <Transition DisplayName="새로운 트랜잭션" sap:VirtualizedContainerService.HintSize="450,861" sap2010:WorkflowViewState.IdRef="Transition_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:PointCollection x:Key="ConnectorLocation">349.83333333333303,325.33333333333303 349.83333333333303,440.666666666667</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">349.83333333333303,314.33333333333303 349.83333333333303,440.666666666667</av:PointCollection>
               <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
               <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -641,7 +653,7 @@
                             <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="592,193" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -678,7 +690,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <State.Transitions>
-                        <Transition DisplayName="Successful" sap:VirtualizedContainerService.HintSize="448.8,802.4" sap2010:WorkflowViewState.IdRef="Transition_2">
+                        <Transition DisplayName="성공" sap:VirtualizedContainerService.HintSize="450,830" sap2010:WorkflowViewState.IdRef="Transition_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
@@ -691,11 +703,11 @@
                             <x:Reference>__ReferenceID0</x:Reference>
                           </Transition.To>
                           <Transition.Action>
-                            <ui:Comment DisplayName="Comment (default transition)" sap:VirtualizedContainerService.HintSize="334,75" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Default transition is picked up if there are no errors during initialization" />
+                            <ui:Comment DisplayName="Comment (default transition)" sap:VirtualizedContainerService.HintSize="334,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="초기화 중에 에러가 없으면 기본 전환 실행" />
                           </Transition.Action>
                           <Transition.Condition>[SystemException is Nothing]</Transition.Condition>
                         </Transition>
-                        <Transition DisplayName="System Exception (failed initialization)" sap:VirtualizedContainerService.HintSize="450,830" sap2010:WorkflowViewState.IdRef="Transition_3">
+                        <Transition DisplayName="시스템에러 (초기화실패)" sap:VirtualizedContainerService.HintSize="450,830" sap2010:WorkflowViewState.IdRef="Transition_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:PointCollection x:Key="ConnectorLocation">350,125.66666666666666 350,155.66666666666666 82.8,155.66666666666666 82.8,208</av:PointCollection>
@@ -705,7 +717,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="프로세스를 종료하고 모든 어플리케이션 닫기" DisplayName="프로세스 종료" sap:VirtualizedContainerService.HintSize="536,1400" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="프로세스를 종료하고 모든 어플리케이션 닫기" DisplayName="프로세스 종료" sap:VirtualizedContainerService.HintSize="144,120" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
                                 <TryCatch DisplayName="Try Catch 모든 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="490,1255" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -789,7 +801,7 @@
                             </State>
                           </Transition.To>
                           <Transition.Action>
-                            <ui:LogMessage DisplayName="Log Message (initialization failure)" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Error" Message="[&quot;System exception at initialization: &quot; + SystemException.Message + &quot; at Source: &quot; + SystemException.Source]" />
+                            <ui:LogMessage DisplayName="Log Message 초기화 실패 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Error" Message="[&quot;System exception at initialization: &quot; + SystemException.Message + &quot; at Source: &quot; + SystemException.Source]" />
                           </Transition.Action>
                           <Transition.Condition>[SystemException isNot Nothing]</Transition.Condition>
                         </Transition>
@@ -800,7 +812,7 @@
                 <Transition sap2010:Annotation.AnnotationText="Business Rule Exception" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="448.8,537.6" sap2010:WorkflowViewState.IdRef="Transition_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">361.383333333333,628.666666666667 361.383333333333,658.666666666667 505.33333333333303,658.666666666667 505.33333333333303,246.233333333333 475.33333333333303,246.233333333333</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">361.383333333333,628.666666666667 361.383333333333,658.666666666667 505.33333333333303,658.666666666667 505.33333333333303,242.933333333333 475.33333333333303,242.933333333333</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">43</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">20</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -815,7 +827,7 @@
                 <Transition sap2010:Annotation.AnnotationText="There is no need for any action in case of successful transaction.&#xA;The process should simply go to next transaction." DisplayName="Success" sap:VirtualizedContainerService.HintSize="452,553.6" sap2010:WorkflowViewState.IdRef="Transition_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">407.58333333333303,628.666666666667 407.58333333333303,651.4333333333329 505.33333333333303,651.4333333333329 505.33333333333303,291.433333333333 475.33333333333303,291.433333333333</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">407.58333333333303,628.666666666667 407.58333333333303,643.733333333333 505.33333333333303,643.733333333333 505.33333333333303,283.733333333333 475.33333333333303,283.733333333333</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">59</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">52</x:Int32>
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -831,14 +843,14 @@
             </State>
           </Transition.To>
           <Transition.Action>
-            <ui:LogMessage DisplayName="Log message (New transaction retrieved)" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[Config(&quot;LogMessage_GetTransactionData&quot;).ToString+TransactionNumber.ToString]" />
+            <ui:LogMessage DisplayName="Log message 새로운 트랜잭션 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[Config(&quot;LogMessage_GetTransactionData&quot;).ToString+TransactionNumber.ToString]" />
           </Transition.Action>
           <Transition.Condition>[TransactionItem IsNot Nothing]</Transition.Condition>
         </Transition>
-        <Transition sap2010:Annotation.AnnotationText="This is a simple mecanism to stop the process.&#xA;In reallife scenario you can stop the process when there is no more data to process or on a schedule." DisplayName="No Data" sap:VirtualizedContainerService.HintSize="429.6,969.6" sap2010:WorkflowViewState.IdRef="Transition_7">
+        <Transition sap2010:Annotation.AnnotationText="This is a simple mecanism to stop the process.&#xA;In reallife scenario you can stop the process when there is no more data to process or on a schedule." DisplayName="남은 트랜잭션 없음" sap:VirtualizedContainerService.HintSize="429.6,969.6" sap2010:WorkflowViewState.IdRef="Transition_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:PointCollection x:Key="ConnectorLocation">349.83333333333303,325.33333333333303 349.83333333333303,355.33333333333303 90,355.33333333333303 90,328</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">349.83333333333303,314.33333333333303 349.83333333333303,344.33333333333303 90,344.33333333333303 90,328</av:PointCollection>
               <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
               <x:Int32 x:Key="DestConnectionPointIndex">39</x:Int32>
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -849,7 +861,7 @@
             <x:Reference>__ReferenceID1</x:Reference>
           </Transition.To>
           <Transition.Action>
-            <ui:LogMessage DisplayName="Log message (No more transations available)" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;Process finished due to no more transaction data&quot;]" />
+            <ui:LogMessage DisplayName="Log message 남은 트랜잭션 없음 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[Config(&quot;LogMessage_NoMoreTransactionData&quot;).ToString]" />
           </Transition.Action>
           <Transition.Condition>[TransactionItem Is Nothing]</Transition.Condition>
         </Transition>
@@ -859,17 +871,17 @@
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <StateMachine.Variables>
-      <Variable x:TypeArguments="ui:QueueItem" sap2010:Annotation.AnnotationText="Transaction item to be processed. The type of this variable can be changed to match the transaction type in the process. For example, when processing data from a spreadsheet that is read into a DataTable, this type can be changed to DataRow. " Name="TransactionItem" />
-      <Variable x:TypeArguments="s:Exception" sap2010:Annotation.AnnotationText="Used during transitions between states to represent exceptions other than business exceptions." Name="SystemException" />
-      <Variable x:TypeArguments="ui:BusinessRuleException" sap2010:Annotation.AnnotationText="Used during transitions between states and represents a situation that does not conform to the rules of the process being automated." Name="BusinessException" />
-      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Sequential counter of transaction items." Default="1" Name="TransactionNumber" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:Annotation.AnnotationText="환경설정객체(Config)로 프로세스 진행에 필요한 설정 데이터 저장 (settings, constants and assets)." Name="Config" />
-      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Used to control the number of attempts of retrying the transaction processing in case of system exceptions." Default="0" Name="RetryNumber" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="TransactionField2" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="TransactionField1" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Transaction ID used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="TransactionID" />
-      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Used in case transactions are stored in a DataTable, for example, after being retrieved from a spreadsheet." Name="dt_TransactionData" />
-      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Used to control the number of consecutive system exceptions." Default="0" Name="ConsecutiveSystemExceptions" />
+      <Variable x:TypeArguments="ui:QueueItem" sap2010:Annotation.AnnotationText="처리할 트랜잭션 항목" Name="TransactionItem" />
+      <Variable x:TypeArguments="s:Exception" sap2010:Annotation.AnnotationText="시스템에러 (비지니스에러 제외)" Name="SystemException" />
+      <Variable x:TypeArguments="ui:BusinessRuleException" sap2010:Annotation.AnnotationText="비지니스에러 (해당 트랜잭션 항목에 대한 프로세스 처리시 발생)" Name="BusinessException" />
+      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="트랜잭션번호" Default="1" Name="TransactionNumber" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:Annotation.AnnotationText="환경설정객체(Config)" Name="Config" />
+      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="시스템에러 발생시 트랜잭션 처리를 재시도 하는 횟수" Default="0" Name="RetryNumber" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 추가 정보2" Name="TransactionField2" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 추가 정보1" Name="TransactionField1" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="로그(정보 기록)용 트랜잭션ID (고유한 값)" Name="TransactionID" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="트랜잭션 데이터테이블&#xD;&#xA;트랙잭션이 데이터테이블에 저장된 경우(스프레드 시트 이용시) 사용" Name="dt_TransactionData" />
+      <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="시스템에러 발생 횟수" Default="0" Name="ConsecutiveSystemExceptions" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>
