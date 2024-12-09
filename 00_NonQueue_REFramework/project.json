@@ -22,7 +22,10 @@
     "requiresUserInteraction": true,
     "supportsPersistence": false,
     "workflowSerialization": "DataContract",
-    "excludedLoggedData": ["Private:*", "*password*"],
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
     "executionType": "Workflow",
     "readyForPiP": false,
     "startsInPiP": false,
