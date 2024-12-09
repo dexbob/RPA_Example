@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="TakeScreenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 스크린샷 이미지 저장 폴더 경로" Name="in_Folder" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입출력] 스크린샷 이미지 파일 경로" Name="io_FilePath" Type="InOutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 스크린샷 이미지 저장 폴더 경로" Name="in_Str_Folder" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입출력] 스크린샷 이미지 파일 경로" Name="inout_Str_FilePath" Type="InOutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -34,6 +34,7 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -65,6 +66,23 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -72,10 +90,10 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="스크린샷 캡쳐하고 이미지 저장&#xD;&#xA;이미지 파일 경로가 없을 경우에 지정 형식으로 저장&#xD;&#xA;※ 파일명 지정형식 : ExceptionScreenshot_yyMMdd.hhmmss.png" DisplayName="스크린샷 이미지 저장" sap:VirtualizedContainerService.HintSize="530,1368" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="스크린샷 캡쳐하고 이미지 저장&#xA;이미지 파일 경로가 없을 경우에 지정 형식으로 저장&#xA;※ 파일명 지정형식 : ExceptionScreenshot_yyMMdd.HHmmss.png" DisplayName="스크린샷 이미지 저장" sap:VirtualizedContainerService.HintSize="530,1368" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="ui:Image" sap2010:Annotation.AnnotationText="스크린샷 이미지" Name="Screenshot" />
-      <Variable x:TypeArguments="si:FileInfo" sap2010:Annotation.AnnotationText="스크린샷 파일 정보" Name="ScreenshotFileInfo" />
+      <Variable x:TypeArguments="ui:Image" sap2010:Annotation.AnnotationText="스크린샷 이미지" Name="Img_Screenshot" />
+      <Variable x:TypeArguments="si:FileInfo" sap2010:Annotation.AnnotationText="스크린샷 파일 정보" Name="FI_ScreenshotFileInfo" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -83,7 +101,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:TakeScreenshot WaitBefore="{x:Null}" sap2010:Annotation.AnnotationText="The whole screen is captured." DisplayName="Take Screenshot 스크린샷 캡쳐" sap:VirtualizedContainerService.HintSize="468,118" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[Screenshot]">
+    <ui:TakeScreenshot WaitBefore="{x:Null}" sap2010:Annotation.AnnotationText="The whole screen is captured." DisplayName="Take Screenshot 스크린샷 캡쳐" sap:VirtualizedContainerService.HintSize="468,118" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[Img_Screenshot]">
       <ui:TakeScreenshot.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="cdfbed4b-33c9-4bc0-85c3-c68ed4238b19" WaitForReady="INTERACTIVE">
           <ui:Target.TimeoutMS>
@@ -97,14 +115,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:TakeScreenshot>
-    <If Condition="[String.IsNullOrEmpty(io_FilePath)]" DisplayName="If 이미지 저장 폴더 경로가 없을때 지정 폴더 경로 설정" sap:VirtualizedContainerService.HintSize="468,264" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[String.IsNullOrEmpty(inout_Str_FilePath)]" DisplayName="If 이미지 저장 폴더 경로가 없을때 지정 폴더 경로 설정" sap:VirtualizedContainerService.HintSize="468,264" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
         <Assign DisplayName="Assign 스크린샷 이미지 저장 폴더 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
           <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[io_FilePath]</OutArgument>
+            <OutArgument x:TypeArguments="x:String">[inout_Str_FilePath]</OutArgument>
           </Assign.To>
           <Assign.Value>
-            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Folder, "ExceptionScreenshot_"+Now.ToString("yyMMdd.hhmmss")+".png")]</InArgument>
+            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Str_Folder, "ExceptionScreenshot_"+Now.ToString("yyMMdd.HHmmss")+".png")]</InArgument>
           </Assign.Value>
         </Assign>
       </If.Then>
@@ -114,13 +132,13 @@
     </If>
     <Assign DisplayName="Assign 스크린샷 파일정보 (파일경로) 설정" sap:VirtualizedContainerService.HintSize="468,82" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
-        <OutArgument x:TypeArguments="si:FileInfo">[ScreenshotFileInfo]</OutArgument>
+        <OutArgument x:TypeArguments="si:FileInfo">[FI_ScreenshotFileInfo]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="si:FileInfo">[New FileInfo(io_FilePath)]</InArgument>
+        <InArgument x:TypeArguments="si:FileInfo">[New FileInfo(inout_Str_FilePath)]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[Not Directory.Exists(ScreenshotFileInfo.DirectoryName)]" DisplayName="If 스크린샷 저장 폴더가 없을경우 폴더 생성" sap:VirtualizedContainerService.HintSize="468,262" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[Not Directory.Exists(FI_ScreenshotFileInfo.DirectoryName)]" DisplayName="If 스크린샷 저장 폴더가 없을경우 폴더 생성" sap:VirtualizedContainerService.HintSize="468,262" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -128,7 +146,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create directory" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[ScreenshotFileInfo.DirectoryName]" />
+        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create directory" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[FI_ScreenshotFileInfo.DirectoryName]" />
       </If.Then>
       <If.Else>
         <Sequence DisplayName="" sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_3">
@@ -140,7 +158,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:SaveImage DisplayName="Save Image 스크린샷 이미지 저장" FileName="[io_FilePath]" sap:VirtualizedContainerService.HintSize="468,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Screenshot]" />
-    <ui:LogMessage DisplayName="Log message 스크린샷 이미지 저장 로그 출력" sap:VirtualizedContainerService.HintSize="468,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Screenshot saved at: &quot;+io_FilePath]" />
+    <ui:SaveImage DisplayName="Save Image 스크린샷 이미지 저장" FileName="[inout_Str_FilePath]" sap:VirtualizedContainerService.HintSize="468,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Img_Screenshot]" />
+    <ui:LogMessage DisplayName="Log message 스크린샷 이미지 저장 로그 출력" sap:VirtualizedContainerService.HintSize="468,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Screenshot saved at: &quot;+inout_Str_FilePath]" />
   </Sequence>
 </Activity>

@@ -1,17 +1,17 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetTransactionData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션번호" Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목" Name="out_TransactionItem" Type="OutArgument(x:Object)" />
-    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목에 대한 추가 정보1" Name="out_TransactionField1" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목에 대한 추가 정보2" Name="out_TransactionField2" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[출력] 로그(정보 기록)용 트랜잭션ID (고유한 값)" Name="out_TransactionID" Type="OutArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입출력] 트랜잭션 데이터테이블&#xA;트랙잭션이 데이터테이블에 저장된 경우(스프레드 시트 이용시) 사용" Name="io_dt_TransactionData" Type="InOutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션번호" Name="in_Int_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목" Name="out_Obj_TransactionItem" Type="OutArgument(x:Object)" />
+    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목에 대한 추가 정보1" Name="out_Str_TransactionField1" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[출력] 트랜잭션 항목에 대한 추가 정보2" Name="out_Str_TransactionField2" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[출력] 로그(정보 기록)용 트랜잭션ID (고유한 값)" Name="out_Str_TransactionID" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입출력] 트랜잭션 데이터테이블&#xA;트랙잭션이 데이터테이블에 저장된 경우(스프레드 시트 이용시) 사용" Name="inout_DT_TransactionData" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3006</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>741,3006</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -119,7 +119,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message 트랜잭션 항목 추출 로그 출력" sap:VirtualizedContainerService.HintSize="689,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;Get the transaction item...&quot;]" />
-    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 항목 추출 에러 발생시 재시도 시행" sap:VirtualizedContainerService.HintSize="689,1794" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberGetTransactionItem&quot;))]">
+    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 항목 추출 에러 발생시 재시도 시행" sap:VirtualizedContainerService.HintSize="689,1794" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberGetTransactionItem&quot;))]">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
           <TryCatch DisplayName="Try Catch 트랜잭션 항목 추출 에러 발생 여부 확인" sap:VirtualizedContainerService.HintSize="647,1619" sap2010:WorkflowViewState.IdRef="TryCatch_2">
@@ -134,7 +134,7 @@
                 <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="547,811" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
                   <ui:IfElseIf.ConditionBlocks>
                     <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                      <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Config(&quot;UseQueue&quot;))]">
+                      <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]">
                         <ui:IfElseIfBlock.Then>
                           <Sequence DisplayName="트랜잭션 항목이 오케스트레이터의 큐아이템인 경우" sap:VirtualizedContainerService.HintSize="450,296" sap2010:WorkflowViewState.IdRef="Sequence_12">
                             <sap:WorkflowViewStateService.ViewState>
@@ -142,7 +142,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:GetQueueItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="오케스트레이터 대기열에서 트랜잭션 항목 추출&#xA;" DisplayName="Get Queue Items 오케스트레이터 큐아이템 추출" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,185" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" TransactionItem="[out_TransactionItem]">
+                            <ui:GetQueueItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="오케스트레이터 대기열에서 트랜잭션 항목 추출&#xA;" DisplayName="Get Queue Items 오케스트레이터 큐아이템 추출" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,185" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" TransactionItem="[out_Obj_TransactionItem]">
                               <ui:GetQueueItem.Reference>
                                 <InArgument x:TypeArguments="x:String" />
                               </ui:GetQueueItem.Reference>
@@ -160,7 +160,7 @@
                           </Sequence>
                         </ui:IfElseIfBlock.Then>
                       </ui:IfElseIfBlock>
-                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[io_dt_TransactionData IsNot Nothing]">
+                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[inout_DT_TransactionData IsNot Nothing]">
                         <ui:IfElseIfBlock.Then>
                           <Sequence DisplayName="트랜잭션 항목이 데이터테이블의 데이터로우인 경우" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_13">
                             <sap:WorkflowViewStateService.ViewState>
@@ -170,10 +170,10 @@
                             </sap:WorkflowViewStateService.ViewState>
                             <Assign DisplayName="Assign 트랜잭션 항목 (데이터로우) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
                               <Assign.To>
-                                <OutArgument x:TypeArguments="x:Object">[out_TransactionItem]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object">[out_Obj_TransactionItem]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
-                                <InArgument x:TypeArguments="sd:DataRow">[io_dt_TransactionData(in_TransactionNumber - 1)]</InArgument>
+                                <InArgument x:TypeArguments="sd:DataRow">[inout_DT_TransactionData(in_Int_TransactionNumber - 1)]</InArgument>
                               </Assign.Value>
                             </Assign>
                           </Sequence>
@@ -221,7 +221,7 @@
         <ActivityFunc x:TypeArguments="x:Boolean" />
       </ui:RetryScope.Condition>
     </ui:RetryScope>
-    <If sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 자세한 정보 설정 (기록 또는 시각화 목적)&#xA;&#xA;예) 트랜잭션 항목이 송장인 경우, out_TransactionID는 송장번호, out_TransactionField1은 송장날짜, out_TransactionField2는 송장금액&#xA;" Condition="[out_TransactionItem isNot Nothing]" DisplayName="If 새 트랜잭션 항목 존재시 추가 정보 설정" sap:VirtualizedContainerService.HintSize="689,683" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 자세한 정보 설정 (기록 또는 시각화 목적)&#xA;&#xA;예) 트랜잭션 항목이 송장인 경우, out_TransactionID는 송장번호, out_TransactionField1은 송장날짜, out_TransactionField2는 송장금액&#xA;" Condition="[out_Obj_TransactionItem isNot Nothing]" DisplayName="If 새 트랜잭션 항목 존재시 추가 정보 설정" sap:VirtualizedContainerService.HintSize="689,683" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -237,7 +237,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <Assign DisplayName="Assign 트랜잭션ID (out_TransactionID) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_TransactionID]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[out_Str_TransactionID]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">[now.ToString]</InArgument>
@@ -245,7 +245,7 @@
           </Assign>
           <Assign DisplayName="Assign 트랜잭션 추가정보1 (out_TransactionField1) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_TransactionField1]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[out_Str_TransactionField1]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>
@@ -253,7 +253,7 @@
           </Assign>
           <Assign DisplayName="Assign out_TransactionField2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_TransactionField2]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[out_Str_TransactionField2]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>

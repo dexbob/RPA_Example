@@ -1,13 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="InitiAllSettings" this:InitiAllSettings.in_ConfigFile="Data\Config.xlsx" this:InitiAllSettings.in_ConfigSheets="[{&quot;Settings&quot;,&quot;Constants&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="InitiAllSettings" this:InitiAllSettings.in_Str_ConfigFile="Data\Config.xlsx" this:InitiAllSettings.in_StrArr_ConfigSheets="[{&quot;Settings&quot;,&quot;Constants&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Path to the configuration file that defines settings, constants and assets." Name="in_ConfigFile" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Names of the sheets corresponding to settings and constants in the configuration file." Name="in_ConfigSheets" Type="InArgument(s:String[])" />
-    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="[출력] 환경설정객체(Config)" Name="out_Dic_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정파일 경로" Name="in_Str_ConfigFile" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정파일의 시트명 배열" Name="in_StrArr_ConfigSheets" Type="InArgument(s:String[])" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3774</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3564</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetAllSettings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,7 +105,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="환경설정파일에 정의된 데이터를 환경설정객체(Config)에 추가&#xD;&#xA;마지막에 오케스트레이터의 자산(asset)정보를 환경설정객체(Config)에 추가&#xD;&#xA;이름(키값)이 같은 경우 마지막에 설정한 값만 유효" DisplayName="환경설정파일로부터 환경설정객체(Config) 설정" sap:VirtualizedContainerService.HintSize="730,3499" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="환경설정파일에 정의된 데이터를 환경설정객체(Config)에 추가&#xA;마지막에 오케스트레이터의 자산(asset)정보를 환경설정객체(Config)에 추가&#xA;이름(키값)이 같은 경우 마지막에 설정한 값만 유효" DisplayName="환경설정파일로부터 환경설정객체(Config) 설정" sap:VirtualizedContainerService.HintSize="730,3499" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -115,13 +115,13 @@
     <ui:LogMessage DisplayName="Log Message 초기화 로그 출력" sap:VirtualizedContainerService.HintSize="668,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Initializing settings...&quot;]" />
     <Assign DisplayName="Assing 환경설정객체(Config) 초기화" sap:VirtualizedContainerService.HintSize="668,82" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Config]</OutArgument>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Dic_Config]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[New Dictionary(of String, Object)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For each 환경설정파일의 시트명 반복" sap:VirtualizedContainerService.HintSize="668,965" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_ConfigSheets]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For each 환경설정파일의 시트명 반복" sap:VirtualizedContainerService.HintSize="668,965" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_StrArr_ConfigSheets]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
@@ -129,7 +129,7 @@
           </ActivityAction.Argument>
           <Sequence sap2010:Annotation.AnnotationText="Read settings and constants from the configuration file and add them to the Config dictionary." DisplayName="Get local settings and constants" sap:VirtualizedContainerService.HintSize="544,779" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataTable" Name="dt_SettingsAndConstants" />
+              <Variable x:TypeArguments="sd:DataTable" Name="DT_Config" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -138,13 +138,13 @@
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 환경설정파일 읽기 전용 접근" sap:VirtualizedContainerService.HintSize="502,170" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_ConfigFile]">
+            <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 환경설정파일 읽기 전용 접근" sap:VirtualizedContainerService.HintSize="502,170" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ConfigFile]">
               <ui:ExcelApplicationScope.Body>
                 <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                   </ActivityAction.Argument>
-                  <ui:ExcelReadRange AddHeaders="True" DataTable="[Dt_SettingsAndConstants]" DisplayName="Read Range 시트 전체 읽기" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="[Sheet]">
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Config]" DisplayName="Read Range 시트 전체 읽기" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="[Sheet]">
                     <ui:ExcelReadRange.Range>
                       <InArgument x:TypeArguments="x:String">
                         <Literal x:TypeArguments="x:String" Value="" />
@@ -160,13 +160,13 @@
                 </ActivityAction>
               </ui:ExcelApplicationScope.Body>
             </ui:ExcelApplicationScope>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Dt_SettingsAndConstants]" DisplayName="For Each Row 환경설정정보 데이터프레임 행 반복" sap:VirtualizedContainerService.HintSize="502,481" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DT_Config]" DisplayName="For Each Row 환경설정정보 데이터프레임 행 반복" sap:VirtualizedContainerService.HintSize="502,481" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <If sap2010:Annotation.AnnotationText="데이터가 존재하는 행만 환경설정객체(Config)에 설정 " Condition="[Not String.IsNullOrWhiteSpace(row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If 반복 행(Row)의 열명(Name) 존재 여부" sap:VirtualizedContainerService.HintSize="468,295" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If sap2010:Annotation.AnnotationText="데이터가 존재하는 행만 환경설정객체(Config)에 설정 " Condition="[Not String.IsNullOrWhiteSpace(Row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If 반복 행(Row)의 열명(Name) 존재 여부" sap:VirtualizedContainerService.HintSize="468,295" sap2010:WorkflowViewState.IdRef="If_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -177,7 +177,7 @@
                     <If.Then>
                       <Assign DisplayName="Assign 환경설정객체(Config)에 데이터 추가" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_15">
                         <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_Config(Row("Name").ToString.Trim)]</OutArgument>
+                          <OutArgument x:TypeArguments="x:Object">[out_Dic_Config(Row("Name").ToString.Trim)]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
                           <InArgument x:TypeArguments="x:Object">[Row("Value")]</InArgument>
@@ -213,7 +213,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <TryCatch DisplayName="Try Catch 오케스트레이터의 자산(Assets) 데이터 초기화" sap:VirtualizedContainerService.HintSize="668,2023" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch 오케스트레이터의 자산(Assets) 데이터 설정" sap:VirtualizedContainerService.HintSize="668,2023" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -223,7 +223,7 @@
       <TryCatch.Try>
         <Sequence sap2010:Annotation.AnnotationText="오케스트레이터의 자산 데이터 추출해 환경설정객체(Config)에 추가" DisplayName="자산(assets)을 환경설정객체(Config)에 추가" sap:VirtualizedContainerService.HintSize="630,1608" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <Sequence.Variables>
-            <Variable x:TypeArguments="sd:DataTable" Name="dt_Assets" />
+            <Variable x:TypeArguments="sd:DataTable" Name="DT_Assets" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -232,13 +232,13 @@
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 환경설정파일 읽기 전용 접근" sap:VirtualizedContainerService.HintSize="568,170" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_ConfigFile]">
+          <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 환경설정파일 읽기 전용 접근" sap:VirtualizedContainerService.HintSize="568,170" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Str_ConfigFile]">
             <ui:ExcelApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                 </ActivityAction.Argument>
-                <ui:ExcelReadRange AddHeaders="True" DataTable="[dt_Assets]" DisplayName="Read Range 시트(Assets) 읽기" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Assets">
+                <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Assets]" DisplayName="Read Range 시트(Assets) 읽기" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Assets">
                   <ui:ExcelReadRange.Range>
                     <InArgument x:TypeArguments="x:String">
                       <Literal x:TypeArguments="x:String" Value="" />
@@ -254,7 +254,7 @@
               </ActivityAction>
             </ui:ExcelApplicationScope.Body>
           </ui:ExcelApplicationScope>
-          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Assets]" DisplayName="For Each Row  자산(asset) 데이터테이블 행 반복" sap:VirtualizedContainerService.HintSize="568,1256" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DT_Assets]" DisplayName="For Each Row  자산(asset) 데이터테이블 행 반복" sap:VirtualizedContainerService.HintSize="568,1256" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
@@ -270,27 +270,27 @@
                   <TryCatch.Try>
                     <Sequence DisplayName="오케스트레이터의 자산(asset) 추출하여 환경설정객체(Config)에 추가" sap:VirtualizedContainerService.HintSize="496,376" sap2010:WorkflowViewState.IdRef="Sequence_11">
                       <Sequence.Variables>
-                        <Variable x:TypeArguments="x:Object" Name="AssetValue" />
+                        <Variable x:TypeArguments="x:Object" Name="Obj_AssetValue" />
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:GetRobotAsset AssetName="[row(&quot;Asset&quot;).ToString]" CacheStrategy="None" DisplayName="오케스트레이터의 자산(asset) 추출" FolderPath="[row(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
+                      <ui:GetRobotAsset AssetName="[Row(&quot;Asset&quot;).ToString]" CacheStrategy="None" DisplayName="오케스트레이터의 자산(asset) 추출" FolderPath="[Row(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
                         <ui:GetRobotAsset.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:GetRobotAsset.TimeoutMS>
                         <ui:GetRobotAsset.Value>
-                          <OutArgument x:TypeArguments="x:Object">[AssetValue]</OutArgument>
+                          <OutArgument x:TypeArguments="x:Object">[Obj_AssetValue]</OutArgument>
                         </ui:GetRobotAsset.Value>
                       </ui:GetRobotAsset>
                       <Assign DisplayName="Assign 자산(asset)을 환경설정객체(Config)에 추가" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_23">
                         <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_Config(row("Name").ToString)]</OutArgument>
+                          <OutArgument x:TypeArguments="x:Object">[out_Dic_Config(Row("Name").ToString)]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[AssetValue]</InArgument>
+                          <InArgument x:TypeArguments="x:Object">[Obj_AssetValue]</InArgument>
                         </Assign.Value>
                       </Assign>
                     </Sequence>
@@ -316,7 +316,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Throw DisplayName="Throw 자산(asset)이 없으면 에러 발생" Exception="[new Exception(&quot;Loading asset &quot; + Row(&quot;Asset&quot;).ToString + &quot; failed: &quot; + Exception.Message)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                            <Throw DisplayName="Throw 자산(asset)이 없으면 에러 발생" Exception="[New Exception(&quot;Loading asset &quot; + Row(&quot;Asset&quot;).ToString + &quot; failed: &quot; + Exception.Message)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
                           </If.Then>
                           <If.Else>
                             <Sequence DisplayName="" sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_14">
@@ -347,7 +347,7 @@
         <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="634,104" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -355,7 +355,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
             </ActivityAction.Argument>
-            <Rethrow DisplayName="Rethrow loading asset exception" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            <Rethrow DisplayName="Rethrow 자산(asset) 추출시 발생한 에러 던지기" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>

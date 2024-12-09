@@ -1,15 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SetTransactionStatus" this:SetTransactionStatus.in_TransactionItem="[Nothing]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SetTransactionStatus" this:SetTransactionStatus.in_Obj_TransactionItem="[Nothing]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 비지니스에러" Name="in_BusinessException" Type="InArgument(ui:BusinessRuleException)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션 추가정보1" Name="in_TransactionField1" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션 추가정보2" Name="in_TransactionField2" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션ID (고유한 값)" Name="in_TransactionID" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="[입력] 시스템에러" Name="in_SystemException" Type="InArgument(s:Exception)" />
-    <x:Property sap2010:Annotation.AnnotationText="환경설정객체(Config)" Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 처리된 트랜잭션 항목" Name="in_TransactionItem" Type="InArgument(x:Object)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입출력] 시스템 예외의 경우 재시도 횟수" Name="io_RetryNumber" Type="InOutArgument(x:Int32)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입출력] 트랜잭션번호 (성공시 트랜잭션 번호 증가)" Name="io_TransactionNumber" Type="InOutArgument(x:Int32)" />
-    <x:Property sap2010:Annotation.AnnotationText="[입출력] 시스템에러 발생 횟수" Name="io_ConsecutiveSystemExceptions" Type="InOutArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션 추가정보1" Name="in_Str_TransactionField1" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션 추가정보2" Name="in_Str_TransactionField2" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 트랜잭션ID (고유한 값)" Name="in_Str_TransactionID" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 처리된 트랜잭션 항목" Name="in_Obj_TransactionItem" Type="InArgument(x:Object)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입출력] 시스템 예외의 경우 재시도 횟수" Name="inout_Int_RetryNumber" Type="InOutArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입출력] 트랜잭션번호 (성공시 트랜잭션 번호 증가)" Name="inout_Int_TransactionNumber" Type="InOutArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="[입출력] 시스템에러 발생 횟수" Name="inout_Int_ConsecutiveSystemExceptions" Type="InOutArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -141,12 +141,12 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[in_TransactionItem isNot Nothing AndAlso CBool(in_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템인 경우 (성공)" sap:VirtualizedContainerService.HintSize="566,1791" sap2010:WorkflowViewState.IdRef="If_4">
+            <If Condition="[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템인 경우 (성공)" sap:VirtualizedContainerService.HintSize="566,1631" sap2010:WorkflowViewState.IdRef="If_4">
               <If.Then>
-                <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (성공) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1609" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (성공) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1449" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                   <ui:RetryScope.ActivityBody>
                     <ActivityAction>
-                      <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (성공) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="490,1194" sap2010:WorkflowViewState.IdRef="TryCatch_11">
+                      <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (성공) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="490,1114" sap2010:WorkflowViewState.IdRef="TryCatch_11">
                         <TryCatch.Try>
                           <Sequence DisplayName="트랜잭션 상태 설정 (성공)" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_30">
                             <sap:WorkflowViewStateService.ViewState>
@@ -154,7 +154,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" DisplayName="Set transaction status 오케스트레이터 (성공)" ErrorType="Application" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,191" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_4" Status="Successful" TransactionItem="[Ctype(in_TransactionItem, QueueItem)]">
+                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" DisplayName="Set transaction status 오케스트레이터 (성공)" ErrorType="Application" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,191" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_4" Status="Successful" TransactionItem="[Ctype(in_Obj_TransactionItem, QueueItem)]">
                               <ui:SetTransactionStatus.Analytics>
                                 <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                               </ui:SetTransactionStatus.Analytics>
@@ -220,13 +220,13 @@
               <ui:AddLogFields DisplayName="Add Log Fields 트랜잭션 (성공) 로그 필드 추가" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="AddLogFields_4">
                 <ui:AddLogFields.Fields>
                   <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">Success</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[inout_Int_TransactionNumber.ToString]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_Str_TransactionID]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_Str_TransactionField1]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_Str_TransactionField2]</InArgument>
                 </ui:AddLogFields.Fields>
               </ui:AddLogFields>
-              <ui:LogMessage DisplayName="Log Message 트랜잭션 (성공) 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[in_Config(&quot;LogMessage_Success&quot;).ToString]" />
+              <ui:LogMessage DisplayName="Log Message 트랜잭션 (성공) 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[in_Dic_Config(&quot;LogMessage_Success&quot;).ToString]" />
               <ui:RemoveLogFields DisplayName="Remove Log Fields 트랜잭션 (성공) 로그 필드 제거" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="RemoveLogFields_4">
                 <ui:RemoveLogFields.Fields>
                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="8">
@@ -256,10 +256,10 @@
                 </sap:WorkflowViewStateService.ViewState>
                 <Assign sap2010:Annotation.AnnotationText="트랜잭션번호를 1 증가시켜 다음 트랜잭션번호 설정" DisplayName="Assign 다음 트랜잭션번호 설정" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_7">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[io_TransactionNumber]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[io_TransactionNumber+1]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber+1]</InArgument>
                   </Assign.Value>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -269,10 +269,10 @@
                 </Assign>
                 <Assign sap2010:Annotation.AnnotationText="재시도 횟수 초기화" DisplayName="Assign 재시도 횟수 초기화" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_8">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[io_RetryNumber]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32">[inout_Int_RetryNumber]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                    <InArgument x:TypeArguments="x:Int32">1</InArgument>
                   </Assign.Value>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -282,10 +282,10 @@
                 </Assign>
                 <Assign sap2010:Annotation.AnnotationText="시스템에러 발생 횟수 초기화" DisplayName="Assign 시스템에러 발생 횟수 초기화" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_9">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[io_ConsecutiveSystemExceptions]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32">[inout_Int_ConsecutiveSystemExceptions]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                    <InArgument x:TypeArguments="x:Int32">1</InArgument>
                   </Assign.Value>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -326,9 +326,9 @@
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_TransactionItem isNot Nothing AndAlso CBool(in_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (비지니스에러)" sap:VirtualizedContainerService.HintSize="566,1567" sap2010:WorkflowViewState.IdRef="If_5">
+                <If Condition="[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (비지니스에러)" sap:VirtualizedContainerService.HintSize="566,1407" sap2010:WorkflowViewState.IdRef="If_5">
                   <If.Then>
-                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (비지니스에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1385" sap2010:WorkflowViewState.IdRef="RetryScope_3" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (비지니스에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1225" sap2010:WorkflowViewState.IdRef="RetryScope_3" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                       <ui:RetryScope.ActivityBody>
                         <ActivityAction>
                           <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (비지니스에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="490,1050" sap2010:WorkflowViewState.IdRef="TryCatch_12">
@@ -345,7 +345,7 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" DisplayName="Set transaction status 오케스트레이터 (비지니스에러)" ErrorType="Business" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,242" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_5" Reason="[in_BusinessException.Message]" Status="Failed" TransactionItem="[Ctype(in_TransactionItem, QueueItem)]">
+                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" DisplayName="Set transaction status 오케스트레이터 (비지니스에러)" ErrorType="Business" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,242" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_5" Reason="[in_BusinessException.Message]" Status="Failed" TransactionItem="[Ctype(in_Obj_TransactionItem, QueueItem)]">
                                   <ui:SetTransactionStatus.Analytics>
                                     <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                                   </ui:SetTransactionStatus.Analytics>
@@ -408,13 +408,13 @@
                   <ui:AddLogFields DisplayName="Add Log Fields 트랜잭션 (비지니스에러)로그 필드 추가" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="AddLogFields_5">
                     <ui:AddLogFields.Fields>
                       <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">BusinessException</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[inout_Int_TransactionNumber.ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_Str_TransactionID]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_Str_TransactionField1]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_Str_TransactionField2]</InArgument>
                     </ui:AddLogFields.Fields>
                   </ui:AddLogFields>
-                  <ui:LogMessage DisplayName="Log Message 트랜잭션 (비지니스에러) 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[in_Config(&quot;LogMessage_BusinessRuleException&quot;).ToString + in_BusinessException.Message]" />
+                  <ui:LogMessage DisplayName="Log Message 트랜잭션 (비지니스에러) 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[in_Dic_Config(&quot;LogMessage_BusinessRuleException&quot;).ToString + in_BusinessException.Message]" />
                   <ui:RemoveLogFields DisplayName="Remove Log Fields 트랜잭션 (비지니스에러) 로그 필드 제거" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="RemoveLogFields_5">
                     <ui:RemoveLogFields.Fields>
                       <scg:List x:TypeArguments="InArgument(x:String)" Capacity="8">
@@ -441,10 +441,10 @@
                   <av:Size x:Key="ShapeSize">200,123</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="해당 상태를 시스템에러 (실패) 업데이트" DisplayName="시스템에러 상태 처리" sap:VirtualizedContainerService.HintSize="672,5021" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="해당 상태를 시스템에러 (실패) 업데이트" DisplayName="시스템에러 상태 처리" sap:VirtualizedContainerService.HintSize="672,5341" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="오케스트레이터 큐아이템인지 여부" Name="QueueRetry" />
-                  <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="스트린샷 이미지 파일 경로" Name="ScreenshotPath" />
+                  <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="오케스트레이터 큐아이템인지 여부" Name="Bln_QueueRetry" />
+                  <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="스트린샷 이미지 파일 경로" Name="Str_ScreenshotPath" />
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -453,13 +453,13 @@
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message 시스템에러 발생횟수 로그 출력" sap:VirtualizedContainerService.HintSize="610,141" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Consecutive system exception counter is &quot; + io_ConsecutiveSystemExceptions.ToString + &quot;.&quot;]" />
+                <ui:LogMessage DisplayName="Log Message 시스템에러 발생횟수 로그 출력" sap:VirtualizedContainerService.HintSize="610,141" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Consecutive system exception counter is &quot; + inout_Int_ConsecutiveSystemExceptions.ToString + &quot;.&quot;]" />
                 <Assign DisplayName="Assign 트랜잭션 항목이 큐아이템인지 여부 설정" sap:VirtualizedContainerService.HintSize="610,82" sap2010:WorkflowViewState.IdRef="Assign_10">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Boolean">[QueueRetry]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Boolean">[Bln_QueueRetry]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Boolean">[in_TransactionItem isNot Nothing AndAlso CBool(in_Config("UseQueue"))]</InArgument>
+                    <InArgument x:TypeArguments="x:Boolean">[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config("UseQueue"))]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <TryCatch sap2010:Annotation.AnnotationText="디버깅용 화면 스크린샷 진행" DisplayName="Try Catch 스크린샷 에러 대응" sap:VirtualizedContainerService.HintSize="610,665" sap2010:WorkflowViewState.IdRef="TryCatch_5">
@@ -473,8 +473,12 @@
                   <TryCatch.Try>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 스크린샷 이미지 저장" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[in_Config("ExScreenshotsFolderPath").ToString]</InArgument>
-                        <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[ScreenshotPath]</InOutArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Folder">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Dic_Config(&quot;ExScreenshotsFolderPath&quot;).ToString" />
+                        </InArgument>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_FilePath">
+                          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_ScreenshotPath" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>
@@ -495,7 +499,7 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <If Condition="[QueueRetry]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (시스템에러)" sap:VirtualizedContainerService.HintSize="610,1804" sap2010:WorkflowViewState.IdRef="If_6">
+                <If Condition="[Bln_QueueRetry]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (시스템에러)" sap:VirtualizedContainerService.HintSize="610,2124" sap2010:WorkflowViewState.IdRef="If_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -503,10 +507,10 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (시스템에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="576,1622" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (시스템에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="576,1942" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                       <ui:RetryScope.ActivityBody>
                         <ActivityAction>
-                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (시스템에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="534,1287" sap2010:WorkflowViewState.IdRef="TryCatch_10">
+                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (시스템에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="534,1447" sap2010:WorkflowViewState.IdRef="TryCatch_10">
                             <TryCatch.Try>
                               <Sequence DisplayName="트랜잭션 상태 설정 (시스템에러) 처리" sap:VirtualizedContainerService.HintSize="496,475" sap2010:WorkflowViewState.IdRef="Sequence_21">
                                 <sap:WorkflowViewStateService.ViewState>
@@ -514,7 +518,7 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" Details="[if(String.IsNullOrEmpty(ScreenshotPath),String.Empty,&quot;Screenshot: &quot;+ ScreenshotPath)]" DisplayName="Set transaction status 오케스트레이터 (시스템에러)" ErrorType="Application" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,242" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_8" Reason="[String.Format(&quot;Exception message: {0} at source: {1}.&quot;,in_SystemException.Message,in_SystemException.Source)]" Status="Failed" TransactionItem="[Ctype(in_TransactionItem, QueueItem)]">
+                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" Details="[if(String.IsNullOrEmpty(Str_ScreenshotPath),String.Empty,&quot;Screenshot: &quot;+ Str_ScreenshotPath)]" DisplayName="Set transaction status 오케스트레이터 (시스템에러)" ErrorType="Application" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,242" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_8" Reason="[String.Format(&quot;Exception message: {0} at source: {1}.&quot;,in_SystemException.Message,in_SystemException.Source)]" Status="Failed" TransactionItem="[Ctype(in_Obj_TransactionItem, QueueItem)]">
                                   <ui:SetTransactionStatus.Analytics>
                                     <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                                   </ui:SetTransactionStatus.Analytics>
@@ -533,10 +537,10 @@
                                 </ui:SetTransactionStatus>
                                 <Assign DisplayName="Assign 큐아이템으로부터 재시도 횟수 추출하여 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_11">
                                   <Assign.To>
-                                    <OutArgument x:TypeArguments="x:Int32">[io_RetryNumber]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:Int32">[inout_Int_RetryNumber]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:Int32">[Ctype(in_TransactionItem, QueueItem).RetryNo]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32">[Ctype(in_Obj_TransactionItem, QueueItem).RetryNo]</InArgument>
                                   </Assign.Value>
                                 </Assign>
                               </Sequence>
@@ -586,27 +590,37 @@
                 <ui:AddLogFields DisplayName="Add Log Fields 트랜잭션 (시스템에러) 필드 추가" sap:VirtualizedContainerService.HintSize="610,90" sap2010:WorkflowViewState.IdRef="AddLogFields_6">
                   <ui:AddLogFields.Fields>
                     <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">ApplicationException</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[inout_Int_TransactionNumber.ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_Str_TransactionID]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_Str_TransactionField1]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_Str_TransactionField2]</InArgument>
                   </ui:AddLogFields.Fields>
                 </ui:AddLogFields>
                 <Assign DisplayName="Assign 시스템에러 발생 횟수 1 증가" sap:VirtualizedContainerService.HintSize="610,82" sap2010:WorkflowViewState.IdRef="Assign_12">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[io_ConsecutiveSystemExceptions]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32">[inout_Int_ConsecutiveSystemExceptions]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[io_ConsecutiveSystemExceptions+1]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32">[inout_Int_ConsecutiveSystemExceptions + 1]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 트랜잭션 재시도 관리 호출" sap:VirtualizedContainerService.HintSize="610,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework/RetryCurrentTransaction.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                    <InOutArgument x:TypeArguments="x:Int32" x:Key="io_RetryNumber">[io_RetryNumber]</InOutArgument>
-                    <InOutArgument x:TypeArguments="x:Int32" x:Key="io_TransactionNumber">[io_TransactionNumber]</InOutArgument>
-                    <InArgument x:TypeArguments="s:Exception" x:Key="in_SystemException">[in_SystemException]</InArgument>
-                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_QueueRetry">[QueueRetry]</InArgument>
+                    <InArgument x:TypeArguments="s:Exception" x:Key="in_SystemException">
+                      <VisualBasicValue x:TypeArguments="s:Exception" ExpressionText="in_SystemException" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">
+                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Dic_Config" />
+                    </InArgument>
+                    <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_Int_RetryNumber">
+                      <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="inout_Int_RetryNumber" />
+                    </InOutArgument>
+                    <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_Int_TransactionNumber">
+                      <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="inout_Int_TransactionNumber" />
+                    </InOutArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_Bln_QueueRetry">
+                      <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="Bln_QueueRetry" />
+                    </InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:RemoveLogFields DisplayName="Remove Log Fields 트랜잭션 (시스템에러) 로그 필드 제거" sap:VirtualizedContainerService.HintSize="610,90" sap2010:WorkflowViewState.IdRef="RemoveLogFields_6">
