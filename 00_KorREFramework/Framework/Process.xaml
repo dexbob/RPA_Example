@@ -149,7 +149,7 @@
         </sc:BindingList>
       </ui:IfElseIf.ConditionBlocks>
     </ui:IfElseIf>
-    <Sequence DisplayName="강제 에러 발생 (삭제 예정)" sap:VirtualizedContainerService.HintSize="547,783" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence DisplayName="테스트용으로 강제 에러 발생 (삭제 예정)" sap:VirtualizedContainerService.HintSize="547,783" sap2010:WorkflowViewState.IdRef="Sequence_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

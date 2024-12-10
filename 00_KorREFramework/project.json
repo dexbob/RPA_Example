@@ -1,7 +1,7 @@
 {
-  "name": "NonQueue_REFramework",
+  "name": "KorREFramework",
   "projectId": "94acb103-10f4-4fa9-8b98-fbf96a0de6e4",
-  "description": "NonQueue_REFramework",
+  "description": "KorREFramework",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.22.3]",
@@ -22,10 +22,7 @@
     "requiresUserInteraction": true,
     "supportsPersistence": false,
     "workflowSerialization": "DataContract",
-    "excludedLoggedData": [
-      "Private:*",
-      "*password*"
-    ],
+    "excludedLoggedData": ["Private:*", "*password*"],
     "executionType": "Workflow",
     "readyForPiP": false,
     "startsInPiP": false,
