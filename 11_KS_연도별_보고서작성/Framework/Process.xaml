@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,2252</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1139,1740</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -92,7 +92,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="비지니스 프로세스 주요 단계 호출&#xA;&#xA;비지니스에러 발생시 해당 트랜잭션은 건너뛰고 다음 트랜잭션 진행&#xA;시스템에러(그밖의 에러) 발생시 재시도 횟수만큼 트랜잭션 재시도 (재시도 횟수 in_TransactionItem.RetryNo)" DisplayName="프로세스" sap:VirtualizedContainerService.HintSize="609,2187" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="비지니스 프로세스 주요 단계 호출&#xA;&#xA;비지니스에러 발생시 해당 트랜잭션은 건너뛰고 다음 트랜잭션 진행&#xA;시스템에러(그밖의 에러) 발생시 재시도 횟수만큼 트랜잭션 재시도 (재시도 횟수 in_TransactionItem.RetryNo)" DisplayName="프로세스" sap:VirtualizedContainerService.HintSize="610,1675" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataRow" sap2010:Annotation.AnnotationText="트랜잭션 항목 (데이터로우)" Name="DR_TransactionItem" />
       <Variable x:TypeArguments="ui:QueueItem" sap2010:Annotation.AnnotationText="트랜잭션 항목 (큐아이템)" Name="QI_TransactionItem" />
@@ -103,8 +103,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message 프로세스 시작 로그 출력" sap:VirtualizedContainerService.HintSize="547,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;Started Process...&quot;]" />
-    <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="547,889" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+    <ui:LogMessage DisplayName="Log Message 프로세스 시작 로그 출력" sap:VirtualizedContainerService.HintSize="548,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;Started Process...&quot;]" />
+    <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="548,889" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
       <ui:IfElseIf.ConditionBlocks>
         <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
           <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]">
@@ -149,36 +149,48 @@
         </sc:BindingList>
       </ui:IfElseIf.ConditionBlocks>
     </ui:IfElseIf>
-    <Sequence DisplayName="테스트용으로 강제 에러 발생 (삭제 예정)" sap:VirtualizedContainerService.HintSize="547,783" sap2010:WorkflowViewState.IdRef="Sequence_13">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[CInt(DR_TransactionItem(&quot;transactionField1&quot;)) = 1]" sap:VirtualizedContainerService.HintSize="410,272" sap2010:WorkflowViewState.IdRef="If_1">
-        <If.Then>
-          <Throw Exception="[New BusinessRuleException(&quot;&gt;&gt;&gt;&gt; &quot; + DR_TransactionItem(&quot;transactionID&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_3" />
-        </If.Then>
-        <If.Else>
-          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
-        </If.Else>
-      </If>
-      <If Condition="[CInt(DR_TransactionItem(&quot;transactionField1&quot;)) = 2]" sap:VirtualizedContainerService.HintSize="410,360" sap2010:WorkflowViewState.IdRef="If_2">
-        <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="548,271" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="512,192" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="샘플데이터 테스트용으로 강제 에러 발생" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Throw Exception="[New Exception(&quot;&gt;&gt;&gt;&gt; &quot; + DR_TransactionItem(&quot;transactionID&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            <If Condition="[CInt(DR_TransactionItem(&quot;transactionField1&quot;)) = 1]" sap:VirtualizedContainerService.HintSize="410,272" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Throw Exception="[New BusinessRuleException(&quot;&gt;&gt;&gt;&gt; &quot; + DR_TransactionItem(&quot;transactionID&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_3" />
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
+              </If.Else>
+            </If>
+            <If Condition="[CInt(DR_TransactionItem(&quot;transactionField1&quot;)) = 2]" sap:VirtualizedContainerService.HintSize="410,360" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Throw Exception="[New Exception(&quot;&gt;&gt;&gt;&gt; &quot; + DR_TransactionItem(&quot;transactionID&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10" />
+              </If.Else>
+            </If>
           </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10" />
-        </If.Else>
-      </If>
-    </Sequence>
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="547,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  프로세스 단계별 호출 실시" />
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="548,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  프로세스 단계별 호출 실시" />
   </Sequence>
 </Activity>

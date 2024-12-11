@@ -1,6 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_201_ACME_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="inout_Dic_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))">
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,3402</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1139,3234</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_201_ACME_Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,16 +102,9 @@
       <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="ACME 로그인 화면 열고 로그인 실시 (3번 시도)&#xD;&#xA;로그인 상태일때에는 로그아웃 실시 후 로그인 처리" DisplayName="웹 사이트(ACME) 로그인" sap:VirtualizedContainerService.HintSize="650,3337" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="ACME 로그인 화면 열고 로그인 실시 (3번 시도)&#xA;로그인 상태일때에는 로그아웃 실시 후 로그인 처리" DisplayName="웹 사이트(ACME) 로그인" sap:VirtualizedContainerService.HintSize="650,3142" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="재시도 횟수" Name="Int_Count">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </Variable>
-      <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_ACME">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -133,15 +126,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Assign DisplayName="Assign 대상 브라우저 설정" sap:VirtualizedContainerService.HintSize="588,82" sap2010:WorkflowViewState.IdRef="Assign_5">
-      <Assign.To>
-        <OutArgument x:TypeArguments="ui:Browser">[Brw_ACME]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="ui:Browser">[CType(inout_Dic_Config("Browser"), Browser)]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" sap2010:Annotation.AnnotationText="로그인 버튼 존재 여부로 로그인 상태 확인하고 로그인 상태이면 로그아웃 실시" Browser="[Brw_ACME]" BrowserType="Chrome" DisplayName="Attach Browser 로그인 처리" sap:VirtualizedContainerService.HintSize="588,967" sap2010:WorkflowViewState.IdRef="BrowserScope_7" TimeoutMS="10000" UiBrowser="[Brw_ACME]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="크롬 브라우저 열기로 받은 브라우저 객체를 이용해 로그인 체크&#xD;&#xA;로그인 버튼 존재 여부로 로그인 상태 확인하고 로그인 상태이면 로그아웃 실시" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser 로그인 체크" sap:VirtualizedContainerService.HintSize="588,978" sap2010:WorkflowViewState.IdRef="BrowserScope_7" TimeoutMS="10000">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -244,16 +229,16 @@
         <InArgument x:TypeArguments="x:Int32">1</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:RetryScope DisplayName="Retry Scope 로그인 재시도 (시도 3번, 간격 3초)" sap:VirtualizedContainerService.HintSize="588,1630" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
+    <ui:RetryScope DisplayName="Retry Scope 로그인 재시도 (시도 3번, 간격 3초)" sap:VirtualizedContainerService.HintSize="588,1668" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
-          <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1306" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1344" sap2010:WorkflowViewState.IdRef="Sequence_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Browser="[Brw_ACME]" BrowserType="Chrome" DisplayName="Attach Browser 로그인 실시" sap:VirtualizedContainerService.HintSize="484,762" sap2010:WorkflowViewState.IdRef="BrowserScope_1" UiBrowser="[Brw_ACME]">
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 로그인 실시" sap:VirtualizedContainerService.HintSize="484,800" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="33fea8e86107bd514496ebed1de10942" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Log In' /&gt;">
               <ui:BrowserScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -265,7 +250,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="이메일 텍스트박스에 이메일주소 입력" ClickBeforeTyping="True" DisplayName="Type Into 'INPUT  email'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[inout_Dic_Config(&quot;Account_ACME_ID&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="이메일 텍스트박스에 이메일주소 입력" ClickBeforeTyping="True" DisplayName="Type Into 'INPUT  email'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_Dic_Config(&quot;Account_ACME_ID&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="efe6c1f6-e342-46f6-b92e-d71cf316f462" InformativeScreenshot="b48df9a95bd96ecb4bc354248c921a37" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Log In' /&gt;&lt;webctrl id='email' tag='INPUT' /&gt;" WaitForReady="COMPLETE">
                           <ui:Target.TimeoutMS>
@@ -279,7 +264,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:TypeInto>
-                    <ui:TypeSecureText AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="암호 텍스트박스에 암호 입력" ClickBeforeTyping="True" DisplayName="Type Secure Text 'INPUT  password'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="TypeSecureText_1" SecureText="[CType(inout_Dic_Config(&quot;Account_ACME_PW&quot;), SecureString)]">
+                    <ui:TypeSecureText AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="암호 텍스트박스에 암호 입력" ClickBeforeTyping="True" DisplayName="Type Secure Text 'INPUT  password'" EmptyField="True" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="TypeSecureText_1" SecureText="[CType(in_Dic_Config(&quot;Account_ACME_PW&quot;), SecureString)]">
                       <ui:TypeSecureText.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="06e1b518-8470-49a2-ab10-b4edcae6a322" InformativeScreenshot="9d6232eb3acc76732055a45a141b763e" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Log In' /&gt;&lt;webctrl id='password' tag='INPUT' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -371,13 +356,5 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RetryScope>
-    <Assign DisplayName="Assign 환경설정객체(Config)에 브라우저 설정" sap:VirtualizedContainerService.HintSize="588,82" sap2010:WorkflowViewState.IdRef="Assign_6">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:Object">[inout_Dic_Config("Browser")]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:Object">[Brw_ACME]</InArgument>
-      </Assign.Value>
-    </Assign>
   </Sequence>
 </Activity>
