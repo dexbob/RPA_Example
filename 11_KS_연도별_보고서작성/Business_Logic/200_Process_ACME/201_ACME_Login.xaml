@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="201_ACME_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_201_ACME_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))">
       <sap:WorkflowViewStateService.ViewState>
@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,3234</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1192,3207</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>201_ACME_Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -126,7 +126,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="크롬 브라우저 열기로 받은 브라우저 객체를 이용해 로그인 체크&#xD;&#xA;로그인 버튼 존재 여부로 로그인 상태 확인하고 로그인 상태이면 로그아웃 실시" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser 로그인 체크" sap:VirtualizedContainerService.HintSize="588,978" sap2010:WorkflowViewState.IdRef="BrowserScope_7" TimeoutMS="10000">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="크롬 브라우저 열기로 받은 브라우저 객체를 이용해 로그인 체크&#xA;로그인 버튼 존재 여부로 로그인 상태 확인하고 로그인 상태이면 로그아웃 실시" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser 로그인 체크" sap:VirtualizedContainerService.HintSize="588,978" sap2010:WorkflowViewState.IdRef="BrowserScope_7" TimeoutMS="10000">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
