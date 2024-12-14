@@ -1,0 +1,5 @@
+InvoiceNumber,Item,Date,Amount,Tax,Total,Currency
+433400,"Beverages and Catering",2017-06-01,149992,29998.4,179990,RON
+186786,"Various paper supplies",2017-06-13,219269,43853.8,263123,EUR
+727482,"IT Support",2017-06-01,227247,45449.4,272696,CAD
+657456,"Concierge Services",2017-06-17,245657,49131.4,294788,EUR

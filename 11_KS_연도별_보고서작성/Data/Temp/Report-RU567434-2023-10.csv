@@ -1,0 +1,3 @@
+InvoiceNumber,Item,Amount,Tax,Total,Currency,Date
+575467,"Beverages and Catering",215379,43075.8,258455,CAD,2017-10-27
+670174,"IT Support",22327,4465.4,26792.4,USD,2017-10-05
