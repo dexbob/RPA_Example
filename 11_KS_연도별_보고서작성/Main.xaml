@@ -130,7 +130,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="처리할 다음 트랜잭션 가져오기" DisplayName="트랜잭션 데이터 가져오기" sap:VirtualizedContainerService.HintSize="398,126" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
-        <Sequence sap2010:Annotation.AnnotationText="새 트랜잭션 데이터 검색&#xA;트랜잭션번호를 증가시키면 프레임워크가 다음 트랜잭션을 검색&#xA;실패한 트랜잭션을 재시도할때에는 재시도 횟수에 도달할때까지 번호 증가는 없음" DisplayName="트랜잭션 데이터 검색" sap:VirtualizedContainerService.HintSize="632,1812" sap2010:WorkflowViewState.IdRef="Sequence_25">
+        <Sequence sap2010:Annotation.AnnotationText="새 트랜잭션 데이터 검색&#xA;트랜잭션번호를 증가시키면 프레임워크가 다음 트랜잭션을 검색&#xA;실패한 트랜잭션을 재시도할때에는 재시도 횟수에 도달할때까지 번호 증가는 없음" DisplayName="트랜잭션 데이터 검색" sap:VirtualizedContainerService.HintSize="632,1927" sap2010:WorkflowViewState.IdRef="Sequence_25">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="오케스트레이터에서 작업이 중지되었는지 확인하고 이후 작업을 진행할지 여부를 변수로 설정" Name="Bln_ShouldStop" />
           </Sequence.Variables>
@@ -148,7 +148,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ShouldStop>
-          <If Condition="[Bln_ShouldStop]" DisplayName="If 오케스트레이터의 작업중지 여부 체크 " sap:VirtualizedContainerService.HintSize="570,1442" sap2010:WorkflowViewState.IdRef="If_11">
+          <If Condition="[Bln_ShouldStop]" DisplayName="If 오케스트레이터의 작업중지 여부 체크 " sap:VirtualizedContainerService.HintSize="570,1557" sap2010:WorkflowViewState.IdRef="If_11">
             <If.Then>
               <Sequence DisplayName="Orchestrator stop requested" sap:VirtualizedContainerService.HintSize="476,393" sap2010:WorkflowViewState.IdRef="Sequence_23">
                 <sap:WorkflowViewStateService.ViewState>
@@ -174,7 +174,7 @@
               </Sequence>
             </If.Then>
             <If.Else>
-              <TryCatch DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="536,867" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+              <TryCatch DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="536,982" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -829,7 +829,9 @@
                                       </ui:InvokeWorkflowFile>
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 비지니스 종료 프로세스" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Business_Logic\EndProcess.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">
+                                            <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+                                          </InArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
                                     </Sequence>

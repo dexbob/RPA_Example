@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>741,3006</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3007</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -104,6 +104,11 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -111,7 +116,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="지정된 소스(오케스트레이터의 큐, 스프레드시트, 데이터베이스, 사서함, 웹API)에서 트랜잭션 항목 가져오기&#xA;남은 트랜잭션 항목이 없는 경우(out_TransactionItem = Nothing) 종료 프로세스 상태를 의미 &#xA;&#xA;- 단일 트랜잭션(선형 프로세스)의 경우, 트랜잭션번호(in_TransactionNumber)가 1인지 확인하고 트랜잭션 항목(out_TransactionItem) 설정하고 1이 아닌경우 빈 값(Nothing) 설정&#xA;&#xA;- 다수 트랜잭션(트랜잭션 프로세스)의 경우, 트랜잭션번호(in_TransactionNumber)를 인덱스로 사용하여 트랜잭션 검색하고 남은 트랜잭션이 없을때 트랜잭션 항목(out_TransactionItem)에 빈 값(Nothing) 설정" DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="751,2941" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="지정된 소스(오케스트레이터의 큐, 스프레드시트, 데이터베이스, 사서함, 웹API)에서 트랜잭션 항목 가져오기&#xA;남은 트랜잭션 항목이 없는 경우(out_TransactionItem = Nothing) 종료 프로세스 상태를 의미 &#xA;&#xA;- 단일 트랜잭션(선형 프로세스)의 경우, 트랜잭션번호(in_TransactionNumber)가 1인지 확인하고 트랜잭션 항목(out_TransactionItem) 설정하고 1이 아닌경우 빈 값(Nothing) 설정&#xA;&#xA;- 다수 트랜잭션(트랜잭션 프로세스)의 경우, 트랜잭션번호(in_TransactionNumber)를 인덱스로 사용하여 트랜잭션 검색하고 남은 트랜잭션이 없을때 트랜잭션 항목(out_TransactionItem)에 빈 값(Nothing) 설정" DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="751,2942" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -221,26 +226,30 @@
         <ActivityFunc x:TypeArguments="x:Boolean" />
       </ui:RetryScope.Condition>
     </ui:RetryScope>
-    <If sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 자세한 정보 설정 (기록 또는 시각화 목적)&#xA;&#xA;예) 트랜잭션 항목이 송장인 경우, out_TransactionID는 송장번호, out_TransactionField1은 송장날짜, out_TransactionField2는 송장금액&#xA;" Condition="[out_Obj_TransactionItem isNot Nothing]" DisplayName="If 새 트랜잭션 항목 존재시 추가 정보 설정" sap:VirtualizedContainerService.HintSize="689,683" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="트랜잭션 항목에 대한 자세한 정보 설정 (기록 또는 시각화 목적)&#xA;&#xA;예) 트랜잭션 항목이 송장인 경우, out_TransactionID는 송장번호, out_TransactionField1은 송장날짜, out_TransactionField2는 송장금액&#xA;" Condition="[out_Obj_TransactionItem isNot Nothing]" DisplayName="If 새 트랜잭션 항목 존재시 추가 정보 설정" sap:VirtualizedContainerService.HintSize="689,684" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap2010:Annotation.AnnotationText="Write data to the added log fields that identify the transaction." DisplayName="Add transaction information to log fields" sap:VirtualizedContainerService.HintSize="476,414" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap2010:Annotation.AnnotationText="Write data to the added log fields that identify the transaction." DisplayName="Add transaction information to log fields" sap:VirtualizedContainerService.HintSize="476,415" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign 트랜잭션ID (out_TransactionID) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Assign 트랜잭션ID (out_TransactionID) 설정" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[out_Str_TransactionID]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[now.ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join(", ", 
+	CType(out_Obj_TransactionItem, DataRow).ItemArray.Select(
+		Function(Item) Item.ToString
+	)
+)]</InArgument>
             </Assign.Value>
           </Assign>
           <Assign DisplayName="Assign 트랜잭션 추가정보1 (out_TransactionField1) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
@@ -248,7 +257,7 @@
               <OutArgument x:TypeArguments="x:String">[out_Str_TransactionField1]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>
+              <InArgument x:TypeArguments="x:String">[now.ToString]</InArgument>
             </Assign.Value>
           </Assign>
           <Assign DisplayName="Assign out_TransactionField2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">

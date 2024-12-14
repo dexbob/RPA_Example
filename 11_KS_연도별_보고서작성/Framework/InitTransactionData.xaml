@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,2076</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,2257</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>InitTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -113,34 +113,30 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="622,2011" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="622,2192" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message 초기화 로그 출력" sap:VirtualizedContainerService.HintSize="560,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Initializing Transaction Data...&quot;]" />
-    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 이용하지 않는 경우에 트랜잭션 데이터 추출" Condition="[Not CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="560,471" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 이용하지 않는 경우에 트랜잭션 데이터 추출" Condition="[Not CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="560,652" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,258" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence sap:VirtualizedContainerService.HintSize="376,439" sap2010:WorkflowViewState.IdRef="Sequence_10">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="비지니스 시작 프로세스 실행&#xD;&#xA;트랜잭션 목록 리스트 추출&#xA;" DisplayName="Invoke Workflow 비지니스 시작 프로세스" sap:VirtualizedContainerService.HintSize="334,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Business_Logic\StartProcess.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="비지니스 시작 프로세스 실행&#xA;트랜잭션 목록 리스트 추출&#xA;" DisplayName="Invoke Workflow 비지니스 시작 프로세스" sap:VirtualizedContainerService.HintSize="334,170" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Business_Logic\StartProcess.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_WorkItems">
-                <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="out_DT_TransactionData" />
-              </OutArgument>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">
-                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Dic_Config" />
-              </InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_WorkItems">[out_DT_TransactionData]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -148,6 +144,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot; 처리대상 트랜잭션 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 개&quot;]" />
         </Sequence>
       </If.Then>
       <If.Else>

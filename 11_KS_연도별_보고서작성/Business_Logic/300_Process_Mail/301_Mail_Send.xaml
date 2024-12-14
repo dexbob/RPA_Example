@@ -5,13 +5,11 @@
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
     </x:Property>
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 첨부파일 경로 배열" Name="in_StrArr_AttachFiles" Type="InArgument(s:String[])" />
-    <x:Property sap2010:Annotation.AnnotationText="[입력] 대상 연도" Name="in_Str_Year" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1154,2573</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,2599</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>301_Mail_Send_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -135,7 +133,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용&#xA;- 첨부파일" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="603,2508" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용, 첨부파일" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="603,2534" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="계정관리명 변수" Name="Str_CredentialName" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신서버 변수" Name="Str_SendServer" />
@@ -151,6 +149,7 @@
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="로그온 메일주소 변수" Name="Str_LoginID" />
       <Variable x:TypeArguments="ss:SecureString" sap2010:Annotation.AnnotationText="로그온 암호 변수" Name="SecStr_LoginPW" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신 상태 코드" Name="Str_Result" />
+      <Variable x:TypeArguments="s:String[]" Name="StrArr_AttachFiles" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -166,7 +165,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="메일 송신에 필요한 변수 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="541,1223" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="메일 송신에 필요한 변수 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="541,1254" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -290,7 +289,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="제목, 내용" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="제목, 내용" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,209" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
@@ -306,7 +305,18 @@
                 <OutArgument x:TypeArguments="x:String">[Str_Body]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Body").ToString.Replace("{연도}", in_Str_Year)]</InArgument>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(in_Dic_Config.ContainsKey("OutputPath"), 
+	in_Dic_Config("Mail_Body").ToString.Replace("{연도}", in_Dic_Config("Year").ToString),
+	in_Dic_Config("Mail_Body_NoData").ToString.Replace("{연도}", in_Dic_Config("Year").ToString)
+)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="s:String[]">[StrArr_AttachFiles]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="s:String[]">[If(in_Dic_Config.ContainsKey("OutputPath") , {in_Dic_Config("OutputPath").ToString}, Nothing)]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
@@ -318,14 +328,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
     </Sequence>
-    <TryCatch sap2010:Annotation.AnnotationText="메일 송신 처리&#xA;로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="Try Catch 메일 송신 에러 대응" sap:VirtualizedContainerService.HintSize="541,836" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="메일 송신 처리&#xA;로그온 이메일과 암호는 윈도우즈 자격증명관리 이용" DisplayName="Try Catch 메일 송신 에러 대응" sap:VirtualizedContainerService.HintSize="541,846" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="FilePaths" AttachmentsCollection="[in_StrArr_AttachFiles]" Bcc="[Str_Bcc]" Body="[Str_Body]" Cc="[Str_Cc]" DisplayName="Send SMTP Mail Message" Email="[Str_LoginID]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="334,243" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Port="[Int_SendPort]" Result="[Str_Result]" SecureConnection="Auto" SecurePassword="[SecStr_LoginPW]" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]" UseISConnection="False">
+        <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="FilePaths" AttachmentsCollection="[StrArr_AttachFiles]" Bcc="[Str_Bcc]" Body="[Str_Body]" Cc="[Str_Cc]" DisplayName="Send SMTP Mail Message" Email="[Str_LoginID]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="334,243" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Port="[Int_SendPort]" Result="[Str_Result]" SecureConnection="Auto" SecurePassword="[SecStr_LoginPW]" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]" UseISConnection="False">
           <ui:SendMail.AttachmentsBackup>
             <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
               <usau:BackupSlot.BackupValues>
@@ -361,7 +371,7 @@
         </ui:SendMail>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,159" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,250" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -372,20 +382,17 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Throw Exception="[New BusinessRuleException(String.Format(&quot;{0} ({1})&quot;, &quot;메일 송신 실패&quot;, Str_Result))]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[String.Format(&quot;{0} ({1}) : {2}&quot;, &quot;메일 송신 실패&quot;, Str_Result, Exception.Message)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
-      <TryCatch.Finally>
-        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;메일 송신 출력 상태 코드 : &quot; + Str_Result]">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </ui:LogMessage>
-      </TryCatch.Finally>
     </TryCatch>
   </Sequence>
 </Activity>
