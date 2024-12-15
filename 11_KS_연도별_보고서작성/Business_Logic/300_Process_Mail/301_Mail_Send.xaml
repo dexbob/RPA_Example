@@ -133,7 +133,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용, 첨부파일&#xD;&#xA;&#xD;&#xA;첨부파일이 없으면 내용도 없으므로 처리없음 내용으로 메일 송신" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="603,2613" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용, 첨부파일&#xA;&#xA;첨부파일이 없으면 내용도 없으므로 처리없음 내용으로 메일 송신" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="603,2613" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="계정관리명 변수" Name="Str_CredentialName" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신서버 변수" Name="Str_SendServer" />
@@ -157,7 +157,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;[Mail_Send]&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Mail_Send]&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -173,7 +173,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 로그인 아이디&#xD;&#xA;- 로그인 패스워드" DisplayName="Multiple Assign 로그인 아이디, 로그인 패스워드 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_9">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 로그인 아이디&#xA;- 로그인 패스워드" DisplayName="Multiple Assign 로그인 아이디, 로그인 패스워드 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_9">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
@@ -200,7 +200,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 송신서버&#xD;&#xA;- 서버 포트번호" DisplayName="Multiple Assign 송신서버, 서버 포트번호 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 송신서버&#xA;- 서버 포트번호" DisplayName="Multiple Assign 송신서버, 서버 포트번호 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
@@ -227,7 +227,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 송신자 메일주소&#xD;&#xA;- 송신자 이름" DisplayName="Multiple Assign 송신자 메일주소, 송신자 이름 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 송신자 메일주소&#xA;- 송신자 이름" DisplayName="Multiple Assign 송신자 메일주소, 송신자 이름 설정" sap:VirtualizedContainerService.HintSize="479,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
@@ -254,7 +254,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 수신자 메일주소&#xD;&#xA;- 참조자 메일주소&#xD;&#xA;- 숨은참조자 메일주소" DisplayName="Multiple Assign 수신자, 참조자, 숨은참조자 메일주소 설정" sap:VirtualizedContainerService.HintSize="479,235" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="- 수신자 메일주소&#xA;- 참조자 메일주소&#xA;- 숨은참조자 메일주소" DisplayName="Multiple Assign 수신자, 참조자, 숨은참조자 메일주소 설정" sap:VirtualizedContainerService.HintSize="479,235" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
@@ -289,7 +289,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="첨부파일이 없으면 프로세스 처리 내용도 없으므로 그에 맞는 내용 설정&#xD;&#xA;- 제목&#xD;&#xA;- 내용&#xD;&#xA;- 첨부파일" DisplayName="Multiple Assign 제목, 내용, 첨부파일 설정" sap:VirtualizedContainerService.HintSize="479,250" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="첨부파일이 없으면 프로세스 처리 내용도 없으므로 그에 맞는 내용 설정&#xA;- 제목&#xA;- 내용&#xA;- 첨부파일" DisplayName="Multiple Assign 제목, 내용, 첨부파일 설정" sap:VirtualizedContainerService.HintSize="479,250" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">

@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3207</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3125</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>201_ACME_Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -98,9 +98,17 @@
       <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="ACME 로그인 화면 열고 로그인 실시 (3번 시도)&#xA;로그인 상태일때에는 로그아웃 실시 후 로그인 처리" DisplayName="웹 사이트(ACME) 로그인" sap:VirtualizedContainerService.HintSize="650,3142" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="ACME 로그인 화면 열고 로그인 실시 (3번 시도)&#xA;로그인 상태일때에는 로그아웃 실시 후 로그인 처리" DisplayName="웹 사이트(ACME) 로그인" sap:VirtualizedContainerService.HintSize="650,3060" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="재시도 횟수" Name="Int_Count">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Int32" Value="1" />
+        </Variable.Default>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -217,24 +225,24 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <Assign DisplayName="Assign 로그인 횟수 설정 초기화" sap:VirtualizedContainerService.HintSize="588,82" sap2010:WorkflowViewState.IdRef="Assign_3">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:Int32">[Int_Count]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:Int32">1</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:RetryScope DisplayName="Retry Scope 로그인 재시도 (시도 3번, 간격 3초)" sap:VirtualizedContainerService.HintSize="588,1668" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
+    <ui:RetryScope DisplayName="Retry Scope 로그인 재시도 (시도 3번, 간격 3초)" sap:VirtualizedContainerService.HintSize="588,1708" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:03">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
-          <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1344" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <Sequence DisplayName="액션" sap:VirtualizedContainerService.HintSize="546,1384" sap2010:WorkflowViewState.IdRef="Sequence_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 로그인 실시" sap:VirtualizedContainerService.HintSize="484,800" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="33fea8e86107bd514496ebed1de10942" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Log In' /&gt;" UiBrowser="[inout_Brw_ACME]">
+            <ui:LogMessage DisplayName="Log Message 로그인 실시(횟수) 로그 출력" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;로그인 시도 (&quot; + Int_Count.ToString + &quot; 회)&quot;]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 로그인 실시" sap:VirtualizedContainerService.HintSize="484,840" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="33fea8e86107bd514496ebed1de10942" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Log In' /&gt;" UiBrowser="[inout_Brw_ACME]">
               <ui:BrowserScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -309,13 +317,12 @@
               </ui:BrowserScope.Body>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:BrowserScope>
             <Delay DisplayName="Delay 대기(2초)" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="Delay_9" />
-            <ui:LogMessage DisplayName="Log Message 로그인 실시(횟수) 로그 출력" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;로그인 실시 (&quot; + Int_Count.ToString + &quot; 회)&quot;]" />
             <Assign DisplayName="Assign 로그인 횟수 +1 설정" sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[Int_Count]</OutArgument>

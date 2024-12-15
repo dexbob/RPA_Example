@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,6296</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,6550</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>205_ACME_DownloadMonthlyReport_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -132,7 +132,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="입력된 벤더 TaxID 와 년도를 이용해 월간 리포트 다운로드 실시" DisplayName="월간 리포트 다운로드" sap:VirtualizedContainerService.HintSize="764,6459" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 월간리포트 다운로드 화면으로 이동&#xD;&#xA;2. 입력된 벤더 TaxID 와 연도를 이용하여 1월부터 12월까지 월간리포트 다운로드&#xD;&#xA;3. 월간리포트가 존재하지 않으면 다음으로 이동 " DisplayName="월간 리포트 다운로드" sap:VirtualizedContainerService.HintSize="764,6485" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="0" Name="Int_Count" />
     </Sequence.Variables>
@@ -151,7 +151,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 월간 리포트 다운로드 화면 이동" sap:VirtualizedContainerService.HintSize="702,642" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="fefc18606925baf208e2284372be5d4f" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Dashboard' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 월간리포트 다운로드 화면 이동" sap:VirtualizedContainerService.HintSize="702,642" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="fefc18606925baf208e2284372be5d4f" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Dashboard' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -198,7 +198,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 월간 리포트 TaxID 와 Year 설정" sap:VirtualizedContainerService.HintSize="702,800" sap2010:WorkflowViewState.IdRef="BrowserScope_9" InformativeScreenshot="dd057558708f6cf970b884c3e5ec1daf" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Download Monthly Report' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 월간리포트 TaxID 와 Year 설정" sap:VirtualizedContainerService.HintSize="702,800" sap2010:WorkflowViewState.IdRef="BrowserScope_9" InformativeScreenshot="dd057558708f6cf970b884c3e5ec1daf" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Download Monthly Report' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -291,7 +291,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <ui:RepeatNumberOfTimesX sap2010:Annotation.AnnotationText="해당 연도의 12개월치분 월간리포트 다운로드&#xD;&#xA;월간리포트가 있는 달의 리포트만 다운로드 실시" DisplayName="Repeat Number Of Times 해당 연도 월간리포트 다운로드" sap:VirtualizedContainerService.HintSize="702,4048" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_2" NumberOfTimes="12" StartAt="2">
+    <ui:RepeatNumberOfTimesX sap2010:Annotation.AnnotationText="해당 연도의 12개월치분 월간리포트 다운로드&#xA;월간리포트가 있는 달의 리포트만 다운로드 실시" DisplayName="Repeat Number Of Times 해당 연도 월간리포트 다운로드" sap:VirtualizedContainerService.HintSize="702,4048" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_2" NumberOfTimes="12" StartAt="2">
       <ui:RepeatNumberOfTimesX.Body>
         <ActivityAction x:TypeArguments="x:Int32">
           <ActivityAction.Argument>

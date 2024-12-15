@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,2644</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,2860</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_102_Excel_UpdateOutputFile_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -106,7 +106,7 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="출력 파일에 처리한 내용 업데이트" sap:VirtualizedContainerService.HintSize="640,2579" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 출력엑셀파일이 존재하지 않으면 입력파일(템플릿)을 복사해 사용&#xD;&#xA; - 복사한 엑셀파일의 템플릿 시트명 변경&#xD;&#xA; - 컬럼 (TaxID, Name, Address, City, FilePath)&#xD;&#xA;2. 출력엑셀파일을 읽어 데이터테이블 생성하여 처리대상 작업 상세정보(벤더 정보) 추가&#xD;&#xA;3. 출력엑셀파일에 덮어쓰고 저장&#xD;&#xA;4. 출력엑셀파일 경로를 환경설정객체(Config)에 추가&#xD;&#xA; - 마지막으로 메일 송신 처리에서 첨부 파일로 사용" DisplayName="출력엑셀파일에 처리대상 작업 상세정보(벤더 정보) 업데이트" sap:VirtualizedContainerService.HintSize="640,2795" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Str_InputPath" />
       <Variable x:TypeArguments="x:String" Name="Str_InputSheet" />
@@ -117,10 +117,38 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message 연간리포트 생성 로그 출력" sap:VirtualizedContainerService.HintSize="578,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_UpdateOutputFile]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="578,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="입력엑셀파일경로, 엑셀 시트명" DisplayName="Multiple Assign 환경설정객체(Config)를 이용하여 변수 설정" sap:VirtualizedContainerService.HintSize="578,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Str_InputPath]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Dic_Config("Path_Input").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Str_InputSheet]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Dic_Config("Sheet_Input").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="출력엑셀파일경로, 엑셀 시트명, 업데이트 시작셀 설정" DisplayName="Multiple Assign 환경설정객체(Config)를 이용하여 변수 설정" sap:VirtualizedContainerService.HintSize="578,209" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -149,30 +177,13 @@
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="578,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-      <ui:MultipleAssign.AssignOperations>
-        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_InputPath]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Config("Path_Input").ToString]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_InputSheet]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Config("Sheet_Input").ToString]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-        </scg:List>
-      </ui:MultipleAssign.AssignOperations>
-    </ui:MultipleAssign>
-    <If sap2010:Annotation.AnnotationText="출력파일이 없으면 입력파일 복사해 출력파일 생성" Condition="[Not File.Exists(Str_OutputPath)]" DisplayName="If 출력 파일 존재 여부 확인" sap:VirtualizedContainerService.HintSize="578,989" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="출력파일이 없으면 입력파일을 복사해 출력파일 생성&#xA;출력파일 시트명 변경" Condition="[Not File.Exists(Str_OutputPath)]" DisplayName="If 출력엑셀파일 존재 여부 확인" sap:VirtualizedContainerService.HintSize="578,1000" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -192,7 +203,7 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                 </ActivityAction.Argument>
-                <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="468,407" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_4" ResizeWindow="None" WorkbookPath="[Str_OutputPath]">
+                <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File 출력파일 사용" sap:VirtualizedContainerService.HintSize="468,407" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_4" ResizeWindow="None" WorkbookPath="[Str_OutputPath]">
                   <ueab:ExcelApplicationCard.Body>
                     <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                       <ActivityAction.Argument>
@@ -214,10 +225,16 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7" />
+        <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
       </If.Else>
     </If>
-    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="출력파일의 해당시트를 읽고 거기에 벤더 정보를 추가하여 저장" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 출력파일 업데이트" sap:VirtualizedContainerService.HintSize="578,731" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[Str_OutputPath]">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="출력엑셀파일의 해당시트를 읽어 데이터테이블 추출&#xA;처리대상 작업 상세정보(벤더 정보)를 데이터테이블에 추가&#xA;출력엑셀파일 저장" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 출력파일 업데이트" sap:VirtualizedContainerService.HintSize="578,757" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[Str_OutputPath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -232,10 +249,10 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[Str_OutputCell]" SheetName="[Str_OutputSheet]" />
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[in_DR_Vendor.ItemArray]" DataTable="[DT_Output]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[Str_OutputSheet]" StartingCell="[Str_OutputCell]" />
-            <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Read Range 출력엑셀파일 읽기" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[Str_OutputCell]" SheetName="[Str_OutputSheet]" />
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[in_DR_Vendor.ItemArray]" DataTable="[DT_Output]" DisplayName="Add Data Row 벤더 정보 추가" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Write Range 출력엑셀파일 쓰기" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[Str_OutputSheet]" StartingCell="[Str_OutputCell]" />
+            <ui:ExcelSaveWorkbook DisplayName="Save Workbook 엑셀파일 저장" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>

@@ -24,7 +24,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>548,2049</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,2113</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>204_ACME_GetVendorInformation_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -133,7 +133,7 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 해당 작업ID의 상세정보 화면으로 이동&#xD;&#xA;2. 상세정보에서 벤더 정보 추출 (TaxID, Name, Address, City)&#xD;&#xA;3. 추출한 벤더 정보를 이용해 데이터로우 형식으로 반환&#xD;&#xA; - 데이터로우 컬럼 ((TaxID, Name, Address, City, FilePath)" DisplayName="벤더 정보 추출" sap:VirtualizedContainerService.HintSize="558,1984" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 해당 작업ID의 상세정보 화면으로 이동&#xA;2. 상세정보에서 벤더 정보 추출 (TaxID, Name, Address, City)&#xA;3. 추출한 벤더 정보를 이용해 데이터로우 형식으로 반환&#xA; - 데이터로우 컬럼 (TaxID, Name, Address, City, FilePath)" DisplayName="벤더 정보 추출" sap:VirtualizedContainerService.HintSize="558,2048" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Str_Vendor" />
     </Sequence.Variables>
@@ -144,7 +144,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[ACME_GetVendorInformation]&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496,143" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[ACME_GetVendorInformation]&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,21 +152,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 사이트내 Work Items 화면에서 작업목록 추출" sap:VirtualizedContainerService.HintSize="496,840" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="5a8762d8125fd8cefb88ec6d90ca47ec" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Dashboard' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 사이트내 Work Items 화면에서 작업목록 추출" sap:VirtualizedContainerService.HintSize="496,844" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="5a8762d8125fd8cefb88ec6d90ca47ec" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Dashboard' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,693" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,697" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To 작업 상세 정보 화면으로 이동" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Str_Link]" />
-            <Delay DisplayName="Delay 대기(2초)" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
-            <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="벤더 정보 추출&#xD;&#xA;추출 내용 (TaxID, Name, Address, City)" DisplayName="Get Text 'P'" sap:VirtualizedContainerService.HintSize="388,149" sap2010:WorkflowViewState.IdRef="GetValue_1">
+            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To 작업 상세 정보 화면으로 이동" sap:VirtualizedContainerService.HintSize="388,86" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Str_Link]" />
+            <Delay DisplayName="Delay 대기(2초)" Duration="00:00:02" sap:VirtualizedContainerService.HintSize="388,91" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="벤더 정보 추출&#xA;추출 내용 (TaxID, Name, Address, City)" DisplayName="Get Text 'P'" sap:VirtualizedContainerService.HintSize="388,151" sap2010:WorkflowViewState.IdRef="GetValue_1">
               <ui:GetValue.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="caa0367d-a4fb-457a-ab65-b9cd1e0aab26" InformativeScreenshot="e484477322bcb2f41ba41b2d55de8ad2" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' innertext='*Vendor Information*' visibleinnertext='*Vendor Information*' /&gt;&lt;webctrl tag='P' /&gt;" TimeoutMS="5000" WaitForReady="COMPLETE" />
               </ui:GetValue.Target>
@@ -216,7 +216,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <Sequence DisplayName="데이터 가공" sap:VirtualizedContainerService.HintSize="496,740" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <Sequence sap2010:Annotation.AnnotationText="추출한 벤더 정보의 문자열을 데이터로우로 변환하여 반환&#xD;&#xA;데이터로우 컬럼 (TaxID, Name, Address, City, FilePath)" DisplayName="데이터 가공" sap:VirtualizedContainerService.HintSize="496,794" sap2010:WorkflowViewState.IdRef="Sequence_9">
       <Sequence.Variables>
         <Variable x:TypeArguments="s:String[]" Name="StrArr_Vendor" />
         <Variable x:TypeArguments="sd:DataTable" Name="DT_Vendor" />
@@ -224,9 +224,10 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign 벤더 정보 문자열을 분리하여 벤더 정보 배열로 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Assign 벤더 정보 문자열을 분리하여 벤더 정보 배열로 설정" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="s:String[]">[StrArr_Vendor]</OutArgument>
         </Assign.To>
@@ -234,21 +235,21 @@
           <InArgument x:TypeArguments="s:String[]">[Str_Vendor.Trim.Split(":"c)]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:BuildDataTable sap2010:Annotation.AnnotationText="빈 데이터테이블 생성&#xD;&#xA;컬럼 (TaxID, Name, Address, City, FilePath)" DataTable="[DT_Vendor]" DisplayName="Build Data Table 데이터테이블 생성" sap:VirtualizedContainerService.HintSize="434,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;TaxID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;City&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FilePath&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <ui:BuildDataTable sap2010:Annotation.AnnotationText="빈 데이터테이블 생성&#xA;컬럼 (TaxID, Name, Address, City, FilePath)" DataTable="[DT_Vendor]" DisplayName="Build Data Table 데이터테이블 생성" sap:VirtualizedContainerService.HintSize="434,104" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;TaxID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;City&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;FilePath&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:BuildDataTable>
-      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="추출한 벤더 정보 배열을 데이터테이블에 추가&#xD;&#xA;추출 컬럼 (TaxID, Name, Address, City) 설정&#xD;&#xA;빈 컬럼 (FilePath)은 이후에 연간리포트 경로 설정" ArrayRow="[{StrArr_Vendor(1).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(2).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(3).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(4).Trim,&#xA;&quot;&quot;&#xA;}]" DataTable="[DT_Vendor]" DisplayName="Add Data Row 데이터테이블 추가" sap:VirtualizedContainerService.HintSize="434,243" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="추출한 벤더 정보 배열을 데이터테이블에 추가&#xA;추출 컬럼 (TaxID, Name, Address, City) 설정&#xA;빈 컬럼 (FilePath)은 이후에 연간리포트 경로 설정" ArrayRow="[{StrArr_Vendor(1).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(2).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(3).Split(Environment.NewLine.ToCharArray)(0).Trim,&#xA;StrArr_Vendor(4).Trim,&#xA;&quot;&quot;&#xA;}]" DataTable="[DT_Vendor]" DisplayName="Add Data Row 데이터테이블 추가" sap:VirtualizedContainerService.HintSize="434,249" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:AddDataRow>
-      <Assign DisplayName="Assign 데이터테이블의 첫번째 데이터로우를 반환 객체로 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign DisplayName="Assign 데이터테이블의 첫번째 데이터로우를 반환 객체로 설정" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="sd:DataRow">[out_DR_Vendor]</OutArgument>
         </Assign.To>
