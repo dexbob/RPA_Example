@@ -138,7 +138,7 @@
                 <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="547,811" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
                   <ui:IfElseIf.ConditionBlocks>
                     <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                      <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]">
+                      <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_1">
                         <ui:IfElseIfBlock.Then>
                           <Sequence DisplayName="트랜잭션 항목이 오케스트레이터의 큐아이템인 경우" sap:VirtualizedContainerService.HintSize="450,296" sap2010:WorkflowViewState.IdRef="Sequence_12">
                             <sap:WorkflowViewStateService.ViewState>
@@ -146,7 +146,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:GetQueueItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="오케스트레이터 대기열에서 트랜잭션 항목 추출&#xA;" DisplayName="Get Queue Items 오케스트레이터 큐아이템 추출" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,185" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" TransactionItem="[out_Obj_TransactionItem]">
+                            <ui:GetQueueItem ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="오케스트레이터 대기열에서 트랜잭션 항목 추출&#xA;" DisplayName="Get Queue Item 오케스트레이터 큐아이템 추출" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,185" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" TransactionItem="[out_Obj_TransactionItem]">
                               <ui:GetQueueItem.Reference>
                                 <InArgument x:TypeArguments="x:String" />
                               </ui:GetQueueItem.Reference>
@@ -164,7 +164,7 @@
                           </Sequence>
                         </ui:IfElseIfBlock.Then>
                       </ui:IfElseIfBlock>
-                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[inout_DT_TransactionData IsNot Nothing]">
+                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[inout_DT_TransactionData IsNot Nothing]" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_2">
                         <ui:IfElseIfBlock.Then>
                           <Sequence DisplayName="트랜잭션 항목이 데이터테이블의 데이터로우인 경우" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_13">
                             <sap:WorkflowViewStateService.ViewState>
@@ -244,9 +244,10 @@
               <OutArgument x:TypeArguments="x:String">[out_Str_TransactionID]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join(", ", 
-	CType(out_Obj_TransactionItem, DataRow).ItemArray.Select(
-		Function(Item) Item.ToString
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("WIID ({0})",
+	If(CBool(in_Dic_Config("UseQueue")),
+		CType(out_Obj_TransactionItem, QueueItem).SpecificContent("WIID").ToString,
+		CType(out_Obj_TransactionItem, DataRow)("WIID").ToString
 	)
 )]</InArgument>
             </Assign.Value>

@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,1428</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,1981</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -39,6 +39,7 @@
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -94,13 +95,18 @@
       <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="비지니스 프로세스 주요 단계 호출&#xA;&#xA;비지니스에러 발생시 해당 트랜잭션은 건너뛰고 다음 트랜잭션 진행&#xA;시스템에러(그밖의 에러) 발생시 재시도 횟수만큼 트랜잭션 재시도 (재시도 횟수 in_TransactionItem.RetryNo)" DisplayName="프로세스" sap:VirtualizedContainerService.HintSize="609,1363" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="비지니스 프로세스 주요 단계 호출&#xA;&#xA;비지니스에러 발생시 해당 트랜잭션은 건너뛰고 다음 트랜잭션 진행&#xA;시스템에러(그밖의 에러) 발생시 재시도 횟수만큼 트랜잭션 재시도 (재시도 횟수 in_TransactionItem.RetryNo)" DisplayName="프로세스" sap:VirtualizedContainerService.HintSize="609,1916" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataRow" sap2010:Annotation.AnnotationText="트랜잭션 항목 (데이터로우)" Name="DR_TransactionItem" />
       <Variable x:TypeArguments="ui:QueueItem" sap2010:Annotation.AnnotationText="트랜잭션 항목 (큐아이템)" Name="QI_TransactionItem" />
-      <Variable x:TypeArguments="sd:DataRow" Name="DR_OutputData" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -109,12 +115,15 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message 프로세스 시작 로그 출력" sap:VirtualizedContainerService.HintSize="547,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;Started Process...&quot;]" />
-    <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="547,708" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+    <ui:IfElseIf DisplayName="Else If 트랜잭션 항목 타입별 데이터 추출" sap:VirtualizedContainerService.HintSize="547,1229" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
       <ui:IfElseIf.ConditionBlocks>
         <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-          <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]">
+          <ui:IfElseIfBlock BlockType="If" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_1">
             <ui:IfElseIfBlock.Then>
-              <Sequence DisplayName="트랜잭션 항목이 오케스트레이터의 큐아이템인 경우" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="트랜잭션 항목이 오케스트레이터의 큐아이템인 경우" sap:VirtualizedContainerService.HintSize="496,714" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="트랜잭션 데이터테이블 (데이터로우를 추출하기 위한 데이터테이블)" Name="DT_TransactionItems" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -128,10 +137,32 @@
                     <InArgument x:TypeArguments="ui:QueueItem">[Ctype(in_Obj_TransactionItem, QueueItem)]</InArgument>
                   </Assign.Value>
                 </Assign>
+                <ui:BuildDataTable sap2010:Annotation.AnnotationText="큐아이템 값을 설정할 데이터테이블&#xA;컬럼 (WIID, Link)" DataTable="[DT_TransactionItems]" DisplayName="Build Data Table 데이터테이블 생성" sap:VirtualizedContainerService.HintSize="434,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;WIID&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:BuildDataTable>
+                <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="큐아이템의 WIID와 Link 값을 데이터테이블에 추가" ArrayRow="[{QI_TransactionItem.SpecificContent(&quot;WIID&quot;), QI_TransactionItem.SpecificContent(&quot;Link&quot;)}]" DataTable="[DT_TransactionItems]" DisplayName="Add Data Row 데이터테이블에 값 추가" sap:VirtualizedContainerService.HintSize="434,217" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:AddDataRow>
+                <Assign DisplayName="Assign 트랜잭션 항목(데이터로우) 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataRow">[DR_TransactionItem]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataRow">[DT_TransactionItems(0)]</InArgument>
+                  </Assign.Value>
+                </Assign>
               </Sequence>
             </ui:IfElseIfBlock.Then>
           </ui:IfElseIfBlock>
-          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_Obj_TransactionItem IsNot Nothing]">
+          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_Obj_TransactionItem IsNot Nothing]" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_2">
             <ui:IfElseIfBlock.Then>
               <Sequence DisplayName="트랜잭션 항목이 데이터테이블의 데이터로우인 경우" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
@@ -153,14 +184,10 @@
         </sc:BindingList>
       </ui:IfElseIf.ConditionBlocks>
     </ui:IfElseIf>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="비지니스 메인 프로세스 실행" DisplayName="Invoke Workflow 비지니스 메인 프로세스" sap:VirtualizedContainerService.HintSize="547,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\MainProcess.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="비지니스 메인 프로세스 실행" DisplayName="Invoke Workflow 비지니스 메인 프로세스" sap:VirtualizedContainerService.HintSize="547,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Business_Logic\MainProcess.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Dic_Config" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_WorkItem">
-          <VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="DR_TransactionItem" />
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_WorkItem">[DR_TransactionItem]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">

@@ -1,0 +1,5 @@
+InvoiceNumber,Item,Amount,Tax,Total,Currency,Date
+633360,"Professional Services",66821,13364.2,80185.2,RON,2017-08-21
+759208,"Professional Services",10735,2147,12882,USD,2017-08-13
+806735,"IT Support",107071,21414.2,128485,USD,2017-08-07
+252599,"Waste management services",45686,9137.2,54823.2,USD,2017-08-17
