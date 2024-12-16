@@ -78,6 +78,7 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -120,7 +121,7 @@
               <av:PointCollection x:Key="ConnectorLocation">110,609.6 110,639.6 210,639.6 210,715.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="에러 없이 트랜잭션이 처리되면 해당 상태는 성공으로 업데이트 " DisplayName="성공 상태 처리" sap:VirtualizedContainerService.HintSize="628,2092" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence sap2010:Annotation.AnnotationText="에러 없이 트랜잭션이 처리되면 해당 상태는 성공으로 업데이트 " DisplayName="성공 상태 처리" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -324,12 +325,12 @@
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (비지니스에러)" sap:VirtualizedContainerService.HintSize="566,1407" sap2010:WorkflowViewState.IdRef="If_5">
+                <If Condition="[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (비지니스에러)" sap:VirtualizedContainerService.HintSize="566,1682" sap2010:WorkflowViewState.IdRef="If_5">
                   <If.Then>
-                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (비지니스에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1225" sap2010:WorkflowViewState.IdRef="RetryScope_3" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (비지니스에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="532,1500" sap2010:WorkflowViewState.IdRef="RetryScope_3" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                       <ui:RetryScope.ActivityBody>
                         <ActivityAction>
-                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (비지니스에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="490,1050" sap2010:WorkflowViewState.IdRef="TryCatch_12">
+                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (비지니스에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="490,1165" sap2010:WorkflowViewState.IdRef="TryCatch_12">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -439,7 +440,7 @@
                   <av:Size x:Key="ShapeSize">200,123</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="해당 상태를 시스템에러 (실패) 업데이트" DisplayName="시스템에러 상태 처리" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="해당 상태를 시스템에러 (실패) 업데이트" DisplayName="시스템에러 상태 처리" sap:VirtualizedContainerService.HintSize="672,5469" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="오케스트레이터 큐아이템인지 여부" Name="Bln_QueueRetry" />
                   <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="스트린샷 이미지 파일 경로" Name="Str_ScreenshotPath" />
@@ -460,7 +461,7 @@
                     <InArgument x:TypeArguments="x:Boolean">[in_Obj_TransactionItem isNot Nothing AndAlso CBool(in_Dic_Config("UseQueue"))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <TryCatch sap2010:Annotation.AnnotationText="디버깅용 화면 스크린샷 진행" DisplayName="Try Catch 스크린샷 에러 대응" sap:VirtualizedContainerService.HintSize="610,665" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                <TryCatch sap2010:Annotation.AnnotationText="디버깅용 화면 스크린샷 진행" DisplayName="Try Catch 스크린샷 에러 대응" sap:VirtualizedContainerService.HintSize="610,697" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -469,7 +470,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 스크린샷 이미지 저장" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 스크린샷 이미지 저장" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_Str_Folder">[in_Dic_Config("ExScreenshotsFolderPath").ToString]</InArgument>
                         <InOutArgument x:TypeArguments="x:String" x:Key="inout_Str_FilePath">[Str_ScreenshotPath]</InOutArgument>
@@ -493,7 +494,7 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <If Condition="[Bln_QueueRetry]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (시스템에러)" sap:VirtualizedContainerService.HintSize="610,1529" sap2010:WorkflowViewState.IdRef="If_6">
+                <If Condition="[Bln_QueueRetry]" DisplayName="If 트랜잭션 항목이 큐아이템 인 경우 (시스템에러)" sap:VirtualizedContainerService.HintSize="610,2124" sap2010:WorkflowViewState.IdRef="If_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -501,10 +502,10 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (시스템에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="576,1347" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                    <ui:RetryScope DisplayName="Retry Scope 트랜잭션 상태 설정 (시스템에러) 재시도 대응" sap:VirtualizedContainerService.HintSize="576,1942" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Dic_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                       <ui:RetryScope.ActivityBody>
                         <ActivityAction>
-                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (시스템에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="534,1172" sap2010:WorkflowViewState.IdRef="TryCatch_10">
+                          <TryCatch DisplayName="Try Catch 트랜잭션 상태 설정 (시스템에러) 처리시 에러 발생 대응" sap:VirtualizedContainerService.HintSize="534,1447" sap2010:WorkflowViewState.IdRef="TryCatch_10">
                             <TryCatch.Try>
                               <Sequence DisplayName="트랜잭션 상태 설정 (시스템에러) 처리" sap:VirtualizedContainerService.HintSize="496,475" sap2010:WorkflowViewState.IdRef="Sequence_21">
                                 <sap:WorkflowViewStateService.ViewState>
@@ -534,7 +535,7 @@
                                     <OutArgument x:TypeArguments="x:Int32">[inout_Int_RetryNumber]</OutArgument>
                                   </Assign.To>
                                   <Assign.Value>
-                                    <InArgument x:TypeArguments="x:Int32">[Ctype(in_Obj_TransactionItem, QueueItem).RetryNo]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32">[Ctype(in_Obj_TransactionItem, QueueItem).RetryNo + 1]</InArgument>
                                   </Assign.Value>
                                 </Assign>
                               </Sequence>
@@ -598,7 +599,7 @@
                     <InArgument x:TypeArguments="x:Int32">[inout_Int_ConsecutiveSystemExceptions + 1]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 트랜잭션 재시도 관리 호출" sap:VirtualizedContainerService.HintSize="610,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework/RetryCurrentTransaction.xaml">
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 트랜잭션 재시도 관리 호출" sap:VirtualizedContainerService.HintSize="610,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework/RetryCurrentTransaction.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="s:Exception" x:Key="in_SystemException">[in_SystemException]</InArgument>
                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
@@ -618,7 +619,7 @@
                     </scg:List>
                   </ui:RemoveLogFields.Fields>
                 </ui:RemoveLogFields>
-                <TryCatch sap2010:Annotation.AnnotationText="모든 어플리케이션을 닫고 초기화 상태로 돌아가 다시 열기&#xA;닫을 수 없을 경우 강제종료 실시" DisplayName="Try Catch 어플리케이션 닫기 에러 대응" sap:VirtualizedContainerService.HintSize="610,1492" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                <TryCatch sap2010:Annotation.AnnotationText="모든 어플리케이션을 닫고 초기화 상태로 돌아가 다시 열기&#xA;닫을 수 없을 경우 강제종료 실시" DisplayName="Try Catch 어플리케이션 닫기 에러 대응" sap:VirtualizedContainerService.HintSize="610,1556" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -627,7 +628,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="모든 어플리케이션 종료처리 후 닫기" DisplayName="Invoke Workflow 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="334,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="모든 어플리케이션 종료처리 후 닫기" DisplayName="Invoke Workflow 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="334,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <scg:Dictionary x:TypeArguments="x:String, Argument" />
                       </ui:InvokeWorkflowFile.Arguments>
@@ -639,7 +640,7 @@
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="506,995" sap2010:WorkflowViewState.IdRef="Catch`1_7">
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="506,1027" sap2010:WorkflowViewState.IdRef="Catch`1_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -650,14 +651,14 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="모든 어플리케이션 닫기처리에서 에러 발생시 강제종료 실시" sap:VirtualizedContainerService.HintSize="500,926" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence DisplayName="모든 어플리케이션 닫기처리에서 에러 발생시 강제종료 실시" sap:VirtualizedContainerService.HintSize="500,958" sap2010:WorkflowViewState.IdRef="Sequence_16">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:LogMessage DisplayName="Log message 닫기 에러 발생 로그 출력" sap:VirtualizedContainerService.HintSize="438,141" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[&quot;CloseAllApplications failed. &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source]" />
-                          <TryCatch DisplayName="Try Catch 프로세스 강제종료" sap:VirtualizedContainerService.HintSize="438,634" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                          <TryCatch DisplayName="Try Catch 프로세스 강제종료" sap:VirtualizedContainerService.HintSize="438,666" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -665,7 +666,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <TryCatch.Try>
-                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 프로세스 강제종료" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 프로세스 강제종료" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
                                   <scg:Dictionary x:TypeArguments="x:String, Argument" />
                                 </ui:InvokeWorkflowFile.Arguments>

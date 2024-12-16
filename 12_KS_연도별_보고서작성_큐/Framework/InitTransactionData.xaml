@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3819</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3956</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>InitTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,7 +118,7 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="622,3754" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="622,3891" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -137,14 +137,14 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="560,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot; 처리대상 트랜잭션 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 개&quot;]" />
-    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 사용하는 경우에 트랜잭션 데이터를 큐에 설정&#xA;큐에 별도 설정하는 경우 이하 처리는 제거" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="560,1791" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 사용하는 경우&#xD;&#xA;- 트랜잭션 데이터를 큐에 설정 (큐에 별도 설정시 이하 처리 제거)&#xD;&#xA;- 재실행 횟수 0으로 설정" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="560,1928" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,1567" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence sap:VirtualizedContainerService.HintSize="476,1689" sap2010:WorkflowViewState.IdRef="Sequence_10">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:Annotation.AnnotationText="큐아이템 리스트" Name="QILst_QueueItems" />
           </Sequence.Variables>
@@ -227,6 +227,14 @@
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="sd:DataTable">[Nothing]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign 재실행 횟수 0으로 설정 (큐에서 제어)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Object">[in_Dic_Config("MaxRetryNumber")]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Object">[0]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>

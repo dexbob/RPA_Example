@@ -58,7 +58,7 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
     </sco1:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart sap2010:Annotation.AnnotationText="시스템에러가 발생해 트랜잭션 상태 (시스템에러) 설정시 프레임워크 재시도 메커니즘 관리 (트랜잭션번호 및 재시도횟수 설정)&#xA;&#xA;- 트랜잭션 최대 재시도 횟수가 0인 경우, 오케스트레이터에서 관리(대기열로 작동)하므로 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달한 경우, 더이상 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달하지 않은 경우라도 큐아이템인 경우에는 오케스트레이터에서 관리하므로 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달하지 않은 일반적인 경우, 재시도 횟수 1 증가하고 재시도 실시" DisplayName="트랜잭션 재시도 관리" sap:VirtualizedContainerService.HintSize="1057,939" sap2010:WorkflowViewState.IdRef="Flowchart_7">
+  <Flowchart sap2010:Annotation.AnnotationText="시스템에러가 발생해 트랜잭션 상태 (시스템에러) 설정시 프레임워크 재시도 메커니즘 관리 (트랜잭션번호 및 재시도횟수 설정)&#xA;&#xA;- 트랜잭션 최대 재시도 횟수가 0인 경우, 오케스트레이터에서 관리(대기열로 작동)하므로 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달한 경우, 더이상 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달하지 않은 경우라도 큐아이템인 경우에는 오케스트레이터에서 관리하므로 재시도 없이 다음 트랜잭션번호 설정&#xA;- 재시도 최대 횟수에 도달하지 않은 일반적인 경우, 재시도 횟수 1 증가하고 재시도 실시" DisplayName="트랜잭션 재시도 관리" sap:VirtualizedContainerService.HintSize="1060,939" sap2010:WorkflowViewState.IdRef="Flowchart_7">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -66,18 +66,15 @@
         <av:Point x:Key="ShapeLocation">450,2.5</av:Point>
         <av:Size x:Key="ShapeSize">60,75</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">480,77.5 480,107.5 482,107.5 482,126.666666666667</av:PointCollection>
-        <x:Double x:Key="Width">1023</x:Double>
+        <x:Double x:Key="Width">1026</x:Double>
         <x:Double x:Key="Height">800</x:Double>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID11</x:Reference>
+      <x:Reference>__ReferenceID12</x:Reference>
     </Flowchart.StartNode>
-    <FlowDecision x:Name="__ReferenceID11" DisplayName="재시도 트랜잭션인가?" sap:VirtualizedContainerService.HintSize="124,87" sap2010:WorkflowViewState.IdRef="FlowDecision_12">
-      <FlowDecision.Condition>
-        <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="CInt(in_Dic_Config(&quot;MaxRetryNumber&quot;))&gt;0" />
-      </FlowDecision.Condition>
+    <FlowDecision x:Name="__ReferenceID12" Condition="[CInt(in_Dic_Config(&quot;MaxRetryNumber&quot;))&gt;0]" DisplayName="재시도 트랜잭션인가?" sap:VirtualizedContainerService.HintSize="124,87" sap2010:WorkflowViewState.IdRef="FlowDecision_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -90,10 +87,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
-        <FlowDecision x:Name="__ReferenceID0" DisplayName="재시도 최대횟수 도달했는가?" sap:VirtualizedContainerService.HintSize="160,87" sap2010:WorkflowViewState.IdRef="FlowDecision_11">
-          <FlowDecision.Condition>
-            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="inout_Int_RetryNumber &gt;= CInt(in_Dic_Config(&quot;MaxRetryNumber&quot;))" />
-          </FlowDecision.Condition>
+        <FlowDecision x:Name="__ReferenceID0" Condition="[inout_Int_RetryNumber &gt;= CInt(in_Dic_Config(&quot;MaxRetryNumber&quot;))]" DisplayName="재시도 최대횟수 도달했는가?" sap:VirtualizedContainerService.HintSize="160,87" sap2010:WorkflowViewState.IdRef="FlowDecision_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -102,7 +96,7 @@
               <x:String x:Key="TrueLabel">Yes</x:String>
               <x:String x:Key="FalseLabel">No</x:String>
               <av:PointCollection x:Key="TrueConnector">271.2,299.9 150,299.9 150,324</av:PointCollection>
-              <av:PointCollection x:Key="FalseConnector">431.2,299.9 461.2,299.9 461.2,353.6 630,353.6 630,383.6</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">431.2,299.9 470,299.9 470,394</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
@@ -178,9 +172,9 @@
             <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_32">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">530,383.6</av:Point>
+                  <av:Point x:Key="ShapeLocation">370,394</av:Point>
                   <av:Size x:Key="ShapeSize">200,52</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">630,435.6 630,465.6 632.333333333333,465.6 632.333333333333,476.666666666667</av:PointCollection>
+                  <av:PointCollection x:Key="ConnectorLocation">570,420 632.333333333333,420 632.333333333333,476.666666666667</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:LogMessage DisplayName="Log message 재시도 로그 출력" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Warn" Message="[in_Dic_Config(&quot;LogMessage_ApplicationException&quot;).ToString+&quot; Retry: &quot;+inout_Int_RetryNumber.ToString+&quot;. &quot;+in_SystemException.Message+&quot; at Source: &quot;+in_SystemException.Source]" />
@@ -246,27 +240,39 @@
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">680,143.6</av:Point>
               <av:Size x:Key="ShapeSize">200,52</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">780,195.6 780,225.6 776,225.6 776,239</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">780,195.6 780,224</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Log message 시스템에러 메시지 로그 출력" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Error" Message="[in_Dic_Config(&quot;LogMessage_ApplicationException&quot;).ToString+in_SystemException.Message+&quot; at Source: &quot;+in_SystemException.Source]" />
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+            <FlowStep x:Name="__ReferenceID11">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">559,239</av:Point>
-                  <av:Size x:Key="ShapeSize">434,82</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">160,560 160,610</av:PointCollection>
+                  <av:Point x:Key="ShapeLocation">680,224</av:Point>
+                  <av:Size x:Key="ShapeSize">200,52</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">780,276 780,299</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign 트랜잭션번호 1 증가 (재시도 미실시의 경우)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_31">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber+1]</InArgument>
-                </Assign.Value>
-              </Assign>
+              <ui:LogMessage DisplayName="Log message 재시도 로그 출력" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Warn" Message="[in_Dic_Config(&quot;LogMessage_ApplicationException&quot;).ToString+&quot; Retry: &quot;+inout_Int_RetryNumber.ToString+&quot;. &quot;+in_SystemException.Message+&quot; at Source: &quot;+in_SystemException.Source]" />
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">563,299</av:Point>
+                      <av:Size x:Key="ShapeSize">434,82</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">160,560 160,610</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Assign 트랜잭션번호 1 증가 (재시도 미실시의 경우)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_31">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[inout_Int_TransactionNumber+1]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </FlowStep>
+              </FlowStep.Next>
             </FlowStep>
           </FlowStep.Next>
         </FlowStep>
@@ -283,5 +289,6 @@
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
+    <x:Reference>__ReferenceID11</x:Reference>
   </Flowchart>
 </Activity>

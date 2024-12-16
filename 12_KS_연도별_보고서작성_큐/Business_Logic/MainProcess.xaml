@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="MainProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="MainProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="[입력] 처리대상 작업아이템" Name="in_DR_WorkItem" Type="InArgument(sd:DataRow)" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,2140</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3792</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>MainProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -45,6 +45,9 @@
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>UiPath.CSV</x:String>
       <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -126,7 +129,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. 입력 작업ID의 벤더 정보 추출&#xA;2. 해당 벤더의 TaxID로 월간리포트 다운로드&#xA;3. 월간리포트 병합하여 연간리포트 생성&#xA;4. 연간리포트 업로드하고 컨펌ID 추출&#xA;5. 컨펌ID를 이용하여 작업 상태를 완료로 업데이트&#xA;6. 출력 파일에 해당 작업 내용 쓰기" DisplayName="메인 프로세스 - 연도별 보고서 작성" sap:VirtualizedContainerService.HintSize="496,2075" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 입력 작업ID의 벤더 정보 추출&#xA;2. 해당 벤더의 TaxID로 월간리포트 다운로드&#xA;3. 월간리포트 병합하여 연간리포트 생성&#xA;4. 연간리포트 업로드하고 컨펌ID 추출&#xA;5. 컨펌ID를 이용하여 작업 상태를 완료로 업데이트&#xA;6. 출력 파일에 해당 작업 내용 쓰기" DisplayName="메인 프로세스 - 연도별 보고서 작성" sap:VirtualizedContainerService.HintSize="626,3727" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataRow" Name="DR_Vendor" />
       <Variable x:TypeArguments="x:String" Name="Str_Year" />
@@ -140,9 +143,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
-    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_WorkItem.ItemArray.Select(Function(item) item.ToString))]" />
-    <Assign DisplayName="Assign 대상 연도 추출" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
+    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_WorkItem.ItemArray.Select(Function(item) item.ToString))]" />
+    <Assign DisplayName="Assign 대상 연도 추출" sap:VirtualizedContainerService.HintSize="564,82" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Str_Year]</OutArgument>
       </Assign.To>
@@ -150,7 +153,7 @@
         <InArgument x:TypeArguments="x:String">[in_Dic_Config("Year").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해당 작업ID의 벤더 정보 추출" DisplayName="Invoke Workflow 벤더 정보 추출" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\204_ACME_GetVendorInformation.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해당 작업ID의 벤더 정보 추출" DisplayName="Invoke Workflow 벤더 정보 추출" sap:VirtualizedContainerService.HintSize="564,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\204_ACME_GetVendorInformation.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <OutArgument x:TypeArguments="sd:DataRow" x:Key="out_DR_Vendor">[DR_Vendor]</OutArgument>
@@ -162,7 +165,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="벤더 정보의 TaxID와 대상 연도 이용&#xD;&#xA;존재하는 월간리포트 다운로드" DisplayName="Invoke Workflow 월간리포드 다운로드" sap:VirtualizedContainerService.HintSize="434,155" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\205_ACME_DownloadMonthlyReport.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="벤더 정보의 TaxID와 대상 연도 이용&#xA;존재하는 월간리포트 다운로드" DisplayName="Invoke Workflow 월간리포드 다운로드" sap:VirtualizedContainerService.HintSize="564,187" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\205_ACME_DownloadMonthlyReport.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_Year">[Str_Year]</InArgument>
@@ -174,7 +177,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="월간리포트 병합하여 연간리포트 생성" DisplayName="Invoke Workflow 연간리포트 생성" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_MakeMergeFile.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="월간리포트 병합하여 연간리포트 생성" DisplayName="Invoke Workflow 연간리포트 생성" sap:VirtualizedContainerService.HintSize="564,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_MakeMergeFile.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_Year">[Str_Year]</InArgument>
@@ -187,7 +190,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <Assign DisplayName="Assign 벤더 정보에 연간 리포트 파일 경로 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="Assign 벤더 정보에 연간 리포트 파일 경로 설정" sap:VirtualizedContainerService.HintSize="564,82" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Object">[DR_Vendor("FilePath")]</OutArgument>
       </Assign.To>
@@ -195,7 +198,7 @@
         <InArgument x:TypeArguments="x:String">[Str_YearlyReportPath]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="연간리포트 업로드하고 컨펌ID 추출" DisplayName="Invoke Workflow 연간리포트 업로드" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\206_ACME_UploadYearlyReport.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="연간리포트 업로드하고 컨펌ID 추출" DisplayName="Invoke Workflow 연간리포트 업로드" sap:VirtualizedContainerService.HintSize="564,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\206_ACME_UploadYearlyReport.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_Year">[Str_Year]</InArgument>
@@ -208,7 +211,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="컨펌ID를 이용하여 작업 상태를 완료로 업데이트" DisplayName="Invoke Workflow 작업 완료 업데이트" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\207_ACME_UpdateWorkItem.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="컨펌ID를 이용하여 작업 상태를 완료로 업데이트" DisplayName="Invoke Workflow 작업 완료 업데이트" sap:VirtualizedContainerService.HintSize="564,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Business_Logic\200_Process_ACME\207_ACME_UpdateWorkItem.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_ConfirmationID">[Str_ConfirmationID]</InArgument>
@@ -220,7 +223,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="출력 파일에 처리한 작업 정보 내용 쓰기" DisplayName="Invoke Workflow 출력 파일 업데이트" sap:VirtualizedContainerService.HintSize="434,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_UpdateOutputFile.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="출력 파일에 처리한 작업 정보 내용 쓰기" DisplayName="Invoke Workflow 출력 파일 업데이트" sap:VirtualizedContainerService.HintSize="564,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_UpdateOutputFile.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_Vendor">[DR_Vendor]</InArgument>
@@ -232,6 +235,63 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 완료 정보 : &quot; + String.Join(&quot;, &quot;, DR_Vendor.ItemArray.Select(Function(item) item.ToString))]" />
+    <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;작업 완료 정보 : &quot; + String.Join(&quot;, &quot;, DR_Vendor.ItemArray.Select(Function(item) item.ToString))]" />
+    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="564,1420" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="530,1238" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="488,1150" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="450,629" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[Str_YearlyReportPath]" DisplayName="Upload Storage File" FolderPath="[in_Dic_Config(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,239" sap2010:WorkflowViewState.IdRef="UploadStorageFile_3" Path="[Str_YearlyReportPath]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ucas:UploadStorageFile>
+                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" DisplayName="Upload Storage File" FolderPath="[in_Dic_Config(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,239" sap2010:WorkflowViewState.IdRef="UploadStorageFile_4" Path="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ucas:UploadStorageFile>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Storage Buckets 저장 실패 : &quot; + Exception.Message]" />
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>
