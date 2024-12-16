@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3792</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1234,3854</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>MainProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -129,7 +129,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. 입력 작업ID의 벤더 정보 추출&#xA;2. 해당 벤더의 TaxID로 월간리포트 다운로드&#xA;3. 월간리포트 병합하여 연간리포트 생성&#xA;4. 연간리포트 업로드하고 컨펌ID 추출&#xA;5. 컨펌ID를 이용하여 작업 상태를 완료로 업데이트&#xA;6. 출력 파일에 해당 작업 내용 쓰기" DisplayName="메인 프로세스 - 연도별 보고서 작성" sap:VirtualizedContainerService.HintSize="626,3727" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 입력 작업ID의 벤더 정보 추출&#xA;2. 해당 벤더의 TaxID로 월간리포트 다운로드&#xA;3. 월간리포트 병합하여 연간리포트 생성&#xA;4. 연간리포트 업로드하고 컨펌ID 추출&#xA;5. 컨펌ID를 이용하여 작업 상태를 완료로 업데이트&#xA;6. 출력 파일에 해당 작업 내용 쓰기" DisplayName="메인 프로세스 - 연도별 보고서 작성" sap:VirtualizedContainerService.HintSize="626,3789" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataRow" Name="DR_Vendor" />
       <Variable x:TypeArguments="x:String" Name="Str_Year" />
@@ -236,35 +236,37 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;작업 완료 정보 : &quot; + String.Join(&quot;, &quot;, DR_Vendor.ItemArray.Select(Function(item) item.ToString))]" />
-    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="564,1420" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" DisplayName="If 오케스트레이터의 저장소(Storage Buckets)명이 존재하면 저장" sap:VirtualizedContainerService.HintSize="564,1482" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="530,1238" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap:VirtualizedContainerService.HintSize="530,1300" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="488,1150" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Catch 저장소 저장 에러 대응" sap:VirtualizedContainerService.HintSize="488,1212" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <TryCatch.Try>
-              <Sequence sap:VirtualizedContainerService.HintSize="450,629" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence sap:VirtualizedContainerService.HintSize="450,691" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[Str_YearlyReportPath]" DisplayName="Upload Storage File" FolderPath="[in_Dic_Config(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,239" sap2010:WorkflowViewState.IdRef="UploadStorageFile_3" Path="[Str_YearlyReportPath]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="연간리포트 파일 저장" Destination="[Str_YearlyReportPath]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_3" Path="[Str_YearlyReportPath]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ucas:UploadStorageFile>
-                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" DisplayName="Upload Storage File" FolderPath="[in_Dic_Config(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,239" sap2010:WorkflowViewState.IdRef="UploadStorageFile_4" Path="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="" Destination="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_4" Path="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ucas:UploadStorageFile>
@@ -282,7 +284,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Storage Buckets 저장 실패 : &quot; + Exception.Message]" />
+                  <ui:LogMessage DisplayName="Log Message 저장소 저장 실패 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Storage Buckets 저장 실패 : &quot; + Exception.Message]" />
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
