@@ -115,7 +115,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="603,3296" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,2730" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_Home" />
     </Sequence.Variables>
@@ -125,8 +125,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Start Process]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="541,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Start Process]&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="510,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
@@ -149,7 +149,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <Sequence DisplayName="폴더 초기화" sap:VirtualizedContainerService.HintSize="541,441" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence DisplayName="폴더 초기화" sap:VirtualizedContainerService.HintSize="510,441" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -167,7 +167,7 @@
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="웹 화면 열기" sap:VirtualizedContainerService.HintSize="541,409" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="웹 화면 열기" sap:VirtualizedContainerService.HintSize="510,409" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -194,124 +194,24 @@
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="대시보드 스크린샷 적용" sap:VirtualizedContainerService.HintSize="541,1007" sap2010:WorkflowViewState.IdRef="Sequence_8">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="s:String[]" Name="StrArr_Names" />
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Dic_Parameters" />
-        <Variable x:TypeArguments="s:String[]" Name="StrArr_ImagePaths" />
-        <Variable x:TypeArguments="x:String" Name="Str_NavigateUrl" />
-        <Variable x:TypeArguments="s:String[]" Name="StrArr_Cells" />
-        <Variable x:TypeArguments="scg:List(x:Object)" Name="ObjLst_MethodParams" />
-      </Sequence.Variables>
+    <Sequence DisplayName="차트 스크린샷후 적용" sap:VirtualizedContainerService.HintSize="510,441" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 추출명 예제 &#xD;&#xA;{&quot;다우&quot;, &quot;니케이&quot;, &quot;영국&quot;, &quot;나스닥&quot;, &quot;상해&quot;, &quot;프랑스&quot;, &quot;S&amp;P&quot;, &quot;항셍&quot;, &quot;독일&quot;}" DisplayName="Multiple Assign 해외증시 추출용 변수 설정" sap:VirtualizedContainerService.HintSize="479,220" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-        <ui:MultipleAssign.AssignOperations>
-          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="s:String[]">[StrArr_Names]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="s:String[]">[New String() {"다우", "나스닥", "S&amp;P"}]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[Dic_Parameters]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
-	{"title", "해외증시 : 네이버페이 증권"},
-	{"tag1", "DT"},
-	{"tag2", "A"},
-	{"tag3", "UL"},
-	{"tag4", "LI"},
-	{"id", "wrap"}
-}]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:String">[Str_NavigateUrl]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("URL_Finance_World").ToString]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-          </scg:List>
-        </ui:MultipleAssign.AssignOperations>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="902_Sub_WorldScreenshot - 워크플로우 파일 호출 (Business_Logic\900_Process_Sub\902_Sub_WorldScreenshot.xaml)" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_WorldScreenshot.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Dic_Parameters">[Dic_Parameters]</InArgument>
-          <InArgument x:TypeArguments="s:String[]" x:Key="in_StrArr_Names">[StrArr_Names]</InArgument>
-          <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_Str_NavigateUrl">[Str_NavigateUrl]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xD;&#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xD;&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
-        <ui:MultipleAssign.AssignOperations>
-          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="s:String[]">[StrArr_Cells]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="s:String[]">[{"B11", "E11", "H11"}]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
-              <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="scg:List(x:Object)">[ObjLst_MethodParams]</OutArgument>
-              </ui:AssignOperation.To>
-              <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="scg:List(x:Object)" xml:space="preserve">[New List(Of Object) From {
-	Path.GetFullPath(in_Dic_Config("Path_Output").ToString), 
-	in_Dic_Config("Sheet_Dashboard").ToString, 
-	StrArr_Cells,
-	Environment.CurrentDirectory,
-	StrArr_ImagePaths,
-	115, 
-	95
-}]</InArgument>
-              </ui:AssignOperation.Value>
-            </ui:AssignOperation>
-          </scg:List>
-        </ui:MultipleAssign.AssignOperations>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="101_Excel_InsertImages - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="903_Sub_MarketIndexScreenshot - 워크플로우 파일 호출 (Business_Logic\900_Process_Sub\903_Sub_MarketIndexScreenshot.xaml)" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\903_Sub_MarketIndexScreenshot.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-          <InArgument x:TypeArguments="scg:List(x:Object)" x:Key="in_ObjLst_MethodParams">[ObjLst_MethodParams]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <ui:BuildDataTable DataTable="[out_DT_StockData]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="541,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Ticker&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;20&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+    <ui:BuildDataTable DataTable="[out_DT_StockData]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Ticker&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;20&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -319,7 +219,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BuildDataTable>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="541,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="450,297" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
@@ -337,8 +237,8 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:LogMessage DisplayName="Log Message 추출 데이터 개수 로그 출력" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;추출 데이터 개수 : &quot; + out_DT_StockData.RowCount.ToString + &quot; 행&quot;]" />
-    <If sap2010:Annotation.AnnotationText="트랙잭션 최대개수가 설정되어 있는 경우(0보다 클때)&#xA;작업 목록 리스트의 개수가 최대개수보다 크면 최대개수만큼만 설정" Condition="[CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;)) &gt; 0 AndAlso &#xA;out_DT_StockData.RowCount &gt; CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;))]" DisplayName="If 환경설정객체(Config)의 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="541,395" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:LogMessage DisplayName="Log Message 추출 데이터 개수 로그 출력" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;추출 데이터 개수 : &quot; + out_DT_StockData.RowCount.ToString + &quot; 행&quot;]" />
+    <If sap2010:Annotation.AnnotationText="트랙잭션 최대개수가 설정되어 있는 경우(0보다 클때)&#xA;작업 목록 리스트의 개수가 최대개수보다 크면 최대개수만큼만 설정" Condition="[CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;)) &gt; 0 AndAlso &#xA;out_DT_StockData.RowCount &gt; CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;))]" DisplayName="If 환경설정객체(Config)의 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="510,395" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
