@@ -3,7 +3,28 @@ import os
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup as BSoup
-from openpyxl import load_workbook
+import win32com.client
+
+
+def open_Excel(visible=False):
+    '''
+    엑셀 열기
+    - visible <bool> : 엑셀에 작업되는 상황 보이기 (기본값=False)
+    - 반환값 <엑셀 객체> : 엑셀 객체 생성해서 반환
+    '''
+    excel = win32com.client.Dispatch('Excel.Application')
+    excel.Visible = visible
+    excel.DisplayAlerts = False
+    return excel
+
+
+def close_Excel(excel):
+    '''
+    엑셀 닫기
+    - excel <엑셀 객체> : 열었던 엑셀 객체
+    '''
+    excel.DisplayAlerts = True
+    excel.Quit()
 
 
 def get_news_dataframe(day):
@@ -33,53 +54,41 @@ def get_news_dataframe(day):
             break
     return pd.DataFrame(data, columns=['링크', '제목', '내용', '언론사', '날짜'])
 
-def insert_news_file(filePath, sheetName, startRow, startCol, day):
+
+def insert_news_file(filePath, sheet, startRow, startCol, today):
     try:
-        df = get_news_dataframe(day)
-        result = f'{sheetName}를 가져왔습니다. ({len(df)}행)'
+        df = get_news_dataframe(today)
+        result = f'뉴스를 가져왔습니다. ({len(df)}행)'
     except Exception as e:
         result = f'에러 발생: {e}'
-        result = f"{result}, \n {filePath} \n {sheetName} ({startRow}, {startCol}) {day}"
         return result
     finally:
         print(result)
 
-    filePath = convert_path(filePath)
     try:
-        wb = load_workbook(filePath)
-        ws = wb[sheetName]
-        # 기존 셀 삭제
-        # for row in ws.iter_rows():
-        #     for cell in row:
-        #         cell.value = None
+        excel = open_Excel()
+        wb = excel.Workbooks.Open(filePath)
+        ws = wb.Worksheets(sheet)
         # 제목 삽입
-        for idx, colTitle in enumerate(df.columns, start=startCol):
-            ws.cell(row=startRow, column=idx, value=colTitle)
+        for c, colTitle in enumerate(df.columns, start=startCol):
+            ws.Cells(startRow, c).Value = colTitle
         # 값 삽입
         for r, row in enumerate(df.values, start=startRow+1):
             for c, value in enumerate(row, start=startCol):
-                ws.cell(row=r, column=c, value=value)
-        wb.save(filePath)
-        result = f'{sheetName}가 정상적으로 삽입되었습니다. ({day})'
+                ws.Cells(r, c).Value = value
+        wb.Save()
+        result = f'{sheet}가 정상적으로 삽입되었습니다. ({today})'
     except Exception as e:
         result = f'에러 발생: {e}'
-    print(result)
+    finally:
+        close_Excel(excel)
+        print(result)
     return result
-
-
-def convert_path(*paths):
-    '''
-    입력된 경로 전체의 폴더 구분자를 '/'으로 변환하여 반환
-    paths <*str> : 경로 문자열을 가변매개변수로 입력
-    반환값 <tuple(str) | str | None> : 입력이 다수이면 튜플로, 하나이면 문자열로, 없으면 None을 반환
-    '''
-    result = tuple(path.replace(os.sep, '/') for path in paths)
-    return result if len(paths) > 1 else result[0] if len(paths) == 1 else None 
 
 
 
 # 연습예제
 if __name__ == '__main__':
-    fileFolder = "C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황_스크린샷\\Data\\Output"
-    filePath = os.path.join(fileFolder, "Sample.xlsx")
-    # insert_news_file(filePath, '주요뉴스', 5, 3, '2024-12-18')
+    fileFolder = "C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황\\Data\\Output"
+    filePath = os.path.join(fileFolder, "Today_Stock_Information_2024-12-19.xlsx")
+    insert_news_file(filePath, '주요뉴스', 3, 2, '2024-12-19')

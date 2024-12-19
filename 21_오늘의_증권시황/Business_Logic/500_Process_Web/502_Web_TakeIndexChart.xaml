@@ -1,18 +1,16 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="_501_Web_TakeScreenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_Dic_Parameters" Type="InArgument(scg:Dictionary(x:String, x:String))" />
-    <x:Property Name="in_StrArr_Names" Type="InArgument(s:String[])" />
     <x:Property Name="out_StrArr_ImagePaths" Type="OutArgument(s:String[])" />
-    <x:Property Name="in_Str_NavigateUrl" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrArr_Names" Type="InArgument(s:String[])" />
   </x:Members>
-  <this:_501_Web_TakeScreenshot.in_Dic_Parameters>
-    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" />
-  </this:_501_Web_TakeScreenshot.in_Dic_Parameters>
+  <this:_501_Web_TakeScreenshot.in_StrArr_Names>
+    <InArgument x:TypeArguments="s:String[]" />
+  </this:_501_Web_TakeScreenshot.in_StrArr_Names>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,2540</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,2013</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_501_Web_TakeScreenshot_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -89,14 +87,9 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="차트 이미지 추출 저장" sap:VirtualizedContainerService.HintSize="668,2475" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="국내 증시 차트 이미지 추출 저장" sap:VirtualizedContainerService.HintSize="668,1948" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="Brw_Home" />
-      <Variable x:TypeArguments="x:String" Name="Str_Tag1" />
-      <Variable x:TypeArguments="x:String" Name="Str_Tag2" />
-      <Variable x:TypeArguments="x:String" Name="Str_Tag3" />
-      <Variable x:TypeArguments="x:String" Name="Str_Tag4" />
-      <Variable x:TypeArguments="x:String" Name="Str_ID" />
       <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="StrLst_ImagePaths" />
       <Variable x:TypeArguments="x:String" Name="Str_TempImagePath" />
     </Sequence.Variables>
@@ -105,11 +98,11 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="606,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Web_TakeChartImages]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="606,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="606,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Web_TakeIndexChart]&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="606,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="x:String">[Str_TempImagePath]</OutArgument>
             </ui:AssignOperation.To>
@@ -117,7 +110,7 @@
               <InArgument x:TypeArguments="x:String">[in_Dic_Config("Path_TempImage").ToString]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="ui:Browser">[Brw_Home]</OutArgument>
             </ui:AssignOperation.To>
@@ -128,99 +121,44 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="606,240" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-      <ui:MultipleAssign.AssignOperations>
-        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_Tag1]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Parameters("tag1")]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_Tag2]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Parameters("tag2")]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_ID]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Parameters("id")]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_Tag3]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Parameters("tag3")]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-            <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[Str_Tag4]</OutArgument>
-            </ui:AssignOperation.To>
-            <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[in_Dic_Parameters("tag4")]</InArgument>
-            </ui:AssignOperation.Value>
-          </ui:AssignOperation>
-        </scg:List>
-      </ui:MultipleAssign.AssignOperations>
-    </ui:MultipleAssign>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="606,1594" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="606,1347" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="572,1485" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="572,1238" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Str_ImagePath" />
+              <Variable x:TypeArguments="x:String" Name="Str_Name" />
+              <Variable x:TypeArguments="ui:Image" Name="Img_Name" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="510,85" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Str_NavigateUrl]" />
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Name" sap:VirtualizedContainerService.HintSize="510,1249" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_StrArr_Names]">
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Name" sap:VirtualizedContainerService.HintSize="510,1127" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_StrArr_Names]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:String" Name="Name" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,1113" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="Str_Name" />
-                      <Variable x:TypeArguments="ui:Image" Name="Img_Name" />
-                      <Variable x:TypeArguments="x:String" Name="Str_ImagePath" />
-                    </Sequence.Variables>
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,991" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[Str_Name]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Name.Replace("&amp;", "&amp;amp;")]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[Str_ImagePath]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Str_TempImagePath.Replace("{Name}", Name).Replace("/", "")]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Str_TempImagePath.Replace("{Name}", Name)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" DisplayName="Hover 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Hover_1">
+                    <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" DisplayName="Hover 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Hover_2">
                       <ui:Hover.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -232,7 +170,7 @@
                         </ui:CursorPosition>
                       </ui:Hover.CursorPosition>
                       <ui:Hover.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="df3cdc70-e409-4556-b995-3275b8bbc1f4" InformativeScreenshot="efb5bb41c8c81f03fdb834d42a33c318" Selector="[string.Format(&quot;&lt;webctrl tag='{0}' innertext='*{1}*' visibleinnertext='*{1}*' /&gt;&lt;webctrl tag='{2}' innertext='*{1}*' visibleinnertext='*{1}*' /&gt;&quot;, Str_tag1, Str_Name, Str_tag2)]">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="df3cdc70-e409-4556-b995-3275b8bbc1f4" InformativeScreenshot="3c7eb5b26e5644473f32e99a93ea69c1" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='네이버페이 증권' /&gt;&lt;webctrl parentid='content' tag='DIV' visibleinnertext='{0}*' /&gt;&lt;webctrl parentid='content' tag='SPAN' idx='9' /&gt;&quot;, Name)]">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
@@ -242,9 +180,12 @@
                         </ui:Target>
                       </ui:Hover.Target>
                     </ui:Hover>
-                    <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[Img_Name]">
+                    <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[Img_Name]">
                       <ui:TakeScreenshot.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7ee1abb9-77be-46de-9765-2206b94a2cc6" InformativeScreenshot="719625c30d1a74ec56bc74ef0fb3bcea" Selector="[string.Format(&quot;&lt;webctrl tag='{0}' innertext='*{1}*' visibleinnertext='*{1}*' parentid='{2}' /&gt;&lt;webctrl tag='{3}' innertext='*{1}*' visibleinnertext='*{1}*' /&gt;&quot;, Str_Tag3, Str_Name, Str_ID, Str_Tag4)]">
+                        <ui:Target Element="{x:Null}" Id="7ee1abb9-77be-46de-9765-2206b94a2cc6" InformativeScreenshot="dab683e285aedd516ca6586150717daf" Selector="[string.Format(&quot;&lt;webctrl parentid='content' tag='DIV' innertext='*{0}*' visibleinnertext='{0}*' /&gt;&lt;webctrl parentid='content' tag='DIV' innertext='*{0}*' visibleinnertext='{0}*' /&gt;&quot;, Name)]">
+                          <ui:Target.ClippingRegion>
+                            <ui:Region Rectangle="0, 3, 304, 210" />
+                          </ui:Target.ClippingRegion>
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
@@ -254,9 +195,9 @@
                         </ui:Target>
                       </ui:TakeScreenshot.Target>
                     </ui:TakeScreenshot>
-                    <ui:SaveImage DisplayName="Save Image" FileName="[Str_ImagePath]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[Img_Name]" />
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[Str_ImagePath]" />
-                    <uasa:AppendItemToList x:TypeArguments="x:String" ItemIndex="{x:Null}" DisplayName="Append Item to List" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_1" ItemToAppend="[Str_ImagePath]" List="[StrLst_ImagePaths]" />
+                    <ui:SaveImage DisplayName="Save Image" FileName="[Str_ImagePath]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Img_Name]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Str_ImagePath]" />
+                    <uasa:AppendItemToList x:TypeArguments="x:String" ItemIndex="{x:Null}" DisplayName="Append Item to List" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[Str_ImagePath]" List="[StrLst_ImagePaths]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEach.Body>

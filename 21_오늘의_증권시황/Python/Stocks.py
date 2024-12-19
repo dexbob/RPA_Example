@@ -50,7 +50,7 @@ def insert_image_one(filePath, sheet, cell, imagePath, width, height):
             Left=cell.Left, Top=cell.Top, 
             Width=width, Height=height)
         wb.Save()
-        result = f'이미지가 정상적으로 삽입되었습니다. ({cell})'
+        result = '이미지가 정상적으로 삽입되었습니다.'
     except Exception as e:
         result = f'에러 발생: {e}'
     finally:
@@ -70,14 +70,12 @@ def insert_image_all_path(filePath, sheet, cellArr, imagePathArr, width, height)
     - 반환값 <str> : 처리 결과 문자열
     '''
     print(filePath)
-    result = filePath
     try:
         excel = open_Excel()
         wb = excel.Workbooks.Open(filePath)
         ws = wb.Worksheets(sheet)
         for i in range(len(cellArr)):
             print(imagePathArr[i])
-            result += imagePathArr[i] + '\r\n'
             cell = ws.Range(cellArr[i])
             ws.Shapes.AddPicture(Filename=imagePathArr[i], 
                 LinkToFile=False, SaveWithDocument=True, 
