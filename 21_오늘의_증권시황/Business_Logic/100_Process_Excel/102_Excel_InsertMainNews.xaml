@@ -128,7 +128,7 @@
               <InArgument x:TypeArguments="scg:List(x:Object)" xml:space="preserve">[New List(Of Object) From {
 	Path.GetFullPath(in_Dic_Config("Path_Output").ToString),
 	in_Dic_Config("Sheet_MajorNews").ToString,
-	3,	2,
+	3,	3,
 	CDate(in_Dic_Config("Today")).ToString("yyyy-MM-dd")
 }]</InArgument>
             </ui:AssignOperation.Value>

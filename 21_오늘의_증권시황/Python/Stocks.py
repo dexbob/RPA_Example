@@ -41,7 +41,7 @@ def insert_image_one(filePath, sheet, cell, imagePath, width, height):
     print(filePath)
     print(imagePath)
     try:
-        excel = open_Excel()
+        excel = open_Excel(Tue)
         wb = excel.Workbooks.Open(filePath)
         ws = wb.Worksheets(sheet)
         cell = ws.Range(cell)
@@ -71,7 +71,7 @@ def insert_image_all_path(filePath, sheet, cellArr, imagePathArr, width, height)
     '''
     print(filePath)
     try:
-        excel = open_Excel()
+        excel = open_Excel(True)
         wb = excel.Workbooks.Open(filePath)
         ws = wb.Worksheets(sheet)
         for i in range(len(cellArr)):
@@ -112,9 +112,9 @@ def insert_image_all_file(filePath, sheet, cellArr, imageFolder, imageFileArr, w
 if __name__ == '__main__':
     print('<<< TEST >>>')
     fileFolder = 'C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황\\Data\\Output'
-    filePath = os.path.join(fileFolder, 'Today_Stock_Information_2024-12-19.xlsx')
+    filePath = os.path.join(fileFolder, 'Today_Stock_Information_2024-12-20.xlsx')
     imageFolder = 'C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황'
     imageFileArr = ['Data\\Temp\\다우.png', 'Data\\Temp\\나스닥.png', 'Data\\Temp\\S&P.png']
-    cellArr = ['B11', 'E11', 'H11']
-    result = insert_image_all_file(filePath, 1, cellArr, imageFolder, imageFileArr, 115, 95)
+    cellArr = ['B10', 'E10', 'H10']
+    result = insert_image_all_file(filePath, 1, cellArr, imageFolder, imageFileArr, 155, 82)
     print(result)

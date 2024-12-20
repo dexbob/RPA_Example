@@ -45,14 +45,14 @@ def get_news_dataframe(day):
             content = summary.contents[0].strip()
             press = summary.find('span', 'press').text
             date = summary.find('span', 'wdate').text
-            data.append([f'=HYPERLINK("{link}", "▶")', title, content, press, date])
+            data.append([title, content, press, date, link])
             # print(link, title, content, press, date, sep='\n')
 
         page_num += 1
         # 다음 페이지가 없으면 종료
         if soup.select_one('.pgRR') is None:
             break
-    return pd.DataFrame(data, columns=['링크', '제목', '내용', '언론사', '날짜'])
+    return pd.DataFrame(data, columns=['제목', '내용', '언론사', '날짜', 'URL'])
 
 
 def insert_news_file(filePath, sheet, startRow, startCol, today):
@@ -90,5 +90,5 @@ def insert_news_file(filePath, sheet, startRow, startCol, today):
 # 연습예제
 if __name__ == '__main__':
     fileFolder = "C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황\\Data\\Output"
-    filePath = os.path.join(fileFolder, "Today_Stock_Information_2024-12-19.xlsx")
-    insert_news_file(filePath, '주요뉴스', 3, 2, '2024-12-19')
+    filePath = os.path.join(fileFolder, "Today_Stock_Information_2024-12-20.xlsx")
+    insert_news_file(filePath, '주요뉴스', 3, 3, '2024-12-20')

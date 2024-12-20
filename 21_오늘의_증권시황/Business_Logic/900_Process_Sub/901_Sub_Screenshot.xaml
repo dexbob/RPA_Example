@@ -2,7 +2,7 @@
   <x:Members>
     <x:Property Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>593,3551</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,3738</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,7 +105,7 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="차트 이미지 추출 및 저장" sap:VirtualizedContainerService.HintSize="603,3486" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence DisplayName="차트 이미지 추출 및 저장" sap:VirtualizedContainerService.HintSize="603,3673" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="StrArr_Names" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Dic_Parameters" />
@@ -113,6 +113,8 @@
       <Variable x:TypeArguments="x:String" Name="Str_NavigateUrl" />
       <Variable x:TypeArguments="s:String[]" Name="StrArr_Cells" />
       <Variable x:TypeArguments="scg:List(x:Object)" Name="ObjLst_MethodParams" />
+      <Variable x:TypeArguments="x:Int32" Name="Int_Wdith" />
+      <Variable x:TypeArguments="x:Int32" Name="Int_Height" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -120,6 +122,28 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Sub_WorldScreenshot]&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="541,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Int32">[Int_Wdith]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Int32">155</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Int32">[Int_Height]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Int32">82</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
     <Sequence DisplayName="국내증시 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,869" sap2010:WorkflowViewState.IdRef="Sequence_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -168,8 +192,8 @@
 	StrArr_Cells,
 	Environment.CurrentDirectory,
 	StrArr_ImagePaths,
-	115, 
-	95
+	Int_Wdith, 
+	Int_Height
 }]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
@@ -264,7 +288,7 @@
                 <OutArgument x:TypeArguments="s:String[]">[StrArr_Cells]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="s:String[]">[{"B11", "E11", "H11"}]</InArgument>
+                <InArgument x:TypeArguments="s:String[]">[{"B10", "E10", "H10"}]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
@@ -278,8 +302,8 @@
 	StrArr_Cells,
 	Environment.CurrentDirectory,
 	StrArr_ImagePaths,
-	115, 
-	95
+	Int_Wdith, 
+	Int_Height
 }]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
@@ -388,7 +412,7 @@
                 <OutArgument x:TypeArguments="s:String[]">[StrArr_Cells]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="s:String[]">[{"B18", "E18", "H18", "B25", "E25", "H25"}]</InArgument>
+                <InArgument x:TypeArguments="s:String[]">[{"B16", "E16", "H16", "B22", "E22", "H22"}]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
@@ -402,8 +426,8 @@
 	StrArr_Cells,
 	Environment.CurrentDirectory,
 	StrArr_ImagePaths,
-	115, 
-	95
+	Int_Wdith, 
+	Int_Height
 }]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
