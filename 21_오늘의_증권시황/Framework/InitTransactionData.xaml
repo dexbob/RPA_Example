@@ -128,7 +128,7 @@
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="StartProcess - 워크플로우 파일 호출 (Business_Logic\StartProcess.xaml)" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\StartProcess.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_StockData">[out_DT_TransactionData]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_TransactionData">[out_DT_TransactionData]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot; 처리대상 트랜잭션 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 개&quot;]" />

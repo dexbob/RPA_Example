@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,3007</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,3007</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -244,10 +244,10 @@
               <OutArgument x:TypeArguments="x:String">[out_Str_TransactionID]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("WIID ({0})",
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("Item ({0})",
 	If(CBool(in_Dic_Config("UseQueue")),
-		CType(out_Obj_TransactionItem, QueueItem).SpecificContent("WIID").ToString,
-		CType(out_Obj_TransactionItem, DataRow)("WIID").ToString
+		CType(out_Obj_TransactionItem, QueueItem).SpecificContent("Name").ToString,
+		CType(out_Obj_TransactionItem, DataRow)("Name").ToString
 	)
 )]</InArgument>
             </Assign.Value>
