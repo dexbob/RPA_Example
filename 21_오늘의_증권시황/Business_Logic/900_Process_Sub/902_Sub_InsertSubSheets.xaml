@@ -5,29 +5,21 @@
     <x:Property Name="in_Str_FinanceURL" Type="InArgument(x:String)" />
     <x:Property Name="out_DT_Kospi" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_DT_Kosdaq" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="in_Str_FolderPath" Type="InArgument(x:String)" />
     <x:Property Name="In_Str_PythonPath" Type="InArgument(x:String)" />
     <x:Property Name="in_Str_PythonScriptFile" Type="InArgument(x:String)" />
     <x:Property Name="out_DT_RealTimeNews" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_DT_RealTimeNews" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_DT_Prospect" Type="InArgument(sd:DataTable)" />
     <x:Property Name="out_DT_Prospect" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="out_StrArr_ReportURLs" Type="OutArgument(s:String[])" />
     <x:Property Name="in_Str_UploadDate" Type="InArgument(x:String)" />
     <x:Property Name="in_DT_Upjjong" Type="InArgument(sd:DataTable)" />
     <x:Property Name="out_DT_Upjjong" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="out_DT_1MarketInfo" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="in_DT_1MarketInfo" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_DT_2InvestInfo" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="out_DT_2InvestInfo" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="in_DT_3CompanyList" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="out_DT_3CompanyList" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,1297</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>783,1297</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -170,6 +162,12 @@
   <Sequence sap2010:Annotation.AnnotationText="코스피, 코스닥, 업종별시세,  실시간뉴스, 리포트3개(시황정보, 투자정보, 종목분석 )" DisplayName="증권 데이터 추출해 출력 파일에 저장" sap:VirtualizedContainerService.HintSize="793,1232" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Int_Counter" />
+      <Variable x:TypeArguments="s:String[]" Name="StrArr_ReportURLs" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_1MarketReport" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_2InvestReport" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_3CompanyReport" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_4IndustryReport" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_5EconomyReport" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -201,13 +199,13 @@
             <av:Size x:Key="ShapeSize">200,214</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="엑셀 입력&#xA;-코스피,&#xA;-코스닥,&#xA;-업종별시세, &#xA;-실시간뉴스, &#xA;-리포트3개&#xA;---시황정보&#xA;---투자정보&#xA;---종목분석 &#xA;" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,214" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+        <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="엑셀 입력&#xA;-코스피,&#xA;-코스닥,&#xA;-업종별시세, &#xA;-실시간뉴스, &#xA;-리포트3개&#xA;---시황정보&#xA;---투자정보&#xA;---종목분석 &#xA;" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,214" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="548,1813" sap2010:WorkflowViewState.IdRef="Sequence_65">
+              <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="548,2382" sap2010:WorkflowViewState.IdRef="Sequence_65">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -218,15 +216,15 @@
                 <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_Kospi]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_39" SheetName="KOSPI" StartingCell="A1" />
                 <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_Kosdaq]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_40" SheetName="KOSDAQ" StartingCell="A1" />
                 <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_Upjjong]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_41" SheetName="업종별시세" StartingCell="A1" />
-                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,52" sap2010:WorkflowViewState.IdRef="CommentOut_13">
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,365" sap2010:WorkflowViewState.IdRef="CommentOut_13">
                   <ui:CommentOut.Body>
-                    <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="449.6,292" sap2010:WorkflowViewState.IdRef="Sequence_295">
+                    <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="450,286" sap2010:WorkflowViewState.IdRef="Sequence_295">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:ExcelWriteRange AddHeaders="False" sap2010:Annotation.AnnotationText="파이썬으로 가져오는DT&#xA;현재는 파이썬-&gt;DT로 끌고 오는 것이 안되어 Ctrl+D 해 놓음&#xA;파이썬데이터 머릿글은 영문이므로&#xA;엑셀에 입력시 머릿글없이 A2부터 넣기." DataTable="[out_DT_RealTimeNews]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="387.2,180" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_31" SheetName="실시간뉴스" StartingCell="A2">
+                      <ui:ExcelWriteRange AddHeaders="False" sap2010:Annotation.AnnotationText="파이썬으로 가져오는DT&#xA;현재는 파이썬-&gt;DT로 끌고 오는 것이 안되어 Ctrl+D 해 놓음&#xA;파이썬데이터 머릿글은 영문이므로&#xA;엑셀에 입력시 머릿글없이 A2부터 넣기." DataTable="[out_DT_RealTimeNews]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,175" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_31" SheetName="실시간뉴스" StartingCell="A2">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -238,7 +236,7 @@
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:CommentOut>
@@ -280,10 +278,12 @@
                     </Sequence>
                   </ui:CommentOut.Body>
                 </ui:CommentOut>
-                <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_1MarketInfo]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="484.8,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_42" SheetName="시황정보" StartingCell="A1" />
-                <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_2InvestInfo]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="484.8,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_43" SheetName="투자정보" StartingCell="A1" />
-                <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_DT_3CompanyList]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="484.8,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_44" SheetName="종목분석" StartingCell="A1" />
-                <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="484.8,24.8" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_2" />
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_1MarketReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_42" SheetName="시황정보" StartingCell="A1" />
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_2InvestReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_43" SheetName="투자정보" StartingCell="A1" />
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_3CompanyReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_44" SheetName="종목분석" StartingCell="A1" />
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_4IndustryReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_45" SheetName="산업분석" StartingCell="A1" />
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_5EconomyReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="486,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_46" SheetName="경제분석" StartingCell="A1" />
+                <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="486,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_2" />
               </Sequence>
             </ActivityAction>
           </ui:ExcelApplicationScope.Body>
@@ -301,7 +301,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">20,280.8</av:Point>
             <av:Size x:Key="ShapeSize">200,83</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">120,364.8 120,398</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">120,363.8 120,398</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="코스닥 데이터 추출    " BrowserType="Chrome" DisplayName="Attach Browser '          Page'" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="BrowserScope_19" InformativeScreenshot="6013217ed705f6ae33ec6d46a6032b26" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
@@ -310,14 +310,14 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence sap2010:Annotation.AnnotationText="&#xA;&#xA;1.항목선택&#xA;2.추출Raw데이터in_DT_Kospi  -&gt; 결과데이터out_DT_Kospi&#xA;3.필터링 - 빈 열 삭제     &#xA;4.기호변경 - 상한가 상승 보합&#xA;&#xA;추출Raw데이터인수 in_DT_Kosdaq  &#xA;필터링 - 빈 열 삭제     &#xA;기호변경 - 상한가 상승  &#xA;결과인수 out_DT_Kosdaq" DisplayName="코스닥 데이터 스크래핑&gt;테이블추출" sap:VirtualizedContainerService.HintSize="668.8,2232.8" sap2010:WorkflowViewState.IdRef="Sequence_67">
+              <Sequence sap2010:Annotation.AnnotationText="&#xA;&#xA;1.항목선택&#xA;2.추출Raw데이터in_DT_Kospi  -&gt; 결과데이터out_DT_Kospi&#xA;3.필터링 - 빈 열 삭제     &#xA;4.기호변경 - 상한가 상승 보합&#xA;&#xA;추출Raw데이터인수 in_DT_Kosdaq  &#xA;필터링 - 빈 열 삭제     &#xA;기호변경 - 상한가 상승  &#xA;결과인수 out_DT_Kosdaq" DisplayName="코스닥 데이터 스크래핑&gt;테이블추출" sap:VirtualizedContainerService.HintSize="668,2210" sap2010:WorkflowViewState.IdRef="Sequence_67">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="606.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;코스닥 추출 시작&quot;]">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="606,141" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;코스닥 추출 시작&quot;]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -325,13 +325,13 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:LogMessage>
-                <uix:NApplicationCard sap2010:Annotation.AnnotationText=" " AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="606.4,1750.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" ScopeGuid="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V2">
+                <uix:NApplicationCard sap2010:Annotation.AnnotationText=" " AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="606,1741" sap2010:WorkflowViewState.IdRef="NApplicationCard_5" InteractionMode="DebuggerApi" ScopeGuid="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V2">
                   <uix:NApplicationCard.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="코스닥 테이블추출" sap:VirtualizedContainerService.HintSize="572.8,1533.6" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                      <Sequence DisplayName="코스닥 테이블추출" sap:VirtualizedContainerService.HintSize="572,1524" sap2010:WorkflowViewState.IdRef="Sequence_66">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
                         </Sequence.Variables>
@@ -340,7 +340,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  ?sosok=1'" sap:VirtualizedContainerService.HintSize="510.4,107.2" sap2010:WorkflowViewState.IdRef="Click_38" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  ?sosok=1'" sap:VirtualizedContainerService.HintSize="510,107" sap2010:WorkflowViewState.IdRef="Click_38" KeyModifiers="None" MouseButton="BTN_LEFT">
                           <ui:Click.CursorPosition>
                             <ui:CursorPosition Position="Center">
                               <ui:CursorPosition.OffsetX>
@@ -362,12 +362,12 @@
                             </ui:Target>
                           </ui:Click.Target>
                         </ui:Click>
-                        <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[in_DT_Kosdaq]" DisplayName="Extract Table Data 코스닥 테이블 추출" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='N' ReferenceIdx='0' Name='N'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='종목명' ReferenceIdx='1' Name='종목명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='종목명 Url' ReferenceIdx='2' Name='종목명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='현재가' ReferenceIdx='3' Name='현재가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일비' ReferenceIdx='4' Name='전일비'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='등락률' ReferenceIdx='5' Name='등락률'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='거래량' ReferenceIdx='6' Name='거래량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매수호가' ReferenceIdx='7' Name='매수호가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매도호가' ReferenceIdx='8' Name='매도호가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매수총잔량' ReferenceIdx='9' Name='매수총잔량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매도총잔량' ReferenceIdx='10' Name='매도총잔량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='PER' ReferenceIdx='11' Name='PER'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='ROE' ReferenceIdx='12' Name='ROE'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='N' attr='fulltext' /&gt;&lt;column name='종목명' attr='fulltext' name2='종목명 Url' attr2='href' /&gt;&lt;column name='현재가' attr='fulltext' /&gt;&lt;column name='전일비' attr='fulltext' /&gt;&lt;column name='등락률' attr='fulltext' /&gt;&lt;column name='거래량' attr='fulltext' /&gt;&lt;column name='매수호가' attr='fulltext' /&gt;&lt;column name='매도호가' attr='fulltext' /&gt;&lt;column name='매수총잔량' attr='fulltext' /&gt;&lt;column name='매도총잔량' attr='fulltext' /&gt;&lt;column name='PER' attr='fulltext' /&gt;&lt;column name='ROE' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="510.4,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_6" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V3">
+                        <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[in_DT_Kosdaq]" DisplayName="Extract Table Data 코스닥 테이블 추출" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='N' ReferenceIdx='0' Name='N'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='종목명' ReferenceIdx='1' Name='종목명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='종목명 Url' ReferenceIdx='2' Name='종목명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='현재가' ReferenceIdx='3' Name='현재가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일비' ReferenceIdx='4' Name='전일비'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='등락률' ReferenceIdx='5' Name='등락률'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='거래량' ReferenceIdx='6' Name='거래량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매수호가' ReferenceIdx='7' Name='매수호가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매도호가' ReferenceIdx='8' Name='매도호가'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매수총잔량' ReferenceIdx='9' Name='매수총잔량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='매도총잔량' ReferenceIdx='10' Name='매도총잔량'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='PER' ReferenceIdx='11' Name='PER'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='ROE' ReferenceIdx='12' Name='ROE'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='N' attr='fulltext' /&gt;&lt;column name='종목명' attr='fulltext' name2='종목명 Url' attr2='href' /&gt;&lt;column name='현재가' attr='fulltext' /&gt;&lt;column name='전일비' attr='fulltext' /&gt;&lt;column name='등락률' attr='fulltext' /&gt;&lt;column name='거래량' attr='fulltext' /&gt;&lt;column name='매수호가' attr='fulltext' /&gt;&lt;column name='매도호가' attr='fulltext' /&gt;&lt;column name='매수총잔량' attr='fulltext' /&gt;&lt;column name='매도총잔량' attr='fulltext' /&gt;&lt;column name='PER' attr='fulltext' /&gt;&lt;column name='ROE' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="510,157" sap2010:WorkflowViewState.IdRef="NExtractData_6" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V3">
                           <uix:NExtractData.Target>
                             <uix:TargetAnchorable DesignTimeRectangle="1300, 1117, 1519, 61236" DesignTimeScaleFactor="1.875" FriendlyName="'N 종목명'" FullSelectorArgument="&lt;webctrl parentid='contentarea' tag='TABLE' /&gt;" Guid="e8684c4a-8889-49e2-b1f1-b16aabb93183" InformativeScreenshot="e4ae03ff0e8752274140b7c2289c3576.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                           </uix:NExtractData.Target>
                         </uix:NExtractData>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510.4,144" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;코스닥 추출완료 필터시작&quot;]">
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,143" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;코스닥 추출완료 필터시작&quot;]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -375,7 +375,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:LogMessage>
-                        <ui:FilterDataTable sap2010:Annotation.AnnotationText="" DataTable="[in_DT_Kosdaq]" DisplayName="Filter Data Table로 빈 열 삭제" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="510.4,162.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_12" OutputDataTable="[out_DT_Kosdaq]" SelectColumnsMode="Remove">
+                        <ui:FilterDataTable sap2010:Annotation.AnnotationText="" DataTable="[in_DT_Kosdaq]" DisplayName="Filter Data Table로 빈 열 삭제" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="510,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_12" OutputDataTable="[out_DT_Kosdaq]" SelectColumnsMode="Remove">
                           <ui:FilterDataTable.Filters>
                             <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="16">
                               <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -476,7 +476,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:FilterDataTable>
-                        <Assign sap2010:Annotation.AnnotationText="//상위 30개만 출력" sap:VirtualizedContainerService.HintSize="510.4,113.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                        <Assign sap2010:Annotation.AnnotationText="//상위 30개만 출력" sap:VirtualizedContainerService.HintSize="510,113" sap2010:WorkflowViewState.IdRef="Assign_4">
                           <Assign.To>
                             <OutArgument x:TypeArguments="sd:DataTable">[out_DT_Kosdaq]</OutArgument>
                           </Assign.To>
@@ -489,19 +489,19 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="기호변경 &#xA;데이터 테이블 중 &quot;전일비&quot;열에 포함된 상한가,상승, 보합을 각각 ↑,▲,─으로 변경" DataTable="[out_DT_Kosdaq]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510.4,403.2" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
+                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="기호변경 &#xA;데이터 테이블 중 &quot;전일비&quot;열에 포함된 상한가,상승, 보합을 각각 ↑,▲,─으로 변경" DataTable="[out_DT_Kosdaq]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,398" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
                           <ui:ForEachRow.Body>
                             <ActivityAction x:TypeArguments="sd:DataRow">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentrow" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_165">
+                              <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_165">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_31">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:Object">[currentRow("전일비")]</OutArgument>
                                   </Assign.To>
@@ -518,7 +518,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:ForEachRow>
-                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="510.4,90.4" sap2010:WorkflowViewState.IdRef="Delay_16" />
+                        <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="510,90" sap2010:WorkflowViewState.IdRef="Delay_16" />
                       </Sequence>
                     </ActivityAction>
                   </uix:NApplicationCard.Body>
@@ -548,7 +548,7 @@
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <av:Point x:Key="ShapeLocation">20,398</av:Point>
                 <av:Size x:Key="ShapeSize">200,83</av:Size>
-                <av:PointCollection x:Key="ConnectorLocation">120,482 120,512 0,512 0,652 120,652 120,682</av:PointCollection>
+                <av:PointCollection x:Key="ConnectorLocation">120,481 120,511 0,511 0,652 120,652 120,682</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="업종별시세 추출" BrowserType="Chrome" DisplayName="Attach Browser '          Page'" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="BrowserScope_24" InformativeScreenshot="020daf8b3d54b14fe155b214abf2496f" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
@@ -557,14 +557,14 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                   </ActivityAction.Argument>
-                  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="실행" sap:VirtualizedContainerService.HintSize="547,1959" sap2010:WorkflowViewState.IdRef="Sequence_104">
+                  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="실행" sap:VirtualizedContainerService.HintSize="548,1933" sap2010:WorkflowViewState.IdRef="Sequence_104">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe 상승'" sap:VirtualizedContainerService.HintSize="485,365" sap2010:WorkflowViewState.IdRef="BrowserScope_25" InformativeScreenshot="240f470fe08324800d9d5e2c7c2d2798" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
+                    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe 상승'" sap:VirtualizedContainerService.HintSize="486,365" sap2010:WorkflowViewState.IdRef="BrowserScope_25" InformativeScreenshot="240f470fe08324800d9d5e2c7c2d2798" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
                       <ui:BrowserScope.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
@@ -602,19 +602,19 @@
                         </ActivityAction>
                       </ui:BrowserScope.Body>
                     </ui:BrowserScope>
-                    <uix:NApplicationCard sap2010:Annotation.AnnotationText="" AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="485,941" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V2">
+                    <uix:NApplicationCard sap2010:Annotation.AnnotationText="" AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="486,935" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" InteractionMode="DebuggerApi" ScopeGuid="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V2">
                       <uix:NApplicationCard.Body>
                         <ActivityAction x:TypeArguments="x:Object">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,723" sap2010:WorkflowViewState.IdRef="Sequence_103">
+                          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,718" sap2010:WorkflowViewState.IdRef="Sequence_103">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;업종별 시세 추출 시작&quot;]">
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;업종별 시세 추출 시작&quot;]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -622,7 +622,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:LogMessage>
-                            <uix:NExtractData sap2010:Annotation.AnnotationText=" 업종별 시세 추출" AppendResults="False" ContinueOnError="True" DataTable="[in_DT_Upjjong]" DisplayName="in_DT_Upjjong" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업종명' ReferenceIdx='0' Name='업종명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업종명 Url' ReferenceIdx='1' Name='업종명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비' ReferenceIdx='2' Name='전일대비'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 전체' ReferenceIdx='3' Name='전일대비 등락현황 전체'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 상승' ReferenceIdx='4' Name='전일대비 등락현황 상승'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 보합' ReferenceIdx='5' Name='전일대비 등락현황 보합'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 하락' ReferenceIdx='6' Name='전일대비 등락현황 하락'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='등락그래프' ReferenceIdx='7' Name='등락그래프'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='업종명' attr='fulltext' name2='업종명 Url' attr2='href' /&gt;&lt;column name='전일대비' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 전체' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 상승' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 보합' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 하락' attr='fulltext' /&gt;&lt;column name='등락그래프' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="387.2,188.8" sap2010:WorkflowViewState.IdRef="NExtractData_10" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V3">
+                            <uix:NExtractData sap2010:Annotation.AnnotationText=" 업종별 시세 추출" AppendResults="False" ContinueOnError="True" DataTable="[in_DT_Upjjong]" DisplayName="in_DT_Upjjong" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업종명' ReferenceIdx='0' Name='업종명'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='업종명 Url' ReferenceIdx='1' Name='업종명 Url'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비' ReferenceIdx='2' Name='전일대비'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 전체' ReferenceIdx='3' Name='전일대비 등락현황 전체'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 상승' ReferenceIdx='4' Name='전일대비 등락현황 상승'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 보합' ReferenceIdx='5' Name='전일대비 등락현황 보합'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='전일대비 등락현황 하락' ReferenceIdx='6' Name='전일대비 등락현황 하락'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='등락그래프' ReferenceIdx='7' Name='등락그래프'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='업종명' attr='fulltext' name2='업종명 Url' attr2='href' /&gt;&lt;column name='전일대비' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 전체' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 상승' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 보합' attr='fulltext' /&gt;&lt;column name='전일대비 등락현황 하락' attr='fulltext' /&gt;&lt;column name='등락그래프' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="388,188" sap2010:WorkflowViewState.IdRef="NExtractData_10" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="201b2a98-fde7-4350-b7e9-4e24b8728727" Version="V3">
                               <uix:NExtractData.Target>
                                 <uix:TargetAnchorable DesignTimeRectangle="547, 563, 744, 2570" DesignTimeScaleFactor="1.25" FriendlyName="'업종별 전일대비'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="9b8da13c-3442-49be-9131-ecd97cdd1631" InformativeScreenshot="04e00d680577696275c244e0257ec8a5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='업종별 시세 : 네이버페이 증권' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
                               </uix:NExtractData.Target>
@@ -632,7 +632,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NExtractData>
-                            <ui:FilterDataTable sap2010:Annotation.AnnotationText="빈 열 삭제" DataTable="[in_DT_Upjjong]" DisplayName="Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="387.2,193.6" sap2010:WorkflowViewState.IdRef="FilterDataTable_8" OutputDataTable="[out_DT_Upjjong]" SelectColumnsMode="Remove">
+                            <ui:FilterDataTable sap2010:Annotation.AnnotationText="빈 열 삭제" DataTable="[in_DT_Upjjong]" DisplayName="Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="FilterDataTable_8" OutputDataTable="[out_DT_Upjjong]" SelectColumnsMode="Remove">
                               <ui:FilterDataTable.Filters>
                                 <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                                   <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -665,19 +665,19 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </uix:NApplicationCard>
-                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,276" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,275" sap2010:WorkflowViewState.IdRef="CommentOut_8">
                       <ui:CommentOut.Body>
-                        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="449.6,197.6" sap2010:WorkflowViewState.IdRef="Sequence_283">
+                        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="450,196" sap2010:WorkflowViewState.IdRef="Sequence_283">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="387.2,85.6" sap2010:WorkflowViewState.IdRef="NavigateTo_12" Url="https://finance.naver.com/news/news_list.naver?mode=LSS2D&amp;section_id=101&amp;section_id2=258" />
+                          <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="NavigateTo_12" Url="https://finance.naver.com/news/news_list.naver?mode=LSS2D&amp;section_id=101&amp;section_id2=258" />
                         </Sequence>
                       </ui:CommentOut.Body>
                     </ui:CommentOut>
-                    <ui:NavigateTo Browser="{x:Null}" sap2010:Annotation.AnnotationText="다음작업페이지로 넘어가기 지금은 파이썬이 비활성이라서 리포트로&#xA;" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="484.8,145.6" sap2010:WorkflowViewState.IdRef="NavigateTo_13" Url="https://finance.naver.com/research/market_info_list.naver">
+                    <ui:NavigateTo Browser="{x:Null}" sap2010:Annotation.AnnotationText="증권 홈 화면으로 이동&#xA;" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="486,127" sap2010:WorkflowViewState.IdRef="NavigateTo_13" Url="https://finance.naver.com/">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -704,7 +704,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">120,794 120,824 390,824 390,918.6 420,918.6</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="시황정보,투자정보,종목분석" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="780,1748" sap2010:WorkflowViewState.IdRef="Sequence_310">
+                <Sequence sap2010:Annotation.AnnotationText="시황정보,투자정보,종목분석" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="608,3981" sap2010:WorkflowViewState.IdRef="Sequence_310">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -712,10 +712,10 @@
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="718,141" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;리포트 추출 시작&quot;]" />
-                  <Assign DisplayName="창 4개 띄우기 변수처리" sap:VirtualizedContainerService.HintSize="718,83" sap2010:WorkflowViewState.IdRef="Assign_36">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="546,141" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;리포트 추출 시작&quot;]" />
+                  <Assign DisplayName="창 4개 띄우기 변수처리" sap:VirtualizedContainerService.HintSize="546,83" sap2010:WorkflowViewState.IdRef="Assign_36">
                     <Assign.To>
-                      <OutArgument x:TypeArguments="s:String[]">[out_StrArr_ReportURLs]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[StrArr_ReportURLs]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[{"https://finance.naver.com/research/market_info_list.naver",
@@ -723,234 +723,368 @@
  "https://finance.naver.com/research/company_list.naver"}]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="718,82" sap2010:WorkflowViewState.IdRef="Assign_35">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[in_Str_FolderPath]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">["C:\RPA Project\네이버증권-1데이터추출및엑셀저장\오늘의증권BizReport.xlsx"]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="창 4개 띄우기 반복 처리" sap:VirtualizedContainerService.HintSize="718,1180" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[out_StrArr_ReportURLs]">
-                    <ui:ForEach.Body>
-                      <ActivityAction x:TypeArguments="x:String">
+                  <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="546,3535" sap2010:WorkflowViewState.IdRef="BrowserScope_47">
+                    <ui:BrowserScope.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="684,1044" sap2010:WorkflowViewState.IdRef="Sequence_309">
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,3426" sap2010:WorkflowViewState.IdRef="Sequence_329">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="창 띄우기" sap:VirtualizedContainerService.HintSize="642,956" sap2010:WorkflowViewState.IdRef="OpenBrowser_8" Url="[currentItem]">
-                            <ui:OpenBrowser.Body>
-                              <ActivityAction x:TypeArguments="x:Object">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="창 크게 키우기" sap:VirtualizedContainerService.HintSize="608,831" sap2010:WorkflowViewState.IdRef="Sequence_308">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="546,25" sap2010:WorkflowViewState.IdRef="MaximizeWindow_6" />
-                                  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="데이터 뽑아오기" sap:VirtualizedContainerService.HintSize="546,655" sap2010:WorkflowViewState.IdRef="NApplicationCard_30" InteractionMode="DebuggerApi" ScopeGuid="de6b7160-43a4-4d50-bcc9-d2d7e94a2a51" Version="V2">
-                                    <uix:NApplicationCard.Body>
-                                      <ActivityAction x:TypeArguments="x:Object">
-                                        <ActivityAction.Argument>
-                                          <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                        </ActivityAction.Argument>
-                                        <Sequence DisplayName="저장 정보들" sap:VirtualizedContainerService.HintSize="512,438" sap2010:WorkflowViewState.IdRef="Sequence_307">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <Sequence DisplayName="시황정보 저장" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_301">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[in_DT_1MarketInfo]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목' ReferenceName='제목' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Src' ReferenceName='제목 Src' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Alt Text' ReferenceName='제목 Alt Text' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목 Url' ReferenceName='제목 Url' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='증권사' ReferenceName='증권사' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부' ReferenceName='첨부' ReferenceIdx='5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Src' ReferenceName='첨부 Src' ReferenceIdx='6'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Alt Text' ReferenceName='첨부 Alt Text' ReferenceIdx='7'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Url' ReferenceName='첨부 Url' ReferenceIdx='8'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='작성일' ReferenceName='작성일' ReferenceIdx='9'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='조회수' ReferenceName='조회수' ReferenceIdx='10'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='제목' attr='fulltext' name2='제목 Src' attr2='src' name3='제목 Alt Text' attr3='alt' name4='제목 Url' attr4='href' /&gt;&lt;column name='증권사' attr='fulltext' /&gt;&lt;column name='첨부' attr='fulltext' name2='첨부 Src' attr2='src' name3='첨부 Alt Text' attr3='alt' name4='첨부 Url' attr4='href' /&gt;&lt;column name='작성일' attr='fulltext' /&gt;&lt;column name='조회수' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_31" LimitExtractionTo="None" MaximumResults="0" Version="V3">
-                                              <uix:NExtractData.Target>
-                                                <uix:TargetAnchorable DesignTimeRectangle="158, 446, 595, 792" DesignTimeScaleFactor="1" FriendlyName="'시황정보 리포트게시판'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="edc27b0b-3209-4c78-af09-8628afa3e8fe" InformativeScreenshot="0a54fbd2bfdc23e601348e19daed8308.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='시황정보 리포트 : 네이버페이 증권' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
-                                              </uix:NExtractData.Target>
-                                            </uix:NExtractData>
-                                            <ui:FilterDataTable DataTable="[in_DT_1MarketInfo]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="387.2,162.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_38" OutputDataTable="[out_DT_1MarketInfo]" SelectColumnsMode="Remove">
-                                              <ui:FilterDataTable.Filters>
-                                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
-                                                    <ui:FilterOperationArgument.Column>
-                                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
-                                                    </ui:FilterOperationArgument.Column>
-                                                    <ui:FilterOperationArgument.Operand>
-                                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
-                                                    </ui:FilterOperationArgument.Operand>
-                                                  </ui:FilterOperationArgument>
-                                                </scg:List>
-                                              </ui:FilterDataTable.Filters>
-                                              <ui:FilterDataTable.SelectColumns>
-                                                <scg:List x:TypeArguments="InArgument" Capacity="4">
-                                                  <x:Null />
-                                                </scg:List>
-                                              </ui:FilterDataTable.SelectColumns>
-                                            </ui:FilterDataTable>
-                                            <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="시황정보 창 닫기" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="2b78cb32c35fb6aa0cf941392d1fc404" WaitForReady="INTERACTIVE" />
-                                          </Sequence>
-                                          <Sequence DisplayName="투자정보 저장" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_303">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="483.2,839.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_27" InteractionMode="DebuggerApi" ScopeGuid="3668a351-7090-419f-8ffb-f001f2b43cca" Version="V2">
-                                              <uix:NApplicationCard.Body>
-                                                <ActivityAction x:TypeArguments="x:Object">
-                                                  <ActivityAction.Argument>
-                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                                  </ActivityAction.Argument>
-                                                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="449.6,622.4" sap2010:WorkflowViewState.IdRef="Sequence_302">
-                                                    <sap:WorkflowViewStateService.ViewState>
-                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                      </scg:Dictionary>
-                                                    </sap:WorkflowViewStateService.ViewState>
-                                                    <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[in_DT_2InvestInfo]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목' ReferenceName='제목' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Src' ReferenceName='제목 Src' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Alt Text' ReferenceName='제목 Alt Text' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목 Url' ReferenceName='제목 Url' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='증권사' ReferenceName='증권사' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부' ReferenceName='첨부' ReferenceIdx='5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Src' ReferenceName='첨부 Src' ReferenceIdx='6'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Alt Text' ReferenceName='첨부 Alt Text' ReferenceIdx='7'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Url' ReferenceName='첨부 Url' ReferenceIdx='8'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='작성일' ReferenceName='작성일' ReferenceIdx='9'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='조회수' ReferenceName='조회수' ReferenceIdx='10'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='제목' attr='fulltext' name2='제목 Src' attr2='src' name3='제목 Alt Text' attr3='alt' name4='제목 Url' attr4='href' /&gt;&lt;column name='증권사' attr='fulltext' /&gt;&lt;column name='첨부' attr='fulltext' name2='첨부 Src' attr2='src' name3='첨부 Alt Text' attr3='alt' name4='첨부 Url' attr4='href' /&gt;&lt;column name='작성일' attr='fulltext' /&gt;&lt;column name='조회수' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_32" LimitExtractionTo="None" MaximumResults="0" Version="V3">
-                                                      <uix:NExtractData.Target>
-                                                        <uix:TargetAnchorable DesignTimeRectangle="630, 454, 595, 792" DesignTimeScaleFactor="1" FriendlyName="'투자정보 리포트게시판'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="c2e9a2db-0cab-470b-b2d1-f9875533248f" InformativeScreenshot="319702439f0222f8e7ce38c671f199b1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='투자정보 리포트 : 네이버페이 증권' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
-                                                      </uix:NExtractData.Target>
-                                                    </uix:NExtractData>
-                                                    <ui:FilterDataTable DataTable="[in_DT_2InvestInfo]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="387.2,162.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_39" OutputDataTable="[out_DT_2InvestInfo]" SelectColumnsMode="Remove">
-                                                      <ui:FilterDataTable.Filters>
-                                                        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                                                          <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
-                                                            <ui:FilterOperationArgument.Column>
-                                                              <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
-                                                            </ui:FilterOperationArgument.Column>
-                                                            <ui:FilterOperationArgument.Operand>
-                                                              <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
-                                                            </ui:FilterOperationArgument.Operand>
-                                                          </ui:FilterOperationArgument>
-                                                        </scg:List>
-                                                      </ui:FilterDataTable.Filters>
-                                                      <ui:FilterDataTable.SelectColumns>
-                                                        <scg:List x:TypeArguments="InArgument" Capacity="4">
-                                                          <x:Null />
-                                                        </scg:List>
-                                                      </ui:FilterDataTable.SelectColumns>
-                                                    </ui:FilterDataTable>
-                                                    <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="투자정보 창 닫기" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="CloseWindow_2" InformativeScreenshot="362616a75147677c0cda35593d329d44" WaitForReady="INTERACTIVE" />
-                                                  </Sequence>
-                                                </ActivityAction>
-                                              </uix:NApplicationCard.Body>
-                                              <uix:NApplicationCard.TargetApp>
-                                                <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAACxKAAAsSgF3enRNAAAAB3RJTUUH6AUQCh0aoaP7EAAABGBJREFUWEe1l9lvVVUUxldpZa5CsEydNGoKtJYypZRCaW1sWjQUolLaajDGqJHphbmRxPRBI+BAYkyBMKkvGnhRIbYPQFDCgwRKY8EKtzjF4Yk/QF1831lnc07LprTl3p38enrOXnuvb629zr77yD1boomkgyKwDuwDF8FN8F8I/+8EB8B6UAw4JpxkOC1w3MxJSsEecB38C/QeUFAv+AiUgyEKSaxxUWeDVvAX8DkaDP+Ad0AusLkHbIlm53we6AC+SYfDabAQmA9vi5wvAV3AN9H9cAVUS6LRIyLxhnPOyC8D3wTJoBuUAfN5u5lzrnk78A1MJlyOHBB33pyGKwvONyAV7IbPEbg6AUGB/Al8xqmAvlhrFBBED0Vew1TSFmQB/3CHuxbrUOmNXXubo/v+uP74fbx/YOiziALWgmiH61mt8uMqlev4//ILKudXqlxpUPmln6MbuL8U9l/FmGuNNu5nXGnPZ87e8ROeXUWf3XPHbKEA7u32kE72lqssmqryygyV+VkqeeNVqrNVDlWZDSPuhOOWuSqzJ6nko39ZnsrLBSoV01ROLFN5e75KTY5Kx7MmlJytN7vNsy0483mMAvjDYg9+heEOTCyikjNO5dWZKhufVCmGo6wxKochgtFvwLMxGTbhJky4/BGV0ekqY/HsWI3KEdix/7VZJpjzti5QGTlCZdfCeDYvUgB/yWIC5qhkwHB3Ge5fVPkNfFOnMnWsyspHVU4iwskQU5trqaYNU9v4uDn98mlbhnqIykV22pEFZqx0smX00vPxWrlJAVyLSMA2CODAcyssdXzO9WVK5zxsEaSnqWwtMftgHES8W2oZ+AICfn/JssD7NwtVPlmiMgoZ4rLFa4m+gz/uASfcDgETR6l8VWvRcwAjmAvnS6erHKy0dL+O9NIxRdKOmWMGKIBjmBVmjDW0ANEXTFD5LhZUTEC/JQhrgClmulk864uwfnC6BVF3QQyLLT9Tpa3C3gKKeuKhvgLIZ0+pPDjS5mMm+jonwRLwJNNXQBoGZKMIp2Hdp4PxD6g0PKZy4TmbmIVWgoyMw3NGSFsKysQ9a4A2XGe+lmVTrGZYR3cK6KQAHqNiAsIifA9r/cEiq3JG2I2Cc5sOJ2LktGH/p4iUr9/Hi1V+gEi3T3wNp1mjTXz06sU5TgE8w9lG5ASwyOj0DxSTS2dUuQbFuD5Chxzv7Hjl0jF7RyGQNvHxVns7KYAHyETwkJN8Xm2byrfP+FI2eLgTvjXPKj/a/eLQZzEEBD+LH97ucOnrH/FwcHP5+hJN+0HwY0QWg7+BzzAV0FcVcOeBIAs8vfqMU8H7IDyQsFkW8sAp4BuQTL4H+SB0zmYCCE9GPDj6BiaDHlAB4KshdO5aJAJH55SIoPM6YH68LRLBTJwB/wPfZEPlHAgjx3fBgC0SwaMzz4r3+2nGgrM1vyPtAzUTwQ9Lnl55ahrKxyk3Gb7nlSAZX8nBJIWgBRwHd/s8Z99OMMjPc5Fb330ZhFV6LmoAAAAASUVORK5CYII=" InformativeScreenshot="cc2236bcef0396c8d8fc36e38663f225.jpg" Selector="&lt;html app='chrome.exe' title='투자정보 리포트 : 네이버페이 증권' /&gt;" Title="투자정보 리포트 : 네이버페이 증권" Url="https://finance.naver.com/research/invest_list.naver" />
-                                              </uix:NApplicationCard.TargetApp>
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                            </uix:NApplicationCard>
-                                          </Sequence>
-                                          <Sequence DisplayName="종목정보 저장" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_304">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: 종목분석 리포트 : 네이버페이 증권" sap:VirtualizedContainerService.HintSize="483.2,839.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_28" InteractionMode="DebuggerApi" ScopeGuid="3668a351-7090-419f-8ffb-f001f2b43cca" Version="V2">
-                                              <uix:NApplicationCard.Body>
-                                                <ActivityAction x:TypeArguments="x:Object">
-                                                  <ActivityAction.Argument>
-                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                                  </ActivityAction.Argument>
-                                                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="449.6,622.4" sap2010:WorkflowViewState.IdRef="Sequence_298">
-                                                    <Sequence.Variables>
-                                                      <Variable x:TypeArguments="sd:DataTable" Name="FilteredDataTable2" />
-                                                    </Sequence.Variables>
-                                                    <sap:WorkflowViewStateService.ViewState>
-                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                      </scg:Dictionary>
-                                                    </sap:WorkflowViewStateService.ViewState>
-                                                    <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[in_DT_3CompanyList]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='종목명' ReferenceName='종목명' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='종목명 Url' ReferenceName='종목명 Url' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목' ReferenceName='제목' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Src' ReferenceName='제목 Src' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='제목 Alt Text' ReferenceName='제목 Alt Text' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='제목 Url' ReferenceName='제목 Url' ReferenceIdx='5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='증권사' ReferenceName='증권사' ReferenceIdx='6'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부' ReferenceName='첨부' ReferenceIdx='7'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Src' ReferenceName='첨부 Src' ReferenceIdx='8'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Alt Text' ReferenceName='첨부 Alt Text' ReferenceIdx='9'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='첨부 Url' ReferenceName='첨부 Url' ReferenceIdx='10'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='작성일' ReferenceName='작성일' ReferenceIdx='11'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='조회수' ReferenceName='조회수' ReferenceIdx='12'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='종목명' attr='fulltext' name2='종목명 Url' attr2='href' /&gt;&lt;column name='제목' attr='fulltext' name2='제목 Src' attr2='src' name3='제목 Alt Text' attr3='alt' name4='제목 Url' attr4='href' /&gt;&lt;column name='증권사' attr='fulltext' /&gt;&lt;column name='첨부' attr='fulltext' name2='첨부 Src' attr2='src' name3='첨부 Alt Text' attr3='alt' name4='첨부 Url' attr4='href' /&gt;&lt;column name='작성일' attr='fulltext' /&gt;&lt;column name='조회수' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="387.2,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_33" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="3668a351-7090-419f-8ffb-f001f2b43cca" Version="V3">
-                                                      <uix:NExtractData.Target>
-                                                        <uix:TargetAnchorable DesignTimeRectangle="158, 446, 595, 792" DesignTimeScaleFactor="1" FriendlyName="'종목분석 리포트게시판'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="dc1e12ef-6326-4d2e-8c7a-b14509d0121b" InformativeScreenshot="fb339ebc5623950f38b2cf4af42c616d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='종목분석 리포트 : 네이버페이 증권' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
-                                                      </uix:NExtractData.Target>
-                                                    </uix:NExtractData>
-                                                    <ui:FilterDataTable DataTable="[in_DT_3CompanyList]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="387.2,162.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_40" OutputDataTable="[out_DT_3CompanyList]" SelectColumnsMode="Remove">
-                                                      <ui:FilterDataTable.Filters>
-                                                        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                                                          <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
-                                                            <ui:FilterOperationArgument.Column>
-                                                              <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
-                                                            </ui:FilterOperationArgument.Column>
-                                                            <ui:FilterOperationArgument.Operand>
-                                                              <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
-                                                            </ui:FilterOperationArgument.Operand>
-                                                          </ui:FilterOperationArgument>
-                                                        </scg:List>
-                                                      </ui:FilterDataTable.Filters>
-                                                      <ui:FilterDataTable.SelectColumns>
-                                                        <scg:List x:TypeArguments="InArgument" Capacity="4">
-                                                          <x:Null />
-                                                        </scg:List>
-                                                      </ui:FilterDataTable.SelectColumns>
-                                                    </ui:FilterDataTable>
-                                                    <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="종목정보 창 닫기" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="CloseWindow_3" InformativeScreenshot="126aaf4d996b56592039fa889229f8aa" WaitForReady="INTERACTIVE" />
-                                                  </Sequence>
-                                                </ActivityAction>
-                                              </uix:NApplicationCard.Body>
-                                              <uix:NApplicationCard.TargetApp>
-                                                <uix:TargetApp Area="1018, 75, 910, 1044" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAACxKAAAsSgF3enRNAAAAB3RJTUUH6AUQCh0aoaP7EAAABGBJREFUWEe1l9lvVVUUxldpZa5CsEydNGoKtJYypZRCaW1sWjQUolLaajDGqJHphbmRxPRBI+BAYkyBMKkvGnhRIbYPQFDCgwRKY8EKtzjF4Yk/QF1831lnc07LprTl3p38enrOXnuvb629zr77yD1boomkgyKwDuwDF8FN8F8I/+8EB8B6UAw4JpxkOC1w3MxJSsEecB38C/QeUFAv+AiUgyEKSaxxUWeDVvAX8DkaDP+Ad0AusLkHbIlm53we6AC+SYfDabAQmA9vi5wvAV3AN9H9cAVUS6LRIyLxhnPOyC8D3wTJoBuUAfN5u5lzrnk78A1MJlyOHBB33pyGKwvONyAV7IbPEbg6AUGB/Al8xqmAvlhrFBBED0Vew1TSFmQB/3CHuxbrUOmNXXubo/v+uP74fbx/YOiziALWgmiH61mt8uMqlev4//ILKudXqlxpUPmln6MbuL8U9l/FmGuNNu5nXGnPZ87e8ROeXUWf3XPHbKEA7u32kE72lqssmqryygyV+VkqeeNVqrNVDlWZDSPuhOOWuSqzJ6nko39ZnsrLBSoV01ROLFN5e75KTY5Kx7MmlJytN7vNsy0483mMAvjDYg9+heEOTCyikjNO5dWZKhufVCmGo6wxKochgtFvwLMxGTbhJky4/BGV0ekqY/HsWI3KEdix/7VZJpjzti5QGTlCZdfCeDYvUgB/yWIC5qhkwHB3Ge5fVPkNfFOnMnWsyspHVU4iwskQU5trqaYNU9v4uDn98mlbhnqIykV22pEFZqx0smX00vPxWrlJAVyLSMA2CODAcyssdXzO9WVK5zxsEaSnqWwtMftgHES8W2oZ+AICfn/JssD7NwtVPlmiMgoZ4rLFa4m+gz/uASfcDgETR6l8VWvRcwAjmAvnS6erHKy0dL+O9NIxRdKOmWMGKIBjmBVmjDW0ANEXTFD5LhZUTEC/JQhrgClmulk864uwfnC6BVF3QQyLLT9Tpa3C3gKKeuKhvgLIZ0+pPDjS5mMm+jonwRLwJNNXQBoGZKMIp2Hdp4PxD6g0PKZy4TmbmIVWgoyMw3NGSFsKysQ9a4A2XGe+lmVTrGZYR3cK6KQAHqNiAsIifA9r/cEiq3JG2I2Cc5sOJ2LktGH/p4iUr9/Hi1V+gEi3T3wNp1mjTXz06sU5TgE8w9lG5ASwyOj0DxSTS2dUuQbFuD5Chxzv7Hjl0jF7RyGQNvHxVns7KYAHyETwkJN8Xm2byrfP+FI2eLgTvjXPKj/a/eLQZzEEBD+LH97ucOnrH/FwcHP5+hJN+0HwY0QWg7+BzzAV0FcVcOeBIAs8vfqMU8H7IDyQsFkW8sAp4BuQTL4H+SB0zmYCCE9GPDj6BiaDHlAB4KshdO5aJAJH55SIoPM6YH68LRLBTJwB/wPfZEPlHAgjx3fBgC0SwaMzz4r3+2nGgrM1vyPtAzUTwQ9Lnl55ahrKxyk3Gb7nlSAZX8nBJIWgBRwHd/s8Z99OMMjPc5Fb330ZhFV6LmoAAAAASUVORK5CYII=" InformativeScreenshot="25af5a5574633aee63af36c35abfce57.jpg" Selector="&lt;html app='chrome.exe' title='종목분석 리포트 : 네이버페이 증권' /&gt;" Title="투자정보 리포트 : 네이버페이 증권" Url="https://finance.naver.com/research/company_list.naver" />
-                                              </uix:NApplicationCard.TargetApp>
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                            </uix:NApplicationCard>
-                                          </Sequence>
-                                        </Sequence>
-                                      </ActivityAction>
-                                    </uix:NApplicationCard.Body>
-                                    <uix:NApplicationCard.TargetApp>
-                                      <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAACxKAAAsSgF3enRNAAAAB3RJTUUH6AUQCh0aoaP7EAAABGBJREFUWEe1l9lvVVUUxldpZa5CsEydNGoKtJYypZRCaW1sWjQUolLaajDGqJHphbmRxPRBI+BAYkyBMKkvGnhRIbYPQFDCgwRKY8EKtzjF4Yk/QF1831lnc07LprTl3p38enrOXnuvb629zr77yD1boomkgyKwDuwDF8FN8F8I/+8EB8B6UAw4JpxkOC1w3MxJSsEecB38C/QeUFAv+AiUgyEKSaxxUWeDVvAX8DkaDP+Ad0AusLkHbIlm53we6AC+SYfDabAQmA9vi5wvAV3AN9H9cAVUS6LRIyLxhnPOyC8D3wTJoBuUAfN5u5lzrnk78A1MJlyOHBB33pyGKwvONyAV7IbPEbg6AUGB/Al8xqmAvlhrFBBED0Vew1TSFmQB/3CHuxbrUOmNXXubo/v+uP74fbx/YOiziALWgmiH61mt8uMqlev4//ILKudXqlxpUPmln6MbuL8U9l/FmGuNNu5nXGnPZ87e8ROeXUWf3XPHbKEA7u32kE72lqssmqryygyV+VkqeeNVqrNVDlWZDSPuhOOWuSqzJ6nko39ZnsrLBSoV01ROLFN5e75KTY5Kx7MmlJytN7vNsy0483mMAvjDYg9+heEOTCyikjNO5dWZKhufVCmGo6wxKochgtFvwLMxGTbhJky4/BGV0ekqY/HsWI3KEdix/7VZJpjzti5QGTlCZdfCeDYvUgB/yWIC5qhkwHB3Ge5fVPkNfFOnMnWsyspHVU4iwskQU5trqaYNU9v4uDn98mlbhnqIykV22pEFZqx0smX00vPxWrlJAVyLSMA2CODAcyssdXzO9WVK5zxsEaSnqWwtMftgHES8W2oZ+AICfn/JssD7NwtVPlmiMgoZ4rLFa4m+gz/uASfcDgETR6l8VWvRcwAjmAvnS6erHKy0dL+O9NIxRdKOmWMGKIBjmBVmjDW0ANEXTFD5LhZUTEC/JQhrgClmulk864uwfnC6BVF3QQyLLT9Tpa3C3gKKeuKhvgLIZ0+pPDjS5mMm+jonwRLwJNNXQBoGZKMIp2Hdp4PxD6g0PKZy4TmbmIVWgoyMw3NGSFsKysQ9a4A2XGe+lmVTrGZYR3cK6KQAHqNiAsIifA9r/cEiq3JG2I2Cc5sOJ2LktGH/p4iUr9/Hi1V+gEi3T3wNp1mjTXz06sU5TgE8w9lG5ASwyOj0DxSTS2dUuQbFuD5Chxzv7Hjl0jF7RyGQNvHxVns7KYAHyETwkJN8Xm2byrfP+FI2eLgTvjXPKj/a/eLQZzEEBD+LH97ucOnrH/FwcHP5+hJN+0HwY0QWg7+BzzAV0FcVcOeBIAs8vfqMU8H7IDyQsFkW8sAp4BuQTL4H+SB0zmYCCE9GPDj6BiaDHlAB4KshdO5aJAJH55SIoPM6YH68LRLBTJwB/wPfZEPlHAgjx3fBgC0SwaMzz4r3+2nGgrM1vyPtAzUTwQ9Lnl55ahrKxyk3Gb7nlSAZX8nBJIWgBRwHd/s8Z99OMMjPc5Fb330ZhFV6LmoAAAAASUVORK5CYII=" InformativeScreenshot="d75c2e4bb5d36866959f2767c8b3e32d.jpg" Selector="&lt;html app='chrome.exe' title='시황정보 리포트 : 네이버페이 증권' /&gt;" Title="시황정보 리포트 : 네이버페이 증권" Url="https://finance.naver.com/research/market_info_list.naver" />
-                                    </uix:NApplicationCard.TargetApp>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </uix:NApplicationCard>
-                                </Sequence>
-                              </ActivityAction>
-                            </ui:OpenBrowser.Body>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="450,107" sap2010:WorkflowViewState.IdRef="Click_70" KeyModifiers="None" MouseButton="BTN_LEFT">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="3de0ad03b5e5e01121d1914eb7f0a0dc" Selector="&lt;html app='chrome.exe' title='네이버페이 증권' /&gt;&lt;webctrl aaname='리서치' class='tx' parentid='menu' tag='SPAN' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                          <Sequence DisplayName="시황정보 리포트 추출" sap:VirtualizedContainerService.HintSize="450,566" sap2010:WorkflowViewState.IdRef="Sequence_331">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                          </ui:OpenBrowser>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_71" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="d02c6e78449b81ab147f40b6254b0eaf" Selector="&lt;html app='chrome.exe' title='리서치 : 네이버페이 증권' /&gt;&lt;webctrl parentid='newarea' tag='STRONG' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_1MarketReport]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='제목' attr='fulltext' name2='제목URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='증권사' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='작성일' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="True">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ad1a638c-eb63-474b-a64e-639d6eab51a0" InformativeScreenshot="80fd1588278906e3dc0c2b81a45bb54e" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <ui:FilterDataTable DataTable="[DT_1MarketReport]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_41" OutputDataTable="[DT_1MarketReport]" SelectColumnsMode="Remove">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                    <ui:FilterOperationArgument.Operand>
+                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                    </ui:FilterOperationArgument.Operand>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                            </ui:FilterDataTable>
+                          </Sequence>
+                          <Sequence DisplayName="투자정보 리포트 추출" sap:VirtualizedContainerService.HintSize="450,566" sap2010:WorkflowViewState.IdRef="Sequence_333">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_72" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="2680b68b42eb84eeb8493d2f25be73cb" Selector="&lt;html app='chrome.exe' title='시황정보 리포트 : 네이버페이 증권' /&gt;&lt;webctrl idx='2' parentid='newarea' tag='STRONG' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_2InvestReport]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='제목' attr='fulltext' name2='제목URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='증권사' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='작성일' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100" SimulateClick="True">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d2a09197-86a9-4118-9cb4-1c4a4aa5b7cb" InformativeScreenshot="9729806c301eda8d8aa366f7cc530e66" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <ui:FilterDataTable DataTable="[DT_2InvestReport]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_44" OutputDataTable="[DT_2InvestReport]" SelectColumnsMode="Remove">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                    <ui:FilterOperationArgument.Operand>
+                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                    </ui:FilterOperationArgument.Operand>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                            </ui:FilterDataTable>
+                          </Sequence>
+                          <Sequence DisplayName="종목분석 저장" sap:VirtualizedContainerService.HintSize="450,566" sap2010:WorkflowViewState.IdRef="Sequence_334">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_73" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="4b0c89a5c4d4c77c27c57729a21ab5c9" Selector="&lt;html app='chrome.exe' title='투자정보 리포트 : 네이버페이 증권' /&gt;&lt;webctrl idx='3' parentid='newarea' tag='STRONG' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_3CompanyReport]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='종목명' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='제목' attr='fulltext' name2='제목URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='증권사' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='작성일' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100" SimulateClick="True">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="de55b5dc-cc93-4954-86d5-f7920e039e0a" InformativeScreenshot="11b987fe7256746b173a5ec82ec46013" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <ui:FilterDataTable DataTable="[DT_3CompanyReport]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_45" OutputDataTable="[DT_3CompanyReport]" SelectColumnsMode="Remove">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                    <ui:FilterOperationArgument.Operand>
+                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                    </ui:FilterOperationArgument.Operand>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                            </ui:FilterDataTable>
+                          </Sequence>
+                          <Sequence DisplayName="산업분석 리포트 추출" sap:VirtualizedContainerService.HintSize="450,566" sap2010:WorkflowViewState.IdRef="Sequence_340">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_75" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="08b09e60f317e457d9dcc9d51110ccaa" Selector="&lt;html app='chrome.exe' title='종목분석 리포트 : 네이버페이 증권' /&gt;&lt;webctrl idx='4' parentid='newarea' tag='STRONG' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_4IndustryReport]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='분류' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='제목' attr='fulltext' name2='제목URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='증권사' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='작성일' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="ExtractData_5" MaxNumberOfResults="100" SimulateClick="True">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8b1e0d9b-336a-4683-b861-e5b4e6db2c74" InformativeScreenshot="cdba72aea9ee5942d6427f574ecc769f" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <ui:FilterDataTable DataTable="[DT_4IndustryReport]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_46" OutputDataTable="[DT_4IndustryReport]" SelectColumnsMode="Remove">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                    <ui:FilterOperationArgument.Operand>
+                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                    </ui:FilterOperationArgument.Operand>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                            </ui:FilterDataTable>
+                          </Sequence>
+                          <Sequence DisplayName="경제분석 리포트 추출" sap:VirtualizedContainerService.HintSize="450,566" sap2010:WorkflowViewState.IdRef="Sequence_343">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_76" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fcfc09d4-098f-41e8-974a-da1d95b07395" InformativeScreenshot="740ae3385e72c2b141210a8e52969a5b" Selector="&lt;html app='chrome.exe' title='산업분석 리포트 : 네이버페이 증권' /&gt;&lt;webctrl idx='5' parentid='newarea' tag='STRONG' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_5EconomyReport]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='제목' attr='fulltext' name2='제목URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='증권사' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='작성일' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="ExtractData_7" MaxNumberOfResults="100" SimulateClick="True">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fec766cb-daea-4399-9987-14c90c8f3b71" InformativeScreenshot="3cad52e1306ac9623c3602a5df04e9f9" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <ui:FilterDataTable DataTable="[DT_5EconomyReport]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="388,161" sap2010:WorkflowViewState.IdRef="FilterDataTable_47" OutputDataTable="[DT_5EconomyReport]" SelectColumnsMode="Remove">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                    <ui:FilterOperationArgument.Operand>
+                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                    </ui:FilterOperationArgument.Operand>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                            </ui:FilterDataTable>
+                          </Sequence>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="홈화면으로 이동" ClickType="CLICK_SINGLE" DisplayName="Click 'SVG'" sap:VirtualizedContainerService.HintSize="450,138" sap2010:WorkflowViewState.IdRef="Click_74" KeyModifiers="None" MouseButton="BTN_LEFT">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="421a3180-9225-4180-9145-a2e59cb04b22" InformativeScreenshot="45fc1a434764ae3612e8cfef19f8f00c" Selector="&lt;html app='chrome.exe' title='경제분석 리포트 : 네이버페이 증권' /&gt;&lt;webctrl aaname=' &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;&amp;#x9;' tag='svg' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Click>
                         </Sequence>
                       </ActivityAction>
-                    </ui:ForEach.Body>
-                  </ui:ForEach>
+                    </ui:BrowserScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:BrowserScope>
                 </Sequence>
                 <FlowStep.Next>
                   <x:Reference>__ReferenceID0</x:Reference>
@@ -965,7 +1099,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">20,146.8</av:Point>
             <av:Size x:Key="ShapeSize">200,83</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">120,230.8 120,280.8</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">120,229.8 120,280.8</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="코스피 데이터 추출" BrowserType="Chrome" DisplayName="Attach Browser '          Page'" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="BrowserScope_20" InformativeScreenshot="020daf8b3d54b14fe155b214abf2496f" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
@@ -1559,7 +1693,7 @@
       </FlowStep>
       <x:Reference>__ReferenceID3</x:Reference>
       <x:Reference>__ReferenceID4</x:Reference>
-      <FlowStep>
+      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">20,853.6</av:Point>
@@ -1595,7 +1729,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:CommentOut>
       </FlowStep>
-      <FlowStep>
+      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">20,953.6</av:Point>
@@ -1610,7 +1744,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </Sequence>
       </FlowStep>
-      <FlowStep x:Name="__ReferenceID5">
+      <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">290,129.5</av:Point>
@@ -1626,7 +1760,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,141" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;네이버 증권 이동&quot;]" />
-          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="국내증시-&gt;상승으로 이동" BrowserType="Chrome" DisplayName="Attach Browser 'NAVER Page'" sap:VirtualizedContainerService.HintSize="484,803" sap2010:WorkflowViewState.IdRef="BrowserScope_45" InformativeScreenshot="26ef5d0cf1a1f26deaf2f3e77612e0c9" Selector="&lt;html app='chrome.exe' title='네이버페이 증권' /&gt;">
+          <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="국내증시-&gt;상승으로 이동" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser 'NAVER Page'" sap:VirtualizedContainerService.HintSize="484,765" sap2010:WorkflowViewState.IdRef="BrowserScope_45">
             <ui:BrowserScope.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
