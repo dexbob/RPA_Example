@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,2051</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,1181</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>MainProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -129,13 +129,10 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. " DisplayName="메인 프로세스 - 오늘의 시황" sap:VirtualizedContainerService.HintSize="626,1986" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. " DisplayName="메인 프로세스 - 오늘의 시황" sap:VirtualizedContainerService.HintSize="548,1116" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataRow" Name="DR_Vendor" />
-      <Variable x:TypeArguments="x:String" Name="Str_Year" />
-      <Variable x:TypeArguments="x:String" Name="Str_ConfirmationID" />
-      <Variable x:TypeArguments="x:String" Name="Str_YearlyReportPath" />
-      <Variable x:TypeArguments="x:String" Name="Str_OutputPath" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_ItemNews" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_DartData" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -143,72 +140,99 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
-    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_TransactionItem.ItemArray.Select(Function(item) item.ToString))]" />
-    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" DisplayName="If 오케스트레이터의 저장소(Storage Buckets)명이 존재하면 저장" sap:VirtualizedContainerService.HintSize="564,1482" sap2010:WorkflowViewState.IdRef="If_2">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="530,1300" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
+    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="486,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_TransactionItem.ItemArray.Select(Function(item) item.ToString))]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="503_Web_GetTodayNews - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\503_Web_GetTodayNews.xaml)" sap:VirtualizedContainerService.HintSize="486,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\503_Web_GetTodayNews.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_TransactionItem">[in_DR_TransactionItem]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ItemNews">[DT_ItemNews]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_DartData">[DT_DartData]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="103_Excel_InsertItemIssue - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\103_Excel_InsertItemIssue.xaml)" sap:VirtualizedContainerService.HintSize="486,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\103_Excel_InsertItemIssue.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_TransactionItem">[in_DR_TransactionItem]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ItemNews">[DT_ItemNews]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_DartData">[DT_DartData]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,242" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="450,163" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <TryCatch DisplayName="Try Catch 저장소 저장 에러 대응" sap:VirtualizedContainerService.HintSize="488,1212" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-            <TryCatch.Try>
-              <Sequence sap:VirtualizedContainerService.HintSize="450,691" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" DisplayName="If 오케스트레이터의 저장소(Storage Buckets)명이 존재하면 저장" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="If_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="530,1300" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="연간리포트 파일 저장" Destination="[Str_YearlyReportPath]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_3" Path="[Str_YearlyReportPath]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ucas:UploadStorageFile>
-                <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="" Destination="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_4" Path="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ucas:UploadStorageFile>
+                <TryCatch DisplayName="Try Catch 저장소 저장 에러 대응" sap:VirtualizedContainerService.HintSize="488,1212" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch.Try>
+                    <Sequence sap:VirtualizedContainerService.HintSize="450,691" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="연간리포트 파일 저장" Destination="[Str_YearlyReportPath]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_3" Path="[Str_YearlyReportPath]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ucas:UploadStorageFile>
+                      <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="" Destination="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" DisplayName="Upload Storage File 저장소 저장" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,270" sap2010:WorkflowViewState.IdRef="UploadStorageFile_4" Path="[in_Dic_Config(&quot;OutputPath&quot;).ToString]" StorageBucketName="[in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ucas:UploadStorageFile>
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <ui:LogMessage DisplayName="Log Message 저장소 저장 실패 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Storage Buckets 저장 실패 : &quot; + Exception.Message]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
               </Sequence>
-            </TryCatch.Try>
-            <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ActivityAction x:TypeArguments="s:Exception">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                  </ActivityAction.Argument>
-                  <ui:LogMessage DisplayName="Log Message 저장소 저장 실패 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Storage Buckets 저장 실패 : &quot; + Exception.Message]" />
-                </ActivityAction>
-              </Catch>
-            </TryCatch.Catches>
-          </TryCatch>
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
+            </If.Else>
+          </If>
         </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
-      </If.Else>
-    </If>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
   </Sequence>
 </Activity>
