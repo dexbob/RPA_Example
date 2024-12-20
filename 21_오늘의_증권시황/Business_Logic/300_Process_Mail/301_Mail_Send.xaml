@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1234,2678</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>616,3240</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>301_Mail_Send_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -133,7 +133,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용, 첨부파일&#xA;&#xA;첨부파일이 없으면 내용도 없으므로 처리없음 내용으로 메일 송신" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="603,2613" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="메일 송신용 입력 정보&#xA;- 로그인ID, 로그인PW&#xA;- 송신서버, 포트번호&#xA;- 송신자 메일주소, 송신자명&#xA;- 수신자 메일주소, 참조자 메일주소, 숨은참조자 메일주소&#xA;- 제목, 내용, 첨부파일&#xA;&#xA;첨부파일이 없으면 내용도 없으므로 처리없음 내용으로 메일 송신" DisplayName="메일 송신" sap:VirtualizedContainerService.HintSize="626,3175" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="계정관리명 변수" Name="Str_CredentialName" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="송신서버 변수" Name="Str_SendServer" />
@@ -157,7 +157,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Mail_Send]&quot;]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Mail_Send]&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -165,7 +165,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence sap2010:Annotation.AnnotationText="메일 송신에 필요한 변수 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="541,1354" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence sap2010:Annotation.AnnotationText="메일 송신에 필요한 변수 초기화" DisplayName="초기화" sap:VirtualizedContainerService.HintSize="564,1354" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -297,7 +297,9 @@
                 <OutArgument x:TypeArguments="x:String">[Str_Title]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Title").ToString.Replace("{이름}", in_Dic_Config("Mail_FromName").toString)]</InArgument>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_Dic_Config("Mail_Title").ToString.Replace("{날짜}", 
+	CDate(in_Dic_Config("Today")).toString(in_Dic_Config("Type_Date").ToString)
+)]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_22">
@@ -305,10 +307,7 @@
                 <OutArgument x:TypeArguments="x:String">[Str_Body]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(in_Dic_Config.ContainsKey("OutputPath"), 
-	in_Dic_Config("Mail_Body").ToString.Replace("{연도}", in_Dic_Config("Year").ToString),
-	in_Dic_Config("Mail_Body_NoData").ToString.Replace("{연도}", in_Dic_Config("Year").ToString)
-)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[in_Dic_Config("Mail_Body").ToString]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
@@ -316,7 +315,7 @@
                 <OutArgument x:TypeArguments="s:String[]">[StrArr_AttachFiles]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="s:String[]">[If(in_Dic_Config.ContainsKey("OutputPath") , {in_Dic_Config("OutputPath").ToString}, Nothing)]</InArgument>
+                <InArgument x:TypeArguments="s:String[]">[{in_Dic_Config("Path_Output").ToString}]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
@@ -328,71 +327,100 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
     </Sequence>
-    <TryCatch sap2010:Annotation.AnnotationText="SMTP 메일 송신 처리" DisplayName="Try Catch 메일 송신 에러 대응" sap:VirtualizedContainerService.HintSize="541,795" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <TryCatch.Try>
-        <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="FilePaths" AttachmentsCollection="[StrArr_AttachFiles]" Bcc="[Str_Bcc]" Body="[Str_Body]" Cc="[Str_Cc]" DisplayName="Send SMTP Mail Message 메일 송신" Email="[Str_LoginID]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="334,243" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Port="[Int_SendPort]" Result="[Str_Result]" SecureConnection="Auto" SecurePassword="[SecStr_LoginPW]" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]" UseISConnection="False">
-          <ui:SendMail.AttachmentsBackup>
-            <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
-              <usau:BackupSlot.BackupValues>
-                <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
-                  <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[Str_AttachFilePath]</InArgument>
-                </scg:List>
-                <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="1">
-                  <x:Null />
-                </scg:List>
-              </usau:BackupSlot.BackupValues>
-            </usau:BackupSlot>
-          </ui:SendMail.AttachmentsBackup>
-          <ui:SendMail.ConnectionDetailsBackupSlot>
-            <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="LegacyConfiguration">
-              <usau:BackupSlot.BackupValues>
-                <scg:List x:TypeArguments="x:Object" x:Key="IntegrationService" Capacity="1">
-                  <x:Null />
-                </scg:List>
-              </usau:BackupSlot.BackupValues>
-            </usau:BackupSlot>
-          </ui:SendMail.ConnectionDetailsBackupSlot>
-          <ui:SendMail.Files>
-            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-              <InArgument x:TypeArguments="x:String">[Str_AttachFilePath]</InArgument>
-            </scg:List>
-          </ui:SendMail.Files>
+    <If Condition="[CBool(in_Dic_Config(&quot;Mail_SendOK&quot;)) AndAlso StrArr_AttachFiles.Length &gt; 0]" sap:VirtualizedContainerService.HintSize="564,1357" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="530,1175" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-        </ui:SendMail>
-      </TryCatch.Try>
-      <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ActivityAction x:TypeArguments="s:Exception">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-            </ActivityAction.Argument>
-            <ui:LogMessage DisplayName="Log Message 송신 에러 메시지 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[String.Format(&quot;{0} ({1}) : {2}&quot;, &quot;메일 송신 실패&quot;, Str_Result, Exception.Message)]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:LogMessage>
-          </ActivityAction>
-        </Catch>
-      </TryCatch.Catches>
-    </TryCatch>
+          <TryCatch sap2010:Annotation.AnnotationText="SMTP 메일 송신 처리" DisplayName="Try Catch 메일 송신 에러 대응" sap:VirtualizedContainerService.HintSize="488,1087" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="450,535" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:SendMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="FilePaths" AttachmentsCollection="[StrArr_AttachFiles]" Bcc="[Str_Bcc]" Body="[Str_Body]" Cc="[Str_Cc]" DisplayName="Send SMTP Mail Message 메일 송신" Email="[Str_LoginID]" EnableSSL="True" From="[Str_FromEmail]" sap:VirtualizedContainerService.HintSize="388,243" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Name="[Str_FromName]" Port="[Int_SendPort]" Result="[Str_Result]" SecureConnection="Auto" SecurePassword="[SecStr_LoginPW]" Server="[Str_SendServer]" Subject="[Str_Title]" To="[Str_To]" UseISConnection="False">
+                  <ui:SendMail.AttachmentsBackup>
+                    <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
+                          <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[Str_AttachFilePath]</InArgument>
+                        </scg:List>
+                        <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="1">
+                          <x:Null />
+                        </scg:List>
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </ui:SendMail.AttachmentsBackup>
+                  <ui:SendMail.ConnectionDetailsBackupSlot>
+                    <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="LegacyConfiguration">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:List x:TypeArguments="x:Object" x:Key="IntegrationService" Capacity="1">
+                          <x:Null />
+                        </scg:List>
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </ui:SendMail.ConnectionDetailsBackupSlot>
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                      <InArgument x:TypeArguments="x:String">[Str_AttachFilePath]</InArgument>
+                    </scg:List>
+                  </ui:SendMail.Files>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:SendMail>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;메일 송신 완료&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,210" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <ui:LogMessage DisplayName="Log Message 송신 에러 메시지 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[String.Format(&quot;{0} ({1}) : {2}&quot;, &quot;메일 송신 실패&quot;, Str_Result, Exception.Message)]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7" />
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>

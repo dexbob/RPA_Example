@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,2303</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>440,802</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>MainProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -129,7 +129,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. 입력 작업ID의 벤더 정보 추출&#xA;2. 해당 벤더의 TaxID로 월간리포트 다운로드&#xA;3. 월간리포트 병합하여 연간리포트 생성&#xA;4. 연간리포트 업로드하고 컨펌ID 추출&#xA;5. 컨펌ID를 이용하여 작업 상태를 완료로 업데이트&#xA;6. 출력 파일에 해당 작업 내용 쓰기" DisplayName="메인 프로세스 - 연도별 보고서 작성" sap:VirtualizedContainerService.HintSize="626,2238" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. " DisplayName="메인 프로세스 - 오늘의 시황" sap:VirtualizedContainerService.HintSize="450,737" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataRow" Name="DR_Vendor" />
       <Variable x:TypeArguments="x:String" Name="Str_Year" />
@@ -143,10 +143,16 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
-    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_WorkItem.ItemArray.Select(Function(item) item.ToString))]" />
-    <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="564,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;작업 완료 정보 : &quot; + String.Join(&quot;, &quot;, DR_Vendor.ItemArray.Select(Function(item) item.ToString))]" />
-    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" DisplayName="If 오케스트레이터의 저장소(Storage Buckets)명이 존재하면 저장" sap:VirtualizedContainerService.HintSize="564,1482" sap2010:WorkflowViewState.IdRef="If_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
+    <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_WorkItem.ItemArray.Select(Function(item) item.ToString))]" />
+    <ui:LogMessage DisplayName="Log Message 해당 작업 벤더 정보 로그 출력" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;작업 완료 정보 : &quot; + String.Join(&quot;, &quot;, DR_Vendor.ItemArray.Select(Function(item) item.ToString))]" />
+    <If Condition="[Not String.IsNullOrWhiteSpace(in_Dic_Config(&quot;OrchestratorStorageBuckets&quot;).ToString)]" DisplayName="If 오케스트레이터의 저장소(Storage Buckets)명이 존재하면 저장" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="530,1300" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>

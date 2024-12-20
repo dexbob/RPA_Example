@@ -2,7 +2,7 @@
   <x:Members>
     <x:Property Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1235,3551</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>593,3551</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -231,7 +231,7 @@
                 <OutArgument x:TypeArguments="x:String">[Str_NavigateUrl]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("URL_Finance_World").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">["https://finance.naver.com/world/"]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
@@ -341,7 +341,7 @@
                 <OutArgument x:TypeArguments="x:String">[Str_NavigateUrl]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[in_Dic_Config("URL_Finance_MarketIndex").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">["https://finance.naver.com/marketindex/"]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>

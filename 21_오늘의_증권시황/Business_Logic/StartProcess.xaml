@@ -134,7 +134,7 @@
               <OutArgument x:TypeArguments="x:Object">[in_Dic_Config("Today")]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="s:DateTime" xml:space="preserve">[If (CInt(Now.ToString("HH")) &lt; 6, Now.AddDays(-1),	Now)]</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" xml:space="preserve">[If (CInt(Now.ToString("HH")) &lt; 7, Now.AddDays(-1),	Now)]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
