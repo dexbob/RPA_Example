@@ -201,7 +201,7 @@
             <av:Size x:Key="ShapeSize">200,214</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="엑셀 입력&#xA;-코스피,&#xA;-코스닥,&#xA;-업종별시세, &#xA;-실시간뉴스, &#xA;-리포트3개&#xA;---시황정보&#xA;---투자정보&#xA;---종목분석 &#xA;" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="582,2085" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+        <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="엑셀 입력&#xA;-코스피,&#xA;-코스닥,&#xA;-업종별시세, &#xA;-실시간뉴스, &#xA;-리포트3개&#xA;---시황정보&#xA;---투자정보&#xA;---종목분석 &#xA;" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="200,214" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
@@ -704,7 +704,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">120,794 120,824 390,824 390,918.6 420,918.6</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="시황정보,투자정보,종목분석" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="Sequence_310">
+                <Sequence sap2010:Annotation.AnnotationText="시황정보,투자정보,종목분석" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="780,1748" sap2010:WorkflowViewState.IdRef="Sequence_310">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1618,7 +1618,7 @@
             <av:PointCollection x:Key="ConnectorLocation">290,170 260,170 260,188.3 220,188.3</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="국내증시 화면으로 이동" sap:VirtualizedContainerService.HintSize="546,2972" sap2010:WorkflowViewState.IdRef="Sequence_325">
+        <Sequence DisplayName="국내증시 화면으로 이동" sap:VirtualizedContainerService.HintSize="200,81" sap2010:WorkflowViewState.IdRef="Sequence_325">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
