@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,3361</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,2355</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StartProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -115,7 +115,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,2105" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,2290" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_Home" />
     </Sequence.Variables>
@@ -206,6 +206,33 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="102_Excel_InsertMainNews - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml)" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="902_Sub_InsertSubSheets - 워크플로우 파일 호출 (Business_Logic\900_Process_Sub\902_Sub_InsertSubSheets.xaml)" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_InsertSubSheets.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Kospi" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Kosdaq" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_FinanceURL" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kospi" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kosdaq" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_FolderPath" />
+        <InArgument x:TypeArguments="x:String" x:Key="In_Str_PythonPath" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_PythonScriptFile" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_RealTimeNews" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_RealTimeNews" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Prospect" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Prospect" />
+        <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ReportURLs" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_UploadDate" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Upjjong" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Upjjong" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_1MarketInfo" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_1MarketInfo" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_2InvestInfo" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_2InvestInfo" />
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_3CompanyList" />
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_3CompanyList" />
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
