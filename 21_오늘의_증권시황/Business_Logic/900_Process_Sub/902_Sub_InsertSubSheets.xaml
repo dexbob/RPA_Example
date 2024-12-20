@@ -19,7 +19,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>783,1297</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1204,1297</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -700,11 +700,11 @@
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <av:Point x:Key="ShapeLocation">20,682</av:Point>
-                    <av:Size x:Key="ShapeSize">200,112</av:Size>
-                    <av:PointCollection x:Key="ConnectorLocation">120,794 120,824 390,824 390,918.6 420,918.6</av:PointCollection>
+                    <av:Size x:Key="ShapeSize">200,138</av:Size>
+                    <av:PointCollection x:Key="ConnectorLocation">120,820 120,850 390,850 390,918.6 420,918.6</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence sap2010:Annotation.AnnotationText="시황정보,투자정보,종목분석" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="608,3981" sap2010:WorkflowViewState.IdRef="Sequence_310">
+                <Sequence sap2010:Annotation.AnnotationText="오늘자 시황정보, 투자정보, 종목분석, 산업분석, 경제분석 리포트" DisplayName="리포트" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_310">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -713,29 +713,30 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="546,141" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;리포트 추출 시작&quot;]" />
-                  <Assign DisplayName="창 4개 띄우기 변수처리" sap:VirtualizedContainerService.HintSize="546,83" sap2010:WorkflowViewState.IdRef="Assign_36">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="s:String[]">[StrArr_ReportURLs]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[{"https://finance.naver.com/research/market_info_list.naver",
- "https://finance.naver.com/research/invest_list.naver",
- "https://finance.naver.com/research/company_list.naver"}]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="546,3535" sap2010:WorkflowViewState.IdRef="BrowserScope_47">
+                  <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[CType(in_Dic_Config(&quot;Browser&quot;), Browser)]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="546,3657" sap2010:WorkflowViewState.IdRef="BrowserScope_47">
                     <ui:BrowserScope.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,3426" sap2010:WorkflowViewState.IdRef="Sequence_329">
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,3548" sap2010:WorkflowViewState.IdRef="Sequence_329">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="Str_Today" />
+                          </Sequence.Variables>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="450,82" sap2010:WorkflowViewState.IdRef="Assign_37">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Str_Today]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[CDate(in_Dic_Config("Today")).ToString("yy.MM.dd")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="450,107" sap2010:WorkflowViewState.IdRef="Click_70" KeyModifiers="None" MouseButton="BTN_LEFT">
                             <ui:Click.CursorPosition>
                               <ui:CursorPosition Position="Center">
@@ -804,7 +805,7 @@
                                       <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
                                     </ui:FilterOperationArgument.Column>
                                     <ui:FilterOperationArgument.Operand>
-                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[Str_Today]</InArgument>
                                     </ui:FilterOperationArgument.Operand>
                                   </ui:FilterOperationArgument>
                                 </scg:List>
@@ -862,7 +863,7 @@
                                       <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
                                     </ui:FilterOperationArgument.Column>
                                     <ui:FilterOperationArgument.Operand>
-                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[Str_Today]</InArgument>
                                     </ui:FilterOperationArgument.Operand>
                                   </ui:FilterOperationArgument>
                                 </scg:List>
@@ -920,7 +921,7 @@
                                       <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
                                     </ui:FilterOperationArgument.Column>
                                     <ui:FilterOperationArgument.Operand>
-                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[Str_Today]</InArgument>
                                     </ui:FilterOperationArgument.Operand>
                                   </ui:FilterOperationArgument>
                                 </scg:List>
@@ -978,7 +979,7 @@
                                       <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
                                     </ui:FilterOperationArgument.Column>
                                     <ui:FilterOperationArgument.Operand>
-                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[Str_Today]</InArgument>
                                     </ui:FilterOperationArgument.Operand>
                                   </ui:FilterOperationArgument>
                                 </scg:List>
@@ -1036,7 +1037,7 @@
                                       <InArgument x:TypeArguments="x:String">["작성일"]</InArgument>
                                     </ui:FilterOperationArgument.Column>
                                     <ui:FilterOperationArgument.Operand>
-                                      <InArgument x:TypeArguments="x:String">[Now.ToString("yy.MM.dd")]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[Str_Today]</InArgument>
                                     </ui:FilterOperationArgument.Operand>
                                   </ui:FilterOperationArgument>
                                 </scg:List>
@@ -1752,7 +1753,7 @@
             <av:PointCollection x:Key="ConnectorLocation">290,170 260,170 260,188.3 220,188.3</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="국내증시 화면으로 이동" sap:VirtualizedContainerService.HintSize="200,81" sap2010:WorkflowViewState.IdRef="Sequence_325">
+        <Sequence DisplayName="국내증시 화면으로 이동" sap:VirtualizedContainerService.HintSize="546,2903" sap2010:WorkflowViewState.IdRef="Sequence_325">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1809,13 +1810,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:BrowserScope>
-          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="주요 항목 선택&#xA;선택은 매우 잘 되나 이 다음과정인 [적용하기] 버튼이&#xA;Selector안잡혀서 초기화 과정에서&#xA;거래량,외국인비율,시가총액,영업이익,PER,ROE,PBR&#xA;적용해 놓고 요 프로세스 지우고 시작해야할 수 있음." BrowserType="Chrome" DisplayName="Attach Browser '          Page'" sap:VirtualizedContainerService.HintSize="484,1837" sap2010:WorkflowViewState.IdRef="BrowserScope_46" InformativeScreenshot="91a12d898ba861bf88eef29b17f8f6f7" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
+          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="주요 항목 선택&#xA;선택은 매우 잘 되나 이 다음과정인 [적용하기] 버튼이&#xA;Selector안잡혀서 초기화 과정에서&#xA;거래량,외국인비율,시가총액,영업이익,PER,ROE,PBR&#xA;적용해 놓고 요 프로세스 지우고 시작해야할 수 있음." BrowserType="Chrome" DisplayName="Attach Browser '          Page'" sap:VirtualizedContainerService.HintSize="484,1806" sap2010:WorkflowViewState.IdRef="BrowserScope_46" InformativeScreenshot="91a12d898ba861bf88eef29b17f8f6f7" Selector="&lt;html app='chrome.exe' title='상승 종목 : 네이버페이 증권' /&gt;">
             <ui:BrowserScope.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence sap2010:Annotation.AnnotationText="id-option번호와 aaname으로 Selector편집" DisplayName="항목상세조정 " sap:VirtualizedContainerService.HintSize="450,1603" sap2010:WorkflowViewState.IdRef="Sequence_327">
+                <Sequence sap2010:Annotation.AnnotationText="id-option번호와 aaname으로 Selector편집" DisplayName="항목상세조정 " sap:VirtualizedContainerService.HintSize="450,1572" sap2010:WorkflowViewState.IdRef="Sequence_327">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1908,7 +1909,7 @@
                       </ui:Target>
                     </ui:Check.Target>
                   </ui:Check>
-                  <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check 'INPUT  option24'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Check_32">
+                  <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check 'INPUT  option24'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Check_34">
                     <ui:Check.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5fba2bd9-e393-4271-9c24-1a71159198a1" InformativeScreenshot="51fe4865511752959d2bac961ec03d8c" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='option24' aaname='PBR' colName=' PER(배)' /&gt;" WaitForReady="COMPLETE">
                         <ui:Target.TimeoutMS>
@@ -1917,22 +1918,27 @@
                       </ui:Target>
                     </ui:Check.Target>
                   </ui:Check>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText=" 마우스 커서위치 Center 확인" ClickType="CLICK_UP" ContinueOnError="True" CursorMotionType="Instant" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_68" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_77" KeyModifiers="None" MouseButton="BTN_LEFT">
                     <ui:Click.CursorPosition>
-                      <ui:CursorPosition OffsetX="10" OffsetY="8" Position="Center" />
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
                     </ui:Click.CursorPosition>
                     <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="54a744c7-0b0c-425a-bad0-262e72e62a91" InformativeScreenshot="ea398edd84bfd731ca766a8168385c66" Selector="&lt;webctrl aaname='초기항 목으로' parentid='contentarea_left' tag='IMG' /&gt;&lt;nav up='2' /&gt;&lt;webctrl parentid='contentarea_left' tag='IMG' alt='적용하기' parentclass='item_btn' /&gt;" WaitForReady="COMPLETE">
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="95dbb088-e423-46f5-ae65-de747858169e" InformativeScreenshot="0eaf4a40078da56fd967d32fefd94651" Selector="&lt;webctrl parentid='contentarea_left' parentname='field_form' tag='IMG' /&gt;">
                         <ui:Target.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
                       </ui:Target>
                     </ui:Click.Target>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
                   </ui:Click>
                 </Sequence>
               </ActivityAction>
