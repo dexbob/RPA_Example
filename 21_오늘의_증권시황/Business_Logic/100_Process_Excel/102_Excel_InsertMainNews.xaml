@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>531,720</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,827</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_102_Excel_InsertMainNews_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -128,7 +128,7 @@
               <InArgument x:TypeArguments="scg:List(x:Object)" xml:space="preserve">[New List(Of Object) From {
 	Path.GetFullPath(in_Dic_Config("Path_Output").ToString),
 	in_Dic_Config("Sheet_MajorNews").ToString,
-	3,	3,
+	1,	1,
 	CDate(in_Dic_Config("Today")).ToString("yyyy-MM-dd")
 }]</InArgument>
             </ui:AssignOperation.Value>
