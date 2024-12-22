@@ -79,7 +79,7 @@ def insert_image_all_path(filePath, sheet, cellArr, imagePathArr, width, height)
             cell = ws.Range(cellArr[i])
             ws.Shapes.AddPicture(Filename=imagePathArr[i], 
                 LinkToFile=False, SaveWithDocument=True, 
-                Left=cell.Left+1, Top=cell.Top+1, 
+                Left=cell.Left+1, Top=cell.Top+2, 
                 Width=width, Height=height)
         wb.Save()
         result = '이미지가 정상적으로 삽입되었습니다.'
