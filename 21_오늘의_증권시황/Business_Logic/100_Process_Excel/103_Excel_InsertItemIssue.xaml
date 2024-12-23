@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_102_Excel_InsertMainNews" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_103_Excel_InsertItemIssue" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="[입력] 처리대상 작업아이템" Name="in_DR_TransactionItem" Type="InArgument(sd:DataRow)" />
@@ -8,8 +8,8 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,3046</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>_102_Excel_InsertMainNews_1</sap2010:WorkflowViewState.IdRef>
+  <sap:VirtualizedContainerService.HintSize>1235,3400</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_103_Excel_InsertItemIssue_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -116,7 +116,7 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_102_Excel_InsertMainNews" sap:VirtualizedContainerService.HintSize="702,2981" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 입력값&#xA;- 환경설정객체(Config)&#xA;- 트랜잭션아이템 (항목 : URL링크, 종목이름, 코스피 여부)&#xA;- 뉴스공시 데이터테이블&#xA;- 전자공시 데이터테이블&#xA;2. 뉴스공시와 전자공시를 결합하여 출력파일의 종목별이슈 시트에 맞는 형식으로 데이터테이블 생성&#xA;- 컬럼명 (순위, 지수명, 종목명, 출처, URL, 제목, 제공자)&#xA;3. 출력파일의 종목별이슈 시트에 해당 종목의 뉴스 데이터 추가 쓰기 저장" DisplayName="출력 엑셀파일의 종목별이슈 시트에 데이터 추가 " sap:VirtualizedContainerService.HintSize="702,3335" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="DT_Output" />
       <Variable x:TypeArguments="x:Int32" Name="Int_Count" />
@@ -126,10 +126,11 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="640,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_InsertItemIssue]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="640,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="트랜잭션 데이터에서 종목명과 지수명(코스피, 코스닥) 설정" DisplayName="Multiple Assign 종목이름, 지수이름 설정" sap:VirtualizedContainerService.HintSize="640,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -150,63 +151,86 @@
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:BuildDataTable DataTable="[DT_Output]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="640,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;순위&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;지수명&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;종목명&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;출처&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;URL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;제목&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;제공자&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[Int_Count]" DataTable="[in_DT_ItemNews]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="640,460" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="출력파일의 종목별이슈에 입력할 데이터테이블&#xA;컬럼명 (순위, 지수명, 종목명, 출처, URL, 제목, 제공자)" DataTable="[DT_Output]" DisplayName="Build Data Table 테이터테이블 생성" sap:VirtualizedContainerService.HintSize="640,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;순위&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;지수명&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;종목명&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;출처&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;제목&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;제공자&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[Int_Count]" DataTable="[in_DT_ItemNews]" DisplayName="For Each Row in Data Table 뉴스공시 추출 설정" sap:VirtualizedContainerService.HintSize="640,491" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,305" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Int_Count+1, Str_IndexName, Str_ItemName, &quot;뉴스공시&quot;, &#xD;&#xA;&#x9;Row(&quot;제목URL&quot;).ToString, Row(&quot;제목&quot;).ToString, Row(&quot;정보제공&quot;).ToString&#xD;&#xA;}]" DataTable="[DT_Output]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="컬럼명 (순위, 지수명, 종목명, 출처, URL, 제목, 제공자)" ArrayRow="[New Object() {Int_Count+1, Str_IndexName, Str_ItemName, &quot;뉴스공시&quot;, &#xA;&#x9;Row(&quot;제목URL&quot;).ToString, Row(&quot;제목&quot;).ToString, Row(&quot;정보제공&quot;).ToString&#xA;}]" DataTable="[DT_Output]" DisplayName="Add Data Row 출력파일에 맞는 데이터 추가" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AddDataRow>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[Int_Count]" DataTable="[in_DT_DartData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="640,460" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[Int_Count]" DataTable="[in_DT_DartData]" DisplayName="For Each Row in Data Table 전자공시 추출 설정" sap:VirtualizedContainerService.HintSize="640,491" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,305" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Int_Count+1, Str_IndexName, Str_ItemName, &quot;전자공시&quot;, &#xA;&#x9;Row(&quot;보고서명URL&quot;).ToString, Row(&quot;보고서명&quot;).ToString, Row(&quot;제출인&quot;).ToString&#xA;}]" DataTable="[DT_Output]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="설정값 (순위, 지수명, 종목명, 출처, URL, 제목, 제공자)" ArrayRow="[New Object() {Int_Count+1, Str_IndexName, Str_ItemName, &quot;전자공시&quot;, &#xA;&#x9;Row(&quot;보고서명URL&quot;).ToString, Row(&quot;보고서명&quot;).ToString, Row(&quot;제출인&quot;).ToString&#xA;}]" DataTable="[DT_Output]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AddDataRow>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <If Condition="[DT_Output.RowCount &gt; 0]" DisplayName="If 추가할 데이터가 존재할 경우에만 엑셀에 쓰기 실행" sap:VirtualizedContainerService.HintSize="640,1402" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[DT_Output.RowCount &gt; 0]" DisplayName="If 추가할 데이터가 존재할 경우에만 엑셀에 쓰기 실행" sap:VirtualizedContainerService.HintSize="640,1489" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="606,1220" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence sap:VirtualizedContainerService.HintSize="606,1307" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="564,1132" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+          <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope 추출한 뉴스공시와 전자공시를 종목별이슈 시트에 출력" sap:VirtualizedContainerService.HintSize="564,1219" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
             <ueab:ExcelProcessScopeX.Body>
               <ActivityAction x:TypeArguments="ui:IExcelProcess">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                 </ActivityAction.Argument>
-                <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="530,1045" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+                <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Use Excel File 출력 엑셀파일 사용" sap:VirtualizedContainerService.HintSize="530,1132" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
                   <ueab:ExcelApplicationCard.Body>
                     <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="496,776" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="496,863" sap2010:WorkflowViewState.IdRef="Sequence_8">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Int32" Name="Int_NextRowNumber" />
                         </Sequence.Variables>
@@ -215,8 +239,14 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ueab:FindFirstLastDataRowX FirstRowIndex="{x:Null}" BlankRowsToSkip="1" ColumnName="종목명" ConfigureLastRowAs="FirstEmptyRow" DisplayName="Find First/Last Data Row" FirstRowOffset="0" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,308" sap2010:WorkflowViewState.IdRef="FindFirstLastDataRowX_1" LastRowIndex="[Int_NextRowNumber]" LastRowOffset="0" Range="[Excel.Sheet(in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString)]" VisibleRowsOnly="False" />
-                        <Assign sap2010:Annotation.AnnotationText="엑셀에 데이터가 없을 경우 다음 행번호가 0으로 출력되므로 처음 위치인 2를 설정 (헤더제외)" DisplayName="Assign 데이터가 없는 경우의 마지막 행번호 대응" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <ueab:FindFirstLastDataRowX FirstRowIndex="{x:Null}" sap2010:Annotation.AnnotationText="다음 행번호 추출&#xA;Write Range 를 사용하여 기존 엑셀 데이터에 영향주지 않고 출력하기 위해 기존 데이터의 다음 행 위치를 검색 반환&#xA;(Append Range 사용시 기존 엑셀 수식으로 인해 원하는 위치에 추가 할 수 없음)" BlankRowsToSkip="1" ColumnName="종목명" ConfigureLastRowAs="FirstEmptyRow" DisplayName="Find First/Last Data Row 다음 행번호 추출" FirstRowOffset="0" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,395" sap2010:WorkflowViewState.IdRef="FindFirstLastDataRowX_1" LastRowIndex="[Int_NextRowNumber]" LastRowOffset="0" Range="[Excel.Sheet(in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString)]" VisibleRowsOnly="False">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ueab:FindFirstLastDataRowX>
+                        <Assign sap2010:Annotation.AnnotationText="엑셀에 데이터가 없을 경우 다음 행번호가 0으로 반환되므로 머릿글 제외하고 처음 위치인 2를 설정" DisplayName="Assign 데이터가 없는 경우, 다음 행번호 초기값 설정" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_1">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Int32">[Int_NextRowNumber]</OutArgument>
                           </Assign.To>
@@ -229,7 +259,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString]" StartingCell="[&quot;A&quot; + Int_NextRowNumber.ToString]" />
+                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Write Range 엑셀에 종목별이슈 추가" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString]" StartingCell="[&quot;A&quot; + Int_NextRowNumber.ToString]" />
                         <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="434,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_2" />
                       </Sequence>
                     </ActivityAction>

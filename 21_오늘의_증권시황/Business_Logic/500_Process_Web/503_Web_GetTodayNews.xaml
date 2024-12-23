@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_501_Web_TakeScreenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_503_Web_GetTodayNews" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="[입력] 처리대상 작업아이템" Name="in_DR_TransactionItem" Type="InArgument(sd:DataRow)" />
@@ -9,7 +9,7 @@
     <x:Null />
   </VisualBasic.Settings>
   <sap:VirtualizedContainerService.HintSize>1235,4135</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>_501_Web_TakeScreenshot_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>_503_Web_GetTodayNews_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>

@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,983</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_101_Excel_InsertImages_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -84,7 +84,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="엑셀 이미지 저장" sap:VirtualizedContainerService.HintSize="541,624" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="파이썬을 이용해 임시 폴더에 저장된 이미지 파일을 출력 엑셀파일에 추가 저장&#xA;1. 입력값&#xA;- 환경설정객체(Config)&#xA;- 파이썬 메서드 호출용 파라미터 리스트&#xA;  - 출력 엑셀 파일 경로&#xA;  - 출력 엑셀 파일 대상 시트명 (대시보드)&#xA;  - 지정 셀 위치 배열&#xA;  - 절대경로로 만들기 위한 현재경로&#xA;  - 이미지 파일의 상대경로 배열&#xA;  - 이미지 너비&#xA;  - 이미지 높이&#xA;2. 뉴스공시와 전자공시를 결합하여 출력파일의 종목별이슈 시트에 맞는 형식으로 데이터테이블 생성&#xA;- 컬럼명 (순위, 지수명, 종목명, 출처, URL, 제목, 제공자)&#xA;3. 출력파일의 종목별이슈 시트에 해당 종목의 뉴스 데이터 추가 쓰기 저장" DisplayName="엑셀 이미지 저장" sap:VirtualizedContainerService.HintSize="541,918" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Str_PythonPath" />
       <Variable x:TypeArguments="x:String" Name="Str_PythonMethod" />
@@ -92,10 +92,11 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="479,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_InsertImages]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="파이썬 파일 경로 (Stocks.py)&#xA;파이썬 메소드 또는 함수 (insert_images_all_file) &#xA;- 임시파일에 저장된 이미지 파일을 해당 엑셀 파일의 지정 위치에 쓰기 저장" DisplayName="Multiple Assign 파이썬 호출을 위한 인수값 설정" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -116,8 +117,13 @@
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="801_Python_ExecuteNoReturn - 워크플로우 파일 호출 (Business_Logic\800_Process_Python\801_Python_ExecuteNoReturn.xaml)" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\800_Process_Python\801_Python_ExecuteNoReturn.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 파이썬 파일 실행 호출 " sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\800_Process_Python\801_Python_ExecuteNoReturn.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_PythonPath">[Str_PythonPath]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Str_MethodName">[Str_PythonMethod]</InArgument>

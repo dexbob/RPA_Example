@@ -10,7 +10,7 @@
     <x:Null />
   </VisualBasic.Settings>
   <sap:VirtualizedContainerService.HintSize>616,3240</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>301_Mail_Send_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>_301_Mail_Send_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>

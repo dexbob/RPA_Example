@@ -1,9 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_901_Sub_WorldScreenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_901_Sub_Screenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1204,3522</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <sap:VirtualizedContainerService.HintSize>1235,3522</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_901_Sub_Screenshot_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -158,7 +158,7 @@
           <InArgument x:TypeArguments="s:String[]">[New String() {"코스피", "코스닥", "코스피200"}]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="502_Web_TakeIndexChart - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="502_Web_TakeIndexChart - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
@@ -266,7 +266,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Dic_Parameters">[Dic_Parameters]</InArgument>
@@ -376,7 +376,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Dic_Parameters">[Dic_Parameters]</InArgument>
