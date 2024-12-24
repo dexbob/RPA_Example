@@ -259,7 +259,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Output]" DisplayName="Write Range 엑셀에 종목별이슈 추가" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString]" StartingCell="[&quot;A&quot; + Int_NextRowNumber.ToString]" />
+                        <ui:ExcelWriteRange AddHeaders="False" DataTable="[DT_Output]" DisplayName="Write Range 엑셀에 종목별이슈 추가" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_Dic_Config(&quot;Sheet_ItemIssue&quot;).ToString]" StartingCell="[&quot;A&quot; + Int_NextRowNumber.ToString]" />
                         <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="434,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_2" />
                       </Sequence>
                     </ActivityAction>
