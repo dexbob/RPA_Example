@@ -2,7 +2,7 @@
   <x:Members>
     <x:Property Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1235,3522</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,3486</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_901_Sub_Screenshot_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,7 +105,7 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="차트 이미지 추출 및 저장" sap:VirtualizedContainerService.HintSize="603,3457" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="국내증시 스크린샷 이미지 추출 및 저장&#xD;&#xA;해외증시 스크린샷 이미지 추출 및 저장&#xD;&#xA;시장지표 스크린샷 이미지 추출 및 저장" DisplayName="차트 이미지 추출 및 저장" sap:VirtualizedContainerService.HintSize="603,3421" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="StrArr_Names" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Dic_Parameters" />
@@ -119,10 +119,11 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Sub_WorldScreenshot]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="541,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Sub_Screenshot]&quot;]" />
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="이미지 너비, 이미지 높이 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="541,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
@@ -143,34 +144,39 @@
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <Sequence DisplayName="국내증시 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,869" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence DisplayName="국내증시 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,838" sap2010:WorkflowViewState.IdRef="Sequence_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="479,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign sap2010:Annotation.AnnotationText="추출 이미지명 배열 설정" DisplayName="Assign 국내증시 추출용 변수 설정" sap:VirtualizedContainerService.HintSize="479,113" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="s:String[]">[StrArr_Names]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="s:String[]">[New String() {"코스피", "코스닥", "코스피200"}]</InArgument>
         </Assign.Value>
-      </Assign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="502_Web_TakeIndexChart - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-          <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
-          <InArgument x:TypeArguments="s:String[]" x:Key="in_StrArr_Names">[StrArr_Names]</InArgument>
-        </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 국내증시 이미지 추출" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\502_Web_TakeIndexChart.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+          <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
+          <InArgument x:TypeArguments="s:String[]" x:Key="in_StrArr_Names">[StrArr_Names]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="국내증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign 파이썬 실행용 변수 설정" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
@@ -205,19 +211,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="101_Excel_InsertImages - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 엑셀 파일에 이미지 붙이기" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:List(x:Object)" x:Key="in_ObjLst_MethodParams">[ObjLst_MethodParams]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="해외증시 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,1007" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <Sequence DisplayName="해외증시 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,945" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -266,7 +267,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 해외증시 이미지 추출" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Dic_Parameters">[Dic_Parameters]</InArgument>
@@ -274,13 +275,8 @@
           <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_Str_NavigateUrl">[Str_NavigateUrl]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign 파이썬 실행용 변수 설정" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
@@ -315,19 +311,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="101_Excel_InsertImages - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 엑셀 파일에 이미지 붙이기" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:List(x:Object)" x:Key="in_ObjLst_MethodParams">[ObjLst_MethodParams]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <Sequence DisplayName="시장지표 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,1022" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence DisplayName="시장지표 스크린샷 이미지 추출 및 파일 저장" sap:VirtualizedContainerService.HintSize="541,991" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -376,7 +367,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="해외증시 화면에서 이미지 추출" DisplayName="501_Web_TakeChartImages - 워크플로우 파일 호출 (Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow 시장지표 이미지 추출" sap:VirtualizedContainerService.HintSize="479,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\501_Web_TakeChartImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Dic_Parameters">[Dic_Parameters]</InArgument>
@@ -384,13 +375,8 @@
           <OutArgument x:TypeArguments="s:String[]" x:Key="out_StrArr_ImagePaths">[StrArr_ImagePaths]</OutArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_Str_NavigateUrl">[Str_NavigateUrl]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:MultipleAssign sap2010:Annotation.AnnotationText="해외증시 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
+      <ui:MultipleAssign sap2010:Annotation.AnnotationText="시장지표 차트 이미지를 엑셀파일에 적용하기위한 변수 설정 &#xA;- 엑셀 셀 위치 설정 (추출명과 동일 개수)&#xA;- 파이썬 함수 호출 파라미터 설정" DisplayName="Multiple Assign 파이썬 실행용 변수 설정" sap:VirtualizedContainerService.HintSize="479,204" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
@@ -425,7 +411,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MultipleAssign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="101_Excel_InsertImages - 워크플로우 파일 호출 (Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml)" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="Invoke Workflow 엑셀 파일에 이미지 붙이기" sap:VirtualizedContainerService.HintSize="479,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\101_Excel_InsertImages.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <InArgument x:TypeArguments="scg:List(x:Object)" x:Key="in_ObjLst_MethodParams">[ObjLst_MethodParams]</InArgument>

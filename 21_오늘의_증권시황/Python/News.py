@@ -51,24 +51,23 @@ def get_news_dataframe(day):
     url = url_base + f'/news/mainnews.naver?date={day}'
     
     data = []
-    page_num = 1
+    page_num = 0
     while True:
+        page_num += 1
         html = requests.get(f'{url}&page={page_num}').text
         soup = BSoup(html, 'html.parser')
 
         for news in soup.find_all('li', 'block1'):
             subject = news.find('dd', 'articleSubject')
             title = subject.text.strip()
-            org_url = url_base + subject.a['href']
-            url = convert_url(org_url)
+            link_url = url_base + subject.a['href']
             summary = news.find('dd', 'articleSummary')
             content = summary.contents[0].strip()
             press = summary.find('span', 'press').text
             date = summary.find('span', 'wdate').text
-            data.append([title, url, content, press, date])
-            # print(title, org_url, url, content, press, date, sep='\n')
-
-        page_num += 1
+            data.append([title, convert_url(link_url), content, press, date])
+            # print(title, link_url, convert_url(link_url), content, press, date, sep='\n')
+        
         # 다음 페이지가 없으면 반복 종료
         if soup.select_one('.pgRR') is None:
             break
@@ -124,5 +123,5 @@ if __name__ == '__main__':
     # print(news_df)
     
     fileFolder = "C:\\Users\\Dexter\\Source\\ALPACO8\\RPA_Example\\21_오늘의_증권시황\\Data\\Output"
-    filePath = os.path.join(fileFolder, "Today_Stock_Information_2024-12-22.xlsx")
-    insert_news_file(filePath, '주요뉴스', 1, 1, '2024-12-22')
+    filePath = os.path.join(fileFolder, "Today_Stock_Information_2024-12-25.xlsx")
+    insert_news_file(filePath, '주요뉴스', 1, 1, '2024-12-25')

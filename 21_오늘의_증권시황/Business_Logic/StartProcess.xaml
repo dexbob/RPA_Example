@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,4445</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,4549</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StartProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -115,7 +115,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4380" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 폴더 초기화&#xA;2. 브라우저 열기&#xA;3. 차트 이미지 스크린샷 추출 저장&#xD;&#xA;4. 주요뉴스 추출 저장&#xD;&#xA;5. 시황정보(증시현황, 리서치 리포트) 추출 저장&#xA;6. 상승 종목 리스트 설정 (트랜잭션 최대개수만큼)" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4484" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_Home" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_Kospi" />
@@ -201,13 +201,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="시트별 처리" sap:VirtualizedContainerService.HintSize="510,657" sap2010:WorkflowViewState.IdRef="Sequence_18">
+    <Sequence DisplayName="시트별 처리" sap:VirtualizedContainerService.HintSize="510,771" sap2010:WorkflowViewState.IdRef="Sequence_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="스크린샷 저장" DisplayName="Invoke WorkFlow 차트 스크린샷 추출 저장" sap:VirtualizedContainerService.HintSize="388,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\901_Sub_Screenshot.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="국내증시, 해외증시, 시장지표 스크린샷 추출 및 엑셀파일 출력" DisplayName="Invoke WorkFlow 차트 스크린샷 추출 저장" sap:VirtualizedContainerService.HintSize="388,187" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\901_Sub_Screenshot.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
@@ -217,27 +217,27 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 주요뉴스 추출 저장" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="주요뉴스 추출 및 엑셀파일 출력" DisplayName="Invoke WorkFlow 주요뉴스 추출 저장" sap:VirtualizedContainerService.HintSize="388,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 지수, 업종, 리포트 추출 저장" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_InsertSubSheets.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="시황정보 추출 및 엑셀파일 출력&#xD;&#xA;- 증시현황 : 코스피, 코스닥, 업종별시세,&#xD;&#xA;- 리서치 리포트 : 시황정보, 투자정보, 종목분석, 산업분석, 경제분석" DisplayName="Invoke WorkFlow 시황정보 추출 저장" sap:VirtualizedContainerService.HintSize="388,217" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_TodayStockMarket.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_Str_FinanceURL" />
-          <InArgument x:TypeArguments="x:String" x:Key="In_Str_PythonPath" />
-          <InArgument x:TypeArguments="x:String" x:Key="in_Str_PythonScriptFile" />
-          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_RealTimeNews" />
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_RealTimeNews" />
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Prospect" />
-          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Prospect" />
-          <InArgument x:TypeArguments="x:String" x:Key="in_Str_UploadDate" />
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Upjjong" />
-          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Upjjong" />
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kospi">[DT_Kospi]</OutArgument>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kosdaq">[DT_Kosdaq]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
     </Sequence>
     <Sequence DisplayName="트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="510,1685" sap2010:WorkflowViewState.IdRef="Sequence_12">
@@ -284,7 +284,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명 Url&quot;).ToString, Row(&quot;종목명&quot;).ToString, TRUE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, TRUE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
@@ -306,7 +306,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명 Url&quot;).ToString, Row(&quot;종목명&quot;).ToString, FALSE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, FALSE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
