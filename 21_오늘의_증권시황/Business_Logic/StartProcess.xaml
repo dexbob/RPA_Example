@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,4294</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1235,4445</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StartProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -115,7 +115,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4229" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 브라우저 열기&#xA;2. 로그인&#xA;3. 작업 목록 리스트 추출&#xA;4. 작업 목록 리스트를 트랜잭션 최대개수만큼만 재설정" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4380" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_Home" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_Kospi" />
@@ -128,7 +128,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Start Process]&quot;]" />
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="오늘 날짜, 오전 6시 전에는 직전 날짜 설정 (yyyy-MM-dd) &#xD;&#xA;출력파일 설정 (파일명에 오늘 날짜 입력)" DisplayName="Multiple Assign 환경변수객체(Config)에 값 설정" sap:VirtualizedContainerService.HintSize="510,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="오늘 날짜, 오전 6시 전에는 직전 날짜 설정 (yyyy-MM-dd) &#xA;출력파일 설정 (파일명에 오늘 날짜 입력)" DisplayName="Multiple Assign 환경변수객체(Config)에 값 설정" sap:VirtualizedContainerService.HintSize="510,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
@@ -201,38 +201,45 @@
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
     </Sequence>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="스크린샷 저장" DisplayName="Invoke WorkFlow 차트 스크린샷 추출 저장" sap:VirtualizedContainerService.HintSize="510,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\901_Sub_Screenshot.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
+    <Sequence DisplayName="시트별 처리" sap:VirtualizedContainerService.HintSize="510,657" sap2010:WorkflowViewState.IdRef="Sequence_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 주요뉴스 추출 저장" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 지수, 업종, 리포트 추출 저장" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_InsertSubSheets.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Str_FinanceURL" />
-        <InArgument x:TypeArguments="x:String" x:Key="In_Str_PythonPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_Str_PythonScriptFile" />
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_RealTimeNews" />
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_RealTimeNews" />
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Prospect" />
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Prospect" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_Str_UploadDate" />
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Upjjong" />
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Upjjong" />
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kospi">[DT_Kospi]</OutArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kosdaq">[DT_Kosdaq]</OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="스크린샷 저장" DisplayName="Invoke WorkFlow 차트 스크린샷 추출 저장" sap:VirtualizedContainerService.HintSize="388,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\901_Sub_Screenshot.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 주요뉴스 추출 저장" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\102_Excel_InsertMainNews.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 지수, 업종, 리포트 추출 저장" sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_InsertSubSheets.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Str_FinanceURL" />
+          <InArgument x:TypeArguments="x:String" x:Key="In_Str_PythonPath" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_Str_PythonScriptFile" />
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_RealTimeNews" />
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_RealTimeNews" />
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Prospect" />
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Prospect" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_Str_UploadDate" />
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_Upjjong" />
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Upjjong" />
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kospi">[DT_Kospi]</OutArgument>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kosdaq">[DT_Kosdaq]</OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+    </Sequence>
     <Sequence DisplayName="트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="510,1685" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="Int_MaxNumber" />
@@ -256,7 +263,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:BuildDataTable sap2010:Annotation.AnnotationText="트랜잭션 데이터 설정할 데이터테이블 생성&#xD;&#xA;컬럼명 (Link, Name, IsKospi)&#xD;&#xA;- Link : 해당 종목의 URL 주소&#xD;&#xA;- Name : 해당 종목 이름&#xD;&#xA;- IsKospi : 코스피 여부 (True=코스피, False=코스닥)" DataTable="[out_DT_TransactionData]" DisplayName="Build Data Table 데이터테이블 생성" sap:VirtualizedContainerService.HintSize="434,147" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IsKospi&quot; msdata:Caption=&quot;&quot; type=&quot;xs:boolean&quot; default=&quot;false&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <ui:BuildDataTable sap2010:Annotation.AnnotationText="트랜잭션 데이터 설정할 데이터테이블 생성&#xA;컬럼명 (Link, Name, IsKospi)&#xA;- Link : 해당 종목의 URL 주소&#xA;- Name : 해당 종목 이름&#xA;- IsKospi : 코스피 여부 (True=코스피, False=코스닥)" DataTable="[out_DT_TransactionData]" DisplayName="Build Data Table 데이터테이블 생성" sap:VirtualizedContainerService.HintSize="434,147" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IsKospi&quot; msdata:Caption=&quot;&quot; type=&quot;xs:boolean&quot; default=&quot;false&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

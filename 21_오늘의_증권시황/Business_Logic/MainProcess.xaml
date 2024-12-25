@@ -132,7 +132,7 @@
   <Sequence sap2010:Annotation.AnnotationText="1. " DisplayName="메인 프로세스 - 오늘의 시황" sap:VirtualizedContainerService.HintSize="548,1173" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="DT_ItemNews" />
-      <Variable x:TypeArguments="sd:DataTable" Name="DT_DartData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_ItemDart" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -142,12 +142,12 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Business Main Process]&quot;]" />
     <ui:LogMessage DisplayName="Log Message 해당 작업 정보 로그 출력" sap:VirtualizedContainerService.HintSize="486,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;작업 정보 : &quot; + String.Join(&quot;, &quot;, in_DR_TransactionItem.ItemArray.Select(Function(item) item.ToString))]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="파이썬을 이용해 오늘날짜의 공시 추출&#xD;&#xA;- 뉴스공시&#xD;&#xA;- 전자공시" DisplayName="Invoke Workflow 오늘의 공시 추출" sap:VirtualizedContainerService.HintSize="486,202" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\503_Web_GetTodayNews.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="파이썬을 이용해 오늘날짜의 공시 추출&#xA;- 뉴스공시&#xA;- 전자공시" DisplayName="Invoke Workflow 오늘의 공시 추출" sap:VirtualizedContainerService.HintSize="486,202" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Business_Logic\500_Process_Web\503_Web_GetTodayNews.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_TransactionItem">[in_DR_TransactionItem]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ItemNews">[DT_ItemNews]</OutArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_DartData">[DT_DartData]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_ItemDart">[DT_ItemDart]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -160,7 +160,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DR_TransactionItem">[in_DR_TransactionItem]</InArgument>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ItemNews">[DT_ItemNews]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_DartData">[DT_DartData]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_DartData">[DT_ItemDart]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,242" sap2010:WorkflowViewState.IdRef="CommentOut_1">
