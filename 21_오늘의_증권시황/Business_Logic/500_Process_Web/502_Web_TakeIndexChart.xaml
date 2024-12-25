@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,2013</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1223,2210</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_502_Web_TakeIndexChart_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -87,7 +87,7 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="국내 증시 차트 이미지 추출 저장" sap:VirtualizedContainerService.HintSize="668,1948" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="국내 증시 차트 이미지 추출 저장" sap:VirtualizedContainerService.HintSize="668,2145" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="Brw_Home" />
       <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="StrLst_ImagePaths" />
@@ -99,7 +99,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="606,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Web_TakeIndexChart]&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="606,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="임시 저장 폴더 경로 설정&#xA;증권 홈 브라우저 객체 설정" DisplayName="Multiple Assign 환경설정객체(Config)로부터 값 추출" sap:VirtualizedContainerService.HintSize="606,189" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
@@ -120,14 +120,19 @@
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="606,1347" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser 증권 홈 브라우저 객체에 접근" sap:VirtualizedContainerService.HintSize="606,1471" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="572,1238" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="572,1362" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="Str_ImagePath" />
               <Variable x:TypeArguments="x:String" Name="Str_Name" />
@@ -138,27 +143,32 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Name" sap:VirtualizedContainerService.HintSize="510,1127" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_StrArr_Names]">
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Name 입력된 이름 배열 개수만큼 반복" sap:VirtualizedContainerService.HintSize="510,1251" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_StrArr_Names]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:String" Name="Name" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,991" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,1115" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign sap2010:Annotation.AnnotationText="이미지 파일을 저장할 경로 설정" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_5">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[Str_ImagePath]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">[Str_TempImagePath.Replace("{Name}", Name)]</InArgument>
                       </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" DisplayName="Hover 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Hover_2">
+                    <ui:Hover DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateHover="{x:Null}" sap2010:Annotation.AnnotationText="마우스 포인터 올리기" DisplayName="Hover 'LI'" sap:VirtualizedContainerService.HintSize="434,138" sap2010:WorkflowViewState.IdRef="Hover_2">
                       <ui:Hover.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -179,8 +189,13 @@
                           </ui:Target.WaitForReady>
                         </ui:Target>
                       </ui:Hover.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </ui:Hover>
-                    <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot 'LI'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[Img_Name]">
+                    <ui:TakeScreenshot WaitBefore="{x:Null}" sap2010:Annotation.AnnotationText="이미치 추출" DisplayName="Take Screenshot 'LI'" sap:VirtualizedContainerService.HintSize="434,138" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[Img_Name]">
                       <ui:TakeScreenshot.Target>
                         <ui:Target Element="{x:Null}" Id="7ee1abb9-77be-46de-9765-2206b94a2cc6" InformativeScreenshot="dab683e285aedd516ca6586150717daf" Selector="[string.Format(&quot;&lt;webctrl parentid='content' tag='DIV' innertext='*{0}*' visibleinnertext='{0}*' /&gt;&lt;webctrl parentid='content' tag='DIV' innertext='*{0}*' visibleinnertext='{0}*' /&gt;&quot;, Name)]">
                           <ui:Target.ClippingRegion>
@@ -194,10 +209,21 @@
                           </ui:Target.WaitForReady>
                         </ui:Target>
                       </ui:TakeScreenshot.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </ui:TakeScreenshot>
-                    <ui:SaveImage DisplayName="Save Image" FileName="[Str_ImagePath]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Img_Name]" />
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Str_ImagePath]" />
-                    <uasa:AppendItemToList x:TypeArguments="x:String" ItemIndex="{x:Null}" DisplayName="Append Item to List" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[Str_ImagePath]" List="[StrLst_ImagePaths]" />
+                    <ui:SaveImage DisplayName="Save Image 이미지 파일 저장" FileName="[Str_ImagePath]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Img_Name]" />
+                    <ui:LogMessage DisplayName="Log Message 이미지 경로 로그 출력" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[Str_ImagePath]" />
+                    <uasa:AppendItemToList x:TypeArguments="x:String" ItemIndex="{x:Null}" sap2010:Annotation.AnnotationText="이미지경로 리스트에 이미지경로 추가" DisplayName="Append Item to List" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[Str_ImagePath]" List="[StrLst_ImagePaths]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uasa:AppendItemToList>
                   </Sequence>
                 </ActivityAction>
               </ui:ForEach.Body>
@@ -218,13 +244,18 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <Assign sap:VirtualizedContainerService.HintSize="606,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap2010:Annotation.AnnotationText="이미지경로 리스트를 반환값에 설정 " sap:VirtualizedContainerService.HintSize="606,113" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[out_StrArr_ImagePaths]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="s:String[]">[StrLst_ImagePaths.ToArray]</InArgument>
       </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </Assign>
   </Sequence>
 </Activity>

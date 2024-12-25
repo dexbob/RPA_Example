@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,5508</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1223,5784</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_504_Web_GetIndexList_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -99,7 +99,12 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 국내증시 상승 화면 이동 및 추출 항목 설정&#xA;2. 코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;3. 업종별 시세 화면 이동 및 데이터테이블 추출&#xA;4. 증권 홈 화면으로 이동" DisplayName="국내증시 증시현황 추출" sap:VirtualizedContainerService.HintSize="608,5443" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="1. 국내증시 상승 화면 이동 및 추출 항목 설정&#xA;2. 코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;3. 업종별 시세 화면 이동 및 데이터테이블 추출&#xA;4. 증권 홈 화면으로 이동" DisplayName="국내증시 증시현황 추출" sap:VirtualizedContainerService.HintSize="630,5719" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="Brw_Home" />
     </Sequence.Variables>
@@ -109,8 +114,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="546,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Web_GetStockMarket]&quot;]" />
-    <Assign DisplayName="Assign 증권 홈 브라우저 객체" sap:VirtualizedContainerService.HintSize="546,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Web_GetStockMarket]&quot;]" />
+    <Assign DisplayName="Assign 증권 홈 브라우저 객체" sap:VirtualizedContainerService.HintSize="568,82" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="ui:Browser">[Brw_Home]</OutArgument>
       </Assign.To>
@@ -118,26 +123,26 @@
         <InArgument x:TypeArguments="ui:Browser">[CType(in_Dic_Config("Browser"), Browser)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;업종별 시세 화면 이동 및 데이터테이블 추출&#xA;증권 홈 화면으로 이동" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser 화면 이동 및 데이터 추출" sap:VirtualizedContainerService.HintSize="546,4957" sap2010:WorkflowViewState.IdRef="BrowserScope_3" UiBrowser="[Brw_Home]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;업종별 시세 화면 이동 및 데이터테이블 추출&#xA;증권 홈 화면으로 이동" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser 화면 이동 및 데이터 추출" sap:VirtualizedContainerService.HintSize="568,5233" sap2010:WorkflowViewState.IdRef="BrowserScope_3" UiBrowser="[Brw_Home]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="512,4776" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="534,5052" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;- 설정항목 : 거래량, 시가총액(억), 영업이익(억), 외국인비율, PER(배), ROE(%), PBR(배)" DisplayName="화면이동" sap:VirtualizedContainerService.HintSize="450,1164" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <Sequence sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;- 설정항목 : 거래량, 시가총액(억), 영업이익(억), 외국인비율, PER(배), ROE(%), PBR(배)" DisplayName="화면이동" sap:VirtualizedContainerService.HintSize="472,1440" sap2010:WorkflowViewState.IdRef="Sequence_16">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 화면으로 이동" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 화면으로 이동" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -164,7 +169,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="상승 리스트 화면으로 이동" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /sise/sise_rise.naver'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="상승 리스트 화면으로 이동" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /sise/sise_rise.naver'" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -191,7 +196,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="추출 항목 설정 초기화" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="추출 항목 설정 초기화" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -218,7 +223,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="항목번호로 항목 재설정&#xA;제거 : 매수호가, 매도호가, 매수총잔량, 매도총잔량 (2, 8, 14, 20)&#xA;추가 : 시가총액, 영업이익, 외국인비율, PBR (4, 5, 15, 24)" DisplayName="For Each 항목번호로 반목" sap:VirtualizedContainerService.HintSize="388,154" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[New String() {&quot;2&quot;, &quot;4&quot;, &quot;5&quot;, &quot;8&quot;, &quot;14&quot;, &quot;15&quot;, &quot;20&quot;, &quot;24&quot;}]">
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="항목번호로 항목 재설정&#xA;제거 : 매수호가, 매도호가, 매수총잔량, 매도총잔량 (2, 8, 14, 20)&#xA;추가 : 시가총액, 영업이익, 외국인비율, PBR (4, 5, 15, 24)" DisplayName="For Each 항목번호로 반목" sap:VirtualizedContainerService.HintSize="410,430" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[New String() {&quot;2&quot;, &quot;4&quot;, &quot;5&quot;, &quot;8&quot;, &quot;14&quot;, &quot;15&quot;, &quot;20&quot;, &quot;24&quot;}]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:String">
                     <ActivityAction.Argument>
@@ -266,12 +271,12 @@
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ForEach>
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="재설정한 항목 적용" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="재설정한 항목 적용" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="410,138" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -298,9 +303,12 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_5" />
+              <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="Delay_5" />
             </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="코스피 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스피 상승" sap:VirtualizedContainerService.HintSize="450,1094" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <Sequence sap2010:Annotation.AnnotationText="코스피 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스피 상승" sap:VirtualizedContainerService.HintSize="472,1094" sap2010:WorkflowViewState.IdRef="Sequence_26">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="Str_Result" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -420,11 +428,12 @@
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;코스피 상승 데이터 추출 개수 : &quot; + out_DT_Kospi.RowCount.ToString]" />
               <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_6" />
             </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="코스닥 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스닥 상승" sap:VirtualizedContainerService.HintSize="450,1094" sap2010:WorkflowViewState.IdRef="Sequence_18">
+            <Sequence sap2010:Annotation.AnnotationText="코스닥 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스닥 상승" sap:VirtualizedContainerService.HintSize="472,1094" sap2010:WorkflowViewState.IdRef="Sequence_27">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="코스닥" ClickType="CLICK_SINGLE" DisplayName="Click 'A  ?sosok=1'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
@@ -540,11 +549,12 @@
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;코스닥 상승 데이터 추출 개수 : &quot; + out_DT_Kosdaq.RowCount.ToString]" />
               <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_7" />
             </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="업종별 시세 화면 이동 및 데이터테이블 추출&#xA;- 추출항목 : 업종명, 업종명URL, 전일대비, 등락현황 전체, 등락현황 상승, 등락현황 보합, 등락현황 하락, 등락그래프" DisplayName="업종별 시세" sap:VirtualizedContainerService.HintSize="450,1068" sap2010:WorkflowViewState.IdRef="Sequence_19">
+            <Sequence sap2010:Annotation.AnnotationText="업종별 시세 화면 이동 및 데이터테이블 추출&#xA;- 추출항목 : 업종명, 업종명URL, 전일대비, 등락현황 전체, 등락현황 상승, 등락현황 보합, 등락현황 하락, 등락그래프" DisplayName="업종별 시세" sap:VirtualizedContainerService.HintSize="472,1068" sap2010:WorkflowViewState.IdRef="Sequence_28">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="코스닥" ClickType="CLICK_SINGLE" DisplayName="Click 'A  ?sosok=1'" sap:VirtualizedContainerService.HintSize="388,138" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT">
@@ -612,7 +622,7 @@
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;업종별 시세 데이터 추출 개수 : &quot; + out_DT_Business.RowCount.ToString]" />
               <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_8" />
             </Sequence>
-            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To 증권 홈 화면으로 이동" sap:VirtualizedContainerService.HintSize="450,85" sap2010:WorkflowViewState.IdRef="NavigateTo_2" Url="[in_Dic_Config(&quot;URL_Finance_Home&quot;).ToString]" />
+            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To 증권 홈 화면으로 이동" sap:VirtualizedContainerService.HintSize="472,85" sap2010:WorkflowViewState.IdRef="NavigateTo_2" Url="[in_Dic_Config(&quot;URL_Finance_Home&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>

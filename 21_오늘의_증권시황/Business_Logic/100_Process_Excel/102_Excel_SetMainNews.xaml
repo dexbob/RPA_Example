@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,894</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1223,894</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_102_Excel_InsertMainNews_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,7 +101,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="479,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_InsertMainNews]&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="479,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_SetMainNews]&quot;]" />
     <ui:MultipleAssign sap2010:Annotation.AnnotationText="파이썬 파일 경로 (News.py)&#xA;파이썬 메소드 또는 함수 (insert_news_file) &#xA;- 주요뉴스를 추출해 해당 엑셀 파일에 쓰기 저장&#xA;파이썬 메서드 호출용 파라미터 리스트&#xA;- 출력 엑셀 파일 경로&#xA;- 출력 엑셀 파일 대상 시트명 (주요뉴스)&#xA;- 대상시트의 출력 위치 (1, 1)&#xA;- 오늘 날짜 (yyyy-MM-dd)" DisplayName="Multiple Assign 파이썬 호출을 위한 인수값 설정" sap:VirtualizedContainerService.HintSize="479,310" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">

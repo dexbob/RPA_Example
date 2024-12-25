@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,1252</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1223,1292</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EndProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -100,7 +100,7 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1. 로그아웃&#xA;2. 브라우저 닫기&#xA;3. 출력파일 첨부하여 메일 송신" DisplayName="종료 프로세스" sap:VirtualizedContainerService.HintSize="546,1187" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 로그아웃&#xA;2. 브라우저 닫기&#xA;3. 출력파일 첨부하여 메일 송신" DisplayName="종료 프로세스" sap:VirtualizedContainerService.HintSize="546,1227" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="브라우저 객체" Name="Brw_Home" />
     </Sequence.Variables>
@@ -124,7 +124,7 @@
         <InArgument x:TypeArguments="ui:Browser" x:Key="in_Brw_Chrome">[Brw_Home]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application 출력파일의 첫시트 활성화" sap:VirtualizedContainerService.HintSize="484,346" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" SensitivityLabel="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application 출력파일의 첫시트 활성화" sap:VirtualizedContainerService.HintSize="484,386" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" SensitivityOperation="None" Visible="False" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
