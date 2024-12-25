@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_509_Web_GetIndigoBook" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_506_Web_GetIndigoBook" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="[출력] 경제전망보고서명" Name="out_Str_FileName" Type="OutArgument(x:String)" />
@@ -7,8 +7,8 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1235,2941</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>_509_Web_GetIndigoBook_1</sap2010:WorkflowViewState.IdRef>
+  <sap:VirtualizedContainerService.HintSize>1223,2941</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_506_Web_GetIndigoBook_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -98,7 +98,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="경제전망 보고서 정보 추출&#xA;1. 한국은행 웹 사이트 열기&#xA;2. 경제전망보고서(Indigo Book) 추출 화면으로 이동&#xA;3. 최신 경제전망 보고서 링크 추출 (3개월에 한번씩 간행)&#xA;4. 한국은행 웹 사이트 닫기" DisplayName="_509_Web_GetIndigoBook" sap:VirtualizedContainerService.HintSize="713,2876" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="경제전망 보고서 정보 추출&#xA;1. 한국은행 웹 사이트 열기&#xA;2. 경제전망보고서(Indigo Book) 추출 화면으로 이동&#xA;3. 최신 경제전망 보고서 링크 추출 (3개월에 한번씩 간행)&#xA;4. 한국은행 웹 사이트 닫기" DisplayName="경제전망 보고서 추출" sap:VirtualizedContainerService.HintSize="713,2876" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="Brw_BOK" />
     </Sequence.Variables>
