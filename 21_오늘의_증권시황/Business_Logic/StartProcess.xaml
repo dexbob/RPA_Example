@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1223,4736</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1227,4937</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StartProcess_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -120,7 +120,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. 폴더 초기화&#xA;2. 브라우저 열기&#xA;3. 차트 이미지 스크린샷 추출 저장&#xD;&#xA;4. 주요뉴스 추출 저장&#xD;&#xA;5. 시황정보(증시현황, 리서치 리포트) 추출 저장&#xA;6. 상승 종목 리스트 설정 (트랜잭션 최대개수만큼)" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4671" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 폴더 초기화&#xA;2. 브라우저 열기&#xA;3. 차트 이미지 스크린샷 추출 저장&#xA;4. 주요뉴스 추출 저장&#xA;5. 시황정보(증시현황, 리서치 리포트) 추출 저장&#xA;6. 상승 종목 리스트 설정 (트랜잭션 최대개수만큼)" DisplayName="시작 프로세스" sap:VirtualizedContainerService.HintSize="572,4872" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" sap2010:Annotation.AnnotationText="대상 브라우저 객체" Name="Brw_Home" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_Kospi" />
@@ -206,7 +206,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="시트별 처리" sap:VirtualizedContainerService.HintSize="510,771" sap2010:WorkflowViewState.IdRef="Sequence_18">
+    <Sequence DisplayName="시트별 처리" sap:VirtualizedContainerService.HintSize="510,956" sap2010:WorkflowViewState.IdRef="Sequence_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -232,7 +232,12 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="시황정보 추출 및 엑셀파일 출력&#xD;&#xA;- 증시현황 : 코스피, 코스닥, 업종별시세,&#xD;&#xA;- 리서치 리포트 : 시황정보, 투자정보, 종목분석, 산업분석, 경제분석" DisplayName="Invoke WorkFlow 시황정보 추출 저장" sap:VirtualizedContainerService.HintSize="388,217" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_TodayStockMarket.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WorkFlow 오늘의 AI 뉴스 요약 " sap:VirtualizedContainerService.HintSize="388,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Business_Logic\100_Process_Excel\107_Excel_AddAINewsSummary.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="시황정보 추출 및 엑셀파일 출력&#xA;- 증시현황 : 코스피, 코스닥, 업종별시세,&#xA;- 리서치 리포트 : 시황정보, 투자정보, 종목분석, 산업분석, 경제분석" DisplayName="Invoke WorkFlow 시황정보 추출 저장" sap:VirtualizedContainerService.HintSize="388,217" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Business_Logic\900_Process_Sub\902_Sub_TodayStockMarket.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_Kospi">[DT_Kospi]</OutArgument>
@@ -254,7 +259,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BuildDataTable>
-    <Sequence DisplayName="트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="510,1685" sap2010:WorkflowViewState.IdRef="Sequence_22">
+    <Sequence DisplayName="트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="510,1697" sap2010:WorkflowViewState.IdRef="Sequence_22">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="Int_MaxNumber" />
         <Variable x:TypeArguments="x:String" Name="Str_Result" />
@@ -287,19 +292,19 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:BuildDataTable>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="코스피 데이터 중 상위 10개 추출해서 설정" DataTable="[DT_Kospi]" DisplayName="For Each Row in Data Table " sap:VirtualizedContainerService.HintSize="434,491" sap2010:WorkflowViewState.IdRef="ForEachRow_1" MaxIterations="[Int_MaxNumber]">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="코스피 데이터 중 상위 10개 추출해서 설정" DataTable="[DT_Kospi]" DisplayName="For Each Row in Data Table " sap:VirtualizedContainerService.HintSize="434,496" sap2010:WorkflowViewState.IdRef="ForEachRow_1" MaxIterations="[Int_MaxNumber]">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,277" sap2010:WorkflowViewState.IdRef="Sequence_16">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, TRUE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, TRUE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
@@ -309,19 +314,19 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachRow>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="코스닥 데이터 중 상위 10개 추출해서 설정" DataTable="[DT_Kosdaq]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,491" sap2010:WorkflowViewState.IdRef="ForEachRow_2" MaxIterations="[Int_MaxNumber]">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="코스닥 데이터 중 상위 10개 추출해서 설정" DataTable="[DT_Kosdaq]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,496" sap2010:WorkflowViewState.IdRef="ForEachRow_2" MaxIterations="[Int_MaxNumber]">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,277" sap2010:WorkflowViewState.IdRef="Sequence_17">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, FALSE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {Row(&quot;종목명URL&quot;).ToString, Row(&quot;종목명&quot;).ToString, FALSE}]" DataTable="[out_DT_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
@@ -331,7 +336,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachRow>
-      <ui:LogMessage sap2010:Annotation.AnnotationText="최대개수는 코스피10개, 코스닥10개로 전체 20개" DisplayName="Log Message 추출 데이터 개수 로그 출력" sap:VirtualizedContainerService.HintSize="434,172" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;추출 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 행&quot;]">
+      <ui:LogMessage sap2010:Annotation.AnnotationText="최대개수는 코스피10개, 코스닥10개로 전체 20개" DisplayName="Log Message 추출 데이터 개수 로그 출력" sap:VirtualizedContainerService.HintSize="434,174" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;추출 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 행&quot;]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -339,20 +344,20 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="트랙잭션 최대개수가 설정되어 있는 경우(0보다 클때)&#xA;작업 목록 리스트의 개수가 최대개수보다 크면 최대개수만큼만 설정" Condition="[CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;)) &gt; 0 AndAlso &#xA;out_DT_TransactionData.RowCount &gt; CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;))]" DisplayName="If 환경설정객체(Config)의 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="510,395" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="트랙잭션 최대개수가 설정되어 있는 경우(0보다 클때)&#xA;작업 목록 리스트의 개수가 최대개수보다 크면 최대개수만큼만 설정" Condition="[CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;)) &gt; 0 AndAlso &#xA;out_DT_TransactionData.RowCount &gt; CInt(in_Dic_Config(&quot;MaxTransactionNumber&quot;))]" DisplayName="If 환경설정객체(Config)의 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="510,399" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,171" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="476,172" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign 작업목록 리스트를 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Assign 작업목록 리스트를 트랜잭션 최대개수만큼만 재설정" sap:VirtualizedContainerService.HintSize="434,84" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[out_DT_TransactionData]</OutArgument>
             </Assign.To>

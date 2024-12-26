@@ -412,7 +412,7 @@
                         <InArgument x:TypeArguments="x:String">["인버스"]</InArgument>
                       </ui:FilterOperationArgument.Operand>
                     </ui:FilterOperationArgument>
-                    <ui:FilterOperationArgument BooleanOperator="Or" Operator="LT">
+                    <ui:FilterOperationArgument BooleanOperator="Or" Operator="CONTAINS">
                       <ui:FilterOperationArgument.Column>
                         <InArgument x:TypeArguments="x:String">["종목명"]</InArgument>
                       </ui:FilterOperationArgument.Column>
