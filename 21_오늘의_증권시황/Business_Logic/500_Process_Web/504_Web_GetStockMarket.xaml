@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1223,5784</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1227,5814</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_504_Web_GetStockMarket_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -104,7 +104,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="1. 국내증시 상승 화면 이동 및 추출 항목 설정&#xA;2. 코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;3. 업종별 시세 화면 이동 및 데이터테이블 추출&#xA;4. 증권 홈 화면으로 이동" DisplayName="국내증시 증시현황 추출" sap:VirtualizedContainerService.HintSize="630,5719" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="1. 국내증시 상승 화면 이동 및 추출 항목 설정&#xA;2. 코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;3. 업종별 시세 화면 이동 및 데이터테이블 추출&#xA;4. 증권 홈 화면으로 이동" DisplayName="국내증시 증시현황 추출" sap:VirtualizedContainerService.HintSize="630,5749" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="Brw_Home" />
     </Sequence.Variables>
@@ -123,13 +123,13 @@
         <InArgument x:TypeArguments="ui:Browser">[CType(in_Dic_Config("Browser"), Browser)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;업종별 시세 화면 이동 및 데이터테이블 추출&#xA;증권 홈 화면으로 이동" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser 화면 이동 및 데이터 추출" sap:VirtualizedContainerService.HintSize="568,5233" sap2010:WorkflowViewState.IdRef="BrowserScope_3" UiBrowser="[Brw_Home]">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="국내증시 상승 화면 이동 및 추출 항목 설정&#xA;코스피 상승 데이터테이블, 코스닥 상승 데이터테이블 추출&#xA;업종별 시세 화면 이동 및 데이터테이블 추출&#xA;증권 홈 화면으로 이동" Browser="[Brw_Home]" BrowserType="Chrome" DisplayName="Attach Browser 화면 이동 및 데이터 추출" sap:VirtualizedContainerService.HintSize="568,5263" sap2010:WorkflowViewState.IdRef="BrowserScope_3" UiBrowser="[Brw_Home]">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="534,5052" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="534,5082" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,7 +305,7 @@
               </ui:Click>
               <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="Delay_5" />
             </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="코스피 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스피 상승" sap:VirtualizedContainerService.HintSize="472,1094" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <Sequence sap2010:Annotation.AnnotationText="코스피 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스, 액티브 제거" DisplayName="코스피 상승" sap:VirtualizedContainerService.HintSize="472,1109" sap2010:WorkflowViewState.IdRef="Sequence_26">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="Str_Result" />
               </Sequence.Variables>
@@ -342,7 +342,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="KOSPI 데이터 추출&#xD;&#xA;컬럼명 (N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR)" ContinueOnError="True" DataTable="[out_DT_Kospi]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='N' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='종목명' attr='fulltext' name2='종목명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='현재가' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락률' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='거래량' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='시가총액' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;column exact='1' name='영업이익' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='8' /&gt;&lt;/column&gt;&lt;column exact='1' name='외국인비율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column exact='1' name='PER' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column exact='1' name='ROE' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='11' /&gt;&lt;/column&gt;&lt;column exact='1' name='PBR' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='12' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="200" SimulateClick="True">
+              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="KOSPI 데이터 추출&#xA;컬럼명 (N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR)" ContinueOnError="True" DataTable="[out_DT_Kospi]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='N' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='종목명' attr='fulltext' name2='종목명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='현재가' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락률' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='거래량' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='시가총액' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;column exact='1' name='영업이익' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='8' /&gt;&lt;/column&gt;&lt;column exact='1' name='외국인비율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column exact='1' name='PER' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column exact='1' name='ROE' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='11' /&gt;&lt;/column&gt;&lt;column exact='1' name='PBR' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='12' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="200" SimulateClick="True">
                 <ui:ExtractData.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f5ec0e0a-bcc0-4024-aa6b-6163b814db90" InformativeScreenshot="631465746817e4b0ca6567f8a823186e" Selector="&lt;webctrl parentid='contentarea' tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
                     <ui:Target.TimeoutMS>
@@ -356,7 +356,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ExtractData>
-              <ui:FilterDataTable sap2010:Annotation.AnnotationText="종목명에 다음이 포함되면 대상에서 제거&#xA;- 제거 목록 : ETN, ETF, 스팩, 선물, 레버리지, 인버스" DataTable="[out_DT_Kospi]" DisplayName="Filter Data Table 데이터테이블 필터링" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="388,203" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_DT_Kospi]" SelectColumnsMode="Remove">
+              <ui:FilterDataTable sap2010:Annotation.AnnotationText="종목명에 다음이 포함되면 대상에서 제거&#xA;- 제거 목록 : ETN, ETF, 스팩, 선물, 레버리지, 인버스, 액티브" DataTable="[out_DT_Kospi]" DisplayName="Filter Data Table 데이터테이블 필터링" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_DT_Kospi]" SelectColumnsMode="Remove">
                 <ui:FilterDataTable.Filters>
                   <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="8">
                     <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -412,6 +412,14 @@
                         <InArgument x:TypeArguments="x:String">["인버스"]</InArgument>
                       </ui:FilterOperationArgument.Operand>
                     </ui:FilterOperationArgument>
+                    <ui:FilterOperationArgument BooleanOperator="Or" Operator="LT">
+                      <ui:FilterOperationArgument.Column>
+                        <InArgument x:TypeArguments="x:String">["종목명"]</InArgument>
+                      </ui:FilterOperationArgument.Column>
+                      <ui:FilterOperationArgument.Operand>
+                        <InArgument x:TypeArguments="x:String">["액티브"]</InArgument>
+                      </ui:FilterOperationArgument.Operand>
+                    </ui:FilterOperationArgument>
                   </scg:List>
                 </ui:FilterDataTable.Filters>
                 <ui:FilterDataTable.SelectColumns>
@@ -428,7 +436,7 @@
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;코스피 상승 데이터 추출 개수 : &quot; + out_DT_Kospi.RowCount.ToString]" />
               <Delay DisplayName="Delay 대기1초" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Delay_6" />
             </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="코스닥 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스 제거" DisplayName="코스닥 상승" sap:VirtualizedContainerService.HintSize="472,1094" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <Sequence sap2010:Annotation.AnnotationText="코스닥 상승 데이터테이블 추출&#xA;- 추출항목 : N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR&#xA;- 종목 필터링 : ETN, ETF, 스팩, 선물, 레버리지, 인버스, 액티브 제거" DisplayName="코스닥 상승" sap:VirtualizedContainerService.HintSize="472,1109" sap2010:WorkflowViewState.IdRef="Sequence_27">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -463,7 +471,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="KOSDAQ 데이터 추출&#xD;&#xA;컬럼명 (N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR)" ContinueOnError="True" DataTable="[out_DT_Kosdaq]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='N' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='종목명' attr='fulltext' name2='종목명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='현재가' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락률' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='거래량' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='시가총액' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;column exact='1' name='영업이익' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='8' /&gt;&lt;/column&gt;&lt;column exact='1' name='외국인비율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column exact='1' name='PER' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column exact='1' name='ROE' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='11' /&gt;&lt;/column&gt;&lt;column exact='1' name='PBR' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='12' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="200" SimulateClick="True">
+              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="KOSDAQ 데이터 추출&#xA;컬럼명 (N, 종목명, 종목명URL, 현재가, 전일비, 등락률, 거래량, 시가총액, 영업이익, 외국인비율, PER, ROE, PBR)" ContinueOnError="True" DataTable="[out_DT_Kosdaq]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='N' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='종목명' attr='fulltext' name2='종목명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='현재가' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락률' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='거래량' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='시가총액' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;column exact='1' name='영업이익' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='8' /&gt;&lt;/column&gt;&lt;column exact='1' name='외국인비율' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column exact='1' name='PER' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column exact='1' name='ROE' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='11' /&gt;&lt;/column&gt;&lt;column exact='1' name='PBR' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='12' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="200" SimulateClick="True">
                 <ui:ExtractData.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fbf73977-914f-4503-a36a-1192efc7b455" InformativeScreenshot="9aced1655381c36adfaaa3f39181eda6" Selector="&lt;webctrl parentid='contentarea' tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
                     <ui:Target.TimeoutMS>
@@ -477,7 +485,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ExtractData>
-              <ui:FilterDataTable sap2010:Annotation.AnnotationText="종목명에 다음이 포함되면 대상에서 제거&#xA;- 제거 목록 : ETN, ETF, 스팩, 선물, 레버리지, 인버스" DataTable="[out_DT_Kosdaq]" DisplayName="Filter Data Table 데이터테이블 필터링" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="388,203" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_DT_Kosdaq]" SelectColumnsMode="Remove">
+              <ui:FilterDataTable sap2010:Annotation.AnnotationText="종목명에 다음이 포함되면 대상에서 제거&#xA;- 제거 목록 : ETN, ETF, 스팩, 선물, 레버리지, 인버스, 액티브" DataTable="[out_DT_Kosdaq]" DisplayName="Filter Data Table 데이터테이블 필터링" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_DT_Kosdaq]" SelectColumnsMode="Remove">
                 <ui:FilterDataTable.Filters>
                   <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="8">
                     <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -531,6 +539,14 @@
                       </ui:FilterOperationArgument.Column>
                       <ui:FilterOperationArgument.Operand>
                         <InArgument x:TypeArguments="x:String">["인버스"]</InArgument>
+                      </ui:FilterOperationArgument.Operand>
+                    </ui:FilterOperationArgument>
+                    <ui:FilterOperationArgument BooleanOperator="Or" Operator="CONTAINS">
+                      <ui:FilterOperationArgument.Column>
+                        <InArgument x:TypeArguments="x:String">["종목명"]</InArgument>
+                      </ui:FilterOperationArgument.Column>
+                      <ui:FilterOperationArgument.Operand>
+                        <InArgument x:TypeArguments="x:String">["액티브"]</InArgument>
                       </ui:FilterOperationArgument.Operand>
                     </ui:FilterOperationArgument>
                   </scg:List>
@@ -584,7 +600,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:Click>
-              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="업종별 시세 추출&#xD;&#xA;컬럼명 (업종명, 업종명URL, 전일대비, 등락현황 전체, 등락현황 상승, 등락현황 보합, 등락현황 하락, 등락그래프)" ContinueOnError="True" DataTable="[out_DT_Business]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='업종명' attr='fulltext' name2='업종명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일대비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 전체' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 상승' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 보합' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 하락' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락그래프' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="200" SimulateClick="True">
+              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="업종별 시세 추출&#xA;컬럼명 (업종명, 업종명URL, 전일대비, 등락현황 전체, 등락현황 상승, 등락현황 보합, 등락현황 하락, 등락그래프)" ContinueOnError="True" DataTable="[out_DT_Business]" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='업종명' attr='fulltext' name2='업종명URL' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='전일대비' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 전체' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 상승' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 보합' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='5' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락현황 하락' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='6' /&gt;&lt;/column&gt;&lt;column exact='1' name='등락그래프' attr='fulltext'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='7' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="388,179" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="200" SimulateClick="True">
                 <ui:ExtractData.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d283501a-03f9-4726-a3db-095b2dbc1ec9" InformativeScreenshot="2caf95bf9df423eb003613252d0e8b5e" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE">
                     <ui:Target.TimeoutMS>
