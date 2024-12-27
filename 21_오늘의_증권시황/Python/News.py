@@ -37,7 +37,7 @@ def convert_url(url):
     params = url.split('?')[-1]
     dic = dict(param.split('=') for param in params.split('&'))
     base_url = 'https://n.news.naver.com/mnews/article'
-    return f'{base_url}/{dic['office_id']}/{dic['article_id']}'
+    return f'{base_url}/{dic["office_id"]}/{dic["article_id"]}'
 
 
 
