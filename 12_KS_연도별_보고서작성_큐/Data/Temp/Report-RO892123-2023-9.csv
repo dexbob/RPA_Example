@@ -1,0 +1,5 @@
+InvoiceNumber,Item,Date,Amount,Tax,Total,Currency
+535495,"IT Support",2017-09-10,270526,54105.2,324631,RON
+153428,"Beverages and Catering",2017-09-05,173582,34716.4,208298,USD
+490083,"Concierge Services",2017-09-28,140640,28128,168768,RON
+471690,"Various paper supplies",2017-09-17,155352,31070.4,186422,CAD

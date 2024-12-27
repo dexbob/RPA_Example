@@ -1,0 +1,5 @@
+InvoiceNumber,Item,Amount,Tax,Total,Currency,Date
+851057,"Various paper supplies",38548,7709.6,46257.6,USD,2017-08-14
+339703,"Waste management services",252735,50547,303282,USD,2017-08-28
+677139,"Concierge Services",171704,34340.8,206045,EUR,2017-08-05
+706059,"Waste management services",242514,48502.8,291017,CAD,2017-08-27

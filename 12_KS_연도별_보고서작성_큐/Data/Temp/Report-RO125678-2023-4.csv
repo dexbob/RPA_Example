@@ -1,0 +1,6 @@
+InvoiceNumber,Item,Amount,Tax,Total,Currency,Date
+761659,"IT Support",65222,13044.4,78266.4,USD,2017-04-24
+193334,"Beverages and Catering",169926,33985.2,203911,USD,2017-04-07
+104433,"Beverages and Catering",24308,4861.6,29169.6,RON,2017-04-12
+120811,"IT Support",183820,36764,220584,RON,2017-04-28
+143967,"Waste management services",158358,31671.6,190030,USD,2017-04-15
