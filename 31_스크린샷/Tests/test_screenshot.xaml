@@ -1,0 +1,172 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="test_screenshot" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="test_screenshot_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="test_screenshot" sap:VirtualizedContainerService.HintSize="1010,1642" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NTakeScreenshot DisplayName="Take Screenshot '(교재)05_UiPath_RPA개발자_고급…'" FileName="Data\Output\screenshot.png" FileNameMode="DateTime" sap:VirtualizedContainerService.HintSize="703,265" sap2010:WorkflowViewState.IdRef="NTakeScreenshot_1" Version="V3">
+      <uix:NTakeScreenshot.Target>
+        <uix:TargetAnchorable BrowserURL="https://drive.google.com/file/d/1K_dv82I7TIv2TZ0nfni2u9jlGcdG3mD5/view" DesignTimeRectangle="-5, 193, 1200, 675" DesignTimeScaleFactor="1" FriendlyName="'DIV'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='8' isleaf='1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='ndfHFb-c4YZDc-cYSp0e-DARUcf-PLDbbf' isleaf='1' tag='DIV' aaname='' /&gt;" Guid="6da0f150-f15f-42fa-8525-079c160fca79" ImageBase64="" InformativeScreenshot="0b4f07695d720006fa1f87ac172a9f2f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+          <uix:TargetAnchorable.Anchors>
+            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+              <uix:Target DesignTimeRectangle="8, 129, 1188, 64" FriendlyName="'(교재)05_UiPath_RPA개발자_고급…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div' idx='11' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='ndfHFb-c4YZDc-Wrql6b-SmKAyb' tag='DIV' aaname='' check:innerText='(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf&amp;#xD;&amp;#xA; 공유' /&gt;" SearchSteps="FuzzySelector" />
+            </scg:List>
+          </uix:TargetAnchorable.Anchors>
+        </uix:TargetAnchorable>
+      </uix:NTakeScreenshot.Target>
+    </uix:NTakeScreenshot>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: (교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive" sap:VirtualizedContainerService.HintSize="703,1354" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="11769482-1764-4877-ac39-1d35382807ec" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="669,1114" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:RepeatNumberOfTimesX DisplayName="Repeat Number Of Times" sap:VirtualizedContainerService.HintSize="484,1054" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_2" NumberOfTimes="2" StartAt="2">
+              <ui:RepeatNumberOfTimesX.Body>
+                <ActivityAction x:TypeArguments="x:Int32">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItem" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,865" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[CurrentItem.ToString]" />
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into '2'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="416,250" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="11769482-1764-4877-ac39-1d35382807ec" Text="[CurrentItem.ToString + &quot;[k(Enter)]&quot;]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable BrowserURL="https://drive.google.com/file/d/1K_dv82I7TIv2TZ0nfni2u9jlGcdG3mD5/view" CvTextArea="485, 1567, 10, 13" CvTextArgument="2" CvType="Text" DesignTimeRectangle="473, 1566, 35, 17" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'2'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='ndfHFb-c4YZDc-DARUcf-NGme3c-YPqjbf' aaname='' /&gt;" Guid="a79db50b-cb12-436f-af16-45405cc710a5" InformativeScreenshot="aada71e3e0e16a3205ec70cbec83d619.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTakeScreenshot DisplayName="Take Screenshot 'DIV'" FileName="Data\Output\screenshot.png" FileNameMode="DateTime" sap:VirtualizedContainerService.HintSize="416,265" sap2010:WorkflowViewState.IdRef="NTakeScreenshot_2" ScopeIdentifier="11769482-1764-4877-ac39-1d35382807ec" Version="V3">
+                      <uix:NTakeScreenshot.Target>
+                        <uix:TargetAnchorable BrowserURL="https://drive.google.com/file/d/1K_dv82I7TIv2TZ0nfni2u9jlGcdG3mD5/view" DesignTimeRectangle="-5, 551, 1200, 675" DesignTimeScaleFactor="1" FriendlyName="'DIV'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='16' isleaf='1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='ndfHFb-c4YZDc-cYSp0e-DARUcf-PLDbbf' isleaf='1' tag='DIV' aaname='' /&gt;" Guid="7d1c614c-e36e-4123-93af-17ac55935d2a" ImageBase64="" InformativeScreenshot="9d5d9334ecbffe66ec8f26ea6686f37e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target DesignTimeRectangle="-5, 1242, 1200, 675" FriendlyName="'DIV'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='24' isleaf='1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='ndfHFb-c4YZDc-cYSp0e-DARUcf-PLDbbf' isleaf='1' tag='DIV' aaname='' /&gt;" SearchSteps="FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTakeScreenshot.Target>
+                    </uix:NTakeScreenshot>
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:RepeatNumberOfTimesX.Body>
+            </ui:RepeatNumberOfTimesX>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-448, -1608, 1216, 1616" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANWSURBVFhH7ZZdSFNhGMcPdKRRQt5IU0cNXVGmJO4sVwoeP2qFRbJNvPAiQXClEUmWVIZTp0EGRjdRokZKZxolZF801y6EuvCicob0pRcLNYetpjTdlLf3xXdzO+edbipd+Ycfu9nz/J6z55z3jNpIuNmuP5Qk1itZEtE1B2X4a+sf+UPNnsR7x8xQBJbj7ZNtL4CFEuOy9QnbXixijJqvkHlJYwZRjNA2JwJPH43ox6XrEzmnrYJygEhuO+4mySW1aWDk+RYXHgDM920qwuVri6K7QAzF094BENImVjBA1d0E79V7scFViHCb1Udu1LT7yxEpD06CmNol+W4DA6ZeifgDAI+ZrsFtVpdUo1rJl3vZdfuwb4D7HeIFgXwRl8sikuJ24Udh1LwjyRFyTj0bZ0gHmTf2gzkTHWwA4O6L4HC78KIwaotIYn+SW/Os355t/UwSB2CiM3Db0LKvuyCS6dLYSFIePVAwIBAKGYA3JI3brxwFp60nyPi4UrsLZOjqCEIBcBUluP3yUXL5UtScJxMA74/ruIRCeyZJeYzDXyEKlwQPY1RzJCGPcbQmXELBxhIo8B1CQTHTvqGJYTgtS5AJkHdpTuESX9AzT5QG4pm1bCa/sFgLS8Pm7/kyAgO4JCDo1IMCG09IoheXBIbh1CUEmQB0OOESQeD5X0gQCjHRKlyymJSe/Ci4eztJGACn6cAlQQMF/QIhHzM9HPBYop0ShYG40jrVElwSNO7XEQxRysdEs7iEomT6Vr2srs2eoO8AROpbxxQ3nz7ObphpD4XOuupeZ6V07M/5eCCgIt7tvLRzxHExoRjrKUpcas2L0Q2CYOwoHwaw8RwEfa7I0bqp36OqLDCZowjKxBEmCeth9BYaiob5Yi/M1Z8hy73cKm1ZIIkR9hyFCZuXEnP6g4okl537QhSshMrgWBg8kU8awBN49X6Bwpf+8lidFaTX/CIKQqGywiQYwJ7L3ME6YSRlQzIo9ngH2HthlNg4HN5odf4DOBxsyvLvg1jdxyYkjzszBDINzrB3z6ew+vvf8VwlHoApx5rgiS77FBmjs/anXp74QWq4GlpKmm2TOQceAZYN7T8BGiLL4LySbZjpzWqcsayF7IbpnsJrI2dDlm/k/4ai/gGbiTe9SZifzAAAAABJRU5ErkJggg==" InformativeScreenshot="6274fbeec695565e0c179db165a36f63.jpg" Selector="&lt;html app='chrome.exe' title='(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive' /&gt;" Title="(교재)05_UiPath_RPA개발자_고급과정(REFramework)_20210107_v1.pdf - Google Drive" Url="https://drive.google.com/file/d/1K_dv82I7TIv2TZ0nfni2u9jlGcdG3mD5/view" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
