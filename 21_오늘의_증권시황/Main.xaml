@@ -117,18 +117,18 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="제목 : 오늘의 증권시황 스크린샷&#xA;&#xA;개요 : 증권 사이트에서 오늘의 증권시황 스크린샷하여 파일 저장&#xA;&#xA;내용 : RE프레임워크 수정하여 사용하여 흐름 제어&#xA;1. 초기화 프로세스 - 환경설정객체(Config)생성 및 작업목록 리스트 추출을 위해 비지니스 시작 프로세스(StartProcess) 실행 &#xA;2. 트랜잭션 데이터 추출 - 작업목록 리스트에서 작업ID 추출, 이전작업에서 시스템에러시 해당 작업ID 재설정&#xA;3. 트랜잭션 프로세스 실행- 해당 트랜잭션 데이터(작업ID)를 이용하여 비지니스 메인 프로세스(MainProcess) 실행 및 실행 상태 변경&#xA;4. 종료 프로세스 - 시스템에러 최대개수 초과시 또는 트랜잭션 소진(작업목록 처리완료)시 비지니스 종료 프로세스(EndProcess) 실행&#xA;&#xA;상태 : 성공 상태, 비지니스에러 상태, 시스템에러 상태&#xA;1. 성공 상태 : 해당 트랜잭션 데이터의 정상 처리 진행&#xA;2. 비지니스에러 상태 : 해당 트랜잭션 데이터는 경고 로그 출력하고 미처리 후  다음 트랜잭션으로 진행&#xA;3. 시스템에러 상태 : 시스템에러 최대개수 초과하기 전에는 재시도횟수 만큼 해당 트랜잭션 재실행 진행, 최대개수 초과시 프로세스 종료" DisplayName="메인 프로세스" sap:VirtualizedContainerService.HintSize="966,1082" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="제목 : 오늘의 증권시황 스크린샷&#xA;&#xA;개요 : 증권 사이트에서 오늘의 증권시황 스크린샷하여 파일 저장&#xA;&#xA;내용 : RE프레임워크 수정하여 사용하여 흐름 제어&#xA;1. 초기화 프로세스 - 환경설정객체(Config)생성 및 작업목록 리스트 추출을 위해 비지니스 시작 프로세스(StartProcess) 실행 &#xA;2. 트랜잭션 데이터 추출 - 작업목록 리스트에서 작업ID 추출, 이전작업에서 시스템에러시 해당 작업ID 재설정&#xA;3. 트랜잭션 프로세스 실행- 해당 트랜잭션 데이터(작업ID)를 이용하여 비지니스 메인 프로세스(MainProcess) 실행 및 실행 상태 변경&#xA;4. 종료 프로세스 - 시스템에러 최대개수 초과시 또는 트랜잭션 소진(작업목록 처리완료)시 비지니스 종료 프로세스(EndProcess) 실행&#xA;&#xA;상태 : 성공 상태, 비지니스에러 상태, 시스템에러 상태&#xA;1. 성공 상태 : 해당 트랜잭션 데이터의 정상 처리 진행&#xA;2. 비지니스에러 상태 : 해당 트랜잭션 데이터는 경고 로그 출력하고 미처리 후  다음 트랜잭션으로 진행&#xA;3. 시스템에러 상태 : 시스템에러 최대개수 초과하기 전에는 재시도횟수 만큼 해당 트랜잭션 재실행 진행, 최대개수 초과시 프로세스 종료" DisplayName="메인 프로세스" sap:VirtualizedContainerService.HintSize="1043,638.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <av:Point x:Key="ShapeLocation">310,0</av:Point>
         <x:Double x:Key="StateContainerWidth">932</x:Double>
         <x:Double x:Key="StateContainerHeight">823</x:Double>
-        <av:PointCollection x:Key="ConnectorLocation">340,75 340,105 337.5,105 337.5,124</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">335,50 335,80 326.5,80 326.5,124</av:PointCollection>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="처리할 다음 트랜잭션 가져오기&#xA;시스템에러시 최대개수만큼 반복하여 같은 트랜잭션 재설정" DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="398,137" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="처리할 다음 트랜잭션 가져오기&#xA;시스템에러시 최대개수만큼 반복하여 같은 트랜잭션 재설정" DisplayName="트랜잭션 데이터 추출" sap:VirtualizedContainerService.HintSize="376,131" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <Sequence sap2010:Annotation.AnnotationText="새 트랜잭션 데이터 검색&#xA;트랜잭션번호를 증가시키면 프레임워크가 다음 트랜잭션을 검색&#xA;실패한 트랜잭션을 재시도할때에는 재시도 횟수에 도달할때까지 번호 증가는 없음" DisplayName="트랜잭션 데이터 검색" sap:VirtualizedContainerService.HintSize="632,1812" sap2010:WorkflowViewState.IdRef="Sequence_25">
           <Sequence.Variables>
@@ -234,7 +234,7 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">140.5,339.5</av:Point>
-          <av:Size x:Key="ShapeSize">398,137</av:Size>
+          <av:Size x:Key="ShapeSize">376,131</av:Size>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Double x:Key="StateContainerWidth">364</x:Double>
           <x:Double x:Key="StateContainerHeight">58.000000000000114</x:Double>
@@ -245,14 +245,14 @@
         <Transition DisplayName="다음 트랜잭션" sap:VirtualizedContainerService.HintSize="450,861" sap2010:WorkflowViewState.IdRef="Transition_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:PointCollection x:Key="ConnectorLocation">339.5,476.5 339.5,506.5 338.5,506.5 338.5,567.5</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">328.5,470.5 328.5,500.5 327.5,500.5 327.5,567.5</av:PointCollection>
               <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
               <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="프로세스 실행 후 처리 상태 반영&#xA;- 성공 (에러가 없는 것으로 판단)&#xA;- 비지니스에러 (에러가 발생한 트랜잭션 항목 로그 출력)&#xA;- 시스템에러 (재시도 횟수에 따라 여러번 수행 가능)" DisplayName="트랜잭션 프로세스 실행" sap:VirtualizedContainerService.HintSize="400,134" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="프로세스 실행 후 처리 상태 반영&#xA;- 성공 (에러가 없는 것으로 판단)&#xA;- 비지니스에러 (에러가 발생한 트랜잭션 항목 로그 출력)&#xA;- 시스템에러 (재시도 횟수에 따라 여러번 수행 가능)" DisplayName="트랜잭션 프로세스 실행" sap:VirtualizedContainerService.HintSize="378,132" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
                 <TryCatch DisplayName="Try Catch 트랜잭션 프로세스 에러 대응" sap:VirtualizedContainerService.HintSize="540,3235" sap2010:WorkflowViewState.IdRef="TryCatch_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -462,10 +462,10 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">138.5,567.5</av:Point>
-                  <av:Size x:Key="ShapeSize">400,134</av:Size>
+                  <av:Size x:Key="ShapeSize">378,132</av:Size>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   <x:Double x:Key="StateContainerWidth">366</x:Double>
-                  <x:Double x:Key="StateContainerHeight">25</x:Double>
+                  <x:Double x:Key="StateContainerHeight">29</x:Double>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -473,7 +473,7 @@
                 <Transition sap2010:Annotation.AnnotationText="해당 트랜잭션 항목이 성공했으므로 다음 트랜잭션 처리로 이동" DisplayName="성공" sap:VirtualizedContainerService.HintSize="502,538" sap2010:WorkflowViewState.IdRef="Transition_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">538.5,627.8 568.5,627.8 568.5,442.25 538.5,442.25</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">516.5,626.9 546.5,626.9 546.5,437.75 516.5,437.75</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">32</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">56</x:Int32>
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -488,7 +488,7 @@
                 <Transition sap2010:Annotation.AnnotationText="비지니스에러시 해당 트랜잭션처리는 실패로 하고 다음 트랜잭션으로 이동" DisplayName="비지니스에러" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="Transition_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">138.5,627.8 108.5,627.8 108.5,414.85 140.5,414.85</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">138.5,626.9 108.5,626.9 108.5,411.55 140.5,411.55</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">33</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">41</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -503,7 +503,7 @@
                 <Transition DisplayName="시스템에러" sap:VirtualizedContainerService.HintSize="450,507" sap2010:WorkflowViewState.IdRef="Transition_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">138.5,674.7 72.5,674.7 72.5,184.3 135,184.3</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">138.5,673.1 63,673.1 63,196.9 135,196.9</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">61</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">33</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -511,7 +511,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.Condition>[SystemException IsNot Nothing]</Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="환경설정객체(Config) 초기화 등 최초1회만 실행되는 처리 실행 &#xA;최초1회만 실행되는 처리 내에서 비지니스 시작 프로스세 실행&#xA;시스템에러 최대개수 도달시 시스템에러로 프로세스 종료로 이동&#xA;어플리케이션 초기화" DisplayName="초기화 프로세스" sap:VirtualizedContainerService.HintSize="405,134" sap2010:WorkflowViewState.IdRef="State_2">
+                    <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="환경설정객체(Config) 초기화 등 최초1회만 실행되는 처리 실행 &#xA;최초1회만 실행되는 처리 내에서 비지니스 시작 프로스세 실행&#xA;시스템에러 최대개수 도달시 시스템에러로 프로세스 종료로 이동&#xA;어플리케이션 초기화" DisplayName="초기화 프로세스" sap:VirtualizedContainerService.HintSize="383,162" sap2010:WorkflowViewState.IdRef="State_2">
                       <State.Entry>
                         <TryCatch DisplayName="Try Catch  초기화 처리 에러 대응" sap:VirtualizedContainerService.HintSize="706,3496" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                           <sap:WorkflowViewStateService.ViewState>
@@ -767,10 +767,10 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">135,124</av:Point>
-                          <av:Size x:Key="ShapeSize">405,134</av:Size>
+                          <av:Size x:Key="ShapeSize">383,162</av:Size>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           <x:Double x:Key="StateContainerWidth">371</x:Double>
-                          <x:Double x:Key="StateContainerHeight">25</x:Double>
+                          <x:Double x:Key="StateContainerHeight">29</x:Double>
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -780,7 +780,7 @@
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
                               <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
-                              <av:PointCollection x:Key="ConnectorLocation">337.5,258 337.5,288 339.5,288 339.5,339.5</av:PointCollection>
+                              <av:PointCollection x:Key="ConnectorLocation">326.5,286 326.5,316 328.5,316 328.5,339.5</av:PointCollection>
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
@@ -795,13 +795,13 @@
                         <Transition DisplayName="시스템에러 (초기화실패)" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="Transition_8">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <av:PointCollection x:Key="ConnectorLocation">540,191 745,191 745,220</av:PointCollection>
+                              <av:PointCollection x:Key="ConnectorLocation">518,205 680,205 680,240</av:PointCollection>
                               <x:Int32 x:Key="SrcConnectionPointIndex">36</x:Int32>
                               <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="비지니스 종료 프로세스 실행 &#xA;전체 어플리케이션 종료처리 후 닫기&#xA;프로그램 종료" DisplayName="종료 프로세스" sap:VirtualizedContainerService.HintSize="274,151" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="비지니스 종료 프로세스 실행 &#xA;전체 어플리케이션 종료처리 후 닫기&#xA;프로그램 종료" DisplayName="종료 프로세스" sap:VirtualizedContainerService.HintSize="260,120" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
                                 <TryCatch DisplayName="Try Catch 모든 어플리케이션 닫기" sap:VirtualizedContainerService.HintSize="490,1519" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -886,11 +886,11 @@
                               </State.Entry>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <av:Point x:Key="ShapeLocation">608,220</av:Point>
-                                  <av:Size x:Key="ShapeSize">274,151</av:Size>
+                                  <av:Point x:Key="ShapeLocation">550,240</av:Point>
+                                  <av:Size x:Key="ShapeSize">260,120</av:Size>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  <x:Double x:Key="StateContainerWidth">240</x:Double>
-                                  <x:Double x:Key="StateContainerHeight">57.079999999999984</x:Double>
+                                  <x:Double x:Key="StateContainerWidth">248</x:Double>
+                                  <x:Double x:Key="StateContainerHeight">32.08000000000004</x:Double>
                                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -916,7 +916,7 @@
         <Transition DisplayName="트랜잭션 소진" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="Transition_9">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:PointCollection x:Key="ConnectorLocation">538.5,387.45 745,387.45 745,371</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">516.5,385.35 680,385.35 680,360</av:PointCollection>
               <x:Int32 x:Key="SrcConnectionPointIndex">24</x:Int32>
               <x:Int32 x:Key="DestConnectionPointIndex">39</x:Int32>
             </scg:Dictionary>
