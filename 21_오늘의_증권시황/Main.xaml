@@ -121,10 +121,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        <av:Point x:Key="ShapeLocation">310,0</av:Point>
+        <av:Point x:Key="ShapeLocation">305,0</av:Point>
         <x:Double x:Key="StateContainerWidth">932</x:Double>
         <x:Double x:Key="StateContainerHeight">823</x:Double>
-        <av:PointCollection x:Key="ConnectorLocation">335,50 335,80 326.5,80 326.5,124</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">330,50 330,80 326.5,80 326.5,124</av:PointCollection>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
@@ -503,7 +503,7 @@
                 <Transition DisplayName="시스템에러" sap:VirtualizedContainerService.HintSize="450,507" sap2010:WorkflowViewState.IdRef="Transition_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">138.5,673.1 56,673.1 56,196.9 135,196.9</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">138.5,673.1 66,673.1 66,196.9 135,196.9</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">61</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">33</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
