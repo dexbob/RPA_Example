@@ -46,6 +46,7 @@
       <x:String>UiPath.Testing.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -116,67 +117,71 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="572,2678" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="트랜잭션 데이터 초기화" sap:VirtualizedContainerService.HintSize="1010,2514" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message 초기화 로그 출력" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Initializing Transaction Data...&quot;]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="StartProcess - 워크플로우 파일 호출 (Business_Logic\StartProcess.xaml)" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\StartProcess.xaml">
+    <ui:LogMessage DisplayName="Log Message 초기화 로그 출력" sap:VirtualizedContainerService.HintSize="470,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Initializing Transaction Data...&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="StartProcess - 워크플로우 파일 호출 (Business_Logic\StartProcess.xaml)" sap:VirtualizedContainerService.HintSize="470,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Business_Logic\StartProcess.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Dic_Config">[in_Dic_Config]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT_TransactionData">[out_DT_TransactionData]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot; 처리대상 트랜잭션 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 개&quot;]" />
-    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 사용하는 경우&#xA;- 트랜잭션 데이터를 큐에 설정 (큐에 별도 설정시 이하 처리 제거)&#xA;- 재실행 횟수 0으로 설정" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="510,1928" sap2010:WorkflowViewState.IdRef="If_3">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot; 처리대상 트랜잭션 데이터 개수 : &quot; + out_DT_TransactionData.RowCount.ToString + &quot; 개&quot;]" />
+    <If sap2010:Annotation.AnnotationText="오케스트레이터 큐를 사용하는 경우&#xA;- 트랜잭션 데이터를 큐에 설정 (큐에 별도 설정시 이하 처리 제거)&#xA;- 재실행 횟수 0으로 설정" Condition="[CBool(in_Dic_Config(&quot;UseQueue&quot;))]" DisplayName="If 오케스트레이터 큐 이용 여부" sap:VirtualizedContainerService.HintSize="470,1893" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,1689" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,1609" sap2010:WorkflowViewState.IdRef="Sequence_10">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:Annotation.AnnotationText="큐아이템 리스트" Name="QILst_QueueItems" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" sap2010:Annotation.AnnotationText="중복 설정을 방지하기 위해 이미 존재하는 트랜잭션 리스트 추출" DisplayName="Get Queue Items 큐 대기열 리스트 추출" FilterStrategy="Equals" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,185" sap2010:WorkflowViewState.IdRef="GetQueueItems_3" QueueItemStates="New, InProgress, Abandoned" QueueName="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" Result="[QILst_QueueItems]">
+          <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" sap2010:Annotation.AnnotationText="중복 설정을 방지하기 위해 이미 존재하는 트랜잭션 리스트 추출" DisplayName="Get Queue Items 큐 대기열 리스트 추출" FilterStrategy="Equals" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,217" sap2010:WorkflowViewState.IdRef="GetQueueItems_3" QueueItemStates="New, InProgress, Abandoned" QueueName="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" Result="[QILst_QueueItems]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:GetQueueItems>
-          <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="이미 존재하는 큐 대기열 리스트에 포함된 트랜잭션 제외" DisplayName="For Each Item 이미 존재하는 큐 대기열 리스트 반복" sap:VirtualizedContainerService.HintSize="434,628" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[QILst_QueueItems]">
+          <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="이미 존재하는 큐 대기열 리스트에 포함된 트랜잭션 제외" DisplayName="For Each Item 이미 존재하는 큐 대기열 리스트 반복" sap:VirtualizedContainerService.HintSize="434,609" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[QILst_QueueItems]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="ui:QueueItem">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:QueueItem" Name="Item" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,461" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="416,448" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message 트랜잭션(작업ID) 로그 출력" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[String.Format(&quot;이미 존재하는 큐 트랜잭션 : WIID ({0}) &quot;, Item.SpecificContent(&quot;WIID&quot;).ToString)]" />
-                  <ui:FilterDataTable sap2010:Annotation.AnnotationText="이미 존재하는 큐 대기열 트랜잭션(작업ID) 제거" DataTable="[out_DT_TransactionData]" DisplayName="Filter Data Table 필터링 데이터테이블 " FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_DT_TransactionData]" SelectColumnsMode="Remove">
+                  <ui:LogMessage DisplayName="Log Message 트랜잭션 로그 출력" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[String.Format(&quot;이미 존재하는 큐 트랜잭션 : Name ({0}) &quot;, Item.SpecificContent(&quot;Name&quot;).ToString)]" />
+                  <ui:FilterDataTable sap2010:Annotation.AnnotationText="이미 존재하는 큐 대기열 트랜잭션(작업ID) 제거" DataTable="[out_DT_TransactionData]" DisplayName="Filter Data Table 필터링 데이터테이블 " FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="382,215" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_DT_TransactionData]" SelectColumnsMode="Remove">
                     <ui:FilterDataTable.Filters>
                       <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                         <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
                           <ui:FilterOperationArgument.Column>
-                            <InArgument x:TypeArguments="x:String">["WIID"]</InArgument>
+                            <InArgument x:TypeArguments="x:String">["Name"]</InArgument>
                           </ui:FilterOperationArgument.Column>
                           <ui:FilterOperationArgument.Operand>
-                            <InArgument x:TypeArguments="x:String">[Item.SpecificContent("WIID").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[Item.SpecificContent("Name").ToString]</InArgument>
                           </ui:FilterOperationArgument.Operand>
                         </ui:FilterOperationArgument>
                       </scg:List>
@@ -201,22 +206,28 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEach>
-          <If Condition="[out_DT_TransactionData.RowCount &gt; 0]" DisplayName="If 큐에 추가할 데이터테이블이 존재하면 큐에 추가" sap:VirtualizedContainerService.HintSize="434,464" sap2010:WorkflowViewState.IdRef="If_4">
+          <If Condition="[out_DT_TransactionData.RowCount &gt; 0]" DisplayName="If 큐에 추가할 데이터테이블이 존재하면 큐에 추가" sap:VirtualizedContainerService.HintSize="434,504" sap2010:WorkflowViewState.IdRef="If_4">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="376,282" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,277" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" DisplayName="Bulk Add Queue Items 큐에 트랜잭션 추가" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,194" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1" QueueItemsDataTable="[out_DT_TransactionData]" QueueName="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" />
+                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" DisplayName="Bulk Add Queue Items 큐에 트랜잭션 추가" FolderPath="[in_Dic_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="382,217" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1" QueueItemsDataTable="[out_DT_TransactionData]" QueueName="[in_Dic_Config(&quot;OrchestratorQueueName&quot;).ToString]" />
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15" />
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
             </If.Else>
           </If>
-          <Assign DisplayName="Assign 데이터테이블에 빈값 설정" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Assign 데이터테이블에 빈값 설정" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[out_DT_TransactionData]</OutArgument>
             </Assign.To>
@@ -224,7 +235,7 @@
               <InArgument x:TypeArguments="sd:DataTable">[Nothing]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign 재실행 횟수 0으로 설정 (큐에서 제어)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign DisplayName="Assign 재실행 횟수 0으로 설정 (큐에서 제어)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_6">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Object">[in_Dic_Config("MaxRetryNumber")]</OutArgument>
             </Assign.To>
@@ -235,7 +246,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -244,7 +255,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="470,75" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="546,392" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
@@ -252,7 +263,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 샘플 트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="484,281" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" WorkbookPath="[in_Dic_Config(&quot;Path_Transaction&quot;).ToString]">
+          <ui:ExcelApplicationScope Password="{x:Null}" SensitivityLabel="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 샘플 트랜잭션 데이터 설정" sap:VirtualizedContainerService.HintSize="484,281" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" SensitivityOperation="None" Visible="False" WorkbookPath="[in_Dic_Config(&quot;Path_Transaction&quot;).ToString]">
             <ui:ExcelApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                 <ActivityAction.Argument>

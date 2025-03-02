@@ -117,7 +117,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="제목 : 오늘의 증권시황 스크린샷&#xA;&#xA;개요 : 증권 사이트에서 오늘의 증권시황 스크린샷하여 파일 저장&#xA;&#xA;내용 : RE프레임워크 수정하여 사용하여 흐름 제어&#xA;1. 초기화 프로세스 - 환경설정객체(Config)생성 및 작업목록 리스트 추출을 위해 비지니스 시작 프로세스(StartProcess) 실행 &#xA;2. 트랜잭션 데이터 추출 - 작업목록 리스트에서 작업ID 추출, 이전작업에서 시스템에러시 해당 작업ID 재설정&#xA;3. 트랜잭션 프로세스 실행- 해당 트랜잭션 데이터(작업ID)를 이용하여 비지니스 메인 프로세스(MainProcess) 실행 및 실행 상태 변경&#xA;4. 종료 프로세스 - 시스템에러 최대개수 초과시 또는 트랜잭션 소진(작업목록 처리완료)시 비지니스 종료 프로세스(EndProcess) 실행&#xA;&#xA;상태 : 성공 상태, 비지니스에러 상태, 시스템에러 상태&#xA;1. 성공 상태 : 해당 트랜잭션 데이터의 정상 처리 진행&#xA;2. 비지니스에러 상태 : 해당 트랜잭션 데이터는 경고 로그 출력하고 미처리 후  다음 트랜잭션으로 진행&#xA;3. 시스템에러 상태 : 시스템에러 최대개수 초과하기 전에는 재시도횟수 만큼 해당 트랜잭션 재실행 진행, 최대개수 초과시 프로세스 종료" DisplayName="메인 프로세스" sap:VirtualizedContainerService.HintSize="1043,638.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="제목 : 오늘의 증권시황 스크린샷&#xA;&#xA;개요 : 증권 사이트에서 오늘의 증권시황 스크린샷하여 파일 저장&#xA;&#xA;내용 : RE프레임워크 수정하여 사용하여 흐름 제어&#xA;1. 초기화 프로세스 - 환경설정객체(Config)생성 및 작업목록 리스트 추출을 위해 비지니스 시작 프로세스(StartProcess) 실행 &#xA;2. 트랜잭션 데이터 추출 - 작업목록 리스트에서 작업ID 추출, 이전작업에서 시스템에러시 해당 작업ID 재설정&#xA;3. 트랜잭션 프로세스 실행- 해당 트랜잭션 데이터(작업ID)를 이용하여 비지니스 메인 프로세스(MainProcess) 실행 및 실행 상태 변경&#xA;4. 종료 프로세스 - 시스템에러 최대개수 초과시 또는 트랜잭션 소진(작업목록 처리완료)시 비지니스 종료 프로세스(EndProcess) 실행&#xA;&#xA;상태 : 성공 상태, 비지니스에러 상태, 시스템에러 상태&#xA;1. 성공 상태 : 해당 트랜잭션 데이터의 정상 처리 진행&#xA;2. 비지니스에러 상태 : 해당 트랜잭션 데이터는 경고 로그 출력하고 미처리 후  다음 트랜잭션으로 진행&#xA;3. 시스템에러 상태 : 시스템에러 최대개수 초과하기 전에는 재시도횟수 만큼 해당 트랜잭션 재실행 진행, 최대개수 초과시 프로세스 종료" DisplayName="메인 프로세스" sap:VirtualizedContainerService.HintSize="1027,622.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -503,7 +503,7 @@
                 <Transition DisplayName="시스템에러" sap:VirtualizedContainerService.HintSize="450,507" sap2010:WorkflowViewState.IdRef="Transition_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">138.5,673.1 63,673.1 63,196.9 135,196.9</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">138.5,673.1 56,673.1 56,196.9 135,196.9</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">61</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">33</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
