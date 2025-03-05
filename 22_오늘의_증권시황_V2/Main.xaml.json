@@ -1,0 +1,33 @@
+{
+  "DisplayName": "Main",
+  "Tooltip": null,
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "in_Str_OrchestratorQueueName",
+      "DisplayName": "in_Str_OrchestratorQueueName",
+      "Category": null,
+      "Tooltip": "[입력] 오케스트레이터 큐 이름\n환경설정객체(Config)에도 존재하나 입력 인수가 존재하면 인수값을 우선으로 설정",
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_Str_OrchestratorQueueFolder",
+      "DisplayName": "in_Str_OrchestratorQueueFolder",
+      "Category": null,
+      "Tooltip": "[입력] 오케스트레이터 큐 폴더\n환경설정객체(Config)에도 존재하나 입력 인수가 존재하면 인수값을 우선으로 설정",
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    }
+  ]
+}

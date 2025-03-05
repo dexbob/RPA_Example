@@ -1,0 +1,344 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_107_Excel_AddAINewsSummary" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.CC52C7E4912_v2_sub_chat_sub_completion_Create.Bundle;assembly=CC52C7E4912_v2_sub_c.ImKnE4q2eKH1AqnP41pfKqB1" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="[입력] 환경설정객체(Config)" Name="in_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1211,2635</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_107_Excel_AddAINewsSummary_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models.FilterBuilder</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>CC52C7E4912_v2_sub_c.ImKnE4q2eKH1AqnP41pfKqB1</AssemblyReference>
+      <AssemblyReference>CC52C7E4912_v2_sub_c.ImKnE4q2eKH1AqnP41pfKqB1</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="주요뉴스를 이용하여 ChatGPT에게 질문 하고 그 요약본을 대시보드에 추가" DisplayName="오늘의 AI(ChatGPT) 뉴스 요약" sap:VirtualizedContainerService.HintSize="622,2570" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Str_Question" />
+      <Variable x:TypeArguments="x:String" Name="Str_Prompt" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_News" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="Int_Index" />
+      <Variable x:TypeArguments="x:String" Name="Str_Answer" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="560,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;[Excel_AddAINewsSummary]&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign 프럼프트와 질문 메시지 작성용 변수 설정" sap:VirtualizedContainerService.HintSize="560,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Str_Prompt]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">["너는 연봉 10억의 전문 증권 애널리스트야. 어제 있었던 증권 뉴스 제목과 초반내용 전부 분석해서 예시와 같이 한글 한문장으로 요약해줘.
+예: 23일 국내 증시: 원/달러 환율은 1460원대를 넘어섰고, 미국 증시는 금융위기 이후 최고치를 기록하였으며, 내년에는 한국은행의 금리 인하가 예고되어 있습니다. 한편, 고배당주와 양자컴퓨터 관련주가 투자자들의 주목을 받고 있습니다. "]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Str_Question]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Str_Prompt + Environment.NewLine]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:ExcelApplicationScope Password="{x:Null}" SensitivityLabel="{x:Null}" sap2010:Annotation.AnnotationText="출력 엑셀 파일의 주요뉴스 시트에서 오늘의 뉴스 내용 추출" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 출력 엑셀 파일에서 뉴스 정보 가져오기" sap:VirtualizedContainerService.HintSize="560,312" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" SensitivityOperation="None" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,171" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[DT_News]" DisplayName="Read Range 주요뉴스 읽기" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[in_Dic_Config(&quot;Sheet_MajorNews&quot;).ToString]">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExcelApplicationScope>
+    <ui:ForEachRow ColumnNames="{x:Null}" sap2010:Annotation.AnnotationText="추출한 주요뉴스의 제목과 내용을 이용해  ChatGPT에게 질문할 내용 생성&#xD;&#xA;뉴스의 개수는 40개로 한정 (그 이상에서 오류 발생)" CurrentIndex="[Int_Index]" DataTable="[DT_News]" DisplayName="For Each Row in Data Table 추출한 주요뉴스 개수만큼 반복" sap:VirtualizedContainerService.HintSize="560,399" sap2010:WorkflowViewState.IdRef="ForEachRow_1" MaxIterations="40">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="476,171" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_Question]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[Str_Question + 
+Environment.NewLine + 
+Int_Index.ToString + " &gt;&gt; " + "[제목] " +
+CurrentRow("제목").ToString +
+Environment.NewLine + "[내용] " +
+CurrentRow("내용").ToString +
+Environment.NewLine]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:LogMessage DisplayName="Log Message 질문 메시지 로그 출력" sap:VirtualizedContainerService.HintSize="560,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[Str_Question]" />
+    <TryCatch DisplayName="Try Catch 에러 대응" sap:VirtualizedContainerService.HintSize="560,404" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <isactr:ConnectorActivity sap2010:Annotation.AnnotationText="질문 프럼프트와 뉴스40개(제목과 내용머릿글)을 이용해 오늘의 뉴스 요약" Configuration="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" ConnectionId="f4f72362-bea9-44de-a177-acc52c7e4912" DisplayName="Generate Chat Completion ChatGPT 질문과 응답" sap:VirtualizedContainerService.HintSize="334,327" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="296e94c2-5189-3dec-8228-e1d757da7de8">
+          <isactr:ConnectorActivity.FieldObjects>
+            <isactr:FieldObject Name="model" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:String">gpt-4-turbo</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="prompt" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:String">[Str_Question]</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="image_type" Type="FieldArgument" />
+            <isactr:FieldObject Name="_file" Type="FieldArgument" />
+            <isactr:FieldObject Name="image_url" Type="FieldArgument" />
+            <isactr:FieldObject Name="instruction" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:String" />
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="max_tokens" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Int32">1920</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="n" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Int32">1</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="temperature" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Double">1</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="top_p" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Double">1</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="_stop" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:String" />
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="presence_penalty" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Double">0</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="frequency_penalty" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:Double">0</InArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="user" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <InArgument x:TypeArguments="x:String" />
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="out_text" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <OutArgument x:TypeArguments="x:String">[Str_Answer]</OutArgument>
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+            <isactr:FieldObject Name="Jit_v2_sub_chat_sub_completion" Type="FieldArgument">
+              <isactr:FieldObject.Value>
+                <OutArgument x:TypeArguments="uiascb:v2_sub_chat_sub_completion_Create" />
+              </isactr:FieldObject.Value>
+            </isactr:FieldObject>
+          </isactr:ConnectorActivity.FieldObjects>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </isactr:ConnectorActivity>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,241" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="로그만 출력하고 별도 에러 처리 없이 다음으로 진행" DisplayName="Log Message 에러 발생시 로그 출력" sap:VirtualizedContainerService.HintSize="334,172" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;ChatGPT 연동 실패...&quot;]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <If Condition="[Not String.IsNullOrWhiteSpace(Str_Answer)]" DisplayName="If 질문에 대한 답변이 존재하면 엑셀 파일에 추가" sap:VirtualizedContainerService.HintSize="560,644" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="526,462" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExcelApplicationScope Password="{x:Null}" SensitivityLabel="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope 출력파일의 대시보드에 추가" sap:VirtualizedContainerService.HintSize="484,374" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" SensitivityOperation="None" WorkbookPath="[in_Dic_Config(&quot;Path_Output&quot;).ToString]">
+            <ui:ExcelApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="450,264" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelWriteCell Cell="K28" DisplayName="Write Cell 대시보드시트에 뉴스요약 추가" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Dic_Config(&quot;Sheet_Dashboard&quot;).ToString]" Text="[Str_Answer]" />
+                  <ui:ExcelSaveWorkbook DisplayName="Save Workbook 파일 저장" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ExcelApplicationScope.Body>
+          </ui:ExcelApplicationScope>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6" />
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
